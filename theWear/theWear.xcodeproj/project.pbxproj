@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		A728DF53223E4667004E5771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF52223E4667004E5771 /* AppDelegate.swift */; };
-		A728DF55223E4667004E5771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF54223E4667004E5771 /* ViewController.swift */; };
-		A728DF58223E4667004E5771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A728DF56223E4667004E5771 /* Main.storyboard */; };
+		A728DF55223E4667004E5771 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF54223E4667004E5771 /* MainController.swift */; };
 		A728DF5A223E4669004E5771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A728DF59223E4669004E5771 /* Assets.xcassets */; };
 		A728DF5D223E4669004E5771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A728DF5B223E4669004E5771 /* LaunchScreen.storyboard */; };
 		A728DF65223EBE38004E5771 /* API Requests .swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF64223EBE38004E5771 /* API Requests .swift */; };
 		A728DF67223EBE5B004E5771 /* Data model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF66223EBE5B004E5771 /* Data model.swift */; };
+		BA82AD40223EF8D900EC490A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA82AD3F223EF8D900EC490A /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A728DF4F223E4667004E5771 /* theWear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theWear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A728DF52223E4667004E5771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A728DF54223E4667004E5771 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A728DF57223E4667004E5771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A728DF54223E4667004E5771 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		A728DF59223E4669004E5771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A728DF5C223E4669004E5771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A728DF5E223E4669004E5771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A728DF64223EBE38004E5771 /* API Requests .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API Requests .swift"; sourceTree = "<group>"; };
 		A728DF66223EBE5B004E5771 /* Data model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data model.swift"; sourceTree = "<group>"; };
+		BA82AD3F223EF8D900EC490A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,13 +59,13 @@
 			isa = PBXGroup;
 			children = (
 				A728DF52223E4667004E5771 /* AppDelegate.swift */,
-				A728DF54223E4667004E5771 /* ViewController.swift */,
+				A728DF54223E4667004E5771 /* MainController.swift */,
 				A728DF64223EBE38004E5771 /* API Requests .swift */,
 				A728DF66223EBE5B004E5771 /* Data model.swift */,
-				A728DF56223E4667004E5771 /* Main.storyboard */,
 				A728DF59223E4669004E5771 /* Assets.xcassets */,
 				A728DF5B223E4669004E5771 /* LaunchScreen.storyboard */,
 				A728DF5E223E4669004E5771 /* Info.plist */,
+				BA82AD3F223EF8D900EC490A /* Extensions.swift */,
 			);
 			path = theWear;
 			sourceTree = "<group>";
@@ -130,7 +130,6 @@
 			files = (
 				A728DF5D223E4669004E5771 /* LaunchScreen.storyboard in Resources */,
 				A728DF5A223E4669004E5771 /* Assets.xcassets in Resources */,
-				A728DF58223E4667004E5771 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A728DF55223E4667004E5771 /* ViewController.swift in Sources */,
+				BA82AD40223EF8D900EC490A /* Extensions.swift in Sources */,
+				A728DF55223E4667004E5771 /* MainController.swift in Sources */,
 				A728DF65223EBE38004E5771 /* API Requests .swift in Sources */,
 				A728DF67223EBE5B004E5771 /* Data model.swift in Sources */,
 				A728DF53223E4667004E5771 /* AppDelegate.swift in Sources */,
@@ -151,14 +151,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A728DF56223E4667004E5771 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A728DF57223E4667004E5771 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A728DF5B223E4669004E5771 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -291,16 +283,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWear/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Valentina.theWear;
+				PRODUCT_BUNDLE_IDENTIFIER = Valentina.theWea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -309,16 +301,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWear/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Valentina.theWear;
+				PRODUCT_BUNDLE_IDENTIFIER = Valentina.theWea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
