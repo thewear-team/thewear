@@ -10,7 +10,7 @@ import Foundation
 
 
 func loadData( currentCity : String, completion : @escaping (Data)->Void){
-    var jsonUrlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=74c4bc939e104ac6b3791645190203&q=\(currentCity)&format=json&num_of_days=7&mca=no&tp=1&quot"
+    var jsonUrlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=567c3548fe97464a9c1173812191603&q=\(currentCity)&format=json&num_of_days=7&mca=no&tp=1&quot"
     jsonUrlString = jsonUrlString.replacingOccurrences(of: ",", with: "")
     let url = URL(string: jsonUrlString)
     let task = URLSession.shared.dataTask(with: url!){ (data,
@@ -27,7 +27,7 @@ func loadData( currentCity : String, completion : @escaping (Data)->Void){
 }
 func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->Void){
     
-    let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=74c4bc939e104ac6b3791645190203&q=\(cityTyped)&format=json"
+    let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=567c3548fe97464a9c1173812191603&q=\(cityTyped)&format=json"
     
     let url = URL(string: jsonUrlString)
     let task = URLSession.shared.dataTask(with: url!){ (data,
@@ -43,7 +43,7 @@ func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->
 }
 
 func getWeather (currentGEO : String, completion : @escaping (Data)->Void){
-    let urlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=74c4bc939e104ac6b3791645190203&q=\(currentGEO)&format=json&num_of_days=7&mca=no&tp=1&quot"
+    let urlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=567c3548fe97464a9c1173812191603&q=\(currentGEO)&format=json&num_of_days=7&mca=no&tp=1&quot"
     //    var jsonUrlString = currentURL
     let url = URL(string: urlString)
     let task = URLSession.shared.dataTask(with: url!){ (data,
