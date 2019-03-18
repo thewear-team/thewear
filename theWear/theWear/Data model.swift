@@ -4,7 +4,10 @@
 //
 //  Created by Валентина on 17/03/2019.
 //  Copyright © 2019 Валентина. All rights reserved.
+
 import Foundation
+import RealmSwift
+import  Realm
 
 enum PartsOfDay {
     case morning,day,evening,night
@@ -134,8 +137,10 @@ struct Region : Decodable{
 struct WeatherUrl : Decodable{
     let value : String?
 }
-
-
-
-
+class RealmWeatherToday : Object{
+    @objc dynamic var morningTemp : String = ""
+    @objc dynamic var dayTemp : String = ""
+    @objc dynamic var eveningTemp : String = ""
+    @objc dynamic var nightTemp : String = ""
+}
 

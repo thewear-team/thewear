@@ -14,6 +14,17 @@ class MainController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.customBlue
         setupNavigationBar()
+        loadData(currentCity: "Moscow", completion: {
+            [weak self] info in
+            print(info.current_condition[0].FeelsLikeC)
+            let currentDayData = RealmWeatherToday()
+            currentDayData.dayTemp = info.weather[0].hourly![15].FeelsLikeC
+            currentDayData.morningTemp = info.weather[0].hourly![9].FeelsLikeC
+            currentDayData.eveningTemp = info.weather[0].hourly![21].FeelsLikeC
+            currentDayData.nightTemp = info.weather[1].hourly![3].FeelsLikeC
+            RealmProvider.saveToDB(items: [currentDayData], update: false)
+    })
+      
     }
     
     let searchImage: UIImageView = {
