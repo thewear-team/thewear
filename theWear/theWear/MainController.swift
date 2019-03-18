@@ -17,14 +17,39 @@ class MainController: UIViewController {
         loadData(currentCity: "Moscow", completion: {
             [weak self] info in
             print(info.current_condition[0].FeelsLikeC)
-            let currentDayData = RealmWeatherToday()
-            currentDayData.dayTemp = info.weather[0].hourly![15].FeelsLikeC
-            currentDayData.morningTemp = info.weather[0].hourly![9].FeelsLikeC
-            currentDayData.eveningTemp = info.weather[0].hourly![21].FeelsLikeC
-            currentDayData.nightTemp = info.weather[1].hourly![3].FeelsLikeC
-            RealmProvider.saveToDB(items: [currentDayData], update: false)
+            self!.createRealmData(info: info)
+//            let currentDayData = RealmWeatherToday()
+//            currentDayData.dayTemp = info.weather[0].hourly![15].FeelsLikeC
+//            currentDayData.morningTemp = info.weather[0].hourly![9].FeelsLikeC
+//            currentDayData.eveningTemp = info.weather[0].hourly![21].FeelsLikeC
+//            currentDayData.nightTemp = info.weather[1].hourly![3].FeelsLikeC
+//            RealmProvider.saveToDB(items: [currentDayData], update: false)
     })
       
+    }
+    
+    func createRealmData(info : Data){
+        let currentDayData = RealmWeatherToday()
+        currentDayData.dayTemp = info.weather[0].hourly![15].FeelsLikeC
+        currentDayData.morningTemp = info.weather[0].hourly![9].FeelsLikeC
+        currentDayData.eveningTemp = info.weather[0].hourly![21].FeelsLikeC
+        currentDayData.nightTemp = info.weather[1].hourly![3].FeelsLikeC
+        var days = [RealmWeatherForecast]()
+        for day in info.weather{
+            var newday = RealmWeatherForecast()
+            var sumTemp = 0
+            day.hourly!.map{
+                sumTemp = sumTemp + Int($0.tempC)!
+            }
+            sumTemp = sumTemp / 24
+            newday.avgTemp = String(sumTemp)
+            newday.day = day.date!
+            newday.iconCode = day.hourly![15].weatherCode
+            days.append(newday)
+        }
+        RealmProvider.cleanTables()
+        RealmProvider.saveToDB(items: days, update: false)
+        RealmProvider.saveToDB(items: [currentDayData], update: false)
     }
     
     let searchImage: UIImageView = {

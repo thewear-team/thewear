@@ -18,11 +18,11 @@ class RealmProvider {
         return realm?.objects(type)
     }
     
-    static func cleanTablePhotos (){
+    static func cleanTables (){
         let realm = try! Realm(configuration: RealmProvider.configuration)
-//        let someobj = realm.objects(type.self)
         try! realm.write {
-//            realm.delete(someobj)
+            realm.delete(realm.objects(RealmWeatherToday.self))
+            realm.delete(realm.objects(RealmWeatherForecast.self))
         }
     }
     
@@ -42,3 +42,4 @@ class RealmProvider {
     }
     
 }
+

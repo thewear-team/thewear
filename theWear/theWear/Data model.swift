@@ -143,4 +143,10 @@ class RealmWeatherToday : Object{
     @objc dynamic var eveningTemp : String = ""
     @objc dynamic var nightTemp : String = ""
 }
+class RealmWeatherForecast : Object{
+    @objc dynamic var day : String = ""
+    @objc dynamic var avgTemp : String = ""
+    @objc dynamic var iconCode : String = ""
+    
+}
 
