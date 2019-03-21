@@ -7,24 +7,27 @@
 //
 
 import UIKit
+import CoreLocation
 
-class MainController: UIViewController {
+class MainController: UIViewController, CLLocationManagerDelegate {
 
+    var locManger = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.customBlue
         setupNavigationBar()
+        let locationManager = CLLocationManager()
+        self.locManger = locationManager
+        locManger.delegate = self
+        enableLocationServices(manager: self.locManger)
         loadData(currentCity: "Moscow", completion: {
             [weak self] info in
             print(info.current_condition[0].FeelsLikeC)
             self!.createRealmData(info: info)
-//            let currentDayData = RealmWeatherToday()
-//            currentDayData.dayTemp = info.weather[0].hourly![15].FeelsLikeC
-//            currentDayData.morningTemp = info.weather[0].hourly![9].FeelsLikeC
-//            currentDayData.eveningTemp = info.weather[0].hourly![21].FeelsLikeC
-//            currentDayData.nightTemp = info.weather[1].hourly![3].FeelsLikeC
-//            RealmProvider.saveToDB(items: [currentDayData], update: false)
-    })
+        })
+        
+       
       
     }
     
@@ -98,6 +101,37 @@ class MainController: UIViewController {
         settingButton.anchor(top: nil, left: nil, bottom: nil, right: underView.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: -35, width: 27, height: 27, enableInsets: false)
         settingButton.centerYAnchor.constraint(equalTo: underView.centerYAnchor).isActive = true
     }
+    func enableLocationServices(manager : CLLocationManager) {
+        
+        
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            // Request when-in-use authorization initially
+            manager.requestWhenInUseAuthorization()
+            manager.requestAlwaysAuthorization()
+            break
+            
+        case .restricted, .denied:
+            // Disable location features
+//            disableMyLocationBasedFeatures()
+            print("no")
+            break
+            
+        case .authorizedWhenInUse:
+            // Enable basic location features
+//            enableMyWhenInUseFeatures()
+            print("no")
+            break
+            
+        case .authorizedAlways:
+            // Enable any of your app's location features
+//            enableMyAlwaysFeatures()
+            print("no")
+            break
+        }
+        
+    }
+    
 
 }
 

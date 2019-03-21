@@ -14,6 +14,7 @@
 		A728DF5D223E4669004E5771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A728DF5B223E4669004E5771 /* LaunchScreen.storyboard */; };
 		A728DF65223EBE38004E5771 /* API Requests .swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF64223EBE38004E5771 /* API Requests .swift */; };
 		A728DF67223EBE5B004E5771 /* Data model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF66223EBE5B004E5771 /* Data model.swift */; };
+		A733AFF12243E14300BD531B /* LocationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733AFF02243E14300BD531B /* LocationManagement.swift */; };
 		BA82AD40223EF8D900EC490A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA82AD3F223EF8D900EC490A /* Extensions.swift */; };
 		C99B493F49C6102FC7969BF5 /* Pods_theWear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A7720BA021334B9C0552B6 /* Pods_theWear.framework */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		A728DF5E223E4669004E5771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A728DF64223EBE38004E5771 /* API Requests .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API Requests .swift"; sourceTree = "<group>"; };
 		A728DF66223EBE5B004E5771 /* Data model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data model.swift"; sourceTree = "<group>"; };
+		A733AFF02243E14300BD531B /* LocationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagement.swift; sourceTree = "<group>"; };
 		BA82AD3F223EF8D900EC490A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +88,7 @@
 			children = (
 				A728DF52223E4667004E5771 /* AppDelegate.swift */,
 				A728DF54223E4667004E5771 /* MainController.swift */,
+				A733AFF02243E14300BD531B /* LocationManagement.swift */,
 				A728DF64223EBE38004E5771 /* API Requests .swift */,
 				A728DF66223EBE5B004E5771 /* Data model.swift */,
 				A728DF59223E4669004E5771 /* Assets.xcassets */,
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA82AD40223EF8D900EC490A /* Extensions.swift in Sources */,
+				A733AFF12243E14300BD531B /* LocationManagement.swift in Sources */,
 				A728DF55223E4667004E5771 /* MainController.swift in Sources */,
 				A7237CA6223F96FA000AAFF5 /* Realm.swift in Sources */,
 				A728DF65223EBE38004E5771 /* API Requests .swift in Sources */,
