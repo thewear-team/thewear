@@ -137,16 +137,27 @@ struct Region : Decodable{
 struct WeatherUrl : Decodable{
     let value : String?
 }
+
+//MARK: Realm Weather classes
 class RealmWeatherToday : Object{
     @objc dynamic var morningTemp : String = ""
     @objc dynamic var dayTemp : String = ""
     @objc dynamic var eveningTemp : String = ""
     @objc dynamic var nightTemp : String = ""
+    
+    @objc dynamic var morningFeelsLike : String = ""
+    @objc dynamic var dayFeelsLike : String = ""
+    @objc dynamic var eveningFeelsLike : String = ""
+    @objc dynamic var nightFeelsLike : String = ""
 }
 class RealmWeatherForecast : Object{
     @objc dynamic var day : String = ""
     @objc dynamic var avgTemp : String = ""
+    @objc dynamic var feelsLikeTemp : String = ""
     @objc dynamic var iconCode : String = ""
-    
+}
+class RealmWeatherHour : Object{
+    @objc dynamic var tempC : String = ""
+    @objc dynamic var iconCode : String = ""
 }
 

@@ -19,6 +19,7 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         setupNavigationBar()
         let locationManager = CLLocationManager()
         self.locManger = locationManager
+//        self.locManger.start
         locManger.delegate = self
         enableLocationServices(manager: self.locManger)
         loadData(currentCity: "Moscow", completion: {
@@ -31,29 +32,7 @@ class MainController: UIViewController, CLLocationManagerDelegate {
       
     }
     
-    func createRealmData(info : Data){
-        let currentDayData = RealmWeatherToday()
-        currentDayData.dayTemp = info.weather[0].hourly![15].FeelsLikeC
-        currentDayData.morningTemp = info.weather[0].hourly![9].FeelsLikeC
-        currentDayData.eveningTemp = info.weather[0].hourly![21].FeelsLikeC
-        currentDayData.nightTemp = info.weather[1].hourly![3].FeelsLikeC
-        var days = [RealmWeatherForecast]()
-        for day in info.weather{
-            var newday = RealmWeatherForecast()
-            var sumTemp = 0
-            day.hourly!.map{
-                sumTemp = sumTemp + Int($0.tempC)!
-            }
-            sumTemp = sumTemp / 24
-            newday.avgTemp = String(sumTemp)
-            newday.day = day.date!
-            newday.iconCode = day.hourly![15].weatherCode
-            days.append(newday)
-        }
-        RealmProvider.cleanTables()
-        RealmProvider.saveToDB(items: days, update: false)
-        RealmProvider.saveToDB(items: [currentDayData], update: false)
-    }
+     //MARK : UI implementation
     
     let searchImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "search"))
@@ -80,6 +59,7 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         return button
     }()
 
+   
     func setupNavigationBar() {
         let underView = UIView()
         
@@ -101,9 +81,11 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         settingButton.anchor(top: nil, left: nil, bottom: nil, right: underView.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: -35, width: 27, height: 27, enableInsets: false)
         settingButton.centerYAnchor.constraint(equalTo: underView.centerYAnchor).isActive = true
     }
+    
+    
+    //MARK : Core location funcs
+    
     func enableLocationServices(manager : CLLocationManager) {
-        
-        
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             // Request when-in-use authorization initially
@@ -113,23 +95,69 @@ class MainController: UIViewController, CLLocationManagerDelegate {
             
         case .restricted, .denied:
             // Disable location features
-//            disableMyLocationBasedFeatures()
+            self.locManger.requestAlwaysAuthorization()
+            self.locManger.requestWhenInUseAuthorization()
+            
             print("no")
             break
             
         case .authorizedWhenInUse:
             // Enable basic location features
-//            enableMyWhenInUseFeatures()
-            print("no")
+            
             break
             
         case .authorizedAlways:
             // Enable any of your app's location features
-//            enableMyAlwaysFeatures()
-            print("no")
+            
             break
         }
+    }
+    
+    func getCurrentLocation (){
+        let location = self.locManger.r
+    }
+    
+    
+    // MARK : REALM funcs
+    func createRealmData(info : Data){
+        let currentDayData = RealmWeatherToday()
+        currentDayData.dayTemp = info.weather[0].hourly![15].tempC
+        currentDayData.morningTemp = info.weather[0].hourly![9].tempC
+        currentDayData.eveningTemp = info.weather[0].hourly![21].tempC
+        currentDayData.nightTemp = info.weather[1].hourly![3].tempC
         
+        currentDayData.morningFeelsLike = info.weather[0].hourly![9].FeelsLikeC
+        currentDayData.dayFeelsLike = info.weather[0].hourly![15].FeelsLikeC
+        currentDayData.eveningFeelsLike = info.weather[0].hourly![21].FeelsLikeC
+        currentDayData.nightFeelsLike = info.weather[1].hourly![3].FeelsLikeC
+        
+        var days = [RealmWeatherForecast]()
+        for day in info.weather{
+            let newday = RealmWeatherForecast()
+            var sumTemp = 0
+            day.hourly!.map{
+                sumTemp = sumTemp + Int($0.tempC)!
+            }
+            sumTemp = sumTemp / 24
+            newday.avgTemp = String(sumTemp)
+            newday.day = day.date!
+            newday.feelsLikeTemp = day.hourly![15].FeelsLikeC
+            newday.iconCode = day.hourly![15].weatherCode
+            days.append(newday)
+        }
+        var hours = [RealmWeatherHour]()
+        if info.weather[0].hourly != nil{
+            for hour in info.weather[0].hourly!{
+                let newHour = RealmWeatherHour()
+                newHour.iconCode = hour.weatherCode
+                newHour.tempC = hour.tempC
+                hours.append(newHour)
+            }
+        }
+        RealmProvider.cleanTables()
+        RealmProvider.saveToDB(items: days, update: false)
+        RealmProvider.saveToDB(items: [currentDayData], update: false)
+        RealmProvider.saveToDB(items: hours, update: false)
     }
     
 
