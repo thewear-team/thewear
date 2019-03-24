@@ -11,6 +11,8 @@ import CoreLocation
 import CoreGraphics
 
 class MainController: UIViewController, CLLocationManagerDelegate {
+    
+    var delegate: DetailsControllerDelegate?
 
     var locManger = CLLocationManager()
     
@@ -31,13 +33,9 @@ class MainController: UIViewController, CLLocationManagerDelegate {
             self!.createRealmData(info: info)
         })
         getCurrentLocation()
-       
-        
-       
-      
     }
     
-     //MARK : UI implementation
+     //MARK : UI Implementation
     
     let searchImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "search"))
@@ -181,7 +179,9 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         gradient.endPoint = CAGradientLayer.Point.topCenter.point
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
-        self.view.layer.insertSublayer(gradient, at: 0)
+        // Сделал это временно пока, просто белый внизу очень плохо смотрится
+        // с белым
+        //self.view.layer.insertSublayer(gradient, at: 0)
     }
 
 }

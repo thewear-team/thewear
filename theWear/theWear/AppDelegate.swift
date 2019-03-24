@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         window?.makeKeyAndVisible()
-        let main = MainController()
-        window?.rootViewController = main
+        window?.rootViewController = ContainerController()
         
         return true
     }
