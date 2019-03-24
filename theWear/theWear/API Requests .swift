@@ -23,8 +23,24 @@ func loadData( currentCity : String, completion : @escaping (Data)->Void){
         } catch { print("Error deserializing JSON: \(error)")}
     }
     task.resume()
-    
 }
+func loadData( lattitude : String, longitude : String, completion : @escaping (Data)->Void){
+    var jsonUrlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=567c3548fe97464a9c1173812191603&q=()&format=json&num_of_days=7&mca=no&tp=1&quot"
+    jsonUrlString = jsonUrlString.replacingOccurrences(of: ",", with: "")
+    let url = URL(string: jsonUrlString)
+    let task = URLSession.shared.dataTask(with: url!){ (data,
+        response, err) in
+        do {
+            let alldata = try
+                JSONDecoder().decode(Main.self, from: data!)
+            let result = alldata.data
+            completion (result)
+        } catch { print("Error deserializing JSON: \(error)")}
+    }
+    task.resume()
+}
+
+
 func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->Void){
     
     let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=567c3548fe97464a9c1173812191603&q=\(cityTyped)&format=json"

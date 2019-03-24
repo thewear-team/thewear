@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreGraphics
 
 class MainController: UIViewController, CLLocationManagerDelegate {
 
@@ -15,11 +16,13 @@ class MainController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.makeGradient()
         view.backgroundColor = UIColor.customBlue
         setupNavigationBar()
         let locationManager = CLLocationManager()
         self.locManger = locationManager
-//        self.locManger.start
+        self.locManger.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        self.locManger.startUpdatingLocation()
         locManger.delegate = self
         enableLocationServices(manager: self.locManger)
         loadData(currentCity: "Moscow", completion: {
@@ -27,6 +30,8 @@ class MainController: UIViewController, CLLocationManagerDelegate {
             print(info.current_condition[0].FeelsLikeC)
             self!.createRealmData(info: info)
         })
+        getCurrentLocation()
+       
         
        
       
@@ -113,8 +118,14 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
+    
     func getCurrentLocation (){
-        let location = self.locManger.r
+        let location = self.locManger.location
+        print(location?.coordinate)
     }
     
     
@@ -160,6 +171,18 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         RealmProvider.saveToDB(items: hours, update: false)
     }
     
+    func makeGradient(){
+        let gradient: CAGradientLayer = CAGradientLayer()
+        let colorFirst = color(from: CAGradientLayer.colorDawnDark)
+        let colorSecond = color(from: CAGradientLayer.colorDawnLight)
+        gradient.colors = [colorSecond, colorFirst]
+        gradient.locations = [0.0 , 1.0]
+        gradient.startPoint = CAGradientLayer.Point.bottomCenter.point
+        gradient.endPoint = CAGradientLayer.Point.topCenter.point
+        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        
+        self.view.layer.insertSublayer(gradient, at: 0)
+    }
 
 }
 
