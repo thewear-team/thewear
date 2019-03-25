@@ -20,6 +20,7 @@
 		BA9D29A4224812B100FE9280 /* DetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9D29A3224812B100FE9280 /* DetailsController.swift */; };
 		BA9D29A8224814E400FE9280 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9D29A7224814E400FE9280 /* Protocols.swift */; };
 		BA9D29AA22482AF500FE9280 /* PartsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9D29A922482AF500FE9280 /* PartsCollectionViewCell.swift */; };
+		BA9D29AC2248D35300FE9280 /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9D29AB2248D35300FE9280 /* HourlyCollectionViewCell.swift */; };
 		C99B493F49C6102FC7969BF5 /* Pods_theWear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A7720BA021334B9C0552B6 /* Pods_theWear.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		BA9D29A3224812B100FE9280 /* DetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsController.swift; sourceTree = "<group>"; };
 		BA9D29A7224814E400FE9280 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		BA9D29A922482AF500FE9280 /* PartsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartsCollectionViewCell.swift; sourceTree = "<group>"; };
+		BA9D29AB2248D35300FE9280 /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				BA9D29A12248127900FE9280 /* ContainerController.swift */,
 				BA9D29A3224812B100FE9280 /* DetailsController.swift */,
 				BA9D29A922482AF500FE9280 /* PartsCollectionViewCell.swift */,
+				BA9D29AB2248D35300FE9280 /* HourlyCollectionViewCell.swift */,
 			);
 			path = Container;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				BA9D29AA22482AF500FE9280 /* PartsCollectionViewCell.swift in Sources */,
 				A7EDB86A22480C370044FED9 /* Gradients.swift in Sources */,
 				A728DF53223E4667004E5771 /* AppDelegate.swift in Sources */,
+				BA9D29AC2248D35300FE9280 /* HourlyCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

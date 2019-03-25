@@ -27,23 +27,26 @@ class ContainerController: UIViewController {
     
     @objc func handleGesture(_ recognizer: UIPanGestureRecognizer) {
         let neededHeight = (4.8 / 6) * detailsController.view.frame.height
-        let center = detailsController.view.center.y
         if recognizer.state == .began {
             
         } else if recognizer.state == .changed {
             let translation = recognizer.translation(in: detailsController.view)
-    
-            let newY = detailsController.view.center.y + translation.y
-            detailsController.view.center = CGPoint(x: detailsController.view.center.x, y: newY)
-            recognizer.setTranslation(CGPoint.zero, in: detailsController.view)
+            let newY = detailsController.view.frame.origin.y + translation.y
+            
+            if newY <= neededHeight {
+                detailsController.view.frame = CGRect(x: detailsController.view.frame.origin.x, y: newY, width: detailsController.view.frame.width, height: detailsController.view.frame.height)
+                recognizer.setTranslation(.zero, in: detailsController.view)
+            }
         } else if recognizer.state == .ended {
-            if detailsController.view.center.y > detailsController.view.frame.height {
-                UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.detailsController.view.frame = CGRect(x: 0, y: neededHeight, width: self.detailsController.view.frame.width, height: self.detailsController.view.frame.height)
-                }, completion: nil)
-            } else if detailsController.view.center.y > center - 125 {
+            if detailsController.view.frame.origin.y > detailsController.view.frame.height / 2 && detailsController.view.frame.origin.y < neededHeight - 60  {
                 UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.detailsController.view.frame = CGRect(x: 0, y: neededHeight - 125, width: self.detailsController.view.frame.width, height: self.detailsController.view.frame.height)
+                }, completion: nil)
+            } else if detailsController.view.frame.origin.y <= detailsController.view.frame.height / 2 {
+                // Handle
+            } else if detailsController.view.frame.origin.y >= neededHeight - 60 {
+                UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.detailsController.view.frame = CGRect(x: 0, y: neededHeight, width: self.detailsController.view.frame.width, height: self.detailsController.view.frame.height)
                 }, completion: nil)
             }
         }
