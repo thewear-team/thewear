@@ -21,6 +21,7 @@
 		BA9D29A8224814E400FE9280 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9D29A7224814E400FE9280 /* Protocols.swift */; };
 		BA9D29AA22482AF500FE9280 /* PartsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9D29A922482AF500FE9280 /* PartsCollectionViewCell.swift */; };
 		BA9D29AC2248D35300FE9280 /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9D29AB2248D35300FE9280 /* HourlyCollectionViewCell.swift */; };
+		BAABEA1B22490A2F009C538A /* DaysWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAABEA1A22490A2F009C538A /* DaysWeatherTableViewCell.swift */; };
 		C99B493F49C6102FC7969BF5 /* Pods_theWear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A7720BA021334B9C0552B6 /* Pods_theWear.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		BA9D29A7224814E400FE9280 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		BA9D29A922482AF500FE9280 /* PartsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartsCollectionViewCell.swift; sourceTree = "<group>"; };
 		BA9D29AB2248D35300FE9280 /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
+		BAABEA1A22490A2F009C538A /* DaysWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysWeatherTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				BA9D29A3224812B100FE9280 /* DetailsController.swift */,
 				BA9D29A922482AF500FE9280 /* PartsCollectionViewCell.swift */,
 				BA9D29AB2248D35300FE9280 /* HourlyCollectionViewCell.swift */,
+				BAABEA1A22490A2F009C538A /* DaysWeatherTableViewCell.swift */,
 			);
 			path = Container;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAABEA1B22490A2F009C538A /* DaysWeatherTableViewCell.swift in Sources */,
 				BA82AD40223EF8D900EC490A /* Extensions.swift in Sources */,
 				BA9D29A4224812B100FE9280 /* DetailsController.swift in Sources */,
 				A728DF55223E4667004E5771 /* MainController.swift in Sources */,

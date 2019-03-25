@@ -11,6 +11,7 @@ import UIKit
 class ContainerController: UIViewController {
     
     var detailsController: UIViewController!
+    var mainController: MainController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class ContainerController: UIViewController {
     }
     
     func configureMainController() {
-        let mainController = MainController()
+        mainController = MainController()
         view.addSubview(mainController.view)
         addChild(mainController)
         mainController.didMove(toParent: self)
@@ -33,20 +34,32 @@ class ContainerController: UIViewController {
             let translation = recognizer.translation(in: detailsController.view)
             let newY = detailsController.view.frame.origin.y + translation.y
             
+            let newYForNavBar = mainController.underView.frame.origin.y + (translation.y / 4)
+            
             if newY <= neededHeight {
+                if detailsController.view.frame.origin.y < neededHeight - 150 {
+                     mainController.underView.frame = CGRect(x: mainController.underView.frame.origin.x, y: newYForNavBar, width: mainController.underView.frame.width, height: mainController.underView.frame.height)
+                }
                 detailsController.view.frame = CGRect(x: detailsController.view.frame.origin.x, y: newY, width: detailsController.view.frame.width, height: detailsController.view.frame.height)
                 recognizer.setTranslation(.zero, in: detailsController.view)
             }
         } else if recognizer.state == .ended {
-            if detailsController.view.frame.origin.y > detailsController.view.frame.height / 2 && detailsController.view.frame.origin.y < neededHeight - 60  {
+            if detailsController.view.frame.origin.y > detailsController.view.frame.height / 2 && detailsController.view.frame.origin.y < neededHeight - 75  {
                 UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.detailsController.view.frame = CGRect(x: 0, y: neededHeight - 125, width: self.detailsController.view.frame.width, height: self.detailsController.view.frame.height)
+                    self.detailsController.view.frame = CGRect(x: 0, y: neededHeight - 150, width: self.detailsController.view.frame.width, height: self.detailsController.view.frame.height)
+                    self.mainController.underView.frame = CGRect(x: self.mainController.underView.frame.origin.x, y: 44, width: self.mainController.underView.frame.width, height: self.mainController.underView.frame.height)
                 }, completion: nil)
+            } else if detailsController.view.frame.origin.y <= 44 {
+                // handle
             } else if detailsController.view.frame.origin.y <= detailsController.view.frame.height / 2 {
-                // Handle
-            } else if detailsController.view.frame.origin.y >= neededHeight - 60 {
+                UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.detailsController.view.frame = CGRect(x: self.detailsController.view.frame.origin.x, y: 44, width: self.detailsController.view.frame.width, height: self.detailsController.view.frame.height)
+                    self.mainController.underView.frame = CGRect(x: self.mainController.underView.frame.origin.x, y: -self.mainController.underView.frame.height, width: self.mainController.underView.frame.width, height: self.mainController.underView.frame.height)
+                }, completion: nil)
+            } else if detailsController.view.frame.origin.y >= neededHeight - 75 {
                 UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.detailsController.view.frame = CGRect(x: 0, y: neededHeight, width: self.detailsController.view.frame.width, height: self.detailsController.view.frame.height)
+                    self.mainController.underView.frame = CGRect(x: self.mainController.underView.frame.origin.x, y: 44, width: self.mainController.underView.frame.width, height: self.mainController.underView.frame.height)
                 }, completion: nil)
             }
         }

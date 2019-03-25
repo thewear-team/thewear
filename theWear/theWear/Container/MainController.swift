@@ -62,9 +62,9 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         return button
     }()
 
-   
+    let underView = UIView()
+    
     func setupNavigationBar() {
-        let underView = UIView()
         
         let stackView = UIStackView(arrangedSubviews: [cityLabel, timeLabel])
         stackView.axis = .vertical
