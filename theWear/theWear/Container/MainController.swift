@@ -22,17 +22,33 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         view.backgroundColor = UIColor.customBlue
         setupNavigationBar()
         let locationManager = CLLocationManager()
+        locManger.delegate = self
         self.locManger = locationManager
         self.locManger.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        self.locManger.startUpdatingLocation()
-        locManger.delegate = self
-        enableLocationServices(manager: self.locManger)
+        locManger.requestWhenInUseAuthorization()
+        locManger.startUpdatingLocation()
+//        enableLocationServices(manager: self.locManger)
         loadData(currentCity: "Moscow", completion: {
             [weak self] info in
             print(info.current_condition[0].FeelsLikeC)
             self!.createRealmData(info: info)
         })
-        getCurrentLocation()
+//        print(self.locManger.location?.coordinate.latitude, self.locManger.location?.coordinate.longitude)
+        if (self.locManger.location?.coordinate.latitude != nil) && (self.locManger.location?.coordinate.longitude != nil){
+            let lat = self.locManger.location?.coordinate.latitude.description ?? ""
+            let long = self.locManger.location?.coordinate.longitude.description ?? ""
+            loadData(lattitude: lat  , longitude: long  , completion: {
+                [weak self]  data in 
+                print(data)
+            })
+            autocomplete(lattitude: lat , longitude: long , completion: {
+               [weak self] city in
+                print(city)
+                DispatchQueue.main.async {
+                     self?.cityLabel.text = city[0].region[0].value + " " + city[0].country[0].value
+                }
+        })
+        }
     }
     
      //MARK : UI Implementation
@@ -85,33 +101,35 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         settingButton.centerYAnchor.constraint(equalTo: underView.centerYAnchor).isActive = true
     }
     
+   
     
-    //MARK : Core location funcs
-    
+//    MARK : Core location funcs
+
     func enableLocationServices(manager : CLLocationManager) {
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             // Request when-in-use authorization initially
             manager.requestWhenInUseAuthorization()
             manager.requestAlwaysAuthorization()
+            manager.startUpdatingLocation()
             break
-            
+
         case .restricted, .denied:
             // Disable location features
-            self.locManger.requestAlwaysAuthorization()
-            self.locManger.requestWhenInUseAuthorization()
-            
+            manager.requestAlwaysAuthorization()
+            manager.requestWhenInUseAuthorization()
+            manager.startUpdatingLocation()
             print("no")
             break
-            
+
         case .authorizedWhenInUse:
             // Enable basic location features
-            
+            self.locManger.startUpdatingLocation()
             break
-            
+
         case .authorizedAlways:
             // Enable any of your app's location features
-            
+
             break
         }
     }
@@ -121,11 +139,11 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
-    func getCurrentLocation (){
-        let location = self.locManger.location
-        print(location?.coordinate)
-    }
-    
+//    func getCurrentLocation (){
+//        let location = self.locManger.location
+//        print(location?.coordinate)
+//    }
+//
     
     // MARK : REALM funcs
     func createRealmData(info : Data){
