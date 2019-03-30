@@ -17,6 +17,17 @@ class MainController: UIViewController, CLLocationManagerDelegate {
     var locManger = CLLocationManager()
     
     override func viewDidLoad() {
+    if !isInternetAvailable(){
+        print("no")
+
+    } else {
+    print("yes")
+    loadData(currentCity: "Moscow", completion: {
+        [weak self] info in
+    print(info.current_condition[0].FeelsLikeC)
+    self!.createRealmData(info: info)
+})
+    }
         super.viewDidLoad()
         self.makeGradient()
         view.backgroundColor = UIColor.customBlue
@@ -33,13 +44,13 @@ class MainController: UIViewController, CLLocationManagerDelegate {
             print(info.current_condition[0].FeelsLikeC)
             self!.createRealmData(info: info)
         })
-//        print(self.locManger.location?.coordinate.latitude, self.locManger.location?.coordinate.longitude)
+        print(self.locManger.location?.coordinate.latitude, self.locManger.location?.coordinate.longitude)
         if (self.locManger.location?.coordinate.latitude != nil) && (self.locManger.location?.coordinate.longitude != nil){
             let lat = self.locManger.location?.coordinate.latitude.description ?? ""
             let long = self.locManger.location?.coordinate.longitude.description ?? ""
             loadData(lattitude: lat  , longitude: long  , completion: {
                 [weak self]  data in 
-                print(data)
+//                print(data)
             })
             autocomplete(lattitude: lat , longitude: long , completion: {
                [weak self] city in
@@ -50,6 +61,8 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         })
         }
     }
+
+  
     
      //MARK : UI Implementation
     

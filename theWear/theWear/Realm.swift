@@ -23,6 +23,7 @@ class RealmProvider {
         try! realm.write {
             realm.delete(realm.objects(RealmWeatherToday.self))
             realm.delete(realm.objects(RealmWeatherForecast.self))
+            realm.delete(realm.objects(RealmWeatherHour.self))
         }
     }
     

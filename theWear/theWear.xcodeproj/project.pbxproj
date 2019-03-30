@@ -14,6 +14,7 @@
 		A728DF5D223E4669004E5771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A728DF5B223E4669004E5771 /* LaunchScreen.storyboard */; };
 		A728DF65223EBE38004E5771 /* API Requests .swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF64223EBE38004E5771 /* API Requests .swift */; };
 		A728DF67223EBE5B004E5771 /* Data model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF66223EBE5B004E5771 /* Data model.swift */; };
+		A7BE6D9D224C109800BE0E49 /* InternetCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BE6D9C224C109800BE0E49 /* InternetCheck.swift */; };
 		A7EDB86A22480C370044FED9 /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EDB86922480C360044FED9 /* Gradients.swift */; };
 		BA82AD40223EF8D900EC490A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA82AD3F223EF8D900EC490A /* Extensions.swift */; };
 		BA9D29A22248127900FE9280 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9D29A12248127900FE9280 /* ContainerController.swift */; };
@@ -32,12 +33,13 @@
 		A7237CA5223F96FA000AAFF5 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		A728DF4F223E4667004E5771 /* theWear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theWear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A728DF52223E4667004E5771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A728DF54223E4667004E5771 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		A728DF54223E4667004E5771 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xcfilelist; };
 		A728DF59223E4669004E5771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A728DF5C223E4669004E5771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A728DF5E223E4669004E5771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A728DF64223EBE38004E5771 /* API Requests .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API Requests .swift"; sourceTree = "<group>"; };
 		A728DF66223EBE5B004E5771 /* Data model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data model.swift"; sourceTree = "<group>"; };
+		A7BE6D9C224C109800BE0E49 /* InternetCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetCheck.swift; sourceTree = "<group>"; };
 		A7EDB86922480C360044FED9 /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
 		BA82AD3F223EF8D900EC490A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BA9D29A12248127900FE9280 /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				A728DF54223E4667004E5771 /* MainController.swift */,
+				A7BE6D9C224C109800BE0E49 /* InternetCheck.swift */,
 				BA9D29A12248127900FE9280 /* ContainerController.swift */,
 				BA9D29A3224812B100FE9280 /* DetailsController.swift */,
 				BA9D29A922482AF500FE9280 /* PartsCollectionViewCell.swift */,
@@ -258,6 +261,7 @@
 				BAABEA1B22490A2F009C538A /* DaysWeatherTableViewCell.swift in Sources */,
 				BA82AD40223EF8D900EC490A /* Extensions.swift in Sources */,
 				BA9D29A4224812B100FE9280 /* DetailsController.swift in Sources */,
+				A7BE6D9D224C109800BE0E49 /* InternetCheck.swift in Sources */,
 				A728DF55223E4667004E5771 /* MainController.swift in Sources */,
 				A7237CA6223F96FA000AAFF5 /* Realm.swift in Sources */,
 				BA9D29A22248127900FE9280 /* ContainerController.swift in Sources */,
