@@ -45,7 +45,7 @@ extension UIView {
 }
 
 extension UIColor {
-    static let customBlue = UIColor(red: 53/255, green: 124/255, blue: 180/255, alpha: 1)
+    static let customBlue = UIColor(red: 54/255, green: 124/255, blue: 180/255, alpha: 1)
 }
 
 extension ContainerController: DetailsControllerDelegate {
