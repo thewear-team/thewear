@@ -10,13 +10,23 @@ import UIKit
 
 class ContainerController: UIViewController {
     
-    var detailsController: UIViewController!
+    var detailsController: DetailsController!
     var mainController: MainController!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMainController()
         configureDetailsController()
+        if !isInternetAvailable(){
+            print("no")
+            
+        } else {
+            print("yes")
+            loadData(currentCity: "Moscow", completion: {
+                [weak self] info in
+                print(info.current_condition[0].FeelsLikeC)
+                self!.createRealmData(info: info)            })
+        }
+       
     }
     
     func configureMainController() {
@@ -83,6 +93,46 @@ class ContainerController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    func createRealmData(info : Data){
+        let currentDayData = RealmWeatherToday()
+        currentDayData.dayTemp = info.weather[0].hourly![15].tempC
+        currentDayData.morningTemp = info.weather[0].hourly![9].tempC
+        currentDayData.eveningTemp = info.weather[0].hourly![21].tempC
+        currentDayData.nightTemp = info.weather[1].hourly![3].tempC
+        
+        currentDayData.morningFeelsLike = info.weather[0].hourly![9].FeelsLikeC
+        currentDayData.dayFeelsLike = info.weather[0].hourly![15].FeelsLikeC
+        currentDayData.eveningFeelsLike = info.weather[0].hourly![21].FeelsLikeC
+        currentDayData.nightFeelsLike = info.weather[1].hourly![3].FeelsLikeC
+        
+        var days = [RealmWeatherForecast]()
+        for day in info.weather{
+            let newday = RealmWeatherForecast()
+            var sumTemp = 0
+            day.hourly!.map{
+                sumTemp = sumTemp + Int($0.tempC)!
+            }
+            sumTemp = sumTemp / 24
+            newday.avgTemp = String(sumTemp)
+            newday.day = day.date!
+            newday.feelsLikeTemp = day.hourly![15].FeelsLikeC
+            newday.iconCode = day.hourly![15].weatherCode
+            days.append(newday)
+        }
+        var hours = [RealmWeatherHour]()
+        if info.weather[0].hourly != nil{
+            for hour in info.weather[0].hourly!{
+                let newHour = RealmWeatherHour()
+                newHour.iconCode = hour.weatherCode
+                newHour.tempC = hour.tempC
+                hours.append(newHour)
+            }
+        }
+        RealmProvider.cleanTables()
+        RealmProvider.saveToDB(items: days, update: false)
+        RealmProvider.saveToDB(items: [currentDayData], update: false)
+        RealmProvider.saveToDB(items: hours, update: false)
     }
     
 }

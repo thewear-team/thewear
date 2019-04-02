@@ -9,7 +9,7 @@
 import UIKit
 
 class DetailsController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
-    
+    var futureDays = [RealmWeatherForecast]()
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
     }
@@ -17,10 +17,11 @@ class DetailsController: UIViewController, UICollectionViewDelegate, UICollectio
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "days", for: indexPath) as! DaysWeatherTableViewCell
         cell.weekday.text = "Today"
-        cell.day.text = "April, 23"
+        cell.degrees.text = self.futureDays[indexPath.row].avgTemp
+        cell.day.text = self.futureDays[indexPath.row].day
         
         cell.icon.image = UIImage(named: "sun")
-        cell.degrees.text = "23°C 17°C"
+        
         return cell
     }
     
@@ -227,6 +228,7 @@ class DetailsController: UIViewController, UICollectionViewDelegate, UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.futureDays =   Array(RealmProvider.get(RealmWeatherForecast.self)!)
         view.backgroundColor = .clear
         configurePartsCollectionView()
         configureMore()
@@ -245,4 +247,35 @@ class DetailsController: UIViewController, UICollectionViewDelegate, UICollectio
         daysWeatherTableView.dataSource = self
         daysWeatherTableView.register(DaysWeatherTableViewCell.self, forCellReuseIdentifier: "days")
     }
+    
+    func getDayOfWeek(_ today:String) -> String {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let todayDate = formatter.date(from: today) else { return "error" }
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekDay = myCalendar.component(.weekday, from: todayDate)
+        switch (weekDay){
+        case 1: return "Monday"
+            case 2: return "Monday"
+            case 3: return "Monday"
+            case 4: return "Monday"
+            case 5: return "Monday"
+            case 6: return "Monday"
+            case 7: return "Monday"
+        default : return "no ideas what day"
+    }
+    }
+     func getDayOfWeek(number : Int) -> String {
+        switch (number){
+        case 1: return "Monday"
+        case 2: return "Monday"
+        case 3: return "Monday"
+        case 4: return "Monday"
+        case 5: return "Monday"
+        case 6: return "Monday"
+        case 7: return "Monday"
+        default : return "no ideas what day"
+        }
+    }
 }
+
