@@ -10,7 +10,7 @@ import UIKit
 
 class HourlyCollectionViewCell: UICollectionViewCell {
     
-    let time: UILabel = {
+    var time: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .black
@@ -39,6 +39,10 @@ class HourlyCollectionViewCell: UICollectionViewCell {
         
         time.anchor(top: topAnchor, left: leadingAnchor, bottom: icon.topAnchor, right: trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 00, width: 0, height: 0, enableInsets: false)
         degree.anchor(top: icon.bottomAnchor, left: leadingAnchor, bottom: bottomAnchor, right: trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+    }
+    func fullFillCell(info : RealmWeatherHour, hour : Int){
+        self.time.text = String(hour) + ":00"
+        self.degree.text = String(info.tempC)
     }
     
     override init(frame: CGRect) {

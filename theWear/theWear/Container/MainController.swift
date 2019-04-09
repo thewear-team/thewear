@@ -7,27 +7,17 @@
 //
 
 import UIKit
+
 import CoreLocation
 import CoreGraphics
 
 class MainController: UIViewController, CLLocationManagerDelegate {
-    
     var delegate: DetailsControllerDelegate?
 
     var locManger = CLLocationManager()
     
     override func viewDidLoad() {
-    if !isInternetAvailable(){
-        print("no")
-
-    } else {
-    print("yes")
-    loadData(currentCity: "Moscow", completion: {
-        [weak self] info in
-    print(info.current_condition[0].FeelsLikeC)
-    self!.createRealmData(info: info)
-})
-    }
+   
         super.viewDidLoad()
         self.makeGradient()
         view.backgroundColor = UIColor.customBlue
@@ -39,11 +29,11 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         locManger.requestWhenInUseAuthorization()
         locManger.startUpdatingLocation()
 //        enableLocationServices(manager: self.locManger)
-        loadData(currentCity: "Moscow", completion: {
-            [weak self] info in
-            print(info.current_condition[0].FeelsLikeC)
-            self!.createRealmData(info: info)
-        })
+//        loadData(currentCity: "Moscow", completion: {
+//            [weak self] info in
+//            print(info.current_condition[0].FeelsLikeC)
+////            self!.createRealmData(info: info)
+//        })
         print(self.locManger.location?.coordinate.latitude, self.locManger.location?.coordinate.longitude)
         if (self.locManger.location?.coordinate.latitude != nil) && (self.locManger.location?.coordinate.longitude != nil){
             let lat = self.locManger.location?.coordinate.latitude.description ?? ""
@@ -157,48 +147,7 @@ class MainController: UIViewController, CLLocationManagerDelegate {
 //        print(location?.coordinate)
 //    }
 //
-    
-    // MARK : REALM funcs
-    func createRealmData(info : Data){
-        let currentDayData = RealmWeatherToday()
-        currentDayData.dayTemp = info.weather[0].hourly![15].tempC
-        currentDayData.morningTemp = info.weather[0].hourly![9].tempC
-        currentDayData.eveningTemp = info.weather[0].hourly![21].tempC
-        currentDayData.nightTemp = info.weather[1].hourly![3].tempC
-        
-        currentDayData.morningFeelsLike = info.weather[0].hourly![9].FeelsLikeC
-        currentDayData.dayFeelsLike = info.weather[0].hourly![15].FeelsLikeC
-        currentDayData.eveningFeelsLike = info.weather[0].hourly![21].FeelsLikeC
-        currentDayData.nightFeelsLike = info.weather[1].hourly![3].FeelsLikeC
-        
-        var days = [RealmWeatherForecast]()
-        for day in info.weather{
-            let newday = RealmWeatherForecast()
-            var sumTemp = 0
-            day.hourly!.map{
-                sumTemp = sumTemp + Int($0.tempC)!
-            }
-            sumTemp = sumTemp / 24
-            newday.avgTemp = String(sumTemp)
-            newday.day = day.date!
-            newday.feelsLikeTemp = day.hourly![15].FeelsLikeC
-            newday.iconCode = day.hourly![15].weatherCode
-            days.append(newday)
-        }
-        var hours = [RealmWeatherHour]()
-        if info.weather[0].hourly != nil{
-            for hour in info.weather[0].hourly!{
-                let newHour = RealmWeatherHour()
-                newHour.iconCode = hour.weatherCode
-                newHour.tempC = hour.tempC
-                hours.append(newHour)
-            }
-        }
-        RealmProvider.cleanTables()
-        RealmProvider.saveToDB(items: days, update: false)
-        RealmProvider.saveToDB(items: [currentDayData], update: false)
-        RealmProvider.saveToDB(items: hours, update: false)
-    }
+  
     
     func makeGradient(){
         let gradient: CAGradientLayer = CAGradientLayer()
@@ -214,6 +163,12 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         // с белым
         //self.view.layer.insertSublayer(gradient, at: 0)
     }
+
+//MARK : general funcs
+
+func fulFillData(){
+
+}
 
 }
 
