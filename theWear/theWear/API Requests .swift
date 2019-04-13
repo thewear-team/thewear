@@ -26,7 +26,7 @@ func loadData( currentCity : String, completion : @escaping (Data)->Void){
 }
 func loadData( lattitude : String, longitude : String, completion : @escaping (Data)->Void){
     var jsonUrlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=567c3548fe97464a9c1173812191603&q=\(lattitude)\("%20")\(longitude)&format=json&num_of_days=5"
-    
+
     jsonUrlString = jsonUrlString.replacingOccurrences(of: ",", with: "")
     let url = URL(string: jsonUrlString)
     if url != nil {
@@ -46,7 +46,7 @@ func loadData( lattitude : String, longitude : String, completion : @escaping (D
 
 
 func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->Void){
-    
+
     let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=567c3548fe97464a9c1173812191603&q=\(cityTyped)&format=json"
     let url = URL(string: jsonUrlString)
     let task = URLSession.shared.dataTask(with: url!){ (data,
@@ -61,7 +61,7 @@ func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->
     task.resume()
 }
 func autocomplete (lattitude : String, longitude : String, completion : @escaping ([SearchResult])->Void){
-    
+
     let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=567c3548fe97464a9c1173812191603&q=\(lattitude)\("%20")\(longitude)&format=json"
     let url = URL(string: jsonUrlString)
     if url != nil {
@@ -92,7 +92,7 @@ func getWeather (currentGEO : String, completion : @escaping (Data)->Void){
         } catch { print("Error deserializing JSON: \(error)")}
     }
     task.resume()
-    
+
 }
 
 
