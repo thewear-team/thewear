@@ -137,7 +137,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.nowColor
+        view.backgroundColor = UIColor.color_113
         
         // configure CollectionView
         configureCollectionView()
@@ -191,9 +191,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let x = targetContentOffset.pointee.x
         let index = x / view.frame.width
         if index == 0 {
-            view.backgroundColor = UIColor.nowColor
+            view.backgroundColor = UIColor.color_113
         } else if index == 1 {
-            view.backgroundColor = UIColor.thirdColor
+            view.backgroundColor = UIColor.color_122
         }
     }
     
@@ -201,15 +201,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         if indexPath.item == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nowCell", for: indexPath) as! NowCell
-            cell.backgroundColor = UIColor.nowColor
+            cell.backgroundColor = UIColor.color_113
             return cell
         } else if indexPath.item == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "secondCell", for: indexPath) as! SecondCell
-            cell.backgroundColor = UIColor.secondColor
+            cell.backgroundColor = UIColor.color_119
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "thirdCell", for: indexPath) as! ThirdCell
-            cell.backgroundColor = UIColor.thirdColor
+            cell.backgroundColor = UIColor.color_122
             return cell
         }
     }

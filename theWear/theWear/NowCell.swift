@@ -18,7 +18,7 @@ class NowCell: UICollectionViewCell {
     }()
     
     let sliderImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "sliderToRight"))
+        let imageView = UIImageView(image: UIImage(named: "slider_light"))
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

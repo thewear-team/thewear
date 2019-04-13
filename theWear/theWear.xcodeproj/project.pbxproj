@@ -14,9 +14,9 @@
 		A728DF65223EBE38004E5771 /* API Requests .swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF64223EBE38004E5771 /* API Requests .swift */; };
 		A728DF67223EBE5B004E5771 /* Data model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728DF66223EBE5B004E5771 /* Data model.swift */; };
 		A7BE6D9D224C109800BE0E49 /* InternetCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BE6D9C224C109800BE0E49 /* InternetCheck.swift */; };
+		A7E55C6C22620905005B4232 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E55C6B22620905005B4232 /* Extensions.swift */; };
 		A7EDB86A22480C370044FED9 /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EDB86922480C360044FED9 /* Gradients.swift */; };
 		BA35108F22620028001185BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35108922620027001185BA /* ViewController.swift */; };
-		BA35109022620028001185BA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35108A22620027001185BA /* Extensions.swift */; };
 		BA35109122620028001185BA /* SecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35108B22620027001185BA /* SecondCell.swift */; };
 		BA35109222620028001185BA /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35108C22620027001185BA /* CityCell.swift */; };
 		BA35109422620028001185BA /* ThirdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35108E22620028001185BA /* ThirdCell.swift */; };
@@ -37,9 +37,9 @@
 		A728DF64223EBE38004E5771 /* API Requests .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API Requests .swift"; sourceTree = "<group>"; };
 		A728DF66223EBE5B004E5771 /* Data model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data model.swift"; sourceTree = "<group>"; };
 		A7BE6D9C224C109800BE0E49 /* InternetCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetCheck.swift; sourceTree = "<group>"; };
+		A7E55C6B22620905005B4232 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A7EDB86922480C360044FED9 /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
 		BA35108922620027001185BA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BA35108A22620027001185BA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = ../../../../../../../../../Desktop/theWearConcept/theWearConcept/Extensions.swift; sourceTree = "<group>"; };
 		BA35108B22620027001185BA /* SecondCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondCell.swift; sourceTree = "<group>"; };
 		BA35108C22620027001185BA /* CityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		BA35108E22620028001185BA /* ThirdCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdCell.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 			children = (
 				BA3510952262008B001185BA /* NowCell.swift */,
 				BA35108C22620027001185BA /* CityCell.swift */,
-				BA35108A22620027001185BA /* Extensions.swift */,
+				A7E55C6B22620905005B4232 /* Extensions.swift */,
 				BA35108B22620027001185BA /* SecondCell.swift */,
 				BA35108E22620028001185BA /* ThirdCell.swift */,
 				BA35108922620027001185BA /* ViewController.swift */,
@@ -242,8 +242,8 @@
 				BA35108F22620028001185BA /* ViewController.swift in Sources */,
 				BA35109422620028001185BA /* ThirdCell.swift in Sources */,
 				A7237CA6223F96FA000AAFF5 /* Realm.swift in Sources */,
-				BA35109022620028001185BA /* Extensions.swift in Sources */,
 				A728DF65223EBE38004E5771 /* API Requests .swift in Sources */,
+				A7E55C6C22620905005B4232 /* Extensions.swift in Sources */,
 				BA3510962262008B001185BA /* NowCell.swift in Sources */,
 				A728DF67223EBE5B004E5771 /* Data model.swift in Sources */,
 				A7EDB86A22480C370044FED9 /* Gradients.swift in Sources */,
