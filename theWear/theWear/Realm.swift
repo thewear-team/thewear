@@ -30,7 +30,7 @@ class RealmProvider {
     @discardableResult
     static func saveToDB<T : Object>(items : [T], update : Bool) -> Realm { //with update
         let realm = try! Realm(configuration: RealmProvider.configuration)
-        print(RealmProvider.configuration.fileURL!)
+
         do {
             try realm.write {
                 realm.add(items, update: update)

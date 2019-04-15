@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController {
-    
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    var locationManager : CLLocationManager!
+    var coordinate : CLLocationCoordinate2D?
     let view1: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -135,8 +137,100 @@ class ViewController: UIViewController {
         citiesTableView.alpha = 0
     }
     
+    func determineMyCurrentLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+            //locationManager.startUpdatingHeading()
+        }
+        else{
+            self.cityTextField.text = "Can't get current location"
+        }
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
+        // Call stopUpdatingLocation() to stop listening for location updates,
+        // other wise this function will be called every time when user location changes.
+        
+//         manager.stopUpdatingLocation()
+        
+        print("user latitude = \(userLocation.coordinate.latitude)")
+        print("user longitude = \(userLocation.coordinate.longitude)")
+        self.coordinate = userLocation.coordinate
+        var textGeo = String(coordinate!.latitude) + "%20" + String(coordinate!.longitude)
+        getWeather(currentGEO: textGeo, completion: {
+            [weak self] weather in
+            print("Now it feels like \(weather.current_condition[0].FeelsLikeC)")
+            self!.saveNewData(data: weather)
+        })
+        autocomplete(lattitude: String(self.coordinate!.latitude), longitude: String(self.coordinate!.longitude), completion: {
+            [weak self] search in
+            DispatchQueue.main.async {
+                 self?.cityTextField.text = search[0].region[0].value
+            }
+            print("Here is the geo info: \(search[0].country[0].value), \(search[0].region[0].value)")
+        })
+//        manager.stopUpdatingLocation()
+    }
+    func saveNewData(data : Data){
+       print(RealmProvider.configuration.fileURL)
+        let realmToday = RealmWeatherToday()
+        realmToday.morningTemp = data.weather[0].hourly![9].tempC
+        realmToday.morningFeelsLike = data.weather[0].hourly![9].FeelsLikeC
+        
+        realmToday.dayTemp = data.weather[0].hourly![15].tempC
+        realmToday.dayFeelsLike = data.weather[0].hourly![15].FeelsLikeC
+        
+        realmToday.eveningTemp = data.weather[0].hourly![21].tempC
+        realmToday.eveningFeelsLike = data.weather[0].hourly![21].FeelsLikeC
+        
+        realmToday.nightTemp = data.weather[1].hourly![3].tempC
+        realmToday.nightFeelsLike = data.weather[1].hourly![3].FeelsLikeC
+        RealmProvider.cleanTables()
+        RealmProvider.saveToDB(items: [realmToday], update: false)
+        
+        var realmHours = [RealmWeatherHour]()
+        for hour in data.weather[0].hourly!{
+            let newhour = RealmWeatherHour()
+            newhour.iconCode = hour.weatherCode
+            newhour.tempC = hour.tempC
+            realmHours.append(newhour)
+        }
+        RealmProvider.saveToDB(items: realmHours, update: false)
+        
+        var realmForecasts = [RealmWeatherForecast]()
+        for day in data.weather{
+            let newDay = RealmWeatherForecast()
+            var avg = 0
+            day.hourly!.map{
+                avg = avg + Int($0.tempC)!
+            }
+            avg = avg / 24
+            newDay.avgTemp = String(avg)
+            newDay.day = day.date!
+            newDay.feelsLikeTemp  = day.hourly![15].FeelsLikeC
+            newDay.iconCode = day.hourly![15].weatherCode
+            realmForecasts.append(newDay)
+        }
+        RealmProvider.saveToDB(items: realmForecasts, update: false)
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("Error \(error)")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         view.backgroundColor = UIColor.color_113
         
         // configure CollectionView
@@ -155,7 +249,13 @@ class ViewController: UIViewController {
         citiesTableView.delegate = self
         citiesTableView.dataSource = self
         citiesTableView.register(CityCell.self, forCellReuseIdentifier: "cityCell")
+        determineMyCurrentLocation()
+        locationManager.requestLocation()
     }
+    
+   
+    
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
