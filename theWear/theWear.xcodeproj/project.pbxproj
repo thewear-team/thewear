@@ -21,6 +21,9 @@
 		BA35109222620028001185BA /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35108C22620027001185BA /* CityCell.swift */; };
 		BA35109422620028001185BA /* ThirdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35108E22620028001185BA /* ThirdCell.swift */; };
 		BA3510962262008B001185BA /* NowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3510952262008B001185BA /* NowCell.swift */; };
+		BA68C48222666DEA0086A713 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68C48122666DEA0086A713 /* SettingsViewController.swift */; };
+		BA68C484226676310086A713 /* HoursCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68C483226676310086A713 /* HoursCell.swift */; };
+		BA68C4862266767D0086A713 /* DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68C4852266767D0086A713 /* DaysCell.swift */; };
 		C99B493F49C6102FC7969BF5 /* Pods_theWear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A7720BA021334B9C0552B6 /* Pods_theWear.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +47,9 @@
 		BA35108C22620027001185BA /* CityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		BA35108E22620028001185BA /* ThirdCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdCell.swift; sourceTree = "<group>"; };
 		BA3510952262008B001185BA /* NowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowCell.swift; sourceTree = "<group>"; };
+		BA68C48122666DEA0086A713 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		BA68C483226676310086A713 /* HoursCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursCell.swift; sourceTree = "<group>"; };
+		BA68C4852266767D0086A713 /* DaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,9 @@
 				A7EDB86922480C360044FED9 /* Gradients.swift */,
 				A728DF64223EBE38004E5771 /* API Requests .swift */,
 				A7237CA5223F96FA000AAFF5 /* Realm.swift */,
+				BA68C48122666DEA0086A713 /* SettingsViewController.swift */,
+				BA68C483226676310086A713 /* HoursCell.swift */,
+				BA68C4852266767D0086A713 /* DaysCell.swift */,
 			);
 			path = theWear;
 			sourceTree = "<group>";
@@ -242,10 +251,13 @@
 				BA35108F22620028001185BA /* ViewController.swift in Sources */,
 				BA35109422620028001185BA /* ThirdCell.swift in Sources */,
 				A7237CA6223F96FA000AAFF5 /* Realm.swift in Sources */,
+				BA68C4862266767D0086A713 /* DaysCell.swift in Sources */,
 				A728DF65223EBE38004E5771 /* API Requests .swift in Sources */,
 				A7E55C6C22620905005B4232 /* Extensions.swift in Sources */,
 				BA3510962262008B001185BA /* NowCell.swift in Sources */,
+				BA68C484226676310086A713 /* HoursCell.swift in Sources */,
 				A728DF67223EBE5B004E5771 /* Data model.swift in Sources */,
+				BA68C48222666DEA0086A713 /* SettingsViewController.swift in Sources */,
 				A7EDB86A22480C370044FED9 /* Gradients.swift in Sources */,
 				A728DF53223E4667004E5771 /* AppDelegate.swift in Sources */,
 			);
@@ -387,14 +399,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWear/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Valentina.theWear---";
+				PRODUCT_BUNDLE_IDENTIFIER = "Valentina.theWear--";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -407,14 +419,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWear/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Valentina.theWear---";
+				PRODUCT_BUNDLE_IDENTIFIER = "Valentina.theWear--";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
