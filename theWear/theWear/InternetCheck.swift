@@ -10,9 +10,8 @@ import Foundation
 import SystemConfiguration
 
 func isInternetAvailable() -> Bool
+    
 {
-    let testMessage  = "DOES THE GIT WORLS PROPERLY???"
-    let anotherTest = "IS IT OK?"
     var zeroAddress = sockaddr_in()
     zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
     zeroAddress.sin_family = sa_family_t(AF_INET)

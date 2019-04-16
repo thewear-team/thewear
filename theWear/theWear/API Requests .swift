@@ -60,8 +60,9 @@ func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->
     }
     task.resume()
 }
-func autocomplete (lattitude : String, longitude : String, completion : @escaping ([SearchResult])->Void){
 
+
+func autocomplete (lattitude : String, longitude : String, completion : @escaping ([SearchResult])->Void){
     let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=567c3548fe97464a9c1173812191603&q=\(lattitude)\("%20")\(longitude)&format=json"
     let url = URL(string: jsonUrlString)
     if url != nil {
