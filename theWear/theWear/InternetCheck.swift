@@ -10,6 +10,7 @@ import Foundation
 import SystemConfiguration
 
 func isInternetAvailable() -> Bool
+    
 {
     var zeroAddress = sockaddr_in()
     zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
