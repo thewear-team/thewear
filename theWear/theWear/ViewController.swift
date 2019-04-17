@@ -143,7 +143,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
-        
+        print(CLLocationManager.locationServicesEnabled())
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
             //locationManager.startUpdatingHeading()
@@ -226,11 +226,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     {
         print("Error \(error)")
     }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         view.backgroundColor = UIColor.color_113
         
         // configure CollectionView
@@ -250,10 +249,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         citiesTableView.dataSource = self
         citiesTableView.register(CityCell.self, forCellReuseIdentifier: "cityCell")
         determineMyCurrentLocation()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
     }
-    
-   
     
     
 }
