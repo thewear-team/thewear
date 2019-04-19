@@ -10,19 +10,38 @@ import UIKit
 
 let demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 
+let demoHours = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
+let demoTemp = ["20°С", "23°С", "24°С", "25°С", "22°С", "22°С", "21°С", "21°С", "20°С"]
+
+var demoDays = ["July, 23\nTomorrow", "July, 24\nWednesday", "July, 25\nThursday", "July, 26\nFriday", "July, 27\nSaturday", "July,28\nSunday", "July, 29\nMonday"]
+
 class ViewController: UIViewController {
+    
+    var widthUnderView: CGFloat = 0.0
     
     let hoursCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .green
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
     
-    let daysTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .red
-        return tableView
+    let detailsView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1)
+        view.layer.cornerRadius = 25
+        return view
+    }()
+    
+    let daysCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        return collectionView
     }()
     
     let settingsButton: UIButton = {
@@ -203,6 +222,8 @@ class ViewController: UIViewController {
     
     
     var additionalWidth: CGFloat = 0.0
+    var detailsViewY: CGFloat = 380
+    var daysCollectionViewY: CGFloat = 660
     
     @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
         if recognizer.state == .began {
@@ -213,12 +234,13 @@ class ViewController: UIViewController {
             if newY <= view.frame.height - 180 && newY >= 0 {
                 additionalWidth = newY / 12
                 underView.frame = CGRect(x: 0, y: newY, width: view.frame.width - additionalWidth, height: underView.frame.height)
-                self.weatherImage.frame = CGRect(x: 30, y: self.top + 30 - (newY / 24), width: 90, height: 90)
-                self.weatherLabel.frame = CGRect(x: 135, y: self.top + 30 - (newY / 24), width: 90, height: 45)
-                self.weatherLikeLabel.frame = CGRect(x: 135, y: self.top + 50 + 30  - (newY / 24), width: 200, height: 45)
-                
-                hoursCollectionView.frame = CGRect(x: 0, y: 180, width: hoursCollectionView.frame.width + additionalWidth, height: 100)
-                daysTableView.frame = CGRect(x: 0, y: 300, width: daysTableView.frame.width + additionalWidth, height: underView.frame.height - 180 - 100 - 20)
+                widthUnderView = underView.frame.width
+                weatherImage.frame = CGRect(x: 30, y: self.top + 30 - (newY / 24), width: 90, height: 90)
+                weatherLabel.frame = CGRect(x: 135, y: self.top + 30 - (newY / 24), width: 90, height: 45)
+                weatherLikeLabel.frame = CGRect(x: 135, y: self.top + 50 + 30  - (newY / 24), width: 200, height: 45)
+                hoursCollectionView.frame = CGRect(x: 0, y: 220, width: underView.frame.width, height: 100)
+                detailsView.frame = CGRect(x: 30, y: detailsViewY, width: underView.frame.width - 60, height: 240)
+                daysCollectionView.frame = CGRect(x: 0, y: daysCollectionViewY, width: underView.frame.width, height: 200)
             }
             recognizer.setTranslation(.zero, in: underView)
         } else {
@@ -229,14 +251,12 @@ class ViewController: UIViewController {
             } else if underView.frame.origin.y < view.frame.height - 380 {
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.underView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-                    
-                    self.hoursCollectionView.frame = CGRect(x: 0, y: 180, width: self.underView.frame.width, height: 100)
-                    self.daysTableView.frame = CGRect(x: 0, y: 300, width: self.underView.frame.width, height: self.underView.frame.height - 180 - 100 - 20)
-                    
+                    self.detailsView.frame = CGRect(x: 30, y: 380, width: self.underView.frame.width - 60, height: 240)
+                    self.hoursCollectionView.frame = CGRect(x: 0, y: 220, width: self.underView.frame.width, height: 100)
                     self.weatherImage.frame = CGRect(x: 30, y: self.top + 30, width: 90, height: 90)
                     self.weatherLabel.frame = CGRect(x: 135, y: self.top + 30, width: 90, height: 45)
                     self.weatherLikeLabel.frame = CGRect(x: 135, y: self.top + 80, width: 200, height: 45)
-                    
+                    self.daysCollectionView.frame = CGRect(x: 0, y: self.daysCollectionViewY, width: self.underView.frame.width, height: 200)
                 }, completion: nil)
             }
         }
@@ -260,15 +280,17 @@ class ViewController: UIViewController {
         hoursCollectionView.dataSource = self
         hoursCollectionView.register(HoursCell.self, forCellWithReuseIdentifier: "hours")
         
-        daysTableView.delegate = self
-        daysTableView.dataSource = self
-        daysTableView.register(DaysCell.self, forCellReuseIdentifier: "days")
+        daysCollectionView.delegate = self
+        daysCollectionView.dataSource = self
+        daysCollectionView.register(DaysCell.self, forCellWithReuseIdentifier: "day")
         
         underView.addSubview(hoursCollectionView)
-        underView.addSubview(daysTableView)
+        underView.addSubview(daysCollectionView)
+        underView.addSubview(detailsView)
         
-        hoursCollectionView.frame = CGRect(x: 0, y: 180, width: underView.frame.width, height: 100)
-        daysTableView.frame = CGRect(x: 0, y: 300, width: underView.frame.width, height: underView.frame.height - 180 - 100 - 20)
+        hoursCollectionView.frame = CGRect(x: 0, y: 240, width: underView.frame.width, height: 100)
+        detailsView.frame = CGRect(x: 30, y: detailsViewY, width: underView.frame.width - 60, height: 240)
+        daysCollectionView.frame = CGRect(x: 0, y: daysCollectionViewY, width: underView.frame.width, height: 200)
     }
     
     override func viewDidLoad() {
@@ -305,33 +327,19 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == citiesTableView {
-            return demoCities.count
-        } else {
-            return 12
-        }
+        return demoCities.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView == citiesTableView {
-            return 50
-        } else {
-            return 50
-        }
+        return 50
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == citiesTableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath) as! CityCell
-            cell.backgroundColor = .clear
-            cell.cityLabel.text = demoCities[indexPath.row]
-            cell.selectionStyle = .none
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "days", for: indexPath) as! DaysCell
-            cell.backgroundColor = .clear
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath) as! CityCell
+        cell.backgroundColor = .clear
+        cell.cityLabel.text = demoCities[indexPath.row]
+        cell.selectionStyle = .none
+        return cell
     }
 }
 
@@ -340,21 +348,29 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == partsCollectionView {
             return 3
+        } else if collectionView == hoursCollectionView {
+            return 9
         } else {
-            return 10
+            return 7
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == partsCollectionView {
             return CGSize(width: view.frame.width, height: view.frame.height)
+        } else if collectionView == hoursCollectionView {
+            return CGSize(width: 80, height: 100)
         } else {
-            return CGSize(width: 90, height: 90)
+            return CGSize(width: 150, height: 200)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        if collectionView == daysCollectionView {
+            return 30
+        } else {
+            return 0
+        }
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -371,7 +387,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if collectionView == partsCollectionView {
             if indexPath.item == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nowCell", for: indexPath) as! NowCell
@@ -389,13 +404,16 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 cell.backgroundColor = UIColor.color_122
                 return cell
             }
-        } else {
+        } else if collectionView == hoursCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hours", for: indexPath) as! HoursCell
+            cell.hourLabel.text = demoHours[indexPath.row]
+            cell.tempLabel.text = demoTemp[indexPath.row]
+            cell.iconImageView.image = UIImage(named: "sun")
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "day", for: indexPath) as! DaysCell
+            cell.dayLabel.text = demoDays[indexPath.row]
             return cell
         }
-    }
-    
-}
-
-
-
+     }
+ }
