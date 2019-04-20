@@ -84,7 +84,7 @@ class ViewController: UIViewController {
     let underView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 40
+        view.layer.cornerRadius = 45
         view.layer.maskedCorners = [.layerMaxXMinYCorner]
         return view
     }()
@@ -495,6 +495,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 view.backgroundColor = UIColor.color_122
             }
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

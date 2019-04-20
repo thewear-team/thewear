@@ -44,10 +44,10 @@ class DaysCell: UICollectionViewCell {
         addSubview(iconImageView)
         addSubview(tempLabel)
         
-        underView.frame = CGRect(x: 30, y: 0, width: 150, height: 200)
-        dayLabel.frame = CGRect(x: 30, y: 0, width: 150, height: 50)
-        iconImageView.frame = CGRect(x: 30, y: 50, width: 150, height: 100)
-        tempLabel.frame = CGRect(x: 30, y: 150, width: 150, height: 50)
+        underView.frame = CGRect(x: 0, y: 0, width: 150, height: 200)
+        dayLabel.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
+        iconImageView.frame = CGRect(x: 0, y: 50, width: 150, height: 100)
+        tempLabel.frame = CGRect(x: 0, y: 150, width: 150, height: 50)
         
     }
     
