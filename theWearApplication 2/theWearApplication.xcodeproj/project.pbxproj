@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A721BA50226B2DC7006ED69A /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A721BA4F226B2DC7006ED69A /* Requests.swift */; };
 		BAFF268B2268BF6400D6C7FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */; };
 		BAFF268D2268BF6400D6C7FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF268C2268BF6400D6C7FA /* ViewController.swift */; };
 		BAFF26922268BF6600D6C7FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAFF26912268BF6600D6C7FA /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A721BA4F226B2DC7006ED69A /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Requests.swift; path = ../../../../../Desktop/coreDataEx/coreDataEx/Requests.swift; sourceTree = "<group>"; };
 		BAFF26872268BF6400D6C7FA /* theWearApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theWearApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAFF268C2268BF6400D6C7FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				BAFF269C2268BFE100D6C7FA /* NowCell.swift */,
 				BAFF269E2268C00600D6C7FA /* CityCell.swift */,
 				BAFF26A02268C01700D6C7FA /* Extensions.swift */,
+				A721BA4F226B2DC7006ED69A /* Requests.swift */,
 				BAFF26A22268C02700D6C7FA /* SecondCell.swift */,
 				BAFF26A42268C03D00D6C7FA /* ThirdCell.swift */,
 				BAFF26A62268C05C00D6C7FA /* InternetCheck.swift */,
@@ -167,6 +170,7 @@
 				BAFF268B2268BF6400D6C7FA /* AppDelegate.swift in Sources */,
 				BAFF26A72268C05C00D6C7FA /* InternetCheck.swift in Sources */,
 				BAFF269F2268C00600D6C7FA /* CityCell.swift in Sources */,
+				A721BA50226B2DC7006ED69A /* Requests.swift in Sources */,
 				BAFF269D2268BFE100D6C7FA /* NowCell.swift in Sources */,
 				BAFF26AB2268C0AC00D6C7FA /* SettingsViewController.swift in Sources */,
 			);

@@ -5,15 +5,22 @@
 //  Created by Maxim Reshetov on 18/04/2019.
 //  Copyright © 2019 Maxim Reshetov. All rights reserved.
 //
+//погоду по часам не сохраняем для будущих дней
+//MARK : Saving rules for UserDefaults
+//hours today  --"temp; code;" x24 +
+//forecast-- days, temps, codes (for tableview) "date, temp, code/ wind, pressure, humidity, date;" x7 +
+
 
 import UIKit
 
-let demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
+var demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 
-let demoHours = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
-let demoTemp = ["20°С", "23°С", "24°С", "25°С", "22°С", "22°С", "21°С", "21°С", "20°С"]
-
-var demoDays = ["July, 23\nTomorrow", "July, 24\nWednesday", "July, 25\nThursday", "July, 26\nFriday", "July, 27\nSaturday", "July,28\nSunday", "July, 29\nMonday"]
+var demoHours : [String] = ["00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
+var demoTemp  : [String] = [] // for output
+var codesHours  : [String] = [] //for output
+var currentCondition = ("", "", "") //for output
+var allDays : [OneWeatherDay] = [] //contain 7 days by parts for output
+var demoDays : [String] = [] // for output
 
 class ViewController: UIViewController {
     
@@ -295,8 +302,19 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor.color_113
+        
+        //reading previous data if exists
+        
+        if (UserDefaults.standard.value(forKey: "isOpened") != nil){
+             self.retrieveDataAndUpdate()
+             self.fillUIelementsWithData()
+             UserDefaults.standard.set(1, forKey: "isOpened")
+        }
+        
+        //getting fresh data
+        getDataAndUpdate()
+//        self.fillUIelementsWithData()
         
         // configure CollectionView
         configureCollectionView()
@@ -322,6 +340,99 @@ class ViewController: UIViewController {
         // configure hours and days
         configureDaysAndHours()
 
+    }
+    func fillUIelementsWithData(){
+        DispatchQueue.main.async {
+            self.hoursCollectionView.reloadData()
+            self.weatherLabel.text = "\(currentCondition.0)°С"
+            self.weatherLikeLabel.text = "Feels like \(currentCondition.0)°С"
+        }
+    }
+    
+    func retrieveDataAndUpdate(){
+        if (UserDefaults.standard.value(forKey: "todayHours") != nil ){
+            let allhours = UserDefaults.standard.value(forKey: "todayHours") as! String
+            print (allhours)
+            demoTemp = []
+            let hours  = (allhours.split(separator: ";"))
+            for hour in hours {
+                let parts = hour.split(separator: " ")
+                demoTemp.append(String(parts[0]) + "°С" )
+                codesHours.append(String(parts[0]))
+            }
+            print(demoTemp)
+        }
+            self.hoursCollectionView.reloadData()
+            if (UserDefaults.standard.value(forKey: "daysParts") != nil){
+                var alldays = UserDefaults.standard.value(forKey: "daysParts") as! [String]
+                for day in alldays {
+                    let splitedString = day.split(separator: "/")
+                    print(splitedString[0])
+                    print(splitedString[1])
+                    let parts = splitedString[0].split(separator: ",")
+                    print(parts)
+                    let detais = splitedString[1].split(separator: ",")
+                    print(detais)
+                    let oneFutureDay = OneWeatherDay(date : String(detais[3])  ,morningtemp: String(parts[0]), daytemp: String(parts[3]), eveningtemp: String(parts[6]), morningfeelslike: String(parts[1]), dayfeelslike: String(parts[4]), eveningfeelslike: String(parts[7]), morningcode: String(parts[2]), daycode: String(parts[5]), eveningcode: String(parts[8]), pressure: String(detais[2]), humidity: String(detais[1]), wind: String(detais[0]))
+                    print(oneFutureDay)
+                    allDays.append(oneFutureDay)
+                }
+                print(allDays)
+            }
+         if (UserDefaults.standard.value(forKey: "currentCondition") != nil){
+            let currentString = UserDefaults.standard.value(forKey: "currentCondition") as! String
+            let items = currentString.split(separator: ",")
+            currentCondition.0 = String(items[0])
+            currentCondition.1 = String(items[1])
+            currentCondition.2 = String(items[2])
+        }
+    
+}
+    
+    //forecast-- days, temp, mintemp, codes (for tableview and for details) "date, day, temp, mintemp, code, wind, pressure, sunrise (not yet), sunset (not yet), humidity;
+    func getDataAndUpdate(){
+        var hoursString = ""
+        var alldaysStrings : [String] = []
+        loadData(currentCity: "Moscow", completion: {
+            [weak self] data in
+            let currentConditionString = data.current_condition[0].temp_C + "," + data.current_condition[0].FeelsLikeC  + "," + data.current_condition[0].weatherCode //for saving
+            currentCondition = (data.current_condition[0].temp_C ,  data.current_condition[0].FeelsLikeC,data.current_condition[0].weatherCode ) //for displaying now
+            data.weather[0].hourly!.map{
+                hoursString = hoursString + $0.FeelsLikeC + " " + $0.weatherCode + ";"
+            }
+            var parts : [String] = []
+            for day in data.weather{
+                let morningLine = day.hourly![9].tempC + "," + day.hourly![9].FeelsLikeC + "," + day.hourly![9].weatherCode + ","
+                
+                let dayLine = day.hourly![15].tempC + "," + day.hourly![15].FeelsLikeC + "," + day.hourly![15].weatherCode + ","
+                
+                let eveningLine = day.hourly![21].tempC + "," + day.hourly![21].FeelsLikeC + "," + day.hourly![21].weatherCode + "/"
+                
+                let detailsLine =  day.hourly![15].windspeedKmph + "," + day.hourly![15].humidity + "," + day.hourly![15].pressure + "," + day.date! + ";"
+                
+                let finalLine = morningLine + dayLine + eveningLine + detailsLine
+                parts.append(finalLine)
+            }
+            print(parts)
+            UserDefaults.standard.set(currentConditionString, forKey: "currentCondition")
+            UserDefaults.standard.set(parts, forKey: "daysParts")
+            demoTemp = []
+            //fill current values
+            let hours  = (hoursString.split(separator: ";"))
+            for hour in hours {
+                var parts = hour.split(separator: " ")
+                demoTemp.append(String(parts[0]) + "°С" )
+                codesHours.append(String(parts[1]))
+            }
+            
+            //save
+            DispatchQueue.main.async {
+                self?.hoursCollectionView.reloadData()
+                self?.fillUIelementsWithData()
+            }
+            UserDefaults.standard.set(hoursString, forKey: "todayHours")
+
+        })
     }
 }
 
@@ -349,7 +460,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         if collectionView == partsCollectionView {
             return 3
         } else if collectionView == hoursCollectionView {
-            return 9
+            return 24
         } else {
             return 7
         }
@@ -406,14 +517,20 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             }
         } else if collectionView == hoursCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hours", for: indexPath) as! HoursCell
+            if (demoTemp.count > 0) && (demoHours.count > 0){
             cell.hourLabel.text = demoHours[indexPath.row]
-            cell.tempLabel.text = demoTemp[indexPath.row]
+            cell.tempLabel.text = demoTemp[indexPath.row]}
             cell.iconImageView.image = UIImage(named: "sun")
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "day", for: indexPath) as! DaysCell
-            cell.dayLabel.text = demoDays[indexPath.row]
+            if demoDays.count > 0 {
+                if allDays.count == 7{
+//            cell.dayLabel.text = allDays[indexPath.row]
+                }
+            }
             return cell
         }
      }
  }
+
