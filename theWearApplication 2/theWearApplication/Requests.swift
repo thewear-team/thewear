@@ -143,14 +143,18 @@ struct OneWeatherDay {
     let morningtemp : String
     let daytemp : String
     let eveningtemp : String
+     let nighttemp : String
     
     let morningfeelslike : String
     let dayfeelslike : String
     let eveningfeelslike : String
+    let nightfeelslike : String
     
     let morningcode : String
     let daycode : String
     let eveningcode : String
+    let nightcode : String
+
     
     let pressure : String
     let humidity : String
@@ -160,14 +164,17 @@ struct OneWeatherDay {
         morningtemp: String,
         daytemp: String,
         eveningtemp: String,
+        nighttemp : String,
         
         morningfeelslike: String,
         dayfeelslike: String,
         eveningfeelslike: String,
+        nightfeelslike: String,
         
         morningcode: String,
         daycode: String,
         eveningcode: String,
+        nightcode: String,
         
         pressure : String,
         humidity : String,
@@ -176,14 +183,18 @@ struct OneWeatherDay {
         self.morningtemp = morningtemp
         self.daytemp = daytemp
         self.eveningtemp = eveningtemp
+        self.nighttemp = nighttemp
         
         self.morningfeelslike = morningfeelslike
         self.dayfeelslike = dayfeelslike
         self.eveningfeelslike = eveningfeelslike
+        self.nightfeelslike = nightfeelslike
         
         self.morningcode = morningcode
         self.daycode = daycode
         self.eveningcode = eveningcode
+        self.nightcode = nightcode
+        
         
         self.pressure = pressure
         self.humidity = humidity

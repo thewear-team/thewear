@@ -309,10 +309,11 @@ class ViewController: UIViewController {
         if (UserDefaults.standard.value(forKey: "isOpened") != nil){
              self.retrieveDataAndUpdate()
              self.fillUIelementsWithData()
-             UserDefaults.standard.set(1, forKey: "isOpened")
+            
         }
         
         //getting fresh data
+        UserDefaults.standard.set(1, forKey: "isOpened")
         getDataAndUpdate()
 //        self.fillUIelementsWithData()
         
@@ -349,6 +350,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //свои фукнции потом спрячу в отдельный файл
     func retrieveDataAndUpdate(){
         if (UserDefaults.standard.value(forKey: "todayHours") != nil ){
             let allhours = UserDefaults.standard.value(forKey: "todayHours") as! String
@@ -364,7 +366,7 @@ class ViewController: UIViewController {
         }
             self.hoursCollectionView.reloadData()
             if (UserDefaults.standard.value(forKey: "daysParts") != nil){
-                var alldays = UserDefaults.standard.value(forKey: "daysParts") as! [String]
+                let alldays = UserDefaults.standard.value(forKey: "daysParts") as! [String]
                 for day in alldays {
                     let splitedString = day.split(separator: "/")
                     print(splitedString[0])
@@ -373,7 +375,7 @@ class ViewController: UIViewController {
                     print(parts)
                     let detais = splitedString[1].split(separator: ",")
                     print(detais)
-                    let oneFutureDay = OneWeatherDay(date : String(detais[3])  ,morningtemp: String(parts[0]), daytemp: String(parts[3]), eveningtemp: String(parts[6]), morningfeelslike: String(parts[1]), dayfeelslike: String(parts[4]), eveningfeelslike: String(parts[7]), morningcode: String(parts[2]), daycode: String(parts[5]), eveningcode: String(parts[8]), pressure: String(detais[2]), humidity: String(detais[1]), wind: String(detais[0]))
+                    let oneFutureDay = OneWeatherDay(date : String(detais[3])  ,morningtemp: String(parts[0]), daytemp: String(parts[3]), eveningtemp: String(parts[6]), nighttemp: String(parts[9]), morningfeelslike: String(parts[1]), dayfeelslike: String(parts[4]), eveningfeelslike: String(parts[7]), nightfeelslike: String(parts[10]), morningcode: String(parts[2]), daycode: String(parts[5]), eveningcode: String(parts[8]), nightcode: String(parts[11]), pressure: String(detais[2]), humidity: String(detais[1]), wind: String(detais[0]))
                     print(oneFutureDay)
                     allDays.append(oneFutureDay)
                 }
@@ -388,11 +390,9 @@ class ViewController: UIViewController {
         }
     
 }
-    
-    //forecast-- days, temp, mintemp, codes (for tableview and for details) "date, day, temp, mintemp, code, wind, pressure, sunrise (not yet), sunset (not yet), humidity;
+    //и эту тоже
     func getDataAndUpdate(){
         var hoursString = ""
-        var alldaysStrings : [String] = []
         loadData(currentCity: "Moscow", completion: {
             [weak self] data in
             let currentConditionString = data.current_condition[0].temp_C + "," + data.current_condition[0].FeelsLikeC  + "," + data.current_condition[0].weatherCode //for saving
@@ -401,17 +401,21 @@ class ViewController: UIViewController {
                 hoursString = hoursString + $0.FeelsLikeC + " " + $0.weatherCode + ";"
             }
             var parts : [String] = []
-            for day in data.weather{
-                let morningLine = day.hourly![9].tempC + "," + day.hourly![9].FeelsLikeC + "," + day.hourly![9].weatherCode + ","
+            var bound = 0
+            while bound < 8 {
+                let morningLine = data.weather[0].hourly![9].tempC + "," + data.weather[0].hourly![9].FeelsLikeC + "," + data.weather[0].hourly![9].weatherCode + ","
                 
-                let dayLine = day.hourly![15].tempC + "," + day.hourly![15].FeelsLikeC + "," + day.hourly![15].weatherCode + ","
+                let dayLine = data.weather[0].hourly![15].tempC + "," + data.weather[0].hourly![15].FeelsLikeC + "," + data.weather[0].hourly![15].weatherCode + ","
                 
-                let eveningLine = day.hourly![21].tempC + "," + day.hourly![21].FeelsLikeC + "," + day.hourly![21].weatherCode + "/"
+                let eveningLine = data.weather[0].hourly![21].tempC + "," + data.weather[0].hourly![21].FeelsLikeC + "," + data.weather[0].hourly![21].weatherCode + ","
                 
-                let detailsLine =  day.hourly![15].windspeedKmph + "," + day.hourly![15].humidity + "," + day.hourly![15].pressure + "," + day.date! + ";"
+                let nightLine = data.weather[1].hourly![3].tempC + "," + data.weather[1].hourly![3].FeelsLikeC + "," + data.weather[1].hourly![3].weatherCode + "/"
                 
-                let finalLine = morningLine + dayLine + eveningLine + detailsLine
+                let detailsLine =  data.weather[0].hourly![15].windspeedKmph + "," + data.weather[0].hourly![15].humidity + "," + data.weather[0].hourly![15].pressure + "," + data.weather[0].date! + ";"
+                
+                let finalLine = morningLine + dayLine + eveningLine + nightLine + detailsLine
                 parts.append(finalLine)
+                bound += 1
             }
             print(parts)
             UserDefaults.standard.set(currentConditionString, forKey: "currentCondition")
@@ -433,6 +437,9 @@ class ViewController: UIViewController {
             UserDefaults.standard.set(hoursString, forKey: "todayHours")
 
         })
+    }
+    func determinePartOfDay(){
+        
     }
 }
 
@@ -458,7 +465,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == partsCollectionView {
-            return 3
+            return 4
         } else if collectionView == hoursCollectionView {
             return 24
         } else {
