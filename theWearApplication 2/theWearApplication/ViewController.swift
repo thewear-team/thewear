@@ -13,6 +13,7 @@
 
 import UIKit
 
+var partOfDayNow : PartsOfDay = .day
 var demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 
 var demoHours : [String] = ["00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
@@ -311,7 +312,8 @@ class ViewController: UIViewController {
              self.fillUIelementsWithData()
             
         }
-        
+        //determining part of the day
+        determinePartOfDay()
         //getting fresh data
         UserDefaults.standard.set(1, forKey: "isOpened")
         getDataAndUpdate()
@@ -354,7 +356,7 @@ class ViewController: UIViewController {
     func retrieveDataAndUpdate(){
         if (UserDefaults.standard.value(forKey: "todayHours") != nil ){
             let allhours = UserDefaults.standard.value(forKey: "todayHours") as! String
-            print (allhours)
+//            print (allhours)
             demoTemp = []
             let hours  = (allhours.split(separator: ";"))
             for hour in hours {
@@ -362,22 +364,25 @@ class ViewController: UIViewController {
                 demoTemp.append(String(parts[0]) + "°С" )
                 codesHours.append(String(parts[0]))
             }
-            print(demoTemp)
+//            print(demoTemp)
         }
             self.hoursCollectionView.reloadData()
             if (UserDefaults.standard.value(forKey: "daysParts") != nil){
                 let alldays = UserDefaults.standard.value(forKey: "daysParts") as! [String]
                 for day in alldays {
                     let splitedString = day.split(separator: "/")
-                    print(splitedString[0])
-                    print(splitedString[1])
                     let parts = splitedString[0].split(separator: ",")
-                    print(parts)
                     let detais = splitedString[1].split(separator: ",")
-                    print(detais)
-                    let oneFutureDay = OneWeatherDay(date : String(detais[3])  ,morningtemp: String(parts[0]), daytemp: String(parts[3]), eveningtemp: String(parts[6]), nighttemp: String(parts[9]), morningfeelslike: String(parts[1]), dayfeelslike: String(parts[4]), eveningfeelslike: String(parts[7]), nightfeelslike: String(parts[10]), morningcode: String(parts[2]), daycode: String(parts[5]), eveningcode: String(parts[8]), nightcode: String(parts[11]), pressure: String(detais[2]), humidity: String(detais[1]), wind: String(detais[0]))
-                    print(oneFutureDay)
-                    allDays.append(oneFutureDay)
+                    if parts.count > 9{
+                        let oneFutureDay = OneWeatherDay(date : String(detais[3])  ,morningtemp: String(parts[0]), daytemp: String(parts[3]), eveningtemp: String(parts[6]), nighttemp: String(parts[9]), morningfeelslike: String(parts[1]), dayfeelslike: String(parts[4]), eveningfeelslike: String(parts[7]), nightfeelslike: String(parts[10]), morningcode: String(parts[2]), daycode: String(parts[5]), eveningcode: String(parts[8]), nightcode: String(parts[11]), pressure: String(detais[2]), humidity: String(detais[1]), wind: String(detais[0]))
+                        allDays.append(oneFutureDay)
+                    }
+                    else {
+                          let oneFutureDay = OneWeatherDay(date : String(detais[3])  ,morningtemp: String(parts[0]), daytemp: String(parts[3]), eveningtemp: String(parts[6]), morningfeelslike: String(parts[1]), dayfeelslike: String(parts[4]), eveningfeelslike: String(parts[7]), morningcode: String(parts[2]), daycode: String(parts[5]), eveningcode: String(parts[8]), pressure: String(detais[2]), humidity: String(detais[1]), wind: String(detais[0]))
+                        allDays.append(oneFutureDay)
+                    }
+//                    print(oneFutureDay)
+                    
                 }
                 print(allDays)
             }
@@ -402,16 +407,19 @@ class ViewController: UIViewController {
             }
             var parts : [String] = []
             var bound = 0
-            while bound < 8 {
-                let morningLine = data.weather[0].hourly![9].tempC + "," + data.weather[0].hourly![9].FeelsLikeC + "," + data.weather[0].hourly![9].weatherCode + ","
+            while bound < 7 {
+                let morningLine = data.weather[bound].hourly![9].tempC + "," + data.weather[bound].hourly![9].FeelsLikeC + "," + data.weather[bound].hourly![9].weatherCode + ","
                 
-                let dayLine = data.weather[0].hourly![15].tempC + "," + data.weather[0].hourly![15].FeelsLikeC + "," + data.weather[0].hourly![15].weatherCode + ","
+                let dayLine = data.weather[bound].hourly![15].tempC + "," + data.weather[bound].hourly![15].FeelsLikeC + "," + data.weather[bound].hourly![15].weatherCode + ","
                 
-                let eveningLine = data.weather[0].hourly![21].tempC + "," + data.weather[0].hourly![21].FeelsLikeC + "," + data.weather[0].hourly![21].weatherCode + ","
+                let eveningLine = data.weather[bound].hourly![21].tempC + "," + data.weather[bound].hourly![21].FeelsLikeC + "," + data.weather[bound].hourly![21].weatherCode + ","
                 
-                let nightLine = data.weather[1].hourly![3].tempC + "," + data.weather[1].hourly![3].FeelsLikeC + "," + data.weather[1].hourly![3].weatherCode + "/"
+                var nightLine = "/"
+                if bound < 6 {
+                    nightLine = data.weather[bound + 1].hourly![3].tempC + "," + data.weather[bound + 1].hourly![3].FeelsLikeC + "," + data.weather[bound + 1].hourly![3].weatherCode + "/"
+                }
                 
-                let detailsLine =  data.weather[0].hourly![15].windspeedKmph + "," + data.weather[0].hourly![15].humidity + "," + data.weather[0].hourly![15].pressure + "," + data.weather[0].date! + ";"
+                let detailsLine =  data.weather[bound].hourly![15].windspeedKmph + "," + data.weather[bound].hourly![15].humidity + "," + data.weather[bound].hourly![15].pressure + "," + data.weather[bound].date! + ";"
                 
                 let finalLine = morningLine + dayLine + eveningLine + nightLine + detailsLine
                 parts.append(finalLine)
@@ -439,6 +447,24 @@ class ViewController: UIViewController {
         })
     }
     func determinePartOfDay(){
+        let time = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: time)
+        print(hour)
+        switch hour{
+        case 6...11:
+            partOfDayNow = .morning
+        case 12...17:
+            partOfDayNow = .day
+        case 18...23:
+            partOfDayNow = .evening
+        case 0...5:
+            partOfDayNow = .night
+        default:
+            partOfDayNow = .day
+        }
+        print (partOfDayNow)
+        
         
     }
 }

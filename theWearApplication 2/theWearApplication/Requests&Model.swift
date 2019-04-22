@@ -143,17 +143,17 @@ struct OneWeatherDay {
     let morningtemp : String
     let daytemp : String
     let eveningtemp : String
-     let nighttemp : String
+     let nighttemp : String?
     
     let morningfeelslike : String
     let dayfeelslike : String
     let eveningfeelslike : String
-    let nightfeelslike : String
+    let nightfeelslike : String?
     
     let morningcode : String
     let daycode : String
     let eveningcode : String
-    let nightcode : String
+    let nightcode : String?
 
     
     let pressure : String
@@ -195,14 +195,51 @@ struct OneWeatherDay {
         self.eveningcode = eveningcode
         self.nightcode = nightcode
         
-        
         self.pressure = pressure
         self.humidity = humidity
         self.wind = wind
     }
+    init(date : String,
+         morningtemp: String,
+         daytemp: String,
+         eveningtemp: String,
+         
+         morningfeelslike: String,
+         dayfeelslike: String,
+         eveningfeelslike: String,
+         
+         morningcode: String,
+         daycode: String,
+         eveningcode: String,
+         
+         pressure : String,
+         humidity : String,
+         wind : String) {
+        self.date = date
+        self.morningtemp = morningtemp
+        self.daytemp = daytemp
+        self.eveningtemp = eveningtemp
+        
+        self.morningfeelslike = morningfeelslike
+        self.dayfeelslike = dayfeelslike
+        self.eveningfeelslike = eveningfeelslike
+        
+        self.morningcode = morningcode
+        self.daycode = daycode
+        self.eveningcode = eveningcode
+        
+        self.pressure = pressure
+        self.humidity = humidity
+        self.wind = wind
+        
+        self.nightcode = nil
+        self.nighttemp = nil
+        self.nightfeelslike = nil
+    }
+
 }
 
-
+//MARK : requests
 
 func loadData( currentCity : String, completion : @escaping (Data)->Void){
     var jsonUrlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=74c4bc939e104ac6b3791645190203&q=\(currentCity)&format=json&num_of_days=7&mca=no&tp=1&quot"
