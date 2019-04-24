@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A72613EF226DA99E00D0074A /* WeatherCodes&Statuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72613EE226DA99E00D0074A /* WeatherCodes&Statuses.swift */; };
+		A726140122705AA700D0074A /* theWearApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726140022705AA700D0074A /* theWearApplicationTests.swift */; };
 		A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783D0D9226C5670006948F8 /* Requests&Model.swift */; };
 		BAFF268B2268BF6400D6C7FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */; };
 		BAFF268D2268BF6400D6C7FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF268C2268BF6400D6C7FA /* ViewController.swift */; };
@@ -24,8 +25,21 @@
 		BAFF26AF2268C0CE00D6C7FA /* DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF26AE2268C0CE00D6C7FA /* DaysCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A726140322705AA700D0074A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAFF267F2268BF6400D6C7FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BAFF26862268BF6400D6C7FA;
+			remoteInfo = theWearApplication;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		A72613EE226DA99E00D0074A /* WeatherCodes&Statuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherCodes&Statuses.swift"; sourceTree = "<group>"; };
+		A72613FE22705AA700D0074A /* theWearApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = theWearApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A726140022705AA700D0074A /* theWearApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theWearApplicationTests.swift; sourceTree = "<group>"; };
+		A726140222705AA700D0074A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A783D0D9226C5670006948F8 /* Requests&Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Requests&Model.swift"; sourceTree = "<group>"; };
 		BAFF26872268BF6400D6C7FA /* theWearApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theWearApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +59,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A72613FB22705AA700D0074A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BAFF26842268BF6400D6C7FA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,10 +76,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A72613FF22705AA700D0074A /* theWearApplicationTests */ = {
+			isa = PBXGroup;
+			children = (
+				A726140022705AA700D0074A /* theWearApplicationTests.swift */,
+				A726140222705AA700D0074A /* Info.plist */,
+			);
+			path = theWearApplicationTests;
+			sourceTree = "<group>";
+		};
 		BAFF267E2268BF6400D6C7FA = {
 			isa = PBXGroup;
 			children = (
 				BAFF26892268BF6400D6C7FA /* theWearApplication */,
+				A72613FF22705AA700D0074A /* theWearApplicationTests */,
 				BAFF26882268BF6400D6C7FA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				BAFF26872268BF6400D6C7FA /* theWearApplication.app */,
+				A72613FE22705AA700D0074A /* theWearApplicationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +129,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A72613FD22705AA700D0074A /* theWearApplicationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A726140722705AA800D0074A /* Build configuration list for PBXNativeTarget "theWearApplicationTests" */;
+			buildPhases = (
+				A72613FA22705AA700D0074A /* Sources */,
+				A72613FB22705AA700D0074A /* Frameworks */,
+				A72613FC22705AA700D0074A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A726140422705AA700D0074A /* PBXTargetDependency */,
+			);
+			name = theWearApplicationTests;
+			productName = theWearApplicationTests;
+			productReference = A72613FE22705AA700D0074A /* theWearApplicationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BAFF26862268BF6400D6C7FA /* theWearApplication */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAFF26992268BF6600D6C7FA /* Build configuration list for PBXNativeTarget "theWearApplication" */;
@@ -124,6 +174,10 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Maxim Reshetov";
 				TargetAttributes = {
+					A72613FD22705AA700D0074A = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = BAFF26862268BF6400D6C7FA;
+					};
 					BAFF26862268BF6400D6C7FA = {
 						CreatedOnToolsVersion = 10.2;
 					};
@@ -143,11 +197,19 @@
 			projectRoot = "";
 			targets = (
 				BAFF26862268BF6400D6C7FA /* theWearApplication */,
+				A72613FD22705AA700D0074A /* theWearApplicationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A72613FC22705AA700D0074A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BAFF26852268BF6400D6C7FA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -160,6 +222,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A72613FA22705AA700D0074A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A726140122705AA700D0074A /* theWearApplicationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BAFF26832268BF6400D6C7FA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -182,6 +252,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A726140422705AA700D0074A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BAFF26862268BF6400D6C7FA /* theWearApplication */;
+			targetProxy = A726140322705AA700D0074A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		BAFF26932268BF6600D6C7FA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -194,6 +272,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A726140522705AA800D0074A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 99F33CAX5W;
+				INFOPLIST_FILE = theWearApplicationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Valentina.theWearApplicationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/theWearApplication.app/theWearApplication";
+			};
+			name = Debug;
+		};
+		A726140622705AA800D0074A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 99F33CAX5W;
+				INFOPLIST_FILE = theWearApplicationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Valentina.theWearApplicationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/theWearApplication.app/theWearApplication";
+			};
+			name = Release;
+		};
 		BAFF26972268BF6600D6C7FA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -349,6 +467,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A726140722705AA800D0074A /* Build configuration list for PBXNativeTarget "theWearApplicationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A726140522705AA800D0074A /* Debug */,
+				A726140622705AA800D0074A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BAFF26822268BF6400D6C7FA /* Build configuration list for PBXProject "theWearApplication" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -17,9 +17,9 @@ var partOfDayNow : PartsOfDay = .day
 var demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 
 var demoHours : [String] = ["00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
-var demoTemp  : [String] = [] // for output
-var codesHours  : [String] = [] //for output
-var currentCondition = ("", "", "") //for output
+var demoTemp  : [String] = [] // for output /temps by hours
+var codesHours  : [String] = [] //for output /codes by hours
+var currentCondition = ("", "", "") //for output/ current (temp, feelslike, code)
 var allDays : [OneWeatherDay] = [] //contain 7 days by parts for output
 var demoDays : [String] = [] // for output
 
@@ -342,13 +342,15 @@ class ViewController: UIViewController {
         
         // configure hours and days
         configureDaysAndHours()
+        
+        print(codesHours)
 
     }
     func fillUIelementsWithData(){
         DispatchQueue.main.async {
             self.hoursCollectionView.reloadData()
             self.weatherLabel.text = "\(currentCondition.0)°С"
-            self.weatherLikeLabel.text = "Feels like \(currentCondition.0)°С"
+            self.weatherLikeLabel.text = "Feels like \(currentCondition.1)°С"
         }
     }
     
@@ -360,9 +362,11 @@ class ViewController: UIViewController {
             demoTemp = []
             let hours  = (allhours.split(separator: ";"))
             for hour in hours {
+                
                 let parts = hour.split(separator: " ")
+                print(parts)
                 demoTemp.append(String(parts[0]) + "°С" )
-                codesHours.append(String(parts[0]))
+                codesHours.append(String(parts[1]))
             }
 //            print(demoTemp)
         }
@@ -539,17 +543,34 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             if indexPath.item == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nowCell", for: indexPath) as! NowCell
                 cell.bgLabel.text = "Now"
-                cell.backgroundColor = UIColor.color_113
+                let code = currentCondition.2
+                let colorComponents = statuses[code]
+                if colorComponents != nil {
+                    let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
+                    cell.backgroundColor = newColor
+                }
                 return cell
             } else if indexPath.item == 1 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "secondCell", for: indexPath) as! SecondCell
                 cell.bgLabel.text = "Evening"
-                cell.backgroundColor = UIColor.color_119
+                let code = codesHours[9]
+                let colorComponents = statuses[code]
+                if colorComponents != nil {
+                    let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
+                    cell.backgroundColor = newColor
+                }
+//                return cell
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "thirdCell", for: indexPath) as! ThirdCell
                 cell.bgLabel.text = "Night"
-                cell.backgroundColor = UIColor.color_122
+                let code = codesHours[23]//JUST TEST
+                let colorComponents = statuses[code]
+                if colorComponents != nil {
+                    let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
+                    cell.backgroundColor = newColor
+                }
+//                return cell
                 return cell
             }
         } else if collectionView == hoursCollectionView {
