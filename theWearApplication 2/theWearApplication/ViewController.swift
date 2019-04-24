@@ -55,7 +55,6 @@ class ViewController: UIViewController {
     let settingsButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "settings"), for: .normal)
-        button.alpha = 0
         button.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         return button
     }()
@@ -87,20 +86,6 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         view.layer.cornerRadius = 45
         view.layer.maskedCorners = [.layerMaxXMinYCorner]
-        return view
-    }()
-    
-    let view1: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 2
-        return view
-    }()
-    
-    let view2: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 2
         return view
     }()
     
@@ -143,8 +128,10 @@ class ViewController: UIViewController {
     
     var lastCity = ""
     
+    let setting = SettingsView()
+    
     @objc func handleSettings() {
-        present(SettingsViewController(), animated: true, completion: nil)
+        setting.showSettings()
     }
     
     @objc func handleMenuButton() {
@@ -154,19 +141,9 @@ class ViewController: UIViewController {
             self.cityTextField.becomeFirstResponder()
             UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.underView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.underView.frame.width, height: self.underView.frame.height)
-                self.settingsButton.alpha = 1
                 self.originYPartsCollectionView = self.view.frame.height
                 self.partsCollectionView.frame = CGRect(x: 0, y: self.originYPartsCollectionView, width: self.partsCollectionView.frame.width, height: self.partsCollectionView.frame.height)
                 self.citiesTableView.alpha = 1
-                
-                // animating view1
-                self.originYView = self.view1.frame.origin.y + 3
-                self.view1.frame = CGRect(x: self.view1.frame.origin.x, y: self.originYView, width: self.view1.frame.width, height: self.view1.frame.height)
-                self.view1.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
-                
-                // animating view2
-                self.view2.frame = CGRect(x: self.view2.frame.origin.x, y: self.originYView, width: 30, height: self.view2.frame.height)
-                self.view2.transform = CGAffineTransform(rotationAngle: -(CGFloat.pi / 4))
             })
         } else {
             self.cityTextField.resignFirstResponder()
@@ -175,22 +152,9 @@ class ViewController: UIViewController {
             }
             UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.underView.frame = CGRect(x: 0, y: self.view.frame.height - 180, width: self.underView.frame.width, height: self.underView.frame.height)
-                self.settingsButton.alpha = 0
                 self.originYPartsCollectionView = 0
                 self.partsCollectionView.frame = CGRect(x: 0, y: self.originYPartsCollectionView, width: self.partsCollectionView.frame.width, height: self.partsCollectionView.frame.height)
                 self.citiesTableView.alpha = 0
-                
-                // animating view1
-                self.originYView = self.top + 30
-                self.view1.transform = CGAffineTransform(rotationAngle: 0)
-                self.view1.frame = CGRect(x: 30, y: self.originYView, width: 30, height: 4)
-                
-                
-                // animating view2
-                self.view2.transform = CGAffineTransform(rotationAngle: 0)
-                self.view2.frame = CGRect(x: 30, y: self.originYView + 9, width: 15, height: 4)
-                
-                
             }) { _ in
                 self.cityTextField.isUserInteractionEnabled = false
             }
@@ -207,14 +171,12 @@ class ViewController: UIViewController {
             top = topPadding!
         }
         
-        [view1, view2, cityTextField, menuButton, settingsButton].forEach {view.addSubview($0)}
+        [cityTextField, menuButton, settingsButton].forEach {view.addSubview($0)}
         originYView = top + 30
-        
-        view1.frame = CGRect(x: 30, y: originYView, width: 30, height: 4)
-        view2.frame = CGRect(x: 30, y: originYView + 9, width: 15, height: 4)
-        cityTextField.frame = CGRect(x: 75, y: top + 25, width: view.frame.width - 150, height: 23)
+    
+        cityTextField.frame = CGRect(x: 30, y: top + 25, width: view.frame.width - 150, height: 25)
         menuButton.frame = CGRect(x: 15, y: top + 15, width: 60, height: 53)
-        settingsButton.frame = CGRect(x: view.frame.width - 60, y: top + 30 - 6.5, width: 30, height: 30)
+        settingsButton.frame = CGRect(x: view.frame.width - 55, y: top + 25, width: 25, height: 25)
     }
     
     func configureCollectionView() {
