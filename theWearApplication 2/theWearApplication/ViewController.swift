@@ -547,7 +547,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             if (demoTemp.count > 0) && (demoHours.count > 0){
             cell.hourLabel.text = demoHours[indexPath.row]
             cell.tempLabel.text = demoTemp[indexPath.row]}
-            let code = codesHours[indexPath.row]
+            let code = codesHours[indexPath.row] ?? ""
             cell.iconImageView.image = UIImage(named: code)
             return cell
         } else {
