@@ -61,7 +61,7 @@ class ViewController: UIViewController {
     
     // Down menu
     let weatherImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "sun"))
+        let imageView = UIImageView(image: UIImage(named: "113"))
         return imageView
     }()
     
@@ -175,7 +175,7 @@ class ViewController: UIViewController {
         originYView = top + 30
     
         cityTextField.frame = CGRect(x: 30, y: top + 25, width: view.frame.width - 150, height: 25)
-        menuButton.frame = CGRect(x: 15, y: top + 15, width: 60, height: 53)
+        menuButton.frame = CGRect(x: 15, y: top + 15, width: view.frame.width - 135, height: 53)
         settingsButton.frame = CGRect(x: view.frame.width - 55, y: top + 25, width: 25, height: 25)
     }
     
@@ -504,7 +504,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+        if collectionView == daysCollectionView {
+            return UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+        } else {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
