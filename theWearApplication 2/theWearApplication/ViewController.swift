@@ -278,8 +278,7 @@ class ViewController: UIViewController {
         determinePartOfDay()
         //getting fresh data
         UserDefaults.standard.set(1, forKey: "isOpened")
-        getDataAndUpdate()
-//        self.fillUIelementsWithData()
+        
         
         // configure CollectionView
         configureCollectionView()
@@ -305,7 +304,11 @@ class ViewController: UIViewController {
         // configure hours and days
         configureDaysAndHours()
         
-        print(codesHours)
+        
+        getDataAndUpdate()
+        self.fillUIelementsWithData()
+        
+        print(codesHours)//here for the first time still previous codes
 
     }
     func fillUIelementsWithData(){
@@ -364,7 +367,7 @@ class ViewController: UIViewController {
     //и эту тоже
     func getDataAndUpdate(){
         var hoursString = ""
-        loadData(currentCity: "Moscow", completion: {
+        loadData(currentCity: "Vancouver", completion: {
             [weak self] data in
             let currentConditionString = data.current_condition[0].temp_C + "," + data.current_condition[0].FeelsLikeC  + "," + data.current_condition[0].weatherCode //for saving
             currentCondition = (data.current_condition[0].temp_C ,  data.current_condition[0].FeelsLikeC,data.current_condition[0].weatherCode ) //for displaying now
@@ -397,16 +400,20 @@ class ViewController: UIViewController {
             demoTemp = []
             //fill current values
             let hours  = (hoursString.split(separator: ";"))
+            codesHours = []
             for hour in hours {
                 var parts = hour.split(separator: " ")
                 demoTemp.append(String(parts[0]) + "°С" )
                 codesHours.append(String(parts[1]))
             }
+            print("new codes arrived")
+            print(codesHours)
             
             //save
             DispatchQueue.main.async {
                 self?.hoursCollectionView.reloadData()
                 self?.fillUIelementsWithData()
+            
             }
             UserDefaults.standard.set(hoursString, forKey: "todayHours")
 
@@ -540,7 +547,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             if (demoTemp.count > 0) && (demoHours.count > 0){
             cell.hourLabel.text = demoHours[indexPath.row]
             cell.tempLabel.text = demoTemp[indexPath.row]}
-            cell.iconImageView.image = UIImage(named: "sun")
+            let code = codesHours[indexPath.row]
+            cell.iconImageView.image = UIImage(named: code)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "day", for: indexPath) as! DaysCell
