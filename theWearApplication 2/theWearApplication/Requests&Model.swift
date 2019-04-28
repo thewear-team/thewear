@@ -137,6 +137,20 @@ struct Region : Decodable{
 struct WeatherUrl : Decodable{
     let value : String?
 }
+struct OneDayDetails {
+    let wind : String
+    let humidity : String
+    let sunrise : String
+    let sunset : String
+    let uv : String
+    init(wind : String, humidity : String, sunrise : String, sunset : String, uv : String) {
+        self.wind = wind
+        self.humidity = humidity
+        self.sunrise = sunrise
+        self.sunset = sunset
+        self.uv = uv
+    }
+}
 
 struct OneWeatherDay {
     let date : String
@@ -159,8 +173,12 @@ struct OneWeatherDay {
     let pressure : String
     let humidity : String
     let wind : String
+    let uv : String
+    let sunrise : String
+    let sunset : String
     
-    init(date : String,
+    init(
+        date : String,
         morningtemp: String,
         daytemp: String,
         eveningtemp: String,
@@ -178,7 +196,10 @@ struct OneWeatherDay {
         
         pressure : String,
         humidity : String,
-        wind : String) {
+        wind : String,
+        uv: String,
+        sunset: String,
+        sunrise : String) {
         self.date = date
         self.morningtemp = morningtemp
         self.daytemp = daytemp
@@ -198,8 +219,11 @@ struct OneWeatherDay {
         self.pressure = pressure
         self.humidity = humidity
         self.wind = wind
+        self.uv = uv
+        self.sunset = sunset
+        self.sunrise = sunrise
     }
-    init(date : String,
+    init(date : String, 
          morningtemp: String,
          daytemp: String,
          eveningtemp: String,
@@ -214,7 +238,10 @@ struct OneWeatherDay {
          
          pressure : String,
          humidity : String,
-         wind : String) {
+         wind : String,
+         uv: String,
+         sunset: String,
+         sunrise : String) {
         self.date = date
         self.morningtemp = morningtemp
         self.daytemp = daytemp
@@ -235,6 +262,9 @@ struct OneWeatherDay {
         self.nightcode = nil
         self.nighttemp = nil
         self.nightfeelslike = nil
+        self.uv = uv
+        self.sunset = sunset
+        self.sunrise = sunrise
     }
 
 }

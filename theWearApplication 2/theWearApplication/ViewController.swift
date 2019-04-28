@@ -13,6 +13,8 @@
 
 import UIKit
 
+var currentCity  = "Kolomna"
+
 var partOfDayNow : PartsOfDay = .day
 var demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 
@@ -20,7 +22,7 @@ var demoHours : [String] = ["00:00", "01:00","02:00","03:00","04:00","05:00","06
 var demoTemp  : [String] = [] // for output /temps by hours
 var codesHours  : [String] = [] //for output /codes by hours
 var currentCondition = ("", "", "") //for output/ current (temp, feelslike, code)
-var allDays : [OneWeatherDay] = [] //contain 7 days by parts for output
+var allDays : [OneWeatherDay] = [] //contain 7 days by parts + details
 var demoDays : [String] = [] // for output
 
 class ViewController: UIViewController {
@@ -98,7 +100,7 @@ class ViewController: UIViewController {
     
     let cityTextField: UITextField = {
         let textField = UITextField()
-        textField.text = "Moscow"
+        textField.text = currentCity
         textField.isUserInteractionEnabled = false
         textField.textColor = .white
         textField.tintColor = .white
@@ -286,7 +288,7 @@ class ViewController: UIViewController {
         humidityLabel.frame = CGRect(x: 25, y: 50, width: 250, height: 50)
         pressureLabel.frame = CGRect(x: 25, y: 100, width: 250, height: 50)
         uvLabel.frame = CGRect(x: 25, y: 150, width: 250, height: 50)
-        
+       //
         windLabel.text = "Wind - 9 km/h"
         humidityLabel.text = "Humidity - 42%"
         pressureLabel.text = "Pressure - 1004 hPa"
@@ -318,7 +320,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor.color_113
         
         //reading previous data if exists
-        
+        UserDefaults.standard.set(nil, forKey: "daysParts")
         if (UserDefaults.standard.value(forKey: "isOpened") != nil){
              self.retrieveDataAndUpdate()
              self.fillUIelementsWithData()
@@ -363,6 +365,7 @@ class ViewController: UIViewController {
     }
     func fillUIelementsWithData(){
         DispatchQueue.main.async {
+            self.daysCollectionView.reloadData()
             self.hoursCollectionView.reloadData()
             self.weatherLabel.text = "\(currentCondition.0)°С"
             self.weatherLikeLabel.text = "Feels like \(currentCondition.1)°С"
@@ -390,21 +393,23 @@ class ViewController: UIViewController {
                 let alldays = UserDefaults.standard.value(forKey: "daysParts") as! [String]
                 for day in alldays {
                     let splitedString = day.split(separator: "/")
-                    let parts = splitedString[0].split(separator: ",")
-                    let detais = splitedString[1].split(separator: ",")
+                    let date = splitedString[0]
+                    let parts = splitedString[1].split(separator: ",")
+                    let detais = splitedString[2].split(separator: ",")
                     if parts.count > 9{
-                        let oneFutureDay = OneWeatherDay(date : String(detais[3])  ,morningtemp: String(parts[0]), daytemp: String(parts[3]), eveningtemp: String(parts[6]), nighttemp: String(parts[9]), morningfeelslike: String(parts[1]), dayfeelslike: String(parts[4]), eveningfeelslike: String(parts[7]), nightfeelslike: String(parts[10]), morningcode: String(parts[2]), daycode: String(parts[5]), eveningcode: String(parts[8]), nightcode: String(parts[11]), pressure: String(detais[2]), humidity: String(detais[1]), wind: String(detais[0]))
+                        let oneFutureDay = OneWeatherDay(date : String(date), morningtemp:  String(parts[0]), daytemp:  String(parts[3]), eveningtemp:  String(parts[6]), nighttemp:  String(parts[9]), morningfeelslike:  String(parts[1]), dayfeelslike:  String(parts[4]), eveningfeelslike:  String(parts[7]), nightfeelslike:  String(parts[10]), morningcode:  String(parts[2]), daycode:  String(parts[5]), eveningcode:  String(parts[8]), nightcode:  String(parts[11]), pressure:  String(detais[2]), humidity:  String(detais[1]), wind:  String(detais[0]), uv:  String(detais[5]), sunset:  String(detais[4]), sunrise:  String(detais[3]))
                         allDays.append(oneFutureDay)
                     }
                     else {
-                          let oneFutureDay = OneWeatherDay(date : String(detais[3])  ,morningtemp: String(parts[0]), daytemp: String(parts[3]), eveningtemp: String(parts[6]), morningfeelslike: String(parts[1]), dayfeelslike: String(parts[4]), eveningfeelslike: String(parts[7]), morningcode: String(parts[2]), daycode: String(parts[5]), eveningcode: String(parts[8]), pressure: String(detais[2]), humidity: String(detais[1]), wind: String(detais[0]))
+                         let oneFutureDay = OneWeatherDay(date : String(date), morningtemp:  String(parts[0]), daytemp:  String(parts[3]), eveningtemp:  String(parts[6]), morningfeelslike:  String(parts[1]), dayfeelslike:  String(parts[4]), eveningfeelslike:  String(parts[7]), morningcode:  String(parts[2]), daycode:  String(parts[5]), eveningcode:  String(parts[8]), pressure:  String(detais[2]), humidity:  String(detais[1]), wind:  String(detais[0]), uv:  String(detais[5]), sunset:  String(detais[4]), sunrise:  String(detais[3]))
                         allDays.append(oneFutureDay)
                     }
-//                    print(oneFutureDay)
-                    
                 }
                 print(allDays)
+                
+                daysCollectionView.reloadData()
             }
+      
          if (UserDefaults.standard.value(forKey: "currentCondition") != nil){
             let currentString = UserDefaults.standard.value(forKey: "currentCondition") as! String
             let items = currentString.split(separator: ",")
@@ -417,7 +422,7 @@ class ViewController: UIViewController {
     //и эту тоже
     func getDataAndUpdate(){
         var hoursString = ""
-        loadData(currentCity: "Vancouver", completion: {
+        loadData(currentCity: currentCity, completion: {
             [weak self] data in
             let currentConditionString = data.current_condition[0].temp_C + "," + data.current_condition[0].FeelsLikeC  + "," + data.current_condition[0].weatherCode //for saving
             currentCondition = (data.current_condition[0].temp_C ,  data.current_condition[0].FeelsLikeC,data.current_condition[0].weatherCode ) //for displaying now
@@ -425,8 +430,15 @@ class ViewController: UIViewController {
                 hoursString = hoursString + $0.FeelsLikeC + " " + $0.weatherCode + ";"
             }
             var parts : [String] = []
+            var details : [String] = []
             var bound = 0
+            allDays = []
             while bound < 7 {
+                let sunInfo = data.weather[bound].astronomy![0].sunrise + "," + data.weather[bound].astronomy![0].sunset + ","
+                let detailsLine  = data.weather[bound].hourly![15].windspeedKmph + "," + data.weather[bound].hourly![15].humidity + ","  + data.weather[bound].hourly![15].pressure + "," + sunInfo + data.weather[bound].uvIndex!
+                print(detailsLine)
+                details.append(detailsLine)
+                let date = data.weather[bound].date! + "/"
                 let morningLine = data.weather[bound].hourly![9].tempC + "," + data.weather[bound].hourly![9].FeelsLikeC + "," + data.weather[bound].hourly![9].weatherCode + ","
                 
                 let dayLine = data.weather[bound].hourly![15].tempC + "," + data.weather[bound].hourly![15].FeelsLikeC + "," + data.weather[bound].hourly![15].weatherCode + ","
@@ -434,19 +446,26 @@ class ViewController: UIViewController {
                 let eveningLine = data.weather[bound].hourly![21].tempC + "," + data.weather[bound].hourly![21].FeelsLikeC + "," + data.weather[bound].hourly![21].weatherCode + ","
                 
                 var nightLine = "/"
+                
                 if bound < 6 {
                     nightLine = data.weather[bound + 1].hourly![3].tempC + "," + data.weather[bound + 1].hourly![3].FeelsLikeC + "," + data.weather[bound + 1].hourly![3].weatherCode + "/"
+                    let oneDay = OneWeatherDay(date: data.weather[bound].date!, morningtemp: data.weather[bound].hourly![9].tempC , daytemp: data.weather[bound].hourly![15].tempC, eveningtemp: data.weather[bound].hourly![21].tempC , nighttemp: data.weather[bound + 1].hourly![3].tempC, morningfeelslike: data.weather[bound].hourly![9].FeelsLikeC , dayfeelslike: data.weather[bound].hourly![15].FeelsLikeC, eveningfeelslike: data.weather[bound].hourly![21].FeelsLikeC , nightfeelslike: data.weather[bound + 1].hourly![3].FeelsLikeC, morningcode: data.weather[bound].hourly![9].weatherCode, daycode: data.weather[bound].hourly![15].weatherCode , eveningcode: data.weather[bound].hourly![21].weatherCode, nightcode: data.weather[bound + 1].hourly![3].weatherCode , pressure: data.weather[bound].hourly![15].pressure, humidity: data.weather[bound].hourly![15].humidity , wind: data.weather[bound].hourly![15].windspeedKmph, uv: data.weather[bound].uvIndex!, sunset: data.weather[bound].astronomy![0].sunset, sunrise: data.weather[bound].astronomy![0].sunrise)
+                    allDays.append(oneDay)
+                }
+                //add saving of dayparts + details here (local)
+                else{
+                    let oneDay = OneWeatherDay(date: data.weather[bound].date!, morningtemp: data.weather[bound].hourly![9].tempC , daytemp: data.weather[bound].hourly![15].tempC, eveningtemp: data.weather[bound].hourly![21].tempC ,morningfeelslike: data.weather[bound].hourly![9].FeelsLikeC , dayfeelslike: data.weather[bound].hourly![15].FeelsLikeC, eveningfeelslike: data.weather[bound].hourly![21].FeelsLikeC , morningcode: data.weather[bound].hourly![9].weatherCode, daycode: data.weather[bound].hourly![15].weatherCode , eveningcode: data.weather[bound].hourly![21].weatherCode , pressure: data.weather[bound].hourly![15].pressure, humidity: data.weather[bound].hourly![15].humidity , wind: data.weather[bound].hourly![15].windspeedKmph, uv: data.weather[bound].uvIndex!, sunset: data.weather[bound].astronomy![0].sunset, sunrise: data.weather[bound].astronomy![0].sunrise)
+                    allDays.append(oneDay)
                 }
                 
-                let detailsLine =  data.weather[bound].hourly![15].windspeedKmph + "," + data.weather[bound].hourly![15].humidity + "," + data.weather[bound].hourly![15].pressure + "," + data.weather[bound].date! + ";"
-                
-                let finalLine = morningLine + dayLine + eveningLine + nightLine + detailsLine
+                let finalLine =  date + morningLine + dayLine + eveningLine + nightLine + detailsLine
                 parts.append(finalLine)
                 bound += 1
             }
+//            print("HERE ARE NEW FETCHED DAYS \(allDays)")
             print(parts)
-            UserDefaults.standard.set(currentConditionString, forKey: "currentCondition")
-            UserDefaults.standard.set(parts, forKey: "daysParts")
+            UserDefaults.standard.set(currentConditionString, forKey: "currentCondition")//here is string
+            UserDefaults.standard.set(parts, forKey: "daysParts")//here is an array == allDays in vc
             demoTemp = []
             //fill current values
             let hours  = (hoursString.split(separator: ";"))
@@ -487,8 +506,6 @@ class ViewController: UIViewController {
             partOfDayNow = .day
         }
         print (partOfDayNow)
-        
-        
     }
 }
 
@@ -608,10 +625,18 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "day", for: indexPath) as! DaysCell
             
             // implementing details
-            cell.dayLabel.text = "Tommorrow,\n23 July"
-            cell.iconImageView.image = UIImage(named: "113")
-            cell.tempLabel.text = "21°С 17°С"
-            
+            if allDays.count != 0{
+            cell.dayLabel.text = allDays[indexPath.row].date
+            cell.iconImageView.image = UIImage(named: allDays[indexPath.row].daycode)
+            cell.tempLabel.text =  allDays[indexPath.row].daytemp
+            let code  = allDays[indexPath.row].daycode
+            let colorComponents = statuses[code]
+                if colorComponents != nil {
+                    let dayColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
+                    cell.underView.backgroundColor = dayColor
+                    
+                }
+            }
             if demoDays.count > 0 {
                 if allDays.count == 7{
 //            cell.dayLabel.text = allDays[indexPath.row]
@@ -620,5 +645,5 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             return cell
         }
      }
- }
+}
 
