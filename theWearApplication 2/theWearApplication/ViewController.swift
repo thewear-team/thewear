@@ -27,6 +27,13 @@ class ViewController: UIViewController {
     
     var widthUnderView: CGFloat = 0.0
     
+    let manImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "man"))
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     let hoursCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -143,6 +150,7 @@ class ViewController: UIViewController {
                 self.underView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.underView.frame.width, height: self.underView.frame.height)
                 self.originYPartsCollectionView = self.view.frame.height
                 self.partsCollectionView.frame = CGRect(x: 0, y: self.originYPartsCollectionView, width: self.partsCollectionView.frame.width, height: self.partsCollectionView.frame.height)
+                self.manImageView.center = CGPoint(x: self.manImageView.center.x, y: self.partsCollectionView.center.y)
                 self.citiesTableView.alpha = 1
             })
         } else {
@@ -154,6 +162,7 @@ class ViewController: UIViewController {
                 self.underView.frame = CGRect(x: 0, y: self.view.frame.height - 180, width: self.underView.frame.width, height: self.underView.frame.height)
                 self.originYPartsCollectionView = 0
                 self.partsCollectionView.frame = CGRect(x: 0, y: self.originYPartsCollectionView, width: self.partsCollectionView.frame.width, height: self.partsCollectionView.frame.height)
+                self.manImageView.center = CGPoint(x: self.manImageView.center.x, y: self.partsCollectionView.center.y)
                 self.citiesTableView.alpha = 0
             }) { _ in
                 self.cityTextField.isUserInteractionEnabled = false
@@ -182,6 +191,11 @@ class ViewController: UIViewController {
     func configureCollectionView() {
         view.addSubview(partsCollectionView)
         partsCollectionView.frame = CGRect(x: 0, y: originYPartsCollectionView, width: view.frame.width, height: view.frame.height)
+        view.addSubview(manImageView)
+        manImageView.translatesAutoresizingMaskIntoConstraints = false
+        manImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        manImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        manImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
     }
     
     func configureTableView() {
@@ -245,6 +259,40 @@ class ViewController: UIViewController {
         underView.addGestureRecognizer(recognizer)
     }
     
+    let windLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
+    let humidityLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
+    let pressureLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
+    let uvLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
+    
+    func configureDetails() {
+        [windLabel, humidityLabel, pressureLabel, uvLabel].forEach {detailsView.addSubview($0)}
+        windLabel.frame = CGRect(x: 25, y: 0, width: 250, height: 50)
+        humidityLabel.frame = CGRect(x: 25, y: 50, width: 250, height: 50)
+        pressureLabel.frame = CGRect(x: 25, y: 100, width: 250, height: 50)
+        uvLabel.frame = CGRect(x: 25, y: 150, width: 250, height: 50)
+        
+        windLabel.text = "Wind - 9 km/h"
+        humidityLabel.text = "Humidity - 42%"
+        pressureLabel.text = "Pressure - 1004 hPa"
+        uvLabel.text = "UV Index:  4 Moderate"
+    }
+    
     func configureDaysAndHours() {
         hoursCollectionView.delegate = self
         hoursCollectionView.dataSource = self
@@ -261,6 +309,8 @@ class ViewController: UIViewController {
         hoursCollectionView.frame = CGRect(x: 0, y: 240, width: underView.frame.width, height: 100)
         detailsView.frame = CGRect(x: 30, y: detailsViewY, width: underView.frame.width - 60, height: 240)
         daysCollectionView.frame = CGRect(x: 0, y: daysCollectionViewY, width: underView.frame.width, height: 200)
+        
+        configureDetails()
     }
     
     override func viewDidLoad() {
@@ -556,6 +606,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "day", for: indexPath) as! DaysCell
+            
+            // implementing details
+            cell.dayLabel.text = "Tommorrow,\n23 July"
+            cell.iconImageView.image = UIImage(named: "113")
+            cell.tempLabel.text = "21°С 17°С"
+            
             if demoDays.count > 0 {
                 if allDays.count == 7{
 //            cell.dayLabel.text = allDays[indexPath.row]

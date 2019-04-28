@@ -21,6 +21,7 @@ class DaysCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         label.textAlignment = .left
+        label.textColor = .white
         label.numberOfLines = 2
         return label
     }()
@@ -32,9 +33,9 @@ class DaysCell: UICollectionViewCell {
     
     let tempLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.textColor = .white
         label.textAlignment = .center
-        //label.backgroundColor = .yellow
         return label
     }()
     
@@ -45,9 +46,9 @@ class DaysCell: UICollectionViewCell {
         addSubview(tempLabel)
         
         underView.frame = CGRect(x: 0, y: 0, width: 150, height: 200)
-        dayLabel.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
-        iconImageView.frame = CGRect(x: 0, y: 50, width: 150, height: 100)
-        tempLabel.frame = CGRect(x: 0, y: 150, width: 150, height: 50)
+        dayLabel.frame = CGRect(x: 25, y: 10, width: 100, height: 50)
+        iconImageView.frame = CGRect(x: 50, y: 75, width: 50, height: 50)
+        tempLabel.frame = CGRect(x: 25, y: 150, width: 100, height: 40)
         
     }
     
