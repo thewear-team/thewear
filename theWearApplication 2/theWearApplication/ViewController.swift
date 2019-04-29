@@ -19,6 +19,7 @@ var partOfDayNow : PartsOfDay = .day
 var demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 
 var demoHours : [String] = ["00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
+
 var demoTemp  : [String] = [] // for output /temps by hours
 var codesHours  : [String] = [] //for output /codes by hours
 var currentCondition = ("", "", "") //for output/ current (temp, feelslike, code)
@@ -28,76 +29,28 @@ var demoDays : [String] = [] // for output
 class ViewController: UIViewController {
     
     var widthUnderView: CGFloat = 0.0
+    var originYPartsCollectionView: CGFloat = 0.0
+    var originYView: CGFloat = 30.0
+    var cityTableViewIsOpened = false
+    var top: CGFloat = 0.0
     
+    var lastCity = ""
+    
+    let setting = SettingsView()
+    
+    // MAIN SCREEN
     let manImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "man"))
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
-    let hoursCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .clear
-        return collectionView
-    }()
-    
-    let detailsView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1)
-        view.layer.cornerRadius = 25
-        return view
-    }()
-    
-    let daysCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .clear
-        return collectionView
-    }()
-    
     let settingsButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "settings"), for: .normal)
         button.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         return button
     }()
-    
-    // Down menu
-    let weatherImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "113"))
-        return imageView
-    }()
-    
-    let weatherLabel: UILabel = {
-        let label = UILabel()
-        label.text = "24°С"
-        label.font = UIFont.systemFont(ofSize: 32, weight: .semibold)
-        label.textColor = .black
-        return label
-    }()
-    
-    let weatherLikeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Feels like 25°C"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = UIColor.dark113
-        return label
-    }()
-    
-    let underView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 45
-        view.layer.maskedCorners = [.layerMaxXMinYCorner]
-        return view
-    }()
-    
     let cityTextField: UITextField = {
         let textField = UITextField()
         textField.text = currentCity
@@ -107,7 +60,6 @@ class ViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 28, weight: .semibold)
         return textField
     }()
-    
     let menuButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(handleMenuButton), for: .touchUpInside)
@@ -131,14 +83,74 @@ class ViewController: UIViewController {
         return tableView
     }()
     
-    var originYPartsCollectionView: CGFloat = 0.0
-    var originYView: CGFloat = 30.0
-    var cityTableViewIsOpened = false
+    // DETAILED VIEW
+    let detailsView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1)
+        view.layer.cornerRadius = 25
+        return view
+    }()
+    let hoursCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        return collectionView
+    }()
+    let daysCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        return collectionView
+    }()
+    let weatherImage: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "113"))
+        return imageView
+    }()
+    let weatherLabel: UILabel = {
+        let label = UILabel()
+        label.text = "24°С"
+        label.font = UIFont.systemFont(ofSize: 32, weight: .semibold)
+        label.textColor = .black
+        return label
+    }()
+    let weatherLikeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Feels like 25°C"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.textColor = UIColor.dark113
+        return label
+    }()
+    let underView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 45
+        view.layer.maskedCorners = [.layerMaxXMinYCorner]
+        return view
+    }()
+    let windLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
     
-    var lastCity = ""
+    let humidityLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
     
-    let setting = SettingsView()
+    let pressureLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
     
+    let uvLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
     @objc func handleSettings() {
         setting.showSettings()
     }
@@ -172,8 +184,6 @@ class ViewController: UIViewController {
         }
         cityTableViewIsOpened = !cityTableViewIsOpened
     }
-    
-    var top: CGFloat = 0.0
     
     func configureNavigationBar() {
         if #available(iOS 11.0, *) {
@@ -260,28 +270,7 @@ class ViewController: UIViewController {
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
         underView.addGestureRecognizer(recognizer)
     }
-    
-    let windLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-    
-    let humidityLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-    
-    let pressureLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-    
-    let uvLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-    
-    
+
     func configureDetails() {
         [windLabel, humidityLabel, pressureLabel, uvLabel].forEach {detailsView.addSubview($0)}
         windLabel.frame = CGRect(x: 25, y: 0, width: 250, height: 50)
@@ -311,7 +300,6 @@ class ViewController: UIViewController {
         hoursCollectionView.frame = CGRect(x: 0, y: 240, width: underView.frame.width, height: 100)
         detailsView.frame = CGRect(x: 30, y: detailsViewY, width: underView.frame.width - 60, height: 240)
         daysCollectionView.frame = CGRect(x: 0, y: daysCollectionViewY, width: underView.frame.width, height: 200)
-        
         configureDetails()
     }
     
@@ -336,9 +324,10 @@ class ViewController: UIViewController {
         configureCollectionView()
         partsCollectionView.delegate = self
         partsCollectionView.dataSource = self
-        partsCollectionView.register(NowCell.self, forCellWithReuseIdentifier: "nowCell")
-        partsCollectionView.register(SecondCell.self, forCellWithReuseIdentifier: "secondCell")
-        partsCollectionView.register(ThirdCell.self, forCellWithReuseIdentifier: "thirdCell")
+        partsCollectionView.register(MorningCell.self, forCellWithReuseIdentifier: "MorningCell")
+        partsCollectionView.register(DayCell.self, forCellWithReuseIdentifier: "DayCell")
+        partsCollectionView.register(EveningCell.self, forCellWithReuseIdentifier: "EveningCell")
+        partsCollectionView.register(NightCell.self, forCellWithReuseIdentifier: "NightCell")
         
         // configure NavigationBar
         configureNavigationBar()
@@ -349,13 +338,11 @@ class ViewController: UIViewController {
         citiesTableView.dataSource = self
         citiesTableView.register(CityCell.self, forCellReuseIdentifier: "cityCell")
         
-        
         // configure down menu
         configureDown()
         
         // configure hours and days
         configureDaysAndHours()
-        
         
         getDataAndUpdate()
         self.fillUIelementsWithData()
@@ -372,7 +359,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //свои фукнции потом спрячу в отдельный файл
+    // свои фукнции потом спрячу в отдельный файл
     func retrieveDataAndUpdate(){
         if (UserDefaults.standard.value(forKey: "todayHours") != nil ){
             let allhours = UserDefaults.standard.value(forKey: "todayHours") as! String
@@ -508,142 +495,3 @@ class ViewController: UIViewController {
         print (partOfDayNow)
     }
 }
-
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return demoCities.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath) as! CityCell
-        cell.backgroundColor = .clear
-        cell.cityLabel.text = demoCities[indexPath.row]
-        cell.selectionStyle = .none
-        return cell
-    }
-}
-
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == partsCollectionView {
-            return 4
-        } else if collectionView == hoursCollectionView {
-            return 24
-        } else {
-            return 7
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == partsCollectionView {
-            return CGSize(width: view.frame.width, height: view.frame.height)
-        } else if collectionView == hoursCollectionView {
-            return CGSize(width: 80, height: 100)
-        } else {
-            return CGSize(width: 150, height: 200)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionView == daysCollectionView {
-            return 30
-        } else {
-            return 0
-        }
-    }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        if scrollView == partsCollectionView {
-            let x = targetContentOffset.pointee.x
-            let index = x / view.frame.width
-            if index == 0 {
-                view.backgroundColor = UIColor.color_113
-            } else if index == 1 {
-                view.backgroundColor = UIColor.color_122
-            }
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if collectionView == daysCollectionView {
-            return UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
-        } else {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == partsCollectionView {
-            if indexPath.item == 0 {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nowCell", for: indexPath) as! NowCell
-                cell.bgLabel.text = "Now"
-                let code = currentCondition.2
-                let colorComponents = statuses[code]
-                if colorComponents != nil {
-                    let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
-                    cell.backgroundColor = newColor
-                }
-                return cell
-            } else if indexPath.item == 1 {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "secondCell", for: indexPath) as! SecondCell
-                cell.bgLabel.text = "Evening"
-                let code = codesHours[9]
-                let colorComponents = statuses[code]
-                if colorComponents != nil {
-                    let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
-                    cell.backgroundColor = newColor
-                }
-//                return cell
-                return cell
-            } else {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "thirdCell", for: indexPath) as! ThirdCell
-                cell.bgLabel.text = "Night"
-                let code = codesHours[23]//JUST TEST
-                let colorComponents = statuses[code]
-                if colorComponents != nil {
-                    let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
-                    cell.backgroundColor = newColor
-                }
-//                return cell
-                return cell
-            }
-        } else if collectionView == hoursCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hours", for: indexPath) as! HoursCell
-            if (demoTemp.count > 0) && (demoHours.count > 0){
-            cell.hourLabel.text = demoHours[indexPath.row]
-            cell.tempLabel.text = demoTemp[indexPath.row]}
-            let code = codesHours[indexPath.row] ?? ""
-            cell.iconImageView.image = UIImage(named: code)
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "day", for: indexPath) as! DaysCell
-            
-            // implementing details
-            if allDays.count != 0{
-            cell.dayLabel.text = allDays[indexPath.row].date
-            cell.iconImageView.image = UIImage(named: allDays[indexPath.row].daycode)
-            cell.tempLabel.text =  allDays[indexPath.row].daytemp
-            let code  = allDays[indexPath.row].daycode
-            let colorComponents = statuses[code]
-                if colorComponents != nil {
-                    let dayColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
-                    cell.underView.backgroundColor = dayColor
-                    
-                }
-            }
-            if demoDays.count > 0 {
-                if allDays.count == 7{
-//            cell.dayLabel.text = allDays[indexPath.row]
-                }
-            }
-            return cell
-        }
-     }
-}
-

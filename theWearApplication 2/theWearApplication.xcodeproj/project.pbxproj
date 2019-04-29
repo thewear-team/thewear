@@ -10,16 +10,17 @@
 		A72613EF226DA99E00D0074A /* WeatherCodes&Statuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72613EE226DA99E00D0074A /* WeatherCodes&Statuses.swift */; };
 		A726140122705AA700D0074A /* theWearApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726140022705AA700D0074A /* theWearApplicationTests.swift */; };
 		A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783D0D9226C5670006948F8 /* Requests&Model.swift */; };
-		A79D0CB122763948007BD881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A79D0CB022763948007BD881 /* Assets.xcassets */; };
 		BA2329E52271072600883DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2329E42271072600883DA3 /* SettingsView.swift */; };
+		BA8DC20E2277912600C1B885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8DC20D2277912600C1B885 /* Assets.xcassets */; };
+		BA8DC2102277933300C1B885 /* NightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8DC20F2277933300C1B885 /* NightCell.swift */; };
 		BAFF268B2268BF6400D6C7FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */; };
 		BAFF268D2268BF6400D6C7FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF268C2268BF6400D6C7FA /* ViewController.swift */; };
 		BAFF26952268BF6600D6C7FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAFF26932268BF6600D6C7FA /* LaunchScreen.storyboard */; };
-		BAFF269D2268BFE100D6C7FA /* NowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF269C2268BFE100D6C7FA /* NowCell.swift */; };
+		BAFF269D2268BFE100D6C7FA /* MorningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF269C2268BFE100D6C7FA /* MorningCell.swift */; };
 		BAFF269F2268C00600D6C7FA /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF269E2268C00600D6C7FA /* CityCell.swift */; };
 		BAFF26A12268C01700D6C7FA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF26A02268C01700D6C7FA /* Extensions.swift */; };
-		BAFF26A32268C02700D6C7FA /* SecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF26A22268C02700D6C7FA /* SecondCell.swift */; };
-		BAFF26A52268C03D00D6C7FA /* ThirdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF26A42268C03D00D6C7FA /* ThirdCell.swift */; };
+		BAFF26A32268C02700D6C7FA /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF26A22268C02700D6C7FA /* DayCell.swift */; };
+		BAFF26A52268C03D00D6C7FA /* EveningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF26A42268C03D00D6C7FA /* EveningCell.swift */; };
 		BAFF26A72268C05C00D6C7FA /* InternetCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF26A62268C05C00D6C7FA /* InternetCheck.swift */; };
 		BAFF26AD2268C0BD00D6C7FA /* HoursCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF26AC2268C0BD00D6C7FA /* HoursCell.swift */; };
 		BAFF26AF2268C0CE00D6C7FA /* DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF26AE2268C0CE00D6C7FA /* DaysCell.swift */; };
@@ -41,18 +42,19 @@
 		A726140022705AA700D0074A /* theWearApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theWearApplicationTests.swift; sourceTree = "<group>"; };
 		A726140222705AA700D0074A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A783D0D9226C5670006948F8 /* Requests&Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Requests&Model.swift"; sourceTree = "<group>"; };
-		A79D0CB022763948007BD881 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/thewear-master/theWearApplication 2/theWearApplication/Assets.xcassets"; sourceTree = "<group>"; };
 		BA2329E42271072600883DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BA8DC20D2277912600C1B885 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/thewear-master/theWearApplication 2/theWearApplication/Assets.xcassets"; sourceTree = "<group>"; };
+		BA8DC20F2277933300C1B885 /* NightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightCell.swift; sourceTree = "<group>"; };
 		BAFF26872268BF6400D6C7FA /* theWearApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theWearApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAFF268C2268BF6400D6C7FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BAFF26942268BF6600D6C7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BAFF26962268BF6600D6C7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BAFF269C2268BFE100D6C7FA /* NowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowCell.swift; sourceTree = "<group>"; };
+		BAFF269C2268BFE100D6C7FA /* MorningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningCell.swift; sourceTree = "<group>"; };
 		BAFF269E2268C00600D6C7FA /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		BAFF26A02268C01700D6C7FA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		BAFF26A22268C02700D6C7FA /* SecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCell.swift; sourceTree = "<group>"; };
-		BAFF26A42268C03D00D6C7FA /* ThirdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCell.swift; sourceTree = "<group>"; };
+		BAFF26A22268C02700D6C7FA /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		BAFF26A42268C03D00D6C7FA /* EveningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveningCell.swift; sourceTree = "<group>"; };
 		BAFF26A62268C05C00D6C7FA /* InternetCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetCheck.swift; sourceTree = "<group>"; };
 		BAFF26AC2268C0BD00D6C7FA /* HoursCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursCell.swift; sourceTree = "<group>"; };
 		BAFF26AE2268C0CE00D6C7FA /* DaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCell.swift; sourceTree = "<group>"; };
@@ -85,6 +87,17 @@
 			path = theWearApplicationTests;
 			sourceTree = "<group>";
 		};
+		BA8DC20A22778E6800C1B885 /* PartsCollectionView Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BAFF269C2268BFE100D6C7FA /* MorningCell.swift */,
+				BAFF26A22268C02700D6C7FA /* DayCell.swift */,
+				BAFF26A42268C03D00D6C7FA /* EveningCell.swift */,
+				BA8DC20F2277933300C1B885 /* NightCell.swift */,
+			);
+			path = "PartsCollectionView Cells";
+			sourceTree = "<group>";
+		};
 		BAFF267E2268BF6400D6C7FA = {
 			isa = PBXGroup;
 			children = (
@@ -109,16 +122,14 @@
 				BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */,
 				BAFF268C2268BF6400D6C7FA /* ViewController.swift */,
 				BA2329E42271072600883DA3 /* SettingsView.swift */,
-				A79D0CB022763948007BD881 /* Assets.xcassets */,
 				BAFF26932268BF6600D6C7FA /* LaunchScreen.storyboard */,
+				BA8DC20D2277912600C1B885 /* Assets.xcassets */,
 				BAFF26962268BF6600D6C7FA /* Info.plist */,
-				BAFF269C2268BFE100D6C7FA /* NowCell.swift */,
+				BA8DC20A22778E6800C1B885 /* PartsCollectionView Cells */,
 				A783D0D9226C5670006948F8 /* Requests&Model.swift */,
 				A72613EE226DA99E00D0074A /* WeatherCodes&Statuses.swift */,
 				BAFF269E2268C00600D6C7FA /* CityCell.swift */,
 				BAFF26A02268C01700D6C7FA /* Extensions.swift */,
-				BAFF26A22268C02700D6C7FA /* SecondCell.swift */,
-				BAFF26A42268C03D00D6C7FA /* ThirdCell.swift */,
 				BAFF26A62268C05C00D6C7FA /* InternetCheck.swift */,
 				BAFF26AC2268C0BD00D6C7FA /* HoursCell.swift */,
 				BAFF26AE2268C0CE00D6C7FA /* DaysCell.swift */,
@@ -214,7 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A79D0CB122763948007BD881 /* Assets.xcassets in Resources */,
+				BA8DC20E2277912600C1B885 /* Assets.xcassets in Resources */,
 				BAFF26952268BF6600D6C7FA /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,18 +245,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAFF26A52268C03D00D6C7FA /* ThirdCell.swift in Sources */,
+				BAFF26A52268C03D00D6C7FA /* EveningCell.swift in Sources */,
 				A72613EF226DA99E00D0074A /* WeatherCodes&Statuses.swift in Sources */,
 				BAFF26AD2268C0BD00D6C7FA /* HoursCell.swift in Sources */,
 				BAFF26A12268C01700D6C7FA /* Extensions.swift in Sources */,
-				BAFF26A32268C02700D6C7FA /* SecondCell.swift in Sources */,
+				BAFF26A32268C02700D6C7FA /* DayCell.swift in Sources */,
 				BAFF268D2268BF6400D6C7FA /* ViewController.swift in Sources */,
 				BAFF26AF2268C0CE00D6C7FA /* DaysCell.swift in Sources */,
 				BAFF268B2268BF6400D6C7FA /* AppDelegate.swift in Sources */,
 				BAFF26A72268C05C00D6C7FA /* InternetCheck.swift in Sources */,
 				BAFF269F2268C00600D6C7FA /* CityCell.swift in Sources */,
 				A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */,
-				BAFF269D2268BFE100D6C7FA /* NowCell.swift in Sources */,
+				BAFF269D2268BFE100D6C7FA /* MorningCell.swift in Sources */,
+				BA8DC2102277933300C1B885 /* NightCell.swift in Sources */,
 				BA2329E52271072600883DA3 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

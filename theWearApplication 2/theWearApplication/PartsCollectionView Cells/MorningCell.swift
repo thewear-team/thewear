@@ -1,5 +1,5 @@
 //
-//  SecondCell.swift
+//  NowCell.swift
 //  theWearApplication
 //
 //  Created by Maxim Reshetov on 18/04/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondCell: UICollectionViewCell {
+class MorningCell: UICollectionViewCell {
     
     let bgLabel: UILabel = {
         let label = UILabel()
@@ -18,10 +18,18 @@ class SecondCell: UICollectionViewCell {
         return label
     }()
     
+    let sliderImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "slider_light"))
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
     func configureCell() {
-        
         addSubview(bgLabel)
-        bgLabel.anchor(top: topAnchor, left: leadingAnchor, bottom: nil, right: nil, paddingTop: 150, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 800, height: 200, enableInsets: false)
+        bgLabel.anchor(top: topAnchor, left: leadingAnchor, bottom: nil, right: trailingAnchor, paddingTop: 150, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 0, height: 200, enableInsets: false)
+        
+        //addSubview(sliderImageView)
+        //sliderImageView.frame = CGRect(x: frame.width - 60, y: frame.height * 0.75, width: 60, height: 0)
     }
     
     override init(frame: CGRect) {
@@ -33,5 +41,4 @@ class SecondCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
 

@@ -1,5 +1,5 @@
 //
-//  ThirdCell.swift
+//  SecondCell.swift
 //  theWearApplication
 //
 //  Created by Maxim Reshetov on 18/04/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThirdCell: UICollectionViewCell {
+class DayCell: UICollectionViewCell {
     
     let bgLabel: UILabel = {
         let label = UILabel()
@@ -19,6 +19,7 @@ class ThirdCell: UICollectionViewCell {
     }()
     
     func configureCell() {
+        
         addSubview(bgLabel)
         bgLabel.anchor(top: topAnchor, left: leadingAnchor, bottom: nil, right: nil, paddingTop: 150, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 800, height: 200, enableInsets: false)
     }
@@ -32,4 +33,5 @@ class ThirdCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 
