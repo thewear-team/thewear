@@ -75,7 +75,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         if collectionView == partsCollectionView {
             return 4
         } else if collectionView == hoursCollectionView {
-            return 24
+            return 48
         } else {
             return 7
         }
@@ -104,12 +104,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         if scrollView == partsCollectionView {
             let x = targetContentOffset.pointee.x
             let index = x / view.frame.width
-            if index == 0 {
-                view.backgroundColor = UIColor.color_113
-            } else if index == 1 {
-                view.backgroundColor = UIColor.color_122
-            }
+//            if index == 0 {
+////                view.backgroundColor = UIColor.color_113
+//            } else if index == 1 {
+////                view.backgroundColor = UIColor.color_122
+//            }
         }
+        print("scrolled")
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -122,48 +123,54 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == partsCollectionView {
+            
             if indexPath.item == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MorningCell", for: indexPath) as! MorningCell
                 cell.bgLabel.text = "Morning"
-                let code = currentCondition.2
-                let colorComponents = statuses[code]
+                if allDays.count != 0{
+                    print("colors are \(allDays[0].morningcode) \(allDays[0].daycode) \(allDays[0].eveningcode) \(allDays[0].nightcode)")
+                let code = allDays[0].morningcode
+                    let colorComponents = statuses[code]
                 if colorComponents != nil {
                     let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
                     cell.backgroundColor = newColor
-                }
+                    }}
                 return cell
             } else if indexPath.item == 1 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath) as! DayCell
                 cell.bgLabel.text = "Day"
-                let code = codesHours[9]
-                let colorComponents = statuses[code]
-                if colorComponents != nil {
-                    let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
-                    cell.backgroundColor = newColor
-                }
+                if allDays.count != 0{
+                    let code = allDays[0].daycode
+                    let colorComponents = statuses[code]
+                    if colorComponents != nil {
+                        let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
+                        cell.backgroundColor = newColor
+                    }}
                 //                return cell
                 return cell
             } else if indexPath.item == 2 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EveningCell", for: indexPath) as! EveningCell
                 cell.bgLabel.text = "Evening"
-                let code = codesHours[23]//JUST TEST
-                let colorComponents = statuses[code]
-                if colorComponents != nil {
-                    let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
-                    cell.backgroundColor = newColor
-                }
+                if allDays.count != 0{
+                    let code = allDays[0].eveningcode
+                    let colorComponents = statuses[code]
+                    if colorComponents != nil {
+                        let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
+                        cell.backgroundColor = newColor
+                    }}
                 //                return cell
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NightCell", for: indexPath) as! NightCell
                 cell.bgLabel.text = "Night"
-                let code = codesHours[23]//JUST TEST
-                let colorComponents = statuses[code]
-                if colorComponents != nil {
-                    let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
-                    cell.backgroundColor = newColor
-                }
-                //                return cell
+                if allDays.count != 0{
+                    let code = allDays[0].nightcode
+                    if code != nil{
+                    let colorComponents = statuses[code!]
+                    if colorComponents != nil {
+                        let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
+                        cell.backgroundColor = newColor
+                        }}}
                 return cell
             }
         } else if collectionView == hoursCollectionView {
@@ -171,8 +178,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             if (demoTemp.count > 0) && (demoHours.count > 0){
                 cell.hourLabel.text = demoHours[indexPath.row]
                 cell.tempLabel.text = demoTemp[indexPath.row]}
-            let code = codesHours[indexPath.row] ?? ""
-            cell.iconImageView.image = UIImage(named: code)
+            if codesHours.count > 0{
+                let code = codesHours[indexPath.row] ?? ""
+                cell.iconImageView.image = UIImage(named: code)}
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "day", for: indexPath) as! DaysCell

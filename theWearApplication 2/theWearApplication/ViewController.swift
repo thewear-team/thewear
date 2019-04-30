@@ -13,12 +13,12 @@
 
 import UIKit
 
-var currentCity  = "Kolomna"
+var currentCity  = "Moscow"
 
 var partOfDayNow : PartsOfDay = .day
 var demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 
-var demoHours : [String] = ["00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
+var demoHours : [String] = ["00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
 
 var demoTemp  : [String] = [] // for output /temps by hours
 var codesHours  : [String] = [] //for output /codes by hours
@@ -302,10 +302,22 @@ class ViewController: UIViewController {
         daysCollectionView.frame = CGRect(x: 0, y: daysCollectionViewY, width: underView.frame.width, height: 200)
         configureDetails()
     }
+    func setColor(){
+        let code = allDays[0].morningcode
+        let colorComponents = statuses[code]
+        if colorComponents != nil {
+            let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
+            view.backgroundColor = newColor
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.color_113
+        
+        
+        
+        
         
         //reading previous data if exists
         UserDefaults.standard.set(nil, forKey: "daysParts")
@@ -414,6 +426,9 @@ class ViewController: UIViewController {
             let currentConditionString = data.current_condition[0].temp_C + "," + data.current_condition[0].FeelsLikeC  + "," + data.current_condition[0].weatherCode //for saving
             currentCondition = (data.current_condition[0].temp_C ,  data.current_condition[0].FeelsLikeC,data.current_condition[0].weatherCode ) //for displaying now
             data.weather[0].hourly!.map{
+                hoursString = hoursString + $0.FeelsLikeC + " " + $0.weatherCode + ";"
+            }
+            data.weather[1].hourly!.map{
                 hoursString = hoursString + $0.FeelsLikeC + " " + $0.weatherCode + ";"
             }
             var parts : [String] = []
