@@ -93,7 +93,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == daysCollectionView {
-            return 30
+            return 7
         } else {
             return 0
         }
@@ -123,7 +123,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == partsCollectionView {
-            
             if indexPath.item == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MorningCell", for: indexPath) as! MorningCell
                 cell.bgLabel.text = "Morning"
@@ -140,6 +139,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath) as! DayCell
                 cell.bgLabel.text = "Day"
                 if allDays.count != 0{
+                     print("colors are \(allDays[0].morningcode) \(allDays[0].daycode) \(allDays[0].eveningcode) \(allDays[0].nightcode)")
                     let code = allDays[0].daycode
                     let colorComponents = statuses[code]
                     if colorComponents != nil {
@@ -152,18 +152,19 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EveningCell", for: indexPath) as! EveningCell
                 cell.bgLabel.text = "Evening"
                 if allDays.count != 0{
+                     print("colors are \(allDays[0].morningcode) \(allDays[0].daycode) \(allDays[0].eveningcode) \(allDays[0].nightcode)")
                     let code = allDays[0].eveningcode
                     let colorComponents = statuses[code]
                     if colorComponents != nil {
                         let newColor = UIColor(red: CGFloat(colorComponents!.1)/255, green: CGFloat(colorComponents!.2)/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1)
                         cell.backgroundColor = newColor
                     }}
-                //                return cell
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NightCell", for: indexPath) as! NightCell
                 cell.bgLabel.text = "Night"
                 if allDays.count != 0{
+                     print("colors are \(allDays[0].morningcode) \(allDays[0].daycode) \(allDays[0].eveningcode) \(allDays[0].nightcode)")
                     let code = allDays[0].nightcode
                     if code != nil{
                     let colorComponents = statuses[code!]
@@ -179,7 +180,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 cell.hourLabel.text = demoHours[indexPath.row]
                 cell.tempLabel.text = demoTemp[indexPath.row]}
             if codesHours.count > 0{
-                let code = codesHours[indexPath.row] ?? ""
+                let code = codesHours[indexPath.row]
                 cell.iconImageView.image = UIImage(named: code)}
             return cell
         } else {

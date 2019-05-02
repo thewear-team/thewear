@@ -14,7 +14,7 @@
 import UIKit
 
 var currentCity  = "Moscow"
-
+var hourNow : Int = 0
 var partOfDayNow : PartsOfDay = .day
 var demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 
@@ -278,10 +278,12 @@ class ViewController: UIViewController {
         pressureLabel.frame = CGRect(x: 25, y: 100, width: 250, height: 50)
         uvLabel.frame = CGRect(x: 25, y: 150, width: 250, height: 50)
        //
+//       else{
         windLabel.text = "Wind - 9 km/h"
         humidityLabel.text = "Humidity - 42%"
         pressureLabel.text = "Pressure - 1004 hPa"
         uvLabel.text = "UV Index:  4 Moderate"
+//        }
     }
     
     func configureDaysAndHours() {
@@ -316,15 +318,12 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor.color_113
         
         
-        
-        
-        
         //reading previous data if exists
         UserDefaults.standard.set(nil, forKey: "daysParts")
         if (UserDefaults.standard.value(forKey: "isOpened") != nil){
              self.retrieveDataAndUpdate()
              self.fillUIelementsWithData()
-            
+            self.partsCollectionView.reloadData()
         }
         //determining part of the day
         determinePartOfDay()
@@ -368,8 +367,16 @@ class ViewController: UIViewController {
             self.hoursCollectionView.reloadData()
             self.weatherLabel.text = "\(currentCondition.0)°С"
             self.weatherLikeLabel.text = "Feels like \(currentCondition.1)°С"
+            if allDays.count != 0{
+                self.windLabel.text = "Wind - \(allDays[0].wind) km/h"
+                self.humidityLabel.text = "Humidity - \(allDays[0].humidity)%"
+                self.pressureLabel.text = "Pressure - \(allDays[0].pressure) hPa"
+                self.uvLabel.text = "UV Index:  \(allDays[0].uv) Moderate"
+            }
+//            self.detailsView.win
         }
     }
+   
     
     // свои фукнции потом спрячу в отдельный файл
     func retrieveDataAndUpdate(){
@@ -405,7 +412,7 @@ class ViewController: UIViewController {
                     }
                 }
                 print(allDays)
-                
+              
                 daysCollectionView.reloadData()
             }
       
@@ -426,10 +433,10 @@ class ViewController: UIViewController {
             let currentConditionString = data.current_condition[0].temp_C + "," + data.current_condition[0].FeelsLikeC  + "," + data.current_condition[0].weatherCode //for saving
             currentCondition = (data.current_condition[0].temp_C ,  data.current_condition[0].FeelsLikeC,data.current_condition[0].weatherCode ) //for displaying now
             data.weather[0].hourly!.map{
-                hoursString = hoursString + $0.FeelsLikeC + " " + $0.weatherCode + ";"
+                hoursString = hoursString + $0.tempC + " " + $0.weatherCode + ";"
             }
             data.weather[1].hourly!.map{
-                hoursString = hoursString + $0.FeelsLikeC + " " + $0.weatherCode + ";"
+                hoursString = hoursString + $0.tempC + " " + $0.weatherCode + ";"
             }
             var parts : [String] = []
             var details : [String] = []
@@ -484,7 +491,8 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.hoursCollectionView.reloadData()
                 self?.fillUIelementsWithData()
-            
+                self?.partsCollectionView.scrollToItem(at: IndexPath(item: partOfDayNow.rawValue, section: 0), at: .left, animated: true)
+                self?.hoursCollectionView.scrollToItem(at: IndexPath(item: hourNow, section: 0), at: .left, animated: true)
             }
             UserDefaults.standard.set(hoursString, forKey: "todayHours")
 
@@ -495,6 +503,7 @@ class ViewController: UIViewController {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: time)
         print(hour)
+        hourNow = hour
         switch hour{
         case 6...11:
             partOfDayNow = .morning
@@ -505,7 +514,7 @@ class ViewController: UIViewController {
         case 0...5:
             partOfDayNow = .night
         default:
-            partOfDayNow = .day
+            partOfDayNow = .morning
         }
         print (partOfDayNow)
     }
