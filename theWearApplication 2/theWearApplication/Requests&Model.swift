@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 let key = "48a826a4dcdc4aa2bbc183515190205"
 enum PartsOfDay : Int{
@@ -303,7 +304,9 @@ func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->
                 JSONDecoder().decode(AutocompleteResponse.self, from: data!)
             let result = alldata.search_api.result
             completion (result)
-        } catch { print("Error deserializing JSON: \(error)")}
+        } catch { print("Error deserializing JSON: \(error)")
+    
+        }
     }
     task.resume()
 }

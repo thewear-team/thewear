@@ -17,6 +17,7 @@ var currentCity  = "Moscow"
 var hourNow : Int = 0
 var partOfDayNow : PartsOfDay = .day
 var demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
+var standartCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 
 var demoHours : [String] = ["00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
 
@@ -26,7 +27,7 @@ var currentCondition = ("", "", "") //for output/ current (temp, feelslike, code
 var allDays : [OneWeatherDay] = [] //contain 7 days by parts + details
 var demoDays : [String] = [] // for output
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     var widthUnderView: CGFloat = 0.0
     var originYPartsCollectionView: CGFloat = 0.0
@@ -155,7 +156,15 @@ class ViewController: UIViewController {
         setting.showSettings()
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("editing started")
+    }
+    
+  
+
+    
     @objc func handleMenuButton() {
+         cityTextField.delegate = self
         if !cityTableViewIsOpened {
             self.cityTextField.isUserInteractionEnabled = true
             lastCity = cityTextField.text!
@@ -194,7 +203,7 @@ class ViewController: UIViewController {
         
         [cityTextField, menuButton, settingsButton].forEach {view.addSubview($0)}
         originYView = top + 30
-    
+        
         cityTextField.frame = CGRect(x: 30, y: top + 25, width: view.frame.width - 150, height: 25)
         menuButton.frame = CGRect(x: 15, y: top + 15, width: view.frame.width - 135, height: 53)
         settingsButton.frame = CGRect(x: view.frame.width - 55, y: top + 25, width: 25, height: 25)
@@ -347,6 +356,8 @@ class ViewController: UIViewController {
         configureTableView()
         citiesTableView.delegate = self
         citiesTableView.dataSource = self
+        cityTextField.delegate = self
+        cityTextField.addTarget(self, action: #selector(textFieldDidChange(_ :)), for: .editingDidEndOnExit)
         citiesTableView.register(CityCell.self, forCellReuseIdentifier: "cityCell")
         
         // configure down menu
@@ -371,10 +382,35 @@ class ViewController: UIViewController {
                 self.windLabel.text = "Wind - \(allDays[0].wind) km/h"
                 self.humidityLabel.text = "Humidity - \(allDays[0].humidity)%"
                 self.pressureLabel.text = "Pressure - \(allDays[0].pressure) hPa"
-                self.uvLabel.text = "UV Index:  \(allDays[0].uv) Moderate"
+                self.uvLabel.text = "UV Index -  \(allDays[0].uv)"
             }
 //            self.detailsView.win
         }
+    }
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        print(" text changed")
+        var text = textField.text
+        if text != nil {
+            if text! != ""{
+                text = text?.lowercased()
+                text = text?.replacingOccurrences(of: " ", with: "")
+                autocomplete(cityTyped: text!, completion: {
+                    [weak self] items in
+                    print(items.count)
+                    print(items[0].areaName[0])
+                    
+                    demoCities = []
+                    for item in items {
+                        let newItem = item.areaName[0].value + ", " +  item.region[0].value +  ", " + item.country[0].value
+                        demoCities.append(newItem)
+                    }
+                    DispatchQueue.main.async {
+                        self!.citiesTableView.reloadData()
+                    }
+                })
+            }
+        }
+       
     }
    
     
@@ -519,3 +555,4 @@ class ViewController: UIViewController {
         print (partOfDayNow)
     }
 }
+
