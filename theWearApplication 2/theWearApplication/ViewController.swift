@@ -34,10 +34,52 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureMain()
+        
+        //reading previous data if exists
+        UserDefaults.standard.set(nil, forKey: "daysParts")
+        if (UserDefaults.standard.value(forKey: "isOpened") != nil){
+            retrieveDataAndUpdate()
+            self.fillUIelementsWithData()
+            self.partsCollectionView.reloadData()
+        }
+        
+        //determining part of the day
+        determinePartOfDay()
+        
+        //getting fresh data
+        UserDefaults.standard.set(1, forKey: "isOpened")
+        
+        getDataAndUpdate()
+        self.fillUIelementsWithData()
+        
+        print(codesHours)//here for the first time still previous codes
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    func getDataAndUpdate(){
+        loadData(currentCity: currentCity, completion: {
+            [weak self] data in
+            processData(data : data)
+            //save
+            DispatchQueue.main.async {
+                self!.fillUIelementsWithData()
+            }
+        })
+    }
+    func fillUIelementsWithData(){
+        DispatchQueue.main.async {
+            self.detailsView.daysCollectionView.reloadData()
+            self.detailsView.hoursCollectionView.reloadData()
+            self.detailsView.nowTemperature.text = "\(currentCondition.0)°С"
+            self.detailsView.nowFeelsLike.text = "Feels like \(currentCondition.1)°С"
+            self.detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
+            self.detailsView.nowCondition.text = statuses[currentCondition.2]?.0
+            if allDays.count != 0{
+                //заполнение деталей
+            }
+        }
+    }    
 }
