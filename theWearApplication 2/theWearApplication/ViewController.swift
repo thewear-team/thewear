@@ -12,8 +12,15 @@
 
 
 import UIKit
+import CoreLocation
+
+
 
 class ViewController: UIViewController {
+    
+    var locationManager: CLLocationManager?
+    var latitude : CLLocationDegrees?
+    var longitude : CLLocationDegrees?
     
     let navigationBar = NavigationBar(frame: .zero)
     let cityTextField = CityTextField(frame: .zero)
@@ -35,6 +42,10 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         configureMain()
         
+        //location
+        locationManager?.requestAlwaysAuthorization()
+        self.configureLocationManager()
+        
         //reading previous data if exists
         UserDefaults.standard.set(nil, forKey: "daysParts")
         if (UserDefaults.standard.value(forKey: "isOpened") != nil){
@@ -53,6 +64,9 @@ class ViewController: UIViewController {
         self.fillUIelementsWithData()
         
         print(codesHours)//here for the first time still previous codes
+        
+        
+    
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -60,6 +74,17 @@ class ViewController: UIViewController {
     }
     
     func getDataAndUpdate(){
+        if latitude != nil && longitude != nil{
+            let str = String(latitude!.description) + "%20" + String(longitude!.description)
+            getWeather(currentGEO: str, completion: {
+                [weak self] data in
+                processData(data : data)
+                //save
+                DispatchQueue.main.async {
+                    self!.fillUIelementsWithData()
+                }
+            })
+        } else{
         loadData(currentCity: currentCity, completion: {
             [weak self] data in
             processData(data : data)
@@ -68,6 +93,7 @@ class ViewController: UIViewController {
                 self!.fillUIelementsWithData()
             }
         })
+        }
     }
     func fillUIelementsWithData(){
         DispatchQueue.main.async {
@@ -81,5 +107,6 @@ class ViewController: UIViewController {
                 //заполнение деталей
             }
         }
-    }    
+    }
+  
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 extension UIColor {
     static let color_113 = UIColor(red: 36/255, green: 158/255, blue: 217/255, alpha: 1)
@@ -124,6 +125,51 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         } else {
             return CGSize(width: 0.3 * width, height: 0.2 * fullHeight)
         }
+    }
+}
+
+extension ViewController : CLLocationManagerDelegate{
+    
+    func configureLocationManager(){
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.startUpdatingLocation()
+        locationManager?.requestAlwaysAuthorization()
+        locationManager?.requestLocation()
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            print("location ok")
+          
+            let geoCoordinates = locationManager?.location
+            if geoCoordinates != nil {
+                print(geoCoordinates?.coordinate.latitude)
+                print(geoCoordinates?.coordinate.longitude)
+                latitude = geoCoordinates?.coordinate.latitude
+                longitude = geoCoordinates?.coordinate.longitude
+            }
+        }
+        else {
+            locationManager?.requestAlwaysAuthorization()
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error:: \(error.localizedDescription)")
+    }
+    
+   
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if locations.first != nil {
+            print("location:: \(locations.first!.coordinate)")
+            latitude = locations.first!.coordinate.latitude
+            longitude = locations.first!.coordinate.longitude
+            getDataAndUpdate()
+        }
+        
     }
 }
 
