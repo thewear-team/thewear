@@ -21,20 +21,27 @@ class ViewController: UIViewController {
     var locationManager: CLLocationManager?
     var latitude : CLLocationDegrees?
     var longitude : CLLocationDegrees?
+    var isOpened = false
     
     let navigationBar = NavigationBar(frame: .zero)
     let cityTextField = CityTextField(frame: .zero)
     let settingsButton = SettingsButton(frame: .zero)
     let partsCollectionView = PartsCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let citiesTableView = CitiesTableView(frame: .zero)
+    let citiesButton = CitiesButton(frame: .zero)
     
     let detailsView = DetailsView(frame: .zero)
     let settingsView = SettingsView()
     
     func configureMain() {
-        [partsCollectionView, navigationBar, cityTextField, settingsButton, detailsView].forEach {view.addSubview($0)}
+        [partsCollectionView, navigationBar, cityTextField, settingsButton, citiesButton, detailsView, citiesTableView].forEach {view.addSubview($0)}
         partsCollectionView.delegate = self
         partsCollectionView.dataSource = self
         partsCollectionView.register(PartCell.self, forCellWithReuseIdentifier: "partCell")
+        citiesTableView.delegate = self
+        citiesTableView.dataSource = self
+        citiesTableView.register(CityCell.self, forCellReuseIdentifier: "cityCell")
+        citiesButton.addTarget(self, action: #selector(handleCitiesButton), for: .touchUpInside)
     }
     
     override func viewDidLoad() {
@@ -64,9 +71,6 @@ class ViewController: UIViewController {
         self.fillUIelementsWithData()
         
         print(codesHours)//here for the first time still previous codes
-        
-        
-    
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

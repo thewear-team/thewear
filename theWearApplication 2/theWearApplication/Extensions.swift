@@ -27,6 +27,54 @@ extension UIView {
     }
 }
 
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath) as! CityCell
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        cell.cityLabel.text = "New York"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.2) {
+            self.cityTextField.text = "New York"
+            self.handleCitiesButton()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return fullHeight * 0.07
+    }
+}
+
+extension ViewController {
+    @objc func handleCitiesButton() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            if self.isOpened {
+                self.citiesTableView.alpha = 0
+            } else {
+                self.cityTextField.becomeFirstResponder()
+                self.detailsView.frame = CGRect(x: self.detailsView.frame.origin.x, y: fullHeight, width: self.detailsView.frame.width, height: self.detailsView.frame.height)
+            }
+        }) { _ in
+            UIView.animate(withDuration: 0.5, animations: {
+                if self.isOpened {
+                    self.cityTextField.resignFirstResponder()
+                    self.detailsView.frame = CGRect(x: -fullHeight * 0.1, y: fullHeight * 0.8, width: width, height: fullHeight)
+                } else {
+                    self.citiesTableView.alpha = 1
+                }
+            })
+            self.isOpened = !self.isOpened
+        }
+    }
+}
+
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
