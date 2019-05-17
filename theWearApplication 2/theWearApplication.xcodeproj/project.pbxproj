@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A701CC5F228F3D18005F4E21 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701CC5E228F3D18005F4E21 /* Helpers.swift */; };
 		A72613EF226DA99E00D0074A /* WeatherCodes&Statuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72613EE226DA99E00D0074A /* WeatherCodes&Statuses.swift */; };
 		A726140122705AA700D0074A /* theWearApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726140022705AA700D0074A /* theWearApplicationTests.swift */; };
 		A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783D0D9226C5670006948F8 /* Requests&Model.swift */; };
@@ -50,6 +51,7 @@
 		1C7F24AC087394C114B598EC /* Pods_theWearApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_theWearApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6430FBB6C3A020CA7AA0D49F /* Pods-theWearApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-theWearApplication.debug.xcconfig"; path = "Target Support Files/Pods-theWearApplication/Pods-theWearApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		6710E8783368A93A74112D5A /* Pods_theWearApplication_theWearApplicationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_theWearApplication_theWearApplicationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A701CC5E228F3D18005F4E21 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A72613EE226DA99E00D0074A /* WeatherCodes&Statuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherCodes&Statuses.swift"; sourceTree = "<group>"; };
 		A72613FE22705AA700D0074A /* theWearApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = theWearApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A726140022705AA700D0074A /* theWearApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theWearApplicationTests.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				A783D0D9226C5670006948F8 /* Requests&Model.swift */,
 				A72613EE226DA99E00D0074A /* WeatherCodes&Statuses.swift */,
 				BAFF26A02268C01700D6C7FA /* Extensions.swift */,
+				A701CC5E228F3D18005F4E21 /* Helpers.swift */,
 				A78A6838228593AB00657152 /* Data&Methods.swift */,
 				BAFF26A62268C05C00D6C7FA /* InternetCheck.swift */,
 				BABDAB152280E2B500542482 /* configurePaddingsAndFrame.swift */,
@@ -374,6 +377,7 @@
 				BAFF268B2268BF6400D6C7FA /* AppDelegate.swift in Sources */,
 				A78A6839228593AB00657152 /* Data&Methods.swift in Sources */,
 				BAFF26A72268C05C00D6C7FA /* InternetCheck.swift in Sources */,
+				A701CC5F228F3D18005F4E21 /* Helpers.swift in Sources */,
 				BABDAB22228231C200542482 /* NavigationBar.swift in Sources */,
 				A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */,
 				BABDAB242282342B00542482 /* CityTextField.swift in Sources */,

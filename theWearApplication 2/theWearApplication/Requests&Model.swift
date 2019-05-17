@@ -276,8 +276,9 @@ struct OneWeatherDay {
 
 //MARK : requests
 
-func loadData( currentCity : String, completion : @escaping (Data)->Void){
+func loadData(currentCity : String, completion : @escaping (Data)->Void){
     var jsonUrlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=\(key)&q=\(currentCity)&format=json&num_of_days=7&mca=no&tp=1&quot"
+    print(jsonUrlString)
     jsonUrlString = jsonUrlString.replacingOccurrences(of: ",", with: "")
     let url = URL(string: jsonUrlString)
     let task = URLSession.shared.dataTask(with: url!){ (data,

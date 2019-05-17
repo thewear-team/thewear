@@ -29,22 +29,27 @@ extension UIView {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return allCities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath) as! CityCell
+        
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
-        cell.cityLabel.text = "New York"
+        cell.cityLabel.text = allCities[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UIView.animate(withDuration: 0.2) {
-            self.cityTextField.text = "New York"
-            self.handleCitiesButton()
-        }
+        var text = allCities[indexPath.row]
+        text = text.replacingOccurrences(of: " ", with: "%20")
+        selectedCity = text
+        
+        self.handleCitiesButton()
+//        UIView.animate(withDuration: 0.2) {
+//            self.cityTextField.text = allCities[indexPath.row]
+//        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -54,6 +59,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController {
     @objc func handleCitiesButton() {
+        if selectedCity != ""{
+        loadData(currentCity: selectedCity, completion: {
+            [weak self] data in
+            print(data.current_condition[0].temp_C)
+            processData(data: data)
+            DispatchQueue.main.async {
+                self!.fillUIelementsWithData()
+            }
+        })}
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             if self.isOpened {
                 self.citiesTableView.alpha = 0
@@ -220,7 +234,31 @@ extension ViewController : CLLocationManagerDelegate{
         
     }
 }
-
-
+extension ViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        //textField code
+        
+        textField.resignFirstResponder()  //if desired
+        handleSearchOfCity(city : textField.text)
+        return true
+    }
+    
+    func handleSearchOfCity(city : String?) {
+        print("ended")
+        if city != nil {
+            autocomplete(cityTyped: city!, completion: {
+                [weak self] results in
+                allCities = []
+                for result in results{
+                    allCities.append(result.areaName[0].value + ", " +  result.region[0].value + ", " + result.country[0].value)
+                }
+                DispatchQueue.main.async{
+                    self?.citiesTableView.reloadData()
+                }
+            })
+        }
+    }
+}
 
 

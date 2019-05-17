@@ -23,6 +23,7 @@ var currentCondition = ("", "", "") //for output/ current (temp, feelslike, code
 var allDays : [OneWeatherDay] = [] //contain 7 days by parts + details
 var demoDays : [String] = [] // for output
 var lastCity = ""
+var allCities : [String] = []
 
 func determinePartOfDay(){
     let time = Date()

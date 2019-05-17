@@ -14,7 +14,7 @@
 import UIKit
 import CoreLocation
 
-
+var selectedCity = ""
 
 class ViewController: UIViewController {
     
@@ -42,13 +42,14 @@ class ViewController: UIViewController {
         citiesTableView.dataSource = self
         citiesTableView.register(CityCell.self, forCellReuseIdentifier: "cityCell")
         citiesButton.addTarget(self, action: #selector(handleCitiesButton), for: .touchUpInside)
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureMain()
-        
+        self.cityTextField.delegate = self
         //location
         locationManager?.requestAlwaysAuthorization()
         self.configureLocationManager()
@@ -69,8 +70,10 @@ class ViewController: UIViewController {
         
         getDataAndUpdate()
         self.fillUIelementsWithData()
-        
+        //
+       
         print(codesHours)//here for the first time still previous codes
+      
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -100,6 +103,7 @@ class ViewController: UIViewController {
         }
     }
     func fillUIelementsWithData(){
+          detailsView.hoursCollectionView.scrollToItem(at: IndexPath(row: getCurrentHours(), section: 0), at: .centeredHorizontally, animated: false)
         DispatchQueue.main.async {
             self.detailsView.daysCollectionView.reloadData()
             self.detailsView.hoursCollectionView.reloadData()
@@ -109,8 +113,10 @@ class ViewController: UIViewController {
             self.detailsView.nowCondition.text = statuses[currentCondition.2]?.0
             if allDays.count != 0{
                 //заполнение деталей
+
             }
         }
     }
+   
   
 }
