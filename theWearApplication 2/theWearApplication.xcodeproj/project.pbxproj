@@ -18,6 +18,7 @@
 		BA5D91BF228EE66B007E47BA /* CitiesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */; };
 		BA5D91C1228EE712007E47BA /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91C0228EE712007E47BA /* CityCell.swift */; };
 		BA5D91C3228F1004007E47BA /* CitiesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91C2228F1004007E47BA /* CitiesButton.swift */; };
+		BA5D91C5229028C3007E47BA /* SegmentedControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91C4229028C3007E47BA /* SegmentedControlCell.swift */; };
 		BA6C7ED82284DE2D005654A3 /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6C7ED72284DE2D005654A3 /* HourCell.swift */; };
 		BA6C7EDA2284F186005654A3 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6C7ED92284F185005654A3 /* DetailCell.swift */; };
 		BA6C7EDC2284F1B9005654A3 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6C7EDB2284F1B9005654A3 /* DayCell.swift */; };
@@ -65,6 +66,7 @@
 		BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesTableView.swift; sourceTree = "<group>"; };
 		BA5D91C0228EE712007E47BA /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		BA5D91C2228F1004007E47BA /* CitiesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesButton.swift; sourceTree = "<group>"; };
+		BA5D91C4229028C3007E47BA /* SegmentedControlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlCell.swift; sourceTree = "<group>"; };
 		BA6C7ED72284DE2D005654A3 /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		BA6C7ED92284F185005654A3 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		BA6C7EDB2284F1B9005654A3 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				BA6C7ED92284F185005654A3 /* DetailCell.swift */,
 				BA6C7EDB2284F1B9005654A3 /* DayCell.swift */,
 				BA5D91C0228EE712007E47BA /* CityCell.swift */,
+				BA5D91C4229028C3007E47BA /* SegmentedControlCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				BA5D91C3228F1004007E47BA /* CitiesButton.swift in Sources */,
 				BA6C7ED82284DE2D005654A3 /* HourCell.swift in Sources */,
 				BABDAB162280E2B500542482 /* configurePaddingsAndFrame.swift in Sources */,
+				BA5D91C5229028C3007E47BA /* SegmentedControlCell.swift in Sources */,
 				BA5D91C1228EE712007E47BA /* CityCell.swift in Sources */,
 				A72613EF226DA99E00D0074A /* WeatherCodes&Statuses.swift in Sources */,
 				BAFF26A12268C01700D6C7FA /* Extensions.swift in Sources */,
