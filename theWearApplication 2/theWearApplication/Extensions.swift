@@ -45,11 +45,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         var text = allCities[indexPath.row]
         text = text.replacingOccurrences(of: " ", with: "%20")
         selectedCity = text
-        
-        self.handleCitiesButton()
-//        UIView.animate(withDuration: 0.2) {
-//            self.cityTextField.text = allCities[indexPath.row]
-//        }
+        if selectedCity != ""{
+            print(selectedCity)
+            loadData(currentCity: selectedCity, completion: {
+                [weak self] data in
+                print(data.current_condition[0].temp_C)
+                processData(data: data)
+                DispatchQueue.main.async {
+                    self!.handleCitiesButton()
+                    self!.fillUIelementsWithData()
+                }
+            })}
+//        self.handleCitiesButton()
+        UIView.animate(withDuration: 0.2) {
+            self.cityTextField.text = allCities[indexPath.row]
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -59,15 +69,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController {
     @objc func handleCitiesButton() {
-        if selectedCity != ""{
-        loadData(currentCity: selectedCity, completion: {
-            [weak self] data in
-            print(data.current_condition[0].temp_C)
-            processData(data: data)
-            DispatchQueue.main.async {
-                self!.fillUIelementsWithData()
-            }
-        })}
+       
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             if self.isOpened {
                 self.citiesTableView.alpha = 0
@@ -97,7 +99,33 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partCell", for: indexPath) as! PartCell
-        cell.backgroundColor = UIColor.color_113
+        if allDays.count > 0 {
+            var code = ""
+            switch(indexPath.row){
+            case 0 :
+                code = allDays[0].morningcode
+            case 1 :
+                code = allDays[0].daycode
+            case 2 :
+                code = allDays[0].eveningcode
+            case 3 :
+                if allDays[0].nightcode != nil{
+                    code = allDays[0].nightcode!}
+                else {
+                    code = "113"
+                }
+            default :
+                code = "113"
+            }
+            let colorComp = statuses[code]
+            print(code)
+            if colorComp != nil {
+                let color = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
+                cell.backgroundColor = color
+            }
+            
+        }else {
+            cell.backgroundColor = UIColor.color_113}
         return cell
     }
     
@@ -117,6 +145,20 @@ extension DetailsView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! DetailCell
+        if allDays.count > 0{
+        switch (indexPath.row){
+        case 0:
+            cell.name.text = allDays[selectedDay].wind + " m/s"
+        case 1:
+            cell.name.text = allDays[selectedDay].humidity + "%"
+        case 2:
+            cell.name.text = allDays[selectedDay].pressure + " mm Hg"
+        case 3:
+            cell.name.text = "UV: " + allDays[selectedDay].uv
+        default :
+            cell.name.text = ""
+        }
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -195,7 +237,8 @@ extension ViewController : CLLocationManagerDelegate{
     func configureLocationManager(){
         locationManager = CLLocationManager()
         locationManager?.delegate = self
-        locationManager?.startUpdatingLocation()
+        
+//        locationManager?.startUpdatingLocation()
         locationManager?.requestAlwaysAuthorization()
         locationManager?.requestLocation()
         
@@ -221,7 +264,6 @@ extension ViewController : CLLocationManagerDelegate{
         print("error:: \(error.localizedDescription)")
     }
     
-   
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -229,7 +271,8 @@ extension ViewController : CLLocationManagerDelegate{
             print("location:: \(locations.first!.coordinate)")
             latitude = locations.first!.coordinate.latitude
             longitude = locations.first!.coordinate.longitude
-            getDataAndUpdate()
+//            getDataAndUpdate()
+//            locationManager?.stopUpdatingLocation()
         }
         
     }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let key = "48a826a4dcdc4aa2bbc183515190205"
+let key = "108a6709f18a4c2b873191450191805"
 enum PartsOfDay : Int{
     case morning = 0
     case day = 1
@@ -314,7 +314,7 @@ func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->
 
 func getWeather (currentGEO : String, completion : @escaping (Data)->Void){
     let urlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=\(key)&q=\(currentGEO)&format=json&num_of_days=7&mca=no&tp=1&quot"
-    //    var jsonUrlString = currentURL
+    print("geo request \(urlString)")
     let url = URL(string: urlString)
     let task = URLSession.shared.dataTask(with: url!){ (data,
         response, err) in

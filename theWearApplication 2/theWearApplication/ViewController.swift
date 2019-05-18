@@ -8,18 +8,19 @@
 //погоду по часам не сохраняем для будущих дней
 //MARK : Saving rules for UserDefaults
 //hours today  --"temp; code;" x24 +
-//forecast-- days, temps, codes (for tableview) "date, temp, code/ wind, pressure, humidity, date;" x7 +
+//forecast-- days, temps, codes (for tableview) "date, temp, code/ wind, humidity, pressure, date;" x7 +
 
 
 import UIKit
 import CoreLocation
 
 var selectedCity = ""
+var selectedDay = 0 
 
 class ViewController: UIViewController {
     
     var locationManager: CLLocationManager?
-    var latitude : CLLocationDegrees?
+    var latitude : CLLocationDegrees? 
     var longitude : CLLocationDegrees?
     var isOpened = false
     
@@ -83,6 +84,7 @@ class ViewController: UIViewController {
     func getDataAndUpdate(){
         if latitude != nil && longitude != nil{
             let str = String(latitude!.description) + "%20" + String(longitude!.description)
+            print("Geo request is \(str)")
             getWeather(currentGEO: str, completion: {
                 [weak self] data in
                 processData(data : data)
@@ -102,9 +104,12 @@ class ViewController: UIViewController {
         })
         }
     }
+    //
     func fillUIelementsWithData(){
-          detailsView.hoursCollectionView.scrollToItem(at: IndexPath(row: getCurrentHours(), section: 0), at: .centeredHorizontally, animated: false)
+        detailsView.hoursCollectionView.scrollToItem(at: IndexPath(row: getCurrentHours(), section: 0), at: .centeredHorizontally, animated: false)
+        partsCollectionView.scrollToItem(at: IndexPath(row: partOfDayNow.rawValue, section: 0), at: .left, animated: true)
         DispatchQueue.main.async {
+            self.partsCollectionView.reloadData()
             self.detailsView.daysCollectionView.reloadData()
             self.detailsView.hoursCollectionView.reloadData()
             self.detailsView.nowTemperature.text = "\(currentCondition.0)°С"
@@ -112,7 +117,7 @@ class ViewController: UIViewController {
             self.detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
             self.detailsView.nowCondition.text = statuses[currentCondition.2]?.0
             if allDays.count != 0{
-                //заполнение деталей
+                self.detailsView.detailsTableView.reloadData()
 
             }
         }
