@@ -10,6 +10,7 @@
 		A701CC5F228F3D18005F4E21 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701CC5E228F3D18005F4E21 /* Helpers.swift */; };
 		A72613EF226DA99E00D0074A /* WeatherCodes&Statuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72613EE226DA99E00D0074A /* WeatherCodes&Statuses.swift */; };
 		A726140122705AA700D0074A /* theWearApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726140022705AA700D0074A /* theWearApplicationTests.swift */; };
+		A72F45C722933921000177F0 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72F45C622933921000177F0 /* LocalNotifications.swift */; };
 		A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783D0D9226C5670006948F8 /* Requests&Model.swift */; };
 		A787FDA4228C5557004BC4D7 /* SwiftyDropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A787FDA3228C5557004BC4D7 /* SwiftyDropbox.framework */; };
 		A78A6839228593AB00657152 /* Data&Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A6838228593AB00657152 /* Data&Methods.swift */; };
@@ -57,6 +58,7 @@
 		A72613FE22705AA700D0074A /* theWearApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = theWearApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A726140022705AA700D0074A /* theWearApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theWearApplicationTests.swift; sourceTree = "<group>"; };
 		A726140222705AA700D0074A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A72F45C622933921000177F0 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
 		A783D0D9226C5670006948F8 /* Requests&Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Requests&Model.swift"; sourceTree = "<group>"; };
 		A787FDA3228C5557004BC4D7 /* SwiftyDropbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyDropbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A78A6838228593AB00657152 /* Data&Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data&Methods.swift"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				A783D0D9226C5670006948F8 /* Requests&Model.swift */,
 				A72613EE226DA99E00D0074A /* WeatherCodes&Statuses.swift */,
 				BAFF26A02268C01700D6C7FA /* Extensions.swift */,
+				A72F45C622933921000177F0 /* LocalNotifications.swift */,
 				A701CC5E228F3D18005F4E21 /* Helpers.swift */,
 				A78A6838228593AB00657152 /* Data&Methods.swift */,
 				BAFF26A62268C05C00D6C7FA /* InternetCheck.swift */,
@@ -365,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A72F45C722933921000177F0 /* LocalNotifications.swift in Sources */,
 				BA5D91C3228F1004007E47BA /* CitiesButton.swift in Sources */,
 				BA6C7ED82284DE2D005654A3 /* HourCell.swift in Sources */,
 				BABDAB162280E2B500542482 /* configurePaddingsAndFrame.swift in Sources */,

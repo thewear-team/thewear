@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         //
        
         print(codesHours)//here for the first time still previous codes
-      
+   
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -91,6 +91,8 @@ class ViewController: UIViewController {
                 //save
                 DispatchQueue.main.async {
                     self!.fillUIelementsWithData()
+                    configureNotifications()
+                    createNotificationAtTime()
                 }
             })
         } else{
@@ -100,6 +102,8 @@ class ViewController: UIViewController {
             //save
             DispatchQueue.main.async {
                 self!.fillUIelementsWithData()
+                configureNotifications()
+                createNotificationAtTime()
             }
         })
         }
