@@ -296,8 +296,8 @@ func loadData(currentCity : String, completion : @escaping (Data)->Void){
 func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->Void){
     
     let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=\(key)&q=\(cityTyped)&format=json"
-    
-    let url = URL(string: jsonUrlString)
+    let str = jsonUrlString.replacingOccurrences(of: " ", with: "%20")
+    let url = URL(string: str)
     let task = URLSession.shared.dataTask(with: url!){ (data,
         response, err) in
         do {
