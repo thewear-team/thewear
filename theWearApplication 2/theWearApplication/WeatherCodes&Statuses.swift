@@ -21,6 +21,7 @@ struct Status {
 func initAllColors (){
     
 }
+//000 - night code
 var statuses : [String : (String, Int, Int, Int)] = ["395" : ("Snow with thunder", 185, 199, 220),
                                     "392" : ("Light snow with thunder", 115, 137, 158),
                                     "389" : ("Rain with thunder", 122, 127, 156),
@@ -68,4 +69,5 @@ var statuses : [String : (String, Int, Int, Int)] = ["395" : ("Snow with thunder
                                     "122" : ("Overcast", 180, 203, 230),
                                     "119" : ("Cloudy", 195, 228, 243),
                                     "116" : ("Partly Cloudy", 145, 207, 236),
-                                    "113" : ("Sunny", 36, 158, 217)]
+                                    "113" : ("Sunny", 36, 158, 217),
+                                    "000" : ("Night", 46, 68, 130)]

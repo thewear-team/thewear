@@ -11,7 +11,7 @@ import UIKit
 
 var currentCity  = "Moscow"
 var hourNow : Int = 0
-var partOfDayNow : PartsOfDay = .day
+var partOfDayNow : Int = 0
 var demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 var standartCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
 
@@ -24,7 +24,7 @@ var allDays : [OneWeatherDay] = [] //contain 7 days by parts + details
 var demoDays : [String] = [] // for output
 var lastCity = ""
 var allCities : [String] = []
-
+// 000 - night code
 func determinePartOfDay(){
     let time = Date()
     let calendar = Calendar.current
@@ -33,15 +33,15 @@ func determinePartOfDay(){
     hourNow = hour
     switch hour{
     case 6...11:
-        partOfDayNow = .morning
+        partOfDayNow = 0
     case 12...17:
-        partOfDayNow = .day
+        partOfDayNow = 1
     case 18...23:
-        partOfDayNow = .evening
+        partOfDayNow = 2
     case 0...5:
-        partOfDayNow = .night
+        partOfDayNow = 3
     default:
-        partOfDayNow = .morning
+        partOfDayNow = 0
     }
     print (partOfDayNow)
 }

@@ -96,6 +96,48 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if allDays.count > 0 {
+        switch(indexPath.row){
+        case 0 :
+            detailsView.nowCondition.text = statuses[allDays[selectedDay].morningcode]?.0
+            detailsView.nowTemperature.text = allDays[selectedDay].morningtemp + "ºC"
+            detailsView.nowFeelsLike.text =  "Feels like " + allDays[selectedDay].morningfeelslike + "ºC"
+            detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].morningcode)
+        case 1 :
+            detailsView.nowCondition.text = statuses[allDays[selectedDay].daycode]?.0
+            detailsView.nowTemperature.text = allDays[selectedDay].daytemp + "ºC"
+            detailsView.nowFeelsLike.text = "Feels like " + allDays[selectedDay].dayfeelslike + "ºC"
+            detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].daycode)
+      
+        case 2 :
+            detailsView.nowCondition.text = statuses[allDays[selectedDay].eveningcode]?.0
+            detailsView.nowTemperature.text = allDays[selectedDay].eveningtemp + "ºC"
+            detailsView.nowFeelsLike.text = "Feels like " + allDays[selectedDay].eveningfeelslike + "ºC"
+            detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].eveningcode)
+      
+        case 3 :
+            if allDays[selectedDay].nightcode != nil {
+                detailsView.nowCondition.text = statuses[allDays[selectedDay].nightcode!]?.0
+                detailsView.nowTemperature.text = allDays[selectedDay].nighttemp! + "ºC"
+                detailsView.nowFeelsLike.text = "Feels like " + allDays[selectedDay].nightfeelslike! + "ºC"
+                detailsView.temperatureImageView.image = UIImage(named: "000")
+            }
+            else{
+                detailsView.nowCondition.text = "no info"
+                detailsView.nowTemperature.text = "no info"
+                detailsView.nowFeelsLike.text = "no info"
+                detailsView.temperatureImageView.image = UIImage(named: "000")
+            }
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partCell", for: indexPath) as! PartCell
+            let colorComp = statuses["000"]
+            cell.backgroundColor = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
+        
+        default :
+            detailsView.nowCondition.text = "now condition"
+            }
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partCell", for: indexPath) as! PartCell
@@ -109,16 +151,17 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             case 2 :
                 code = allDays[0].eveningcode
             case 3 :
-                if allDays[0].nightcode != nil{
-                    code = allDays[0].nightcode!}
-                else {
-                    code = "113"
-                }
+//                if allDays[0].nightcode != nil{
+//                    code = allDays[0].nightcode!}
+//                else {
+//                    code = "113"
+//                }
+                code = "000"
             default :
                 code = "113"
             }
             let colorComp = statuses[code]
-            print(code)
+//            print(code)
             if colorComp != nil {
                 let color = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
                 cell.backgroundColor = color
@@ -194,10 +237,14 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayCell", for: indexPath) as! DayCell
             if allDays.count > 0{
+                print("codes here")
+                print(allDays[0].morningcode, allDays[0].daycode, allDays[0].eveningcode, allDays[0].nightcode)
                 let colorComponents = statuses[allDays[indexPath.row].daycode]
                 if colorComponents != nil{
-                    let color = UIColor(red: CGFloat(colorComponents!.1 )/255, green: CGFloat(colorComponents!.2 )/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1.0)
-                    cell.substrateView.backgroundColor = color
+                    if indexPath.row != 3{
+                        let color = UIColor(red: CGFloat(colorComponents!.1 )/255, green: CGFloat(colorComponents!.2 )/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1.0)
+                         cell.substrateView.backgroundColor = color
+                    }
                 }
                 cell.day.text = allDays[indexPath.row].date
                 cell.icon.image = UIImage(named: allDays[indexPath.row].daycode)

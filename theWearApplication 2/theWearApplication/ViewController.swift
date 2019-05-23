@@ -48,6 +48,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //determining part of the day
+        determinePartOfDay()
+        
         view.backgroundColor = .white
         configureMain()
         self.cityTextField.delegate = self
@@ -63,8 +66,7 @@ class ViewController: UIViewController {
             self.partsCollectionView.reloadData()
         }
         
-        //determining part of the day
-        determinePartOfDay()
+       
         
         //getting fresh data
         UserDefaults.standard.set(1, forKey: "isOpened")
@@ -104,14 +106,16 @@ class ViewController: UIViewController {
                 self!.fillUIelementsWithData()
                 configureNotifications()
                 createNotificationAtTime()
+                createNotificationForNow()
             }
         })
         }
     }
     //
     func fillUIelementsWithData(){
+        
         detailsView.hoursCollectionView.scrollToItem(at: IndexPath(row: getCurrentHours(), section: 0), at: .centeredHorizontally, animated: false)
-        partsCollectionView.scrollToItem(at: IndexPath(row: partOfDayNow.rawValue, section: 0), at: .left, animated: true)
+        partsCollectionView.scrollToItem(at: IndexPath(row: partOfDayNow, section: 0), at: .left, animated: true)
         DispatchQueue.main.async {
             self.partsCollectionView.reloadData()
             self.detailsView.daysCollectionView.reloadData()
