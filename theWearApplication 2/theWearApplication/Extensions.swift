@@ -45,6 +45,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         var text = allCities[indexPath.row]
         text = text.replacingOccurrences(of: " ", with: "%20")
         selectedCity = text
+        currentCity = text
         if selectedCity != ""{
             print(selectedCity)
             loadData(currentCity: selectedCity, completion: {
@@ -285,7 +286,8 @@ extension ViewController : CLLocationManagerDelegate{
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         
-//        locationManager?.startUpdatingLocation()
+        locationManager?.startMonitoringSignificantLocationChanges()
+        locationManager?.allowsBackgroundLocationUpdates = true
         locationManager?.requestAlwaysAuthorization()
         locationManager?.requestLocation()
         
@@ -299,8 +301,10 @@ extension ViewController : CLLocationManagerDelegate{
             if geoCoordinates != nil {
                 print(geoCoordinates?.coordinate.latitude)
                 print(geoCoordinates?.coordinate.longitude)
-                latitude = geoCoordinates?.coordinate.latitude
-                longitude = geoCoordinates?.coordinate.longitude
+                latitude = (geoCoordinates?.coordinate.latitude.description)!
+                longitude = (geoCoordinates?.coordinate.longitude.description)!
+                UserDefaults.standard.set(latitude, forKey: "latitude")
+                UserDefaults.standard.set(longitude, forKey: "longitude")
             }
         }
         else {
@@ -316,8 +320,10 @@ extension ViewController : CLLocationManagerDelegate{
         
         if locations.first != nil {
             print("location:: \(locations.first!.coordinate)")
-            latitude = locations.first!.coordinate.latitude
-            longitude = locations.first!.coordinate.longitude
+            latitude = locations.first!.coordinate.latitude.description
+            longitude = locations.first!.coordinate.longitude.description
+            UserDefaults.standard.set(latitude, forKey: "latitude")
+            UserDefaults.standard.set(longitude, forKey: "longitude")
 //            getDataAndUpdate()
 //            locationManager?.stopUpdatingLocation()
         }

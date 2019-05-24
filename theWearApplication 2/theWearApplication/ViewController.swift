@@ -15,13 +15,15 @@ import UIKit
 import CoreLocation
 
 var selectedCity = ""
-var selectedDay = 0 
+var selectedDay = 0
+var hourOfPush = 00
+var minuteOfPush = 00
 
 class ViewController: UIViewController {
     
     var locationManager: CLLocationManager?
-    var latitude : CLLocationDegrees? 
-    var longitude : CLLocationDegrees?
+    var latitude :  String = ""
+    var longitude : String = ""
     var isOpened = false
     
     let navigationBar = NavigationBar(frame: .zero)
@@ -84,8 +86,10 @@ class ViewController: UIViewController {
     }
     
     func getDataAndUpdate(){
-        if latitude != nil && longitude != nil{
-            let str = String(latitude!.description) + "%20" + String(longitude!.description)
+        if UserDefaults.standard.value(forKey: "latitude") != nil && UserDefaults.standard.value(forKey: "longitude") != nil{
+            latitude = UserDefaults.standard.value(forKey: "latitude") as! String
+            longitude = UserDefaults.standard.value(forKey: "longitude") as! String
+            let str = String(latitude) + "%20" + String(longitude)
             print("Geo request is \(str)")
             getWeather(currentGEO: str, completion: {
                 [weak self] data in
@@ -94,7 +98,15 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     self!.fillUIelementsWithData()
                     configureNotifications()
-                    createNotificationAtTime()
+//                    createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, text: genereatePush())
+                }
+            })
+            autocomplete(latitude: latitude, longitude: longitude, completion: {
+                [weak self] data in
+                let currentGeoPositionName = data[0].areaName[0].value + ", " + data[0].region[0].value + ", " + data[0].country[0].value
+                currentCity = currentGeoPositionName
+                DispatchQueue.main.async {
+                     self!.cityTextField.text = currentGeoPositionName
                 }
             })
         } else{
@@ -105,8 +117,8 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 self!.fillUIelementsWithData()
                 configureNotifications()
-                createNotificationAtTime()
-                createNotificationForNow()
+               
+                
             }
         })
         }

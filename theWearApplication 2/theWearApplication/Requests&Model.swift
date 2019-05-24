@@ -280,6 +280,7 @@ func loadData(currentCity : String, completion : @escaping (Data)->Void){
     var jsonUrlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=\(key)&q=\(currentCity)&format=json&num_of_days=7&mca=no&tp=1&quot"
     print(jsonUrlString)
     jsonUrlString = jsonUrlString.replacingOccurrences(of: ",", with: "")
+    jsonUrlString = jsonUrlString.replacingOccurrences(of: " ", with: "%20")
     let url = URL(string: jsonUrlString)
     let task = URLSession.shared.dataTask(with: url!){ (data,
         response, err) in
@@ -307,6 +308,24 @@ func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->
             completion (result)
         } catch { print("Error deserializing JSON: \(error)")
     
+        }
+    }
+    task.resume()
+}
+func autocomplete (latitude : String, longitude : String, completion : @escaping ([SearchResult])->Void){
+    
+    let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=\(key)&q=\(latitude)%20\(longitude)&format=json"
+    let str = jsonUrlString.replacingOccurrences(of: " ", with: "%20")
+    let url = URL(string: str)
+    let task = URLSession.shared.dataTask(with: url!){ (data,
+        response, err) in
+        do {
+            let alldata = try
+                JSONDecoder().decode(AutocompleteResponse.self, from: data!)
+            let result = alldata.search_api.result
+            completion (result)
+        } catch { print("Error deserializing JSON: \(error)")
+            
         }
     }
     task.resume()

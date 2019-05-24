@@ -14,6 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        notificationCenter?.removeAllDeliveredNotifications()
+        notificationCenter?.removeAllPendingNotificationRequests()
         window = UIWindow()
         window?.makeKeyAndVisible()
         configurePaddingsAndFrame()
@@ -41,6 +45,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    //MARK: background data fetch
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let vc = ViewController()
+        print("location in background is \(vc.latitude), \(vc.longitude)")
+        print("last selected city is \(currentCity)")
+        let city = currentCity.replacingOccurrences(of: "%20", with: " ")
+        loadData(currentCity: currentCity, completion: {
+            data in
+            processData(data: data)
+            print(data.current_condition[0].temp_C)
+            configureNotifications()
+            createnoticreateNotificationAtTime(hour: 00, minute: 30, city : city, text: genereatePush() ?? "")
+        })
+        
+        
     }
 
 
