@@ -17,6 +17,7 @@
 		ABCED885E446D2480CEFB367 /* Pods_theWearApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7F24AC087394C114B598EC /* Pods_theWearApplication.framework */; };
 		BA2329E52271072600883DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2329E42271072600883DA3 /* SettingsView.swift */; };
 		BA4BBE79229954930095735F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA4BBE78229954930095735F /* Assets.xcassets */; };
+		BA4BBE7B22997C880095735F /* CreatingPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BBE7A22997C880095735F /* CreatingPerson.swift */; };
 		BA5D91BF228EE66B007E47BA /* CitiesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */; };
 		BA5D91C1228EE712007E47BA /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91C0228EE712007E47BA /* CityCell.swift */; };
 		BA5D91C3228F1004007E47BA /* CitiesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91C2228F1004007E47BA /* CitiesButton.swift */; };
@@ -66,6 +67,7 @@
 		A7E872E2228B59FC00C3B3C9 /* FilestackSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FilestackSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2329E42271072600883DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BA4BBE78229954930095735F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = theWearApplication/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		BA4BBE7A22997C880095735F /* CreatingPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingPerson.swift; sourceTree = "<group>"; };
 		BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesTableView.swift; sourceTree = "<group>"; };
 		BA5D91C0228EE712007E47BA /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		BA5D91C2228F1004007E47BA /* CitiesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesButton.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */,
 				BAFF268C2268BF6400D6C7FA /* ViewController.swift */,
+				BA4BBE7A22997C880095735F /* CreatingPerson.swift */,
 				BABDAB252282345B00542482 /* Views */,
 				BABDAB2A22823A9E00542482 /* Cells */,
 				BA4BBE78229954930095735F /* Assets.xcassets */,
@@ -392,6 +395,7 @@
 				BA6C7EDC2284F1B9005654A3 /* DayCell.swift in Sources */,
 				BAFF268B2268BF6400D6C7FA /* AppDelegate.swift in Sources */,
 				A78A6839228593AB00657152 /* Data&Methods.swift in Sources */,
+				BA4BBE7B22997C880095735F /* CreatingPerson.swift in Sources */,
 				BAFF26A72268C05C00D6C7FA /* InternetCheck.swift in Sources */,
 				A701CC5F228F3D18005F4E21 /* Helpers.swift in Sources */,
 				BABDAB22228231C200542482 /* NavigationBar.swift in Sources */,

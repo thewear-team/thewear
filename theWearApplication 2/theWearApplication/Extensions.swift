@@ -14,6 +14,8 @@ extension UIColor {
     static let dark113 = UIColor(red: 10/255, green: 80/255, blue: 116/255, alpha: 1)
     static let color_119 = UIColor(red: 145/255, green: 207/255, blue: 236/255, alpha: 1)
     static let color_122 = UIColor(red: 195/255, green: 205/255, blue: 222/255, alpha: 1)
+    static let body = UIColor(red: 197/255, green: 153/255, blue: 116/255, alpha: 1)
+    static let shadowBody = UIColor(red: 179/255, green: 137/255, blue: 102/255, alpha: 1)
 }
 
 extension UIView {

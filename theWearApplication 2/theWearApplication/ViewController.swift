@@ -32,12 +32,13 @@ class ViewController: UIViewController {
     let partsCollectionView = PartsCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     let citiesTableView = CitiesTableView(frame: .zero)
     let citiesButton = CitiesButton(frame: .zero)
-    
     let detailsView = DetailsView(frame: .zero)
     let settingsView = SettingsView()
     
     func configureMain() {
-        [partsCollectionView, navigationBar, cityTextField, settingsButton, citiesButton, detailsView, citiesTableView].forEach {view.addSubview($0)}
+        [partsCollectionView, navigationBar, cityTextField, settingsButton, citiesButton].forEach {view.addSubview($0)}
+        [createRightLeg(), createLeftLeg(), createBody()].forEach {view.layer.addSublayer($0)}
+        [detailsView, citiesTableView].forEach {view.addSubview($0)}
         partsCollectionView.delegate = self
         partsCollectionView.dataSource = self
         partsCollectionView.register(PartCell.self, forCellWithReuseIdentifier: "partCell")
@@ -45,14 +46,12 @@ class ViewController: UIViewController {
         citiesTableView.dataSource = self
         citiesTableView.register(CityCell.self, forCellReuseIdentifier: "cityCell")
         citiesButton.addTarget(self, action: #selector(handleCitiesButton), for: .touchUpInside)
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //determining part of the day
         determinePartOfDay()
-        
         view.backgroundColor = .white
         configureMain()
         self.cityTextField.delegate = self
@@ -67,8 +66,6 @@ class ViewController: UIViewController {
             self.fillUIelementsWithData()
             self.partsCollectionView.reloadData()
         }
-        
-       
         
         //getting fresh data
         UserDefaults.standard.set(1, forKey: "isOpened")
