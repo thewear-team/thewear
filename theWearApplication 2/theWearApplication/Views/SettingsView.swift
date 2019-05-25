@@ -14,12 +14,12 @@ class SettingsView: NSObject {
     let pressures = ["mmHg", "hPa"]
     let windSpeeds = ["m/s", "km/h"]
     let genders = ["man", "woman"]
+    let notifications = ["on", "off"]
     
     let substrateView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        print(cornerRadius)
-        view.layer.cornerRadius = cornerRadius
+        view.layer.cornerRadius = cornerRadius - 15
         view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         return view
     }()
@@ -82,12 +82,77 @@ class SettingsView: NSObject {
     let pressureChooseView = UIView()
     let windSpeedChooseView = UIView()
     
+    let genderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Gender"
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        return label
+    }()
+    
+    let genderSegmentedControl: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.showsHorizontalScrollIndicator = false
+        cv.backgroundColor = .clear
+        cv.isScrollEnabled = false
+        return cv
+    }()
+    
+    let genderChooseView = UIView()
+    
+    let notificationsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Notifications"
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        return label
+    }()
+    
+    let notificationsSegmentedControl: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.showsHorizontalScrollIndicator = false
+        cv.backgroundColor = .clear
+        cv.isScrollEnabled = false
+        return cv
+    }()
+    
+    let notificationsChooseView = UIView()
+    
     func showSettingsView() {
         configureSettingsView()
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.substrateView.frame = CGRect(x: 0, y: top, width: width, height: fullHeight - bottom)
         }, completion: nil)
+    }
+    
+    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
+        if recognizer.state == .began {
+            
+        } else if recognizer.state == .changed {
+            let translation = recognizer.translation(in: substrateView)
+            let newY = substrateView.frame.origin.y + translation.y
+            
+            if newY >= top {
+                substrateView.frame = CGRect(x: 0, y: newY, width: width, height: fullHeight - bottom)
+            }
+            
+            recognizer.setTranslation(.zero, in: substrateView)
+        } else {
+            if substrateView.frame.origin.y > 0.2 * fullHeight {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.substrateView.frame = CGRect(x: 0, y: fullHeight, width: width, height: fullHeight - bottom)
+                }, completion: nil)
+            } else {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.substrateView.frame = CGRect(x: 0, y: top, width: width, height: fullHeight - bottom)
+                }, completion: nil)
+            }
+        }
     }
     
     func configureSettingsView() {
@@ -104,6 +169,14 @@ class SettingsView: NSObject {
         windSpeedSegmentedControl.dataSource = self
         windSpeedSegmentedControl.register(SegmentedControlCell.self, forCellWithReuseIdentifier: "cell")
         
+        genderSegmentedControl.delegate = self
+        genderSegmentedControl.dataSource = self
+        genderSegmentedControl.register(SegmentedControlCell.self, forCellWithReuseIdentifier: "cell")
+        
+        notificationsSegmentedControl.delegate = self
+        notificationsSegmentedControl.dataSource = self
+        notificationsSegmentedControl.register(SegmentedControlCell.self, forCellWithReuseIdentifier: "cell")
+        
         tempsChooseView.backgroundColor = UIColor.color_113
         tempsChooseView.layer.cornerRadius = 2.5
         
@@ -113,12 +186,21 @@ class SettingsView: NSObject {
         windSpeedChooseView.backgroundColor = UIColor.color_113
         windSpeedChooseView.layer.cornerRadius = 2.5
         
+        genderChooseView.backgroundColor = UIColor.color_113
+        genderChooseView.layer.cornerRadius = 2.5
+        
+        notificationsChooseView.backgroundColor = UIColor.color_113
+        notificationsChooseView.layer.cornerRadius = 2.5
+        
         [substrateView].forEach {keyWindow.addSubview($0)}
+        substrateView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:))))
         substrateView.frame = CGRect(x: 0, y: fullHeight, width: width, height: fullHeight - bottom)
-        [tempLabel, pressureLabel, windSpeedLabel, tempsSegmentedControl, pressureSegmentedControl, windSpeedSegmentedControl, tempsChooseView, pressureChooseView, windSpeedChooseView].forEach {substrateView.addSubview($0)}
+        [tempLabel, pressureLabel, windSpeedLabel, tempsSegmentedControl, pressureSegmentedControl, windSpeedSegmentedControl, tempsChooseView, pressureChooseView, windSpeedChooseView, genderLabel, genderSegmentedControl, genderChooseView, notificationsLabel, notificationsSegmentedControl, notificationsChooseView].forEach {substrateView.addSubview($0)}
         tempLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.1, width: width / 2, height: buttonSize)
         pressureLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.2, width: width / 2, height: buttonSize)
         windSpeedLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.3, width: width / 2, height: buttonSize)
+        genderLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.45, width: width / 2, height: buttonSize)
+        notificationsLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.6, width: width / 2, height: buttonSize)
         
         tempsSegmentedControl.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.1, width: width - width / 2 - buttonSize * 2, height: buttonSize)
         tempsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.1 + buttonSize, width: tempsSegmentedControl.frame.width / 2, height: 5)
@@ -128,6 +210,12 @@ class SettingsView: NSObject {
         
         windSpeedSegmentedControl.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.3, width: width - width / 2 - buttonSize * 2, height: buttonSize)
         windSpeedChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.3 + buttonSize, width: tempsSegmentedControl.frame.width / 2, height: 5)
+        
+        genderSegmentedControl.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.45, width: width - width / 2 - buttonSize * 2, height: buttonSize)
+        genderChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.45 + buttonSize, width: tempsSegmentedControl.frame.width / 2, height: 5)
+        
+        notificationsSegmentedControl.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.6, width: width - width / 2 - buttonSize * 2, height: buttonSize)
+        notificationsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.6 + buttonSize, width: tempsSegmentedControl.frame.width / 2, height: 5)
     }
     
     override init() {

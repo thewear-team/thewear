@@ -14,8 +14,9 @@ class PartsCollectionView: UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: frame, collectionViewLayout: layout)
-        self.backgroundColor = .red
+        self.backgroundColor = .clear
         self.showsHorizontalScrollIndicator = false
+        self.isPagingEnabled = true
         self.frame = CGRect(x: 0, y: 0, width: width, height: fullHeight)
     }
     
