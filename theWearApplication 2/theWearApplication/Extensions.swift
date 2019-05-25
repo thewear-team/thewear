@@ -241,12 +241,12 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         } else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayCell", for: indexPath) as! DayCell
-            if allDays.count > 0{
+            if allDays.count > 0 {
                 print("codes here")
                 print(allDays[0].morningcode, allDays[0].daycode, allDays[0].eveningcode, allDays[0].nightcode)
                 let colorComponents = statuses[allDays[indexPath.row].daycode]
-                if colorComponents != nil{
-                    if indexPath.row != 3{
+                if colorComponents != nil {
+                    if indexPath.row != 3 {
                         let color = UIColor(red: CGFloat(colorComponents!.1 )/255, green: CGFloat(colorComponents!.2 )/255, blue: CGFloat(colorComponents!.3)/255, alpha: 1.0)
                          cell.substrateView.backgroundColor = color
                     }
@@ -254,12 +254,39 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
                 cell.day.text = allDays[indexPath.row].date
                 cell.icon.image = UIImage(named: allDays[indexPath.row].daycode)
                 cell.temperature.text = allDays[indexPath.row].daytemp
-            }else{
+            } else {
             cell.day.text = "Tuesday,\nJuly, 13"
             cell.icon.image = UIImage(named: "sun")
             cell.temperature.text = "23°C"
             }
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == daysCollectionView {
+            // do something else
+            
+            // -------
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.frame = CGRect(x: self.detailsViewX, y: fullHeight * 0.8, width: width, height: fullHeight)
+                
+                self.temperatureImageView.frame.origin.y = 0.05 * fullHeight
+                self.nowTemperature.frame.origin.y = 0.05 * fullHeight
+                self.nowFeelsLike.frame.origin.y = 0.1 * fullHeight
+                self.nowCondition.frame.origin.y = 0.125 * fullHeight
+                
+                self.temperatureImageView.frame.origin.x = buttonSize + 0.1 * fullHeight
+                self.nowTemperature.frame.origin.x = buttonSize + 0.2 * fullHeight
+                self.nowFeelsLike.frame.origin.x = buttonSize + 0.2 * fullHeight
+                self.nowCondition.frame.origin.x = buttonSize + 0.2 * fullHeight
+                
+                self.detailsViewIsOpened = false
+            }, completion: nil)
+            UIViewPropertyAnimator(duration: 0.5, curve: .easeOut) {
+                self.layer.cornerRadius = self.cornerRadiusOfDetailsView
+                }.startAnimation()
         }
     }
     

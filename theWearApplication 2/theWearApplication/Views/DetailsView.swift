@@ -43,7 +43,6 @@ class DetailsView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
-        collectionView.isUserInteractionEnabled = true
         return collectionView
     }()
     
