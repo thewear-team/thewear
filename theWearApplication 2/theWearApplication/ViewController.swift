@@ -16,8 +16,8 @@ import CoreLocation
 
 var selectedCity = ""
 var selectedDay = 0
-var hourOfPush = 00
-var minuteOfPush = 00
+var hourOfPush = 11
+var minuteOfPush = 05
 
 class ViewController: UIViewController {
     
@@ -71,7 +71,6 @@ class ViewController: UIViewController {
         UserDefaults.standard.set(1, forKey: "isOpened")
         
         getDataAndUpdate()
-        self.fillUIelementsWithData()
         //
        
         print(codesHours)//here for the first time still previous codes
@@ -95,7 +94,7 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     self!.fillUIelementsWithData()
                     configureNotifications()
-//                    createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, text: genereatePush())
+                     createnoticreateNotificationAtTime(hour: 23, minute: 30, city: currentCity, text: genereatePush(hour: 23) ?? "", back: false)
                 }
             })
             autocomplete(latitude: latitude, longitude: longitude, completion: {
@@ -114,7 +113,8 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 self!.fillUIelementsWithData()
                 configureNotifications()
-               
+                configureNotifications()
+                createnoticreateNotificationAtTime(hour: 23, minute: 30, city: currentCity, text: genereatePush(hour: 23) ?? "", back: false)
                 
             }
         })
@@ -139,6 +139,7 @@ class ViewController: UIViewController {
             }
         }
     }
+   
    
   
 }

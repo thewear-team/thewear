@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+       
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -49,6 +49,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: background data fetch
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if application.backgroundRefreshStatus == .available {
+            // yay!
+        notificationCenter?.removeAllDeliveredNotifications()
+        notificationCenter?.removeAllPendingNotificationRequests()
         let vc = ViewController()
         print("location in background is \(vc.latitude), \(vc.longitude)")
         print("last selected city is \(currentCity)")
@@ -58,10 +62,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             processData(data: data)
             print(data.current_condition[0].temp_C)
             configureNotifications()
-            createnoticreateNotificationAtTime(hour: 00, minute: 30, city : city, text: genereatePush() ?? "")
+            createnoticreateNotificationAtTime(hour: 22, minute: 00, city : city, text: genereatePush(hour: 18) ?? "", back : true)
+           createnoticreateNotificationAtTime(hour: 23, minute: 30, city : city, text: genereatePush(hour: 19) ?? "", back : true)
+            createnoticreateNotificationAtTime(hour: 23, minute: 00, city : city, text: genereatePush(hour: 19) ?? "", back : true)
+             createnoticreateNotificationAtTime(hour: 23, minute: 30, city : city, text: genereatePush(hour: 19) ?? "", back : true)
+           createnoticreateNotificationAtTime(hour: 00, minute: 00, city : city, text: genereatePush(hour: 19) ?? "", back : true)
+             createnoticreateNotificationAtTime(hour: 00, minute: 30, city : city, text: genereatePush(hour: 19) ?? "", back : true)
+            createnoticreateNotificationAtTime(hour: 02, minute: 30, city : city, text: genereatePush(hour: 19) ?? "", back : true)
+            createnoticreateNotificationAtTime(hour: getCurrentHours() + 1, minute: 15, city : city, text: genereatePush(hour : getCurrentHours()) ?? "", back : true)
+            
+         completionHandler(.newData)
         })
         
-        
+        }
     }
 
 

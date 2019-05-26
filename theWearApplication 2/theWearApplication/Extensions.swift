@@ -475,5 +475,14 @@ extension SettingsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
 }
+extension ViewController{
+    override func viewWillAppear(_ animated: Bool) {
+        print("WIL APPEAR")
+        retrieveDataAndUpdate()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        fillUIelementsWithData()
+    }
+}
 
 

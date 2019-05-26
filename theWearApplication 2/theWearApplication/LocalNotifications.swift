@@ -23,7 +23,7 @@ func configureNotifications(){
         }
     }
 }
-func createnoticreateNotificationAtTime(hour : Int, minute : Int, city : String, text : String){
+func createnoticreateNotificationAtTime(hour : Int, minute : Int, city : String, text : String, back : Bool){
     let content = UNMutableNotificationContent()
     content.sound = UNNotificationSound.default
     
@@ -33,11 +33,16 @@ func createnoticreateNotificationAtTime(hour : Int, minute : Int, city : String,
     
     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
     content.body = text
+    if back{
+        content.title = "Weather in \(city) (from background)"
+    }else{
     content.title = "Weather in \(city)"
+    }
     print(content.body)
     let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
     notificationCenter!.add(request)
 }
+
 
 
 //func createNotificationForNow(for city : String){
@@ -73,10 +78,10 @@ func createnoticreateNotificationAtTime(hour : Int, minute : Int, city : String,
 //    return ""
 //
 //}
-func genereatePush()->String?{
+func genereatePush(hour: Int)->String?{
     var text = ""
    
-    switch hourOfPush {
+    switch hour {
     case 12...23:
         if UserDefaults.standard.value(forKey: "daysParts") != nil{
             
@@ -97,11 +102,39 @@ func genereatePush()->String?{
             }
             print(status)
             let clothes = getClothesComment(temp: Int(String(partsOfDay[4]))!)
-            let temp = String(partsOfDay[4])
+            let temp = String(partsOfDay[3])
             if status != "partly cloudy"{
-                text = "Tomorrow: \(status) possible, the average temperature is \(temp)ºC.\(windAlert) \(UVAlert) \(clothes)"}
+                text = "Tomorrow: \(status) possible, the day temperature is \(temp)ºC.\(windAlert) \(UVAlert) \(clothes)"}
             else {
-                text = "Tomorrow: \(status), the average temperature is \(temp).\(windAlert) \(UVAlert) \(clothes)"
+                text = "Tomorrow: \(status), the day temperature is \(temp).\(windAlert) \(UVAlert) \(clothes)"
+            }
+            return text
+        }
+    case 01...11:
+        if UserDefaults.standard.value(forKey: "daysParts") != nil{
+            
+            let data = UserDefaults.standard.value(forKey: "daysParts") as! [String]
+            let currentDay = data[0]
+            let parts = currentDay.split(separator: "/")
+            let partsOfDay = parts[1].split(separator: ",")
+            let details = parts[2].split(separator: ",")
+            var status = statuses[String(partsOfDay[5])]!.0
+            status = status.lowercased()
+            var windAlert = ""
+            if Int(details[0])! > 30 {
+                windAlert = "High UV."
+            }
+            var UVAlert = ""
+            if Int(details[5])! > 6 {
+                UVAlert = "High UV."
+            }
+            print(status)
+            let clothes = getClothesComment(temp: Int(String(partsOfDay[4]))!)
+            let temp = String(partsOfDay[3])
+            if status != "partly cloudy"{
+                text = "Today: \(status) possible, the average temperature is \(temp)ºC.\(windAlert) \(UVAlert) \(clothes)"}
+            else {
+                text = "Today: \(status), the average temperature is \(temp).\(windAlert) \(UVAlert) \(clothes)"
             }
             return text
         }
@@ -125,11 +158,11 @@ func genereatePush()->String?{
             }
             print(status)
             let clothes = getClothesComment(temp: Int(String(partsOfDay[4]))!)
-            let temp = String(partsOfDay[4])
+            let temp = String(partsOfDay[3])
             if status != "partly cloudy"{
-                text = "Today: \(status) possible, the average temperature is \(temp)ºC.\(windAlert) \(UVAlert) \(clothes)"}
+                text = "Today: \(status) possible, the day temperature is \(temp)ºC.\(windAlert) \(UVAlert) \(clothes)"}
             else {
-                text = "Today: \(status), the average temperature is \(temp).\(windAlert) \(UVAlert) \(clothes)"
+                text = "Today: \(status), the average dat is \(temp).\(windAlert) \(UVAlert) \(clothes)"
             }
              return text
     }
