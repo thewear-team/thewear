@@ -10,10 +10,10 @@ import UIKit
 
 class DetailCell: UITableViewCell {
     
-    let icon: UIView = {
-        let view = UIView()
+    let icon: UIImageView = {
+        let view = UIImageView()
         view.layer.cornerRadius = 0.025 * fullHeight
-        view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
+        view.clipsToBounds = true
         return view
     }()
     

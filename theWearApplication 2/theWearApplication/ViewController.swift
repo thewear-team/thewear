@@ -35,9 +35,23 @@ class ViewController: UIViewController {
     let detailsView = DetailsView(frame: .zero)
     let settingsView = SettingsView()
     
+    // PartsOfPerson
+    let head = createHead()
+    let body = createBody()
+    var leftLeg = createLeftLeg()
+    var rightLeg = createRightLeg()
+    let hairCut = createHairCut()
+    
+    let toLeftLeg = moveToLeftLeg()
+    let toRightLeg = moveToRightLeg()
+    
+    
     func configureMain() {
+        
         [partsCollectionView, navigationBar, cityTextField, settingsButton, citiesButton].forEach {view.addSubview($0)}
-        [createRightLeg(), createLeftLeg(), createBody()].forEach {view.layer.addSublayer($0)}
+        [leftLeg, rightLeg, body, head, hairCut].forEach {view.layer.addSublayer($0)}
+        [createLeftSneaker(), createRightSneaker(), createRightTrouserLeg(), createLeftTrouserLeg(), createHoodie()].forEach {view.layer.addSublayer($0)}
+        
         [detailsView, citiesTableView].forEach {view.addSubview($0)}
         partsCollectionView.delegate = self
         partsCollectionView.dataSource = self
@@ -80,6 +94,7 @@ class ViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+
     
     func getDataAndUpdate(){
         if UserDefaults.standard.value(forKey: "latitude") != nil && UserDefaults.standard.value(forKey: "longitude") != nil{
@@ -147,7 +162,4 @@ class ViewController: UIViewController {
             }
         }
     }
-   
-   
-  
 }

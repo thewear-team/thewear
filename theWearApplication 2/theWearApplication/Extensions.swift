@@ -16,6 +16,11 @@ extension UIColor {
     static let color_122 = UIColor(red: 195/255, green: 205/255, blue: 222/255, alpha: 1)
     static let body = UIColor(red: 197/255, green: 153/255, blue: 116/255, alpha: 1)
     static let shadowBody = UIColor(red: 179/255, green: 137/255, blue: 102/255, alpha: 1)
+    static let sneakerColor = UIColor(red: 0.891, green: 0.891, blue: 0.891, alpha: 1)
+    static let hairCutColor = UIColor(red: 48/255, green: 47/255, blue: 47/255, alpha: 1)
+    static let trouserLegBlueColor = UIColor(red: 98/255, green: 120/255, blue: 217/255, alpha: 1)
+    static let trouserLegShadowBlueColor = UIColor(red: 76/255, green: 95/255, blue: 176/255, alpha: 1)
+    static let hoodieColor = UIColor(red: 240/255, green: 126/255, blue: 126/255, alpha: 1)
 }
 
 extension UIView {
@@ -186,6 +191,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
 }
 
+let detailsNames = ["wind", "humidity", "pressure", "uv"]
+
 extension DetailsView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -193,6 +200,7 @@ extension DetailsView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! DetailCell
+        cell.icon.image = UIImage(named: detailsNames[indexPath.row])
         if allDays.count > 0{
         switch (indexPath.row){
         case 0:
@@ -241,6 +249,7 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         } else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayCell", for: indexPath) as! DayCell
+            cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(_:))))
             if allDays.count > 0 {
                 print("codes here")
                 print(allDays[0].morningcode, allDays[0].daycode, allDays[0].eveningcode, allDays[0].nightcode)
@@ -263,12 +272,12 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if collectionView == daysCollectionView {
-            // do something else
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: daysCollectionView)
+        if let tappedIndex = daysCollectionView.indexPathForItem(at: location) {
             
-            // -------
+            // You can use tappedIndex for doing sth
+            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.frame = CGRect(x: self.detailsViewX, y: fullHeight * 0.8, width: width, height: fullHeight)
                 
@@ -288,6 +297,7 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
                 self.layer.cornerRadius = self.cornerRadiusOfDetailsView
                 }.startAnimation()
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
