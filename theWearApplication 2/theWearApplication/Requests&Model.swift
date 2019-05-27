@@ -279,9 +279,7 @@ struct OneWeatherDay {
 func loadData(currentCity : String, completion : @escaping (Data)->Void){
     var jsonUrlString = "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=\(key)&q=\(currentCity)&format=json&num_of_days=7&mca=no&tp=1&quot"
     print(jsonUrlString)
-//    jsonUrlString = jsonUrlString.replacingOccurrences(of: ",", with: "")
-//    jsonUrlString = jsonUrlString.replacingOccurrences(of: " ", with: "%20")
-    jsonUrlString = jsonUrlString.removingPercentEncoding!
+//    jsonUrlString = jsonUrlString.removingPercentEncoding!
     jsonUrlString = jsonUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     var noDiacritics = jsonUrlString.folding(options: .diacriticInsensitive, locale: .current)
     noDiacritics = noDiacritics.replacingOccurrences(of: " ", with: "%20")
@@ -301,13 +299,17 @@ func loadData(currentCity : String, completion : @escaping (Data)->Void){
     }
    //%20TÅ%C2%8DkyÅ%C2%8D,%20
 }
-func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->Void){
-    
-    let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=\(key)&q=\(cityTyped)&format=json"
+func autocomplete (cityTyped : String, completion : @escaping ([SearchResult]?)->Void){
+   
+    var newcity = cityTyped.folding(options: .diacriticInsensitive, locale: .current)
+
+    print(newcity)
+      newcity = cityTyped.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=\(key)&q=\(newcity)&format=json"
     let str = jsonUrlString.replacingOccurrences(of: " ", with: "%20")
     let url = URL(string: str)
     if url != nil{
-    let task = URLSession.shared.dataTask(with: url!){ (data,
+        let task = URLSession.shared.dataTask(with: url!){ (data,
         response, err) in
         do {
             let alldata = try
@@ -315,13 +317,14 @@ func autocomplete (cityTyped : String, completion : @escaping ([SearchResult])->
             let result = alldata.search_api.result
             completion (result)
         } catch { print("Error deserializing JSON: \(error)")
+                completion(nil)
     
         }
     }
     task.resume()
 }
 }
-func autocomplete (latitude : String, longitude : String, completion : @escaping ([SearchResult])->Void){
+func autocomplete (latitude : String, longitude : String, completion : @escaping ([SearchResult]?)->Void){
     
     let jsonUrlString = "https://api.worldweatheronline.com/premium/v1/search.ashx?key=\(key)&q=\(latitude)%20\(longitude)&format=json"
     let str = jsonUrlString.replacingOccurrences(of: " ", with: "%20")
@@ -334,7 +337,7 @@ func autocomplete (latitude : String, longitude : String, completion : @escaping
             let result = alldata.search_api.result
             completion (result)
         } catch { print("Error deserializing JSON: \(error)")
-            
+             completion(nil)
         }
     }
     task.resume()

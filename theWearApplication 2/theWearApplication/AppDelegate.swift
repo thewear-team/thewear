@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        notificationCenter?.requestAuthorization(options: .alert, completionHandler: {
+            granted, error in
+            if granted{
+                print("granted")
+            }
+        })
+        
         notificationCenter?.removeAllDeliveredNotifications()
         notificationCenter?.removeAllPendingNotificationRequests()
         window = UIWindow()
@@ -24,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = ViewController()
         return true
     }
+  
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -37,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -62,13 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             processData(data: data)
             print(data.current_condition[0].temp_C)
             configureNotifications()
-            createnoticreateNotificationAtTime(hour: 22, minute: 00, city : city, text: genereatePush(hour: 18) ?? "", back : true)
-           createnoticreateNotificationAtTime(hour: 23, minute: 30, city : city, text: genereatePush(hour: 19) ?? "", back : true)
-            createnoticreateNotificationAtTime(hour: 23, minute: 00, city : city, text: genereatePush(hour: 19) ?? "", back : true)
-             createnoticreateNotificationAtTime(hour: 23, minute: 30, city : city, text: genereatePush(hour: 19) ?? "", back : true)
-           createnoticreateNotificationAtTime(hour: 00, minute: 00, city : city, text: genereatePush(hour: 19) ?? "", back : true)
-             createnoticreateNotificationAtTime(hour: 00, minute: 30, city : city, text: genereatePush(hour: 19) ?? "", back : true)
-            createnoticreateNotificationAtTime(hour: 02, minute: 30, city : city, text: genereatePush(hour: 19) ?? "", back : true)
+            os_log("running background fetch now")
+            createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city : city, text: genereatePush(hour: hourOfPush) ?? "", back : true)
+           
             createnoticreateNotificationAtTime(hour: getCurrentHours() + 1, minute: 15, city : city, text: genereatePush(hour : getCurrentHours()) ?? "", back : true)
             
          completionHandler(.newData)

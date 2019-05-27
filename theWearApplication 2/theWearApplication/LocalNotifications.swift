@@ -10,10 +10,6 @@ import Foundation
 import UserNotifications
 
 var notificationCenter : UNUserNotificationCenter?
-//var hourOfNotification : Int = 23
-//var minuteOfNotification : Int = 14
-//var secondOfNotification : Int = 0
-
 func configureNotifications(){
     notificationCenter = UNUserNotificationCenter.current()
     let options: UNAuthorizationOptions = [.alert, .sound]
@@ -44,128 +40,102 @@ func createnoticreateNotificationAtTime(hour : Int, minute : Int, city : String,
 }
 
 
-
-//func createNotificationForNow(for city : String){
-//    let content = UNMutableNotificationContent()
-//    content.sound = UNNotificationSound.default
-//
-//    let date = Date()
-//    let calendar = Calendar.current
-//    let hour = calendar.component(.hour, from: date)
-//    let minutes = calendar.component(.minute, from: date)
-//    let seconds = calendar.component(.second, from: date)
-//
-//    var dateComponents = DateComponents()
-//    dateComponents.hour = hour
-//    dateComponents.minute = minutes
-//    dateComponents.second = seconds + 10
-//
-//    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-//    content.body = generatePushForNow(for: city)
-//    print(content.body)
-//    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-//    notificationCenter!.add(request)
-//}
-//
-//func generatePushForNow(for city : String)->String{
-//    if UserDefaults.standard.value(forKey: "currentCondition") != nil{
-//        let data = UserDefaults.standard.value(forKey: "currentCondition") as! String
-//        let parts = data.split(separator: ",")
-//        let weatherCodeInfo = statuses[String(parts[2])]
-//        let text = "Now it's \(weatherCodeInfo!.0.lowercased()) in \(city), \(parts[0])ºC, feels like \(parts[1])ºC"
-//        return text
-//    }
-//    return ""
-//
-//}
 func genereatePush(hour: Int)->String?{
     var text = ""
-   
-    switch hour {
-    case 12...23:
-        if UserDefaults.standard.value(forKey: "daysParts") != nil{
-            
-            let data = UserDefaults.standard.value(forKey: "daysParts") as! [String]
-            let currentDay = data[1]
-            let parts = currentDay.split(separator: "/")
-            let partsOfDay = parts[1].split(separator: ",")
-            let details = parts[2].split(separator: ",")
-            var status = statuses[String(partsOfDay[5])]!.0
-            status = status.lowercased()
-            var windAlert = ""
-            if Int(details[0])! > 30 {
-                windAlert = "High UV."
+   if  UserDefaults.standard.value(forKey: "daysParts") != nil{
+    let currentHour = getCurrentHours()
+    var wind = ""
+    var uv = ""
+    var tempForClothes = ""
+    var tempForMessage = ""
+    var dateString = ""
+    var status = ""
+    switch (hour){
+        case 0...11:
+            if currentHour <= hour{ //today
+                let data = UserDefaults.standard.value(forKey: "daysParts") as! [String]
+                let currentDay = data[0]
+                let parts = currentDay.split(separator: "/")
+                let dataComponents = parts[0].split(separator: "-")
+                dateString =  getDateString(month: String(dataComponents[1]), day: String(dataComponents[2]))
+                let partsOfDay = parts[1].split(separator: ",")
+                let details = parts[2].split(separator: ",")
+                status = statuses[String(partsOfDay[5])]!.0
+                status = status.lowercased()
+                wind = String(details[0])
+                uv = String(details[5])
+                tempForMessage = String(partsOfDay[3])
+                tempForClothes = String(partsOfDay[4])}
+            else{//tomorrow
+                let data = UserDefaults.standard.value(forKey: "daysParts") as! [String]
+                let currentDay = data[1]
+                let parts = currentDay.split(separator: "/")
+                let dataComponents = parts[0].split(separator: "-")
+                dateString =  getDateString(month: String(dataComponents[1]), day: String(dataComponents[2]))
+                let partsOfDay = parts[1].split(separator: ",")
+                let details = parts[2].split(separator: ",")
+                status = statuses[String(partsOfDay[5])]!.0
+                status = status.lowercased()
+                wind = String(details[0])
+                uv = String(details[5])
+                tempForMessage = String(partsOfDay[3])
+                tempForClothes = String(partsOfDay[4])
             }
-            var UVAlert = ""
-            if Int(details[5])! > 6 {
-                UVAlert = "High UV."
+//        return ""
+        case 12...24:
+            if currentHour <= hour{//tomorrow
+                let data = UserDefaults.standard.value(forKey: "daysParts") as! [String]
+                let currentDay = data[1]
+                let parts = currentDay.split(separator: "/")
+                let dataComponents = parts[0].split(separator: "-")
+                dateString =  getDateString(month: String(dataComponents[1]), day: String(dataComponents[2]))
+                let partsOfDay = parts[1].split(separator: ",")
+                let details = parts[2].split(separator: ",")
+                status = statuses[String(partsOfDay[5])]!.0
+                status = status.lowercased()
+                wind = String(details[0])
+                uv = String(details[5])
+                tempForMessage = String(partsOfDay[3])
+                tempForClothes = String(partsOfDay[4])
             }
-            print(status)
-            let clothes = getClothesComment(temp: Int(String(partsOfDay[4]))!)
-            let temp = String(partsOfDay[3])
-            if status != "partly cloudy"{
-                text = "Tomorrow: \(status) possible, the day temperature is \(temp)ºC.\(windAlert) \(UVAlert) \(clothes)"}
-            else {
-                text = "Tomorrow: \(status), the day temperature is \(temp).\(windAlert) \(UVAlert) \(clothes)"
+            else{//after tomorrow
+                let data = UserDefaults.standard.value(forKey: "daysParts") as! [String]
+                let currentDay = data[2]
+                let parts = currentDay.split(separator: "/")
+                let dataComponents = parts[0].split(separator: "-")
+                dateString =  getDateString(month: String(dataComponents[1]), day: String(dataComponents[2]))
+                let partsOfDay = parts[1].split(separator: ",")
+                let details = parts[2].split(separator: ",")
+                status = statuses[String(partsOfDay[5])]!.0
+                status = status.lowercased()
+                wind = String(details[0])
+                uv = String(details[5])
+                tempForMessage = String(partsOfDay[3])
+                tempForClothes = String(partsOfDay[4])
             }
-            return text
-        }
-    case 01...11:
-        if UserDefaults.standard.value(forKey: "daysParts") != nil{
-            
-            let data = UserDefaults.standard.value(forKey: "daysParts") as! [String]
-            let currentDay = data[0]
-            let parts = currentDay.split(separator: "/")
-            let partsOfDay = parts[1].split(separator: ",")
-            let details = parts[2].split(separator: ",")
-            var status = statuses[String(partsOfDay[5])]!.0
-            status = status.lowercased()
-            var windAlert = ""
-            if Int(details[0])! > 30 {
-                windAlert = "High UV."
-            }
-            var UVAlert = ""
-            if Int(details[5])! > 6 {
-                UVAlert = "High UV."
-            }
-            print(status)
-            let clothes = getClothesComment(temp: Int(String(partsOfDay[4]))!)
-            let temp = String(partsOfDay[3])
-            if status != "partly cloudy"{
-                text = "Today: \(status) possible, the average temperature is \(temp)ºC.\(windAlert) \(UVAlert) \(clothes)"}
-            else {
-                text = "Today: \(status), the average temperature is \(temp).\(windAlert) \(UVAlert) \(clothes)"
-            }
-            return text
-        }
     default:
-        if UserDefaults.standard.value(forKey: "daysParts") != nil{
-           
-            let data = UserDefaults.standard.value(forKey: "daysParts") as! [String]
-            let currentDay = data[0]
-            let parts = currentDay.split(separator: "/")
-            let partsOfDay = parts[1].split(separator: ",")
-            let details = parts[2].split(separator: ",")
-            var status = statuses[String(partsOfDay[5])]!.0
-            status = status.lowercased()
-            var windAlert = ""
-            if Int(details[0])! > 30 {
-                windAlert = "High UV."
-            }
-            var UVAlert = ""
-            if Int(details[5])! > 6 {
-                UVAlert = "High UV."
-            }
-            print(status)
-            let clothes = getClothesComment(temp: Int(String(partsOfDay[4]))!)
-            let temp = String(partsOfDay[3])
-            if status != "partly cloudy"{
-                text = "Today: \(status) possible, the day temperature is \(temp)ºC.\(windAlert) \(UVAlert) \(clothes)"}
-            else {
-                text = "Today: \(status), the average dat is \(temp).\(windAlert) \(UVAlert) \(clothes)"
-            }
-             return text
+        print("default in generate push")
     }
+    var windAlert = ""
+    var UVAlert = ""
+    var dot = ""
+    let clothes = getClothesComment(temp: Int(tempForClothes)!)
+    if Int(wind)! > 20{
+        windAlert = ", mind strong wind"
+    }
+    if Int(uv)! > 6 {
+        UVAlert = ", highh UV."
+    }
+    if windAlert == "" && UVAlert == "" {
+        dot = "."
+    }
+    if status != "partly cloudy" && status != "suuny"{
+            text = "\(dateString): \(status) possible, the day temperature is \(tempForMessage)ºC\(dot)\(windAlert)\(UVAlert) \(clothes)"
+        return text
+    }
+        else {
+            text = "\(dateString): \(status), the day temperature is \(tempForMessage)ºC\(dot)\(windAlert)\(UVAlert) \(clothes)"
+            return text}
     }
    return nil
 }

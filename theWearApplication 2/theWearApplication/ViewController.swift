@@ -16,12 +16,12 @@ import CoreLocation
 
 var selectedCity = ""
 var selectedDay = 0
-var hourOfPush = 11
-var minuteOfPush = 05
+var hourOfPush = 14
+var minuteOfPush = 00
 
 class ViewController: UIViewController {
-    
     var locationManager: CLLocationManager?
+    
     var latitude :  String = ""
     var longitude : String = ""
     var isOpened = false
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         configureMain()
         self.cityTextField.delegate = self
         //location
-        locationManager?.requestAlwaysAuthorization()
+      
         self.configureLocationManager()
         
         //reading previous data if exists
@@ -94,15 +94,22 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     self!.fillUIelementsWithData()
                     configureNotifications()
-                     createnoticreateNotificationAtTime(hour: 23, minute: 30, city: currentCity, text: genereatePush(hour: 23) ?? "", back: false)
+                    notificationCenter?.removeAllDeliveredNotifications()
+                    notificationCenter?.removeAllPendingNotificationRequests()
+                     createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city: currentCity, text: genereatePush(hour: hourOfPush) ?? "", back: false)
                 }
             })
             autocomplete(latitude: latitude, longitude: longitude, completion: {
                 [weak self] data in
-                let currentGeoPositionName = data[0].areaName[0].value + ", " + data[0].region[0].value + ", " + data[0].country[0].value
+                if data != nil{
+                    let currentGeoPositionName = data![0].areaName[0].value + ", " + data![0].region[0].value + ", " + data![0].country[0].value
                 currentCity = currentGeoPositionName
                 DispatchQueue.main.async {
                      self!.cityTextField.text = currentGeoPositionName
+                }
+                }
+                else{
+                    self!.createGeoAlert()
                 }
             })
         } else{
@@ -113,8 +120,9 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 self!.fillUIelementsWithData()
                 configureNotifications()
-                configureNotifications()
-                createnoticreateNotificationAtTime(hour: 23, minute: 30, city: currentCity, text: genereatePush(hour: 23) ?? "", back: false)
+                notificationCenter?.removeAllDeliveredNotifications()
+                notificationCenter?.removeAllPendingNotificationRequests()
+                createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city: currentCity, text: genereatePush(hour: hourOfPush) ?? "", back: false)
                 
             }
         })

@@ -372,13 +372,18 @@ extension ViewController : UITextFieldDelegate{
     }
     
     func handleSearchOfCity(city : String?) {
-        print("ended")
+        print("ended")    
+        print(city)
         if city != nil {
             autocomplete(cityTyped: city!, completion: {
                 [weak self] results in
                 allCities = []
-                for result in results{
-                    allCities.append(result.areaName[0].value + ", " +  result.region[0].value + ", " + result.country[0].value)
+                if results != nil{
+                    for result in results!{
+                    allCities.append(result.areaName[0].value  + ", " + result.country[0].value)
+                    }
+                }else{
+                    self!.createCityInputAlert()
                 }
                 DispatchQueue.main.async{
                     self?.citiesTableView.reloadData()
@@ -480,9 +485,45 @@ extension ViewController{
         print("WIL APPEAR")
         retrieveDataAndUpdate()
     }
+
     override func viewDidAppear(_ animated: Bool) {
         fillUIelementsWithData()
     }
+    func createCityInputAlert(){
+        let alert = UIAlertController(title: "Something went wrong...", message: "Sorry, no matching cities found. Avoid using diacritics, please.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+                
+                
+            }}))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func createGeoAlert(){
+        let alert = UIAlertController(title: "Something went wrong...", message: "Sorry, impossible to get your location. Please, use city search instead.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+                
+                
+            }}))
+        self.present(alert, animated: true, completion: nil)
+    }
+
 }
 
 
