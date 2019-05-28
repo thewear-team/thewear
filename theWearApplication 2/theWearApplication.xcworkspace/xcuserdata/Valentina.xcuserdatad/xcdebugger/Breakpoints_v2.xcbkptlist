@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.513512"
+            timestampString = "580766259.817008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.513629"
+            timestampString = "580766259.81753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
             endingLineNumber = "46"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.513729"
+            timestampString = "580766259.817858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
@@ -58,39 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Data&amp;Methods.swift"
-            timestampString = "580461128.448221"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "processData(data:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "theWearApplication/Data&amp;Methods.swift"
-            timestampString = "580461128.448366"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "processData(data:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "theWearApplication/Data&amp;Methods.swift"
-            timestampString = "580461128.4484839"
+            timestampString = "580766259.81822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
@@ -106,7 +74,55 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Data&amp;Methods.swift"
-            timestampString = "580461128.448597"
+            timestampString = "580766259.818275"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "processData(data:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/Data&amp;Methods.swift"
+            timestampString = "580766259.818342"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "processData(data:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/Data&amp;Methods.swift"
+            timestampString = "580766259.8184071"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "processData(data:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/Data&amp;Methods.swift"
+            timestampString = "580766259.818451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
@@ -121,24 +137,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "theWearApplication/Data&amp;Methods.swift"
-            timestampString = "580461128.448754"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "processData(data:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.51398"
+            timestampString = "580766259.8184969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.514058"
+            timestampString = "580766259.8188159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
@@ -202,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.514122"
+            timestampString = "580766259.819129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -218,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.514201"
+            timestampString = "580765139.024947"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "279"
@@ -234,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.514262"
+            timestampString = "580765139.024984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "300"
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Data&amp;Methods.swift"
-            timestampString = "580461128.450498"
+            timestampString = "580766259.819481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "processData(data:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Data&amp;Methods.swift"
-            timestampString = "580461128.450569"
+            timestampString = "580766259.819527"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "retrieveDataAndUpdate()"
             landmarkType = "9">
          </BreakpointContent>
@@ -282,12 +282,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Data&amp;Methods.swift"
-            timestampString = "580461128.450637"
+            timestampString = "580766259.819567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "processData(data:)"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "retrieveDataAndUpdate()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.51436"
+            timestampString = "580766259.819625"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,39 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.514412"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.514466"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.514552"
+            timestampString = "580766259.819693"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -361,8 +329,40 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "theWearApplication/ViewController.swift"
+            timestampString = "580766259.8197401"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/ViewController.swift"
+            timestampString = "580766259.819787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.5146199"
+            timestampString = "580765139.0262311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "291"
@@ -378,7 +378,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.514677"
+            timestampString = "580765139.026273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "294"
@@ -456,7 +456,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.514729"
+            timestampString = "580765139.02631"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "349"
@@ -472,7 +472,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.514788"
+            timestampString = "580765139.026345"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "352"
@@ -550,7 +550,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.514842"
+            timestampString = "580765139.026379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "278"
@@ -566,12 +566,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.514894"
+            timestampString = "580766259.819914"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
+            landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -582,12 +582,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.514969"
+            timestampString = "580766259.8202339"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
-            landmarkName = "handleSearchOfCity(city:)"
+            startingLineNumber = "391"
+            endingLineNumber = "391"
+            landmarkName = "textFieldShouldReturn(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -598,7 +598,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/LocalNotifications.swift"
-            timestampString = "580644683.515043"
+            timestampString = "580766045.586532"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -614,7 +614,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/LocalNotifications.swift"
-            timestampString = "580644683.515094"
+            timestampString = "580766045.586569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "140"
@@ -630,7 +630,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/LocalNotifications.swift"
-            timestampString = "580644683.515149"
+            timestampString = "580766045.586604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "140"
@@ -646,7 +646,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.515206"
+            timestampString = "580765139.026564"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "310"
@@ -662,11 +662,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.515275"
+            timestampString = "580766259.820587"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -678,11 +678,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.5153331"
+            timestampString = "580766259.820868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -694,7 +694,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/LocalNotifications.swift"
-            timestampString = "580644683.515422"
+            timestampString = "580766045.5867521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
@@ -710,13 +710,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.515478"
+            timestampString = "580766259.8211581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
-            landmarkType = "7">
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "DetailsView"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -726,11 +726,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.515538"
+            timestampString = "580766259.82151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "collectionView(_:willDisplay:forItemAt:)"
             landmarkType = "7">
             <Locations>
@@ -774,12 +774,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.515599"
+            timestampString = "580766259.821806"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "getDataAndUpdate()"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -790,7 +790,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/AppDelegate.swift"
-            timestampString = "580644683.515723"
+            timestampString = "580766259.82188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
@@ -806,7 +806,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.5157861"
+            timestampString = "580765139.0270621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "280"
@@ -822,7 +822,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/AppDelegate.swift"
-            timestampString = "580644683.515842"
+            timestampString = "580766259.821937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -838,11 +838,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.5158989"
+            timestampString = "580766259.8219759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "getDataAndUpdate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -854,7 +854,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/AppDelegate.swift"
-            timestampString = "580644683.51598"
+            timestampString = "580766259.822023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -870,7 +870,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/LocalNotifications.swift"
-            timestampString = "580644683.516028"
+            timestampString = "580766045.587423"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -886,7 +886,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/LocalNotifications.swift"
-            timestampString = "580644683.51621"
+            timestampString = "580766045.587461"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "140"
@@ -902,12 +902,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.516253"
+            timestampString = "580766259.822084"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "getDataAndUpdate()"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -918,7 +918,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.516541"
+            timestampString = "580765139.027586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "286"
@@ -934,7 +934,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.516629"
+            timestampString = "580765139.027624"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "285"
@@ -950,7 +950,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/AppDelegate.swift"
-            timestampString = "580644683.516698"
+            timestampString = "580766259.822174"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
@@ -966,12 +966,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.516782"
+            timestampString = "580766259.822229"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "485"
-            endingLineNumber = "485"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "494"
+            endingLineNumber = "494"
+            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -982,12 +982,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.5168689"
+            timestampString = "580766259.822538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "490"
-            endingLineNumber = "490"
-            landmarkName = "viewDidAppear(_:)"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
+            landmarkName = "collectionView(_:layout:minimumLineSpacingForSectionAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -998,7 +998,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/AppDelegate.swift"
-            timestampString = "580644683.516948"
+            timestampString = "580766259.822827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -1046,13 +1046,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.5169981"
+            timestampString = "580766259.822886"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "getDataAndUpdate()"
-            landmarkType = "7">
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "ViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1062,11 +1062,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.517074"
+            timestampString = "580766259.822935"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "getDataAndUpdate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1078,7 +1078,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/AppDelegate.swift"
-            timestampString = "580644683.51713"
+            timestampString = "580766259.822981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -1094,43 +1094,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.517171"
+            timestampString = "580766259.823017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "getDataAndUpdate()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.51724"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "getDataAndUpdate()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.517323"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1141,13 +1109,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.517401"
+            filePath = "theWearApplication/ViewController.swift"
+            timestampString = "580766259.823079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
-            landmarkName = "configureLocationManager()"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/ViewController.swift"
+            timestampString = "580766259.823126"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "configureMain()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1158,12 +1142,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.517451"
+            timestampString = "580766259.823187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
-            landmarkName = "configureLocationManager()"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
+            landmarkName = "DetailsView"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/Extensions.swift"
+            timestampString = "580766259.823489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1174,7 +1174,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Requests&amp;Model.swift"
-            timestampString = "580644683.5174969"
+            timestampString = "580765139.028975"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "306"
@@ -1190,12 +1190,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/Extensions.swift"
-            timestampString = "580644683.517571"
+            timestampString = "580766259.823855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "484"
-            endingLineNumber = "484"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "493"
+            endingLineNumber = "493"
+            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1206,12 +1206,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/ViewController.swift"
-            timestampString = "580644683.51762"
+            timestampString = "580766259.824145"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "configureMain()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1222,7 +1222,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/LocalNotifications.swift"
-            timestampString = "580644683.517665"
+            timestampString = "580766045.58944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "133"
@@ -1238,13 +1238,125 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApplication/LocalNotifications.swift"
-            timestampString = "580644683.517745"
+            timestampString = "580766045.589476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
             endingLineNumber = "137"
             landmarkName = "genereatePush(hour:)"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/Extensions.swift"
+            timestampString = "580766259.824224"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "collectionView(_:willDisplay:forItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/Extensions.swift"
+            timestampString = "580766259.82449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "509"
+            endingLineNumber = "509"
+            landmarkName = "handleDayChange(_sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/Extensions.swift"
+            timestampString = "580766259.824754"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "510"
+            endingLineNumber = "510"
+            landmarkName = "handleDayChange(_sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/Extensions.swift"
+            timestampString = "580766259.825091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
+            landmarkName = "handleDayChange(_sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/Extensions.swift"
+            timestampString = "580766259.825363"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "507"
+            endingLineNumber = "507"
+            landmarkName = "handleDayChange(_sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/ViewController.swift"
+            timestampString = "580766259.825633"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApplication/ViewController.swift"
+            timestampString = "580766259.825685"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

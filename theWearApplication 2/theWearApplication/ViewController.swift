@@ -15,8 +15,15 @@ import UIKit
 import CoreLocation
 
 var selectedCity = ""
-var selectedDay = 0
-var hourOfPush = 14
+var selectedDay :Int = 0  {
+    willSet(newvalue){
+        NotificationCenter.default.post(Notification(name: dayChangedName))
+        print("SELECTED DAY NOW IS \(newvalue)")
+       
+    }
+}
+var selectedPartOfDay : Int = partOfDayNow
+var hourOfPush = 23
 var minuteOfPush = 00
 
 class ViewController: UIViewController {
@@ -64,8 +71,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //determining part of the day
         determinePartOfDay()
+        setObserverOnDaySelection()
         view.backgroundColor = .white
         configureMain()
         self.cityTextField.delegate = self
@@ -152,9 +161,9 @@ class ViewController: UIViewController {
             self.partsCollectionView.reloadData()
             self.detailsView.daysCollectionView.reloadData()
             self.detailsView.hoursCollectionView.reloadData()
-            self.detailsView.nowTemperature.text = "\(currentCondition.0)°С"
-            self.detailsView.nowFeelsLike.text = "Feels like \(currentCondition.1)°С"
-            self.detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
+//            self.detailsView.nowTemperature.text = "\(currentCondition.0)°С"
+//            self.detailsView.nowFeelsLike.text = "Feels like \(currentCondition.1)°С"
+//            self.detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
             self.detailsView.nowCondition.text = statuses[currentCondition.2]?.0
             if allDays.count != 0{
                 self.detailsView.detailsTableView.reloadData()
@@ -162,4 +171,5 @@ class ViewController: UIViewController {
             }
         }
     }
+   
 }

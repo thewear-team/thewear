@@ -105,7 +105,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return 4
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+       
         if allDays.count > 0 {
+            if indexPath.row == partOfDayNow && selectedDay == 0{
+                //if now
+                detailsView.nowCondition.text = statuses[currentCondition.2]?.0
+                detailsView.nowTemperature.text = currentCondition.0 + "ºC"
+                detailsView.nowFeelsLike.text =  "Feels like " + currentCondition.1 + "ºC"
+                detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
+            }else{
         switch(indexPath.row){
         case 0 :
             detailsView.nowCondition.text = statuses[allDays[selectedDay].morningcode]?.0
@@ -145,6 +153,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         default :
             detailsView.nowCondition.text = "now condition"
             }
+            }
         }
     }
     
@@ -154,17 +163,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             var code = ""
             switch(indexPath.row){
             case 0 :
-                code = allDays[0].morningcode
+                code = allDays[selectedDay].morningcode
             case 1 :
-                code = allDays[0].daycode
+                code = allDays[selectedDay].daycode
             case 2 :
-                code = allDays[0].eveningcode
+                code = allDays[selectedDay].eveningcode
             case 3 :
-//                if allDays[0].nightcode != nil{
-//                    code = allDays[0].nightcode!}
-//                else {
-//                    code = "113"
-//                }
                 code = "000"
             default :
                 code = "113"
@@ -175,6 +179,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 let color = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
                 cell.backgroundColor = color
                 partsCollectionView.backgroundColor = color
+                
             }
             
         }else {
@@ -277,6 +282,10 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         if let tappedIndex = daysCollectionView.indexPathForItem(at: location) {
             
             // You can use tappedIndex for doing sth
+            selectedDay = tappedIndex.row
+            NotificationCenter.default.post(name: dayChangedName, object: selectedDay)
+            print(selectedDay)
+            
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.frame = CGRect(x: self.detailsViewX, y: fullHeight * 0.8, width: width, height: fullHeight)
@@ -491,6 +500,18 @@ extension SettingsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
 }
 extension ViewController{
+    func setObserverOnDaySelection(){
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDayChange(_sender:)), name: dayChangedName, object: nil)
+    }
+    
+    @objc func handleDayChange(_sender : Any){
+        print("NEW DAY IS \(selectedDay)")
+        self.fillUIelementsWithData()
+        self.partsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+        }
+        
+
+
     override func viewWillAppear(_ animated: Bool) {
         print("WIL APPEAR")
         retrieveDataAndUpdate()
