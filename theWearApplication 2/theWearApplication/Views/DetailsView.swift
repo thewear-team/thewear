@@ -70,9 +70,11 @@ class DetailsView: UIView {
         nowFeelsLike.isUserInteractionEnabled = false
         
         nowCondition.text = "Sunny"
+        
         nowCondition.textContainerInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         nowCondition.font = UIFont.systemFont(ofSize: fontForAdditional, weight: .regular)
         nowCondition.textColor = .gray
+        nowCondition.textContainer.maximumNumberOfLines = 2
         nowCondition.isScrollEnabled = false
         nowCondition.isUserInteractionEnabled = false
         

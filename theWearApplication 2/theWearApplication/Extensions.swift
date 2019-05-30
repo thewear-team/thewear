@@ -109,8 +109,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         if allDays.count > 0 {
             if indexPath.row == partOfDayNow && selectedDay == 0{
                 //if now
-                detailsView.nowCondition.text = statuses[currentCondition.2]?.0
-                detailsView.nowTemperature.text = currentCondition.0 + "ºC"
+                if (getCurrentHours() > 22 || getCurrentHours() < 4) &&  statuses[currentCondition.2]?.0 == "Sunny"{
+                    detailsView.nowCondition.text = "Clear"
+                }else{
+                    detailsView.nowCondition.text = statuses[currentCondition.2]?.0}
+                detailsView.nowTemperature.text = currentCondition.0 + "ºC now"
                 detailsView.nowFeelsLike.text =  "Feels like " + currentCondition.1 + "ºC"
                 detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
             }else{
@@ -134,7 +137,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
       
         case 3 :
             if allDays[selectedDay].nightcode != nil {
-                detailsView.nowCondition.text = statuses[allDays[selectedDay].nightcode!]?.0
+                if statuses[allDays[selectedDay].nightcode!]?.0 == "Sunny"{
+                     detailsView.nowCondition.text = "Clear"
+                } else{
+                    detailsView.nowCondition.text = statuses[allDays[selectedDay].nightcode!]?.0}
                 detailsView.nowTemperature.text = allDays[selectedDay].nighttemp! + "ºC"
                 detailsView.nowFeelsLike.text = "Feels like " + allDays[selectedDay].nightfeelslike! + "ºC"
                 detailsView.temperatureImageView.image = UIImage(named: "000")
@@ -256,8 +262,6 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayCell", for: indexPath) as! DayCell
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(_:))))
             if allDays.count > 0 {
-                print("codes here")
-                print(allDays[0].morningcode, allDays[0].daycode, allDays[0].eveningcode, allDays[0].nightcode)
                 let colorComponents = statuses[allDays[indexPath.row].daycode]
                 if colorComponents != nil {
                     if indexPath.row != 3 {
@@ -265,13 +269,16 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
                          cell.substrateView.backgroundColor = color
                     }
                 }
-                cell.day.text = allDays[indexPath.row].date
+                let dateResult = getNameOfDay(dateString: allDays[indexPath.row].date)
+                cell.day.text = dateResult ?? allDays[indexPath.row].date
                 cell.icon.image = UIImage(named: allDays[indexPath.row].daycode)
                 cell.temperature.text = allDays[indexPath.row].daytemp
+                cell.nightTemperature.text = allDays[indexPath.row].nighttemp ?? "-"
             } else {
-            cell.day.text = "Tuesday,\nJuly, 13"
+            cell.day.text = "---"
             cell.icon.image = UIImage(named: "sun")
-            cell.temperature.text = "23°C"
+            cell.temperature.text = "-"
+            cell.nightTemperature.text =  "-"
             }
             return cell
         }
@@ -482,10 +489,12 @@ extension SettingsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.notificationsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.6 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
+                self.datePicker.isEnabled = true
             } else {
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.notificationsChooseView.frame = CGRect(x: width / 2 + buttonSize + self.genderSegmentedControl.frame.width / 2, y: fullHeight * 0.6 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
+                self.datePicker.isEnabled = false
             }
         }
     }
@@ -502,15 +511,23 @@ extension SettingsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
 extension ViewController{
     func setObserverOnDaySelection(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleDayChange(_sender:)), name: dayChangedName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadUiAfterInactive(_sender:)), name: afterInactive, object: nil)
+    }
+    @objc func reloadUiAfterInactive(_sender : Any){
+        configureMain()
+        retrieveDataAndUpdate()
+        self.fillUIelementsWithData()
     }
     
     @objc func handleDayChange(_sender : Any){
         print("NEW DAY IS \(selectedDay)")
         self.fillUIelementsWithData()
+        if selectedDay == 0{
+                self.partsCollectionView.scrollToItem(at: IndexPath(item: partOfDayNow, section: 0), at: .left, animated: true)
+        }else{
         self.partsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
-        }
-        
-
+        }}
+    
 
     override func viewWillAppear(_ animated: Bool) {
         print("WIL APPEAR")

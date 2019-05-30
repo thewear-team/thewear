@@ -49,4 +49,19 @@ func getDateString(month : String, day : String)->String{
     return daterString
     
 }
+func getNameOfDay(dateString : String)->String?{
+    let date = Date()
+    let parts = dateString.split(separator: "-")
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyy-MM-dd"
+    guard let newDate = dateFormatter.date(from: dateString) else {
+        print("Error while converting the date")
+        return nil
+        
+    }
+    dateFormatter.dateFormat = "E, d MMM"
+    let currentDateString: String = dateFormatter.string(from: newDate)
+    return currentDateString
+}
 

@@ -96,7 +96,7 @@ class ViewController: UIViewController {
         getDataAndUpdate()
         //
        
-        print(codesHours)//here for the first time still previous codes
+//        print(codesHours)//here for the first time still previous codes
    
     }
     
@@ -130,7 +130,7 @@ class ViewController: UIViewController {
                 currentCity = currentGeoPositionName
                 DispatchQueue.main.async {
                      self!.cityTextField.text = currentGeoPositionName
-                }
+                    }
                 }
                 else{
                     self!.createGeoAlert()

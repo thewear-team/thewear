@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
  let dayChangedName = Notification.Name("dayChanged")
+ let afterInactive = Notification.Name("afterInactive")
 
 var currentCity  = "Moscow"
 var hourNow : Int = 0

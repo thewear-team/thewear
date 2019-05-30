@@ -48,6 +48,14 @@ class SettingsView: NSObject {
         return label
     }()
     
+    let datePickerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "At time"
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        return label
+    }()
+    
     let tempsSegmentedControl: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -119,6 +127,13 @@ class SettingsView: NSObject {
         cv.isScrollEnabled = false
         return cv
     }()
+    let datePicker: UIDatePicker = {
+       let picker = UIDatePicker()
+        picker.datePickerMode = .time
+        
+        return picker
+    }()
+   
     
     let notificationsChooseView = UIView()
     
@@ -195,12 +210,13 @@ class SettingsView: NSObject {
         [substrateView].forEach {keyWindow.addSubview($0)}
         substrateView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:))))
         substrateView.frame = CGRect(x: 0, y: fullHeight, width: width, height: fullHeight - bottom)
-        [tempLabel, pressureLabel, windSpeedLabel, tempsSegmentedControl, pressureSegmentedControl, windSpeedSegmentedControl, tempsChooseView, pressureChooseView, windSpeedChooseView, genderLabel, genderSegmentedControl, genderChooseView, notificationsLabel, notificationsSegmentedControl, notificationsChooseView].forEach {substrateView.addSubview($0)}
+        [tempLabel, pressureLabel, windSpeedLabel, datePickerLabel, tempsSegmentedControl, pressureSegmentedControl, windSpeedSegmentedControl, tempsChooseView, pressureChooseView, windSpeedChooseView, genderLabel, genderSegmentedControl, genderChooseView, notificationsLabel, notificationsSegmentedControl, notificationsChooseView, datePicker].forEach {substrateView.addSubview($0)}
         tempLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.1, width: width / 2, height: buttonSize)
         pressureLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.2, width: width / 2, height: buttonSize)
         windSpeedLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.3, width: width / 2, height: buttonSize)
         genderLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.45, width: width / 2, height: buttonSize)
         notificationsLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.6, width: width / 2, height: buttonSize)
+        datePickerLabel.frame = CGRect(x: buttonSize, y: fullHeight * 0.7, width: width / 2, height: buttonSize)
         
         tempsSegmentedControl.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.1, width: width - width / 2 - buttonSize * 2, height: buttonSize)
         tempsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.1 + buttonSize, width: tempsSegmentedControl.frame.width / 2, height: 5)
@@ -216,6 +232,9 @@ class SettingsView: NSObject {
         
         notificationsSegmentedControl.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.6, width: width - width / 2 - buttonSize * 2, height: buttonSize)
         notificationsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.6 + buttonSize, width: tempsSegmentedControl.frame.width / 2, height: 5)
+        
+       
+        datePicker.frame =  CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.7 - 5, width: width - width / 2 - buttonSize * 2, height: buttonSize + 10)
     }
     
     override init() {

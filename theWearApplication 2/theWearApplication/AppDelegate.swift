@@ -12,10 +12,11 @@ import os
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var appViewController : ViewController = ViewController()
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        appViewController = ViewController()
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         notificationCenter?.requestAuthorization(options: .alert, completionHandler: {
             granted, error in
@@ -29,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         configurePaddingsAndFrame()
-        window?.rootViewController = ViewController()
+        window?.rootViewController =  ViewController()
         return true
     }
   
@@ -46,11 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+      
         
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-       
+
+         NotificationCenter.default.post(Notification(name: afterInactive))
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
