@@ -8,24 +8,8 @@
 
 import Foundation
 import UIKit
- let dayChangedName = Notification.Name("dayChanged")
- let afterInactive = Notification.Name("afterInactive")
+ 
 
-var currentCity  = "Moscow"
-var hourNow : Int = 0
-var partOfDayNow : Int = 0
-var demoCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
-var standartCities = ["Washington", "New-York", "Istanbul", "Moscow", "Saint-Petersburg", "Novgorod", "London", "Budapest", "Utah", "Amsterdam", "Paris", "Rome", "Barcelona", "Madrid"]
-
-var demoHours : [String] = ["00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","00:00", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00", "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
-
-var demoTemp  : [String] = [] // for output /temps by hours
-var codesHours  : [String] = [] //for output /codes by hours
-var currentCondition = ("", "", "") //for output/ current (temp, feelslike, code)
-var allDays : [OneWeatherDay] = [] //contain 7 days by parts + details
-var demoDays : [String] = [] // for output
-var lastCity = ""
-var allCities : [String] = []
 // 000 - night code
 func determinePartOfDay(){
     let time = Date()
@@ -58,7 +42,7 @@ func retrieveDataAndUpdate(){
             
             let parts = hour.split(separator: " ")
             print(parts)
-            demoTemp.append(String(parts[0]) + "°С" )
+            demoTemp.append(String(parts[0])  )
             codesHours.append(String(parts[1]))
         }
     }
@@ -143,7 +127,7 @@ func processData(data : Data){
     codesHours = []
     for hour in hours {
         var parts = hour.split(separator: " ")
-        demoTemp.append(String(parts[0]) + "°С" )
+        demoTemp.append(String(parts[0]))
         codesHours.append(String(parts[1]))
     }
     print(codesHours)

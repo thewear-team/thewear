@@ -56,20 +56,20 @@ class DetailsView: UIView {
         
         temperatureImageView.image = UIImage(named: "sun")
         
-        nowTemperature.text = "23°C"
+        nowTemperature.text = "--°C"
         nowTemperature.textContainerInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         nowTemperature.font = UIFont.systemFont(ofSize: fontForNowTemperature, weight: .medium)
         nowTemperature.isScrollEnabled = false
         nowTemperature.isUserInteractionEnabled = false
         
-        nowFeelsLike.text = "Feels like 21°C"
+        nowFeelsLike.text = "Feels like --°C"
         nowFeelsLike.textContainerInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         nowFeelsLike.font = UIFont.systemFont(ofSize: fontForAdditional, weight: .regular)
         nowFeelsLike.textColor = .gray
         nowFeelsLike.isScrollEnabled = false
         nowFeelsLike.isUserInteractionEnabled = false
         
-        nowCondition.text = "Sunny"
+        nowCondition.text = "=="
         
         nowCondition.textContainerInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         nowCondition.font = UIFont.systemFont(ofSize: fontForAdditional, weight: .regular)
@@ -92,6 +92,7 @@ class DetailsView: UIView {
         daysCollectionView.dataSource = self
         daysCollectionView.register(DayCell.self, forCellWithReuseIdentifier: "dayCell")
         daysCollectionView.frame = CGRect(x: 0, y: 0.75 * fullHeight, width: width, height: 0.2 * fullHeight)
+        
     }
     
     override init(frame: CGRect) {
@@ -130,6 +131,11 @@ class DetailsView: UIView {
                 self.detailsViewIsOpened = true
             }
         }, completion: nil)
+        
+        self.detailsTableView.reloadData()
+        self.daysCollectionView.reloadData()
+        self.hoursCollectionView.reloadData()
+    
     }
     
     @objc func handleDetailsViewPan(_ recognizer: UIPanGestureRecognizer) {
@@ -204,6 +210,10 @@ class DetailsView: UIView {
                     }.startAnimation()
             }
         }
+        self.detailsTableView.reloadData()
+        self.daysCollectionView.reloadData()
+        self.hoursCollectionView.reloadData()
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

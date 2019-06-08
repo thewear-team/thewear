@@ -113,26 +113,26 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                     detailsView.nowCondition.text = "Clear"
                 }else{
                     detailsView.nowCondition.text = statuses[currentCondition.2]?.0}
-                detailsView.nowTemperature.text = currentCondition.0 + "ºC now"
-                detailsView.nowFeelsLike.text =  "Feels like " + currentCondition.1 + "ºC"
+                detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(currentCondition.0)!) + "\(tempUnit) now"
+                detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(currentCondition.1)!)  + tempUnit
                 detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
             }else{
         switch(indexPath.row){
         case 0 :
             detailsView.nowCondition.text = statuses[allDays[selectedDay].morningcode]?.0
-            detailsView.nowTemperature.text = allDays[selectedDay].morningtemp + "ºC"
-            detailsView.nowFeelsLike.text =  "Feels like " + allDays[selectedDay].morningfeelslike + "ºC"
+            detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].morningtemp)!) + tempUnit
+            detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].morningfeelslike)!) + tempUnit
             detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].morningcode)
         case 1 :
             detailsView.nowCondition.text = statuses[allDays[selectedDay].daycode]?.0
-            detailsView.nowTemperature.text = allDays[selectedDay].daytemp + "ºC"
-            detailsView.nowFeelsLike.text = "Feels like " + allDays[selectedDay].dayfeelslike + "ºC"
+            detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].daytemp)!) + tempUnit
+            detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].dayfeelslike)!) + tempUnit
             detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].daycode)
       
         case 2 :
             detailsView.nowCondition.text = statuses[allDays[selectedDay].eveningcode]?.0
-            detailsView.nowTemperature.text = allDays[selectedDay].eveningtemp + "ºC"
-            detailsView.nowFeelsLike.text = "Feels like " + allDays[selectedDay].eveningfeelslike + "ºC"
+            detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].eveningtemp)!) + tempUnit
+            detailsView.nowFeelsLike.text = "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].eveningfeelslike)!) + tempUnit
             detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].eveningcode)
       
         case 3 :
@@ -141,8 +141,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                      detailsView.nowCondition.text = "Clear"
                 } else{
                     detailsView.nowCondition.text = statuses[allDays[selectedDay].nightcode!]?.0}
-                detailsView.nowTemperature.text = allDays[selectedDay].nighttemp! + "ºC"
-                detailsView.nowFeelsLike.text = "Feels like " + allDays[selectedDay].nightfeelslike! + "ºC"
+                detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].nighttemp!)!) + tempUnit
+                detailsView.nowFeelsLike.text = "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].nightfeelslike!)!) + tempUnit
                 detailsView.temperatureImageView.image = UIImage(named: "000")
             }
             else{
@@ -215,11 +215,21 @@ extension DetailsView: UITableViewDelegate, UITableViewDataSource {
         if allDays.count > 0{
         switch (indexPath.row){
         case 0:
-            cell.name.text = allDays[selectedDay].wind + " m/s"
+            if windUnit == "m/s"{
+                let windNumMS = Int(round(Double(allDays[selectedDay].wind)! * 0.2778))
+                  cell.name.text = String(windNumMS) + " m/s"
+            }
+            else{
+                  cell.name.text = allDays[selectedDay].wind + " km/h"
+            }
         case 1:
             cell.name.text = allDays[selectedDay].humidity + "%"
         case 2:
-            cell.name.text = allDays[selectedDay].pressure + " mm Hg"
+            if pressureUnit == "mmHg"{
+                let pressureNumMMHG = Int(round(Double(allDays[selectedDay].pressure)! * 0.750062))
+                cell.name.text = String(pressureNumMMHG) + " mmHg"
+            }else{
+                cell.name.text = allDays[selectedDay].pressure + "hPa"}
         case 3:
             cell.name.text = "UV: " + allDays[selectedDay].uv
         default :
@@ -249,12 +259,12 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourCell", for: indexPath) as! HourCell
             if demoTemp.count > 0 && codesHours.count > 0{
                 cell.hour.text = demoHours[indexPath.row]
-                cell.temperature.text = demoTemp[indexPath.row]
+                cell.temperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(demoTemp[indexPath.row])!) + tempUnit
                 cell.icon.image = UIImage(named: codesHours[indexPath.row])
             } else{
             cell.hour.text = "10:00"
             cell.icon.image = UIImage(named: "sun")
-            cell.temperature.text = "23°C"
+            cell.temperature.text = "--°C"
             }
             return cell
         } else {
@@ -272,8 +282,11 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
                 let dateResult = getNameOfDay(dateString: allDays[indexPath.row].date)
                 cell.day.text = dateResult ?? allDays[indexPath.row].date
                 cell.icon.image = UIImage(named: allDays[indexPath.row].daycode)
-                cell.temperature.text = allDays[indexPath.row].daytemp
-                cell.nightTemperature.text = allDays[indexPath.row].nighttemp ?? "-"
+                cell.temperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[indexPath.row].daytemp)!)
+                if allDays[indexPath.row].nighttemp != nil{
+                     cell.nightTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[indexPath.row].nighttemp!)!)
+                }else{
+                    cell.nightTemperature.text = allDays[indexPath.row].nighttemp ?? "-"}
             } else {
             cell.day.text = "---"
             cell.icon.image = UIImage(named: "sun")
@@ -400,6 +413,7 @@ extension ViewController : UITextFieldDelegate{
     func handleSearchOfCity(city : String?) {
         print("ended")    
         print(city)
+        if Reachability.isInternetAvailable(){
         if city != nil {
             autocomplete(cityTyped: city!, completion: {
                 [weak self] results in
@@ -415,6 +429,9 @@ extension ViewController : UITextFieldDelegate{
                     self?.citiesTableView.reloadData()
                 }
             })
+        }
+        }else{
+            createInternetAlert()
         }
     }
 }
@@ -449,40 +466,56 @@ extension SettingsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.tempsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.1 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
+                tempUnit = "ºC"
+                UserDefaults.standard.set("ºC", forKey: "temperature")
             } else {
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.tempsChooseView.frame = CGRect(x: width / 2 + buttonSize + self.tempsSegmentedControl.frame.width / 2, y: fullHeight * 0.1 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
+                tempUnit = "ºF"
+                UserDefaults.standard.set("ºF", forKey: "temperature")
             }
         } else if collectionView == pressureSegmentedControl {
             if indexPath.item == 0 {
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.pressureChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.2 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
+                pressureUnit = "hPa"
+                UserDefaults.standard.set("hPa", forKey: "pressure")
             } else {
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.pressureChooseView.frame = CGRect(x: width / 2 + buttonSize + self.tempsSegmentedControl.frame.width / 2, y: fullHeight * 0.2 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
+                pressureUnit = "mmHg"
+                UserDefaults.standard.set("mmHg", forKey: "pressure")
             }
         } else if collectionView == windSpeedSegmentedControl {
             if indexPath.item == 0 {
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.windSpeedChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.3 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
+                windUnit = "km/h"
+                UserDefaults.standard.set("km/h", forKey: "wind")
             } else {
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.windSpeedChooseView.frame = CGRect(x: width / 2 + buttonSize + self.tempsSegmentedControl.frame.width / 2, y: fullHeight * 0.3 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
+                windUnit = "m/s"
+                UserDefaults.standard.set("m/s", forKey: "wind")
             }
         } else if collectionView == genderSegmentedControl {
             if indexPath.item == 0 {
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.genderChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.45 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
+                gender = "man"
+                UserDefaults.standard.set("man", forKey: "gender")
             } else {
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.genderChooseView.frame = CGRect(x: width / 2 + buttonSize + self.genderSegmentedControl.frame.width / 2, y: fullHeight * 0.45 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
+                 gender = "woman"
+                UserDefaults.standard.set("woman", forKey: "gender")
             }
         } else {
             if indexPath.item == 0 {
@@ -490,11 +523,16 @@ extension SettingsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
                     self.notificationsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.6 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
                 self.datePicker.isEnabled = true
+                UserDefaults.standard.set(true , forKey: "notifications")
+                
             } else {
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.notificationsChooseView.frame = CGRect(x: width / 2 + buttonSize + self.genderSegmentedControl.frame.width / 2, y: fullHeight * 0.6 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
                 }, completion: nil)
                 self.datePicker.isEnabled = false
+                    UserDefaults.standard.set(false , forKey: "notifications")
+                notificationCenter?.removeAllPendingNotificationRequests()
+                notificationCenter?.removeAllDeliveredNotifications()
             }
         }
     }
@@ -536,6 +574,9 @@ extension ViewController{
 
     override func viewDidAppear(_ animated: Bool) {
         fillUIelementsWithData()
+        if !Reachability.isInternetAvailable(){
+            createInternetAlert()
+        }
     }
     func createCityInputAlert(){
         let alert = UIAlertController(title: "Something went wrong...", message: "Sorry, no matching cities found. Avoid using diacritics, please.", preferredStyle: .alert)
@@ -556,6 +597,23 @@ extension ViewController{
     }
     func createGeoAlert(){
         let alert = UIAlertController(title: "Something went wrong...", message: "Sorry, impossible to get your location. Please, use city search instead.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+                
+                
+            }}))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func createInternetAlert(){
+        let alert = UIAlertController(title: "Something went wrong...", message: "Sorry, impossible to get the forecast. Please, check your internet connection.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
             case .default:

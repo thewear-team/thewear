@@ -11,8 +11,8 @@ import UIKit
 class SettingsView: NSObject {
     
     let temps = ["°С", "°F"]
-    let pressures = ["mmHg", "hPa"]
-    let windSpeeds = ["m/s", "km/h"]
+    let pressures = [ "hPa", "mmHg"]
+    let windSpeeds = ["km/h", "m/s"]
     let genders = ["man", "woman"]
     let notifications = ["on", "off"]
     
@@ -139,10 +139,11 @@ class SettingsView: NSObject {
     
     func showSettingsView() {
         configureSettingsView()
-        
+       
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.substrateView.frame = CGRect(x: 0, y: top, width: width, height: fullHeight - bottom)
         }, completion: nil)
+         configurePreviousValues()
     }
     
     @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
@@ -171,7 +172,7 @@ class SettingsView: NSObject {
     }
     
     func configureSettingsView() {
-        
+        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)), for: .valueChanged)
         tempsSegmentedControl.delegate = self
         tempsSegmentedControl.dataSource = self
         tempsSegmentedControl.register(SegmentedControlCell.self, forCellWithReuseIdentifier: "cell")
@@ -235,10 +236,88 @@ class SettingsView: NSObject {
         
        
         datePicker.frame =  CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.7 - 5, width: width - width / 2 - buttonSize * 2, height: buttonSize + 10)
+        
     }
     
     override init() {
         super.init()
+    }
+    func configurePreviousValues(){
+        if (UserDefaults.standard.value(forKey: "temperature") as! String) == "ºC"{
+            self.tempsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.1 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
+           
+        }
+        else{
+            self.tempsChooseView.frame = CGRect(x: width / 2 + buttonSize + self.tempsSegmentedControl.frame.width / 2, y: fullHeight * 0.1 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
+        }
+        
+        if (UserDefaults.standard.value(forKey: "pressure") as! String) == "hPa"{
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.pressureChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.2 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
+            }, completion: nil)
+            }
+        else{
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.pressureChooseView.frame = CGRect(x: width / 2 + buttonSize + self.tempsSegmentedControl.frame.width / 2, y: fullHeight * 0.2 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
+            }, completion: nil)
+        }
+        
+        if (UserDefaults.standard.value(forKey: "wind") as! String) == "km/h"{
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.windSpeedChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.3 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
+            }, completion: nil)
+        }
+        else{
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.windSpeedChooseView.frame = CGRect(x: width / 2 + buttonSize + self.tempsSegmentedControl.frame.width / 2, y: fullHeight * 0.3 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
+            }, completion: nil)
+        }
+        
+        if (UserDefaults.standard.value(forKey: "gender") as! String) == "man"{
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.genderChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.45 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
+            }, completion: nil)
+        }
+        else{
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.genderChooseView.frame = CGRect(x: width / 2 + buttonSize + self.genderSegmentedControl.frame.width / 2, y: fullHeight * 0.45 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
+            }, completion: nil)
+        }
+        
+        if (UserDefaults.standard.value(forKey: "notifications") as! Bool) == true{
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.notificationsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.6 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
+            }, completion: nil)
+            self.datePicker.isEnabled = true
+        }
+        else{
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.notificationsChooseView.frame = CGRect(x: width / 2 + buttonSize + self.genderSegmentedControl.frame.width / 2, y: fullHeight * 0.6 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
+            }, completion: nil)
+            self.datePicker.isEnabled = false
+        }
+        let hour = (UserDefaults.standard.value(forKey: "hour") as? Int)
+        let minute = (UserDefaults.standard.value(forKey: "minute") as? Int)
+        let dateString = "\(String(hour ?? 00)):\(String(minute ?? 00))"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "HH:mm"
+        let date = dateFormatter.date(from: dateString)
+        if date != nil{
+            datePicker.date = date!}
+        
+    }
+    
+    @objc func datePickerChanged(_ sender : UIDatePicker){
+        print("new hour of notifications selected")
+        let date = sender.date
+        let components = Calendar.current.dateComponents([.hour, .minute], from: date)
+        let hour = components.hour!
+        let minute = components.minute!
+        UserDefaults.standard.set(hour, forKey: "hour")
+        UserDefaults.standard.set(minute, forKey: "minute")
+        notificationCenter?.removeAllDeliveredNotifications()
+        notificationCenter?.removeAllPendingNotificationRequests()
+        createnoticreateNotificationAtTime(hour: hour, minute: minute, city: currentCity, text: genereatePush(hour: hour) ?? "", back: false)
     }
     
 }

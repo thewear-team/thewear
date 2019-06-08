@@ -78,8 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             configureNotifications()
             os_log("running background fetch now")
             createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city : city, text: genereatePush(hour: hourOfPush) ?? "", back : true)
-           
-            createnoticreateNotificationAtTime(hour: getCurrentHours() + 1, minute: 15, city : city, text: genereatePush(hour : getCurrentHours()) ?? "", back : true)
+//
+//            createnoticreateNotificationAtTime(hour: getCurrentHours() + 1, minute: 15, city : city, text: genereatePush(hour : getCurrentHours()) ?? "", back : true)
             
          completionHandler(.newData)
         })

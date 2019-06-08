@@ -14,17 +14,8 @@
 import UIKit
 import CoreLocation
 
-var selectedCity = ""
-var selectedDay :Int = 0  {
-    willSet(newvalue){
-        NotificationCenter.default.post(Notification(name: dayChangedName))
-        print("SELECTED DAY NOW IS \(newvalue)")
-       
-    }
-}
-var selectedPartOfDay : Int = partOfDayNow
-var hourOfPush = 23
-var minuteOfPush = 00
+
+
 
 class ViewController: UIViewController {
     var locationManager: CLLocationManager?
@@ -88,17 +79,20 @@ class ViewController: UIViewController {
             retrieveDataAndUpdate()
             self.fillUIelementsWithData()
             self.partsCollectionView.reloadData()
+            retrieveSettings()
+        }else{
+            saveUnitForDetails()
         }
+        if Reachability.isInternetAvailable(){
+            getDataAndUpdate()
+        }
+        
         
         //getting fresh data
         UserDefaults.standard.set(1, forKey: "isOpened")
-        
-        getDataAndUpdate()
-        //
-       
-//        print(codesHours)//here for the first time still previous codes
-   
     }
+
+
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -151,6 +145,7 @@ class ViewController: UIViewController {
             }
         })
         }
+        
     }
     //
     func fillUIelementsWithData(){
@@ -161,9 +156,6 @@ class ViewController: UIViewController {
             self.partsCollectionView.reloadData()
             self.detailsView.daysCollectionView.reloadData()
             self.detailsView.hoursCollectionView.reloadData()
-//            self.detailsView.nowTemperature.text = "\(currentCondition.0)°С"
-//            self.detailsView.nowFeelsLike.text = "Feels like \(currentCondition.1)°С"
-//            self.detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
             self.detailsView.nowCondition.text = statuses[currentCondition.2]?.0
             if allDays.count != 0{
                 self.detailsView.detailsTableView.reloadData()

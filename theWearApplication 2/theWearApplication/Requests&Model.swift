@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 let key = "108a6709f18a4c2b873191450191805"
+
 enum PartsOfDay : Int{
     case morning = 0
     case day = 1
