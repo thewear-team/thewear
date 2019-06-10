@@ -17,7 +17,7 @@ class CityTextField: UITextField {
         self.textColor = .white
         self.font = UIFont.systemFont(ofSize: 28, weight: .medium)
         self.tintColor = .white
-        self.frame = CGRect(x: buttonSize, y: top, width: width * 0.6, height: height * 0.1)
+        self.frame = CGRect(x: buttonSize * 2, y: top, width: width * 0.5, height: height * 0.1)
     }
     
     required init?(coder aDecoder: NSCoder) {

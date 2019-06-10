@@ -68,21 +68,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notificationCenter?.removeAllDeliveredNotifications()
         notificationCenter?.removeAllPendingNotificationRequests()
         let vc = ViewController()
-        print("location in background is \(vc.latitude), \(vc.longitude)")
-        print("last selected city is \(currentCity)")
         let city = currentCity.replacingOccurrences(of: "%20", with: " ")
-        loadData(currentCity: currentCity, completion: {
-            data in
-            processData(data: data)
-            print(data.current_condition[0].temp_C)
-            configureNotifications()
-            os_log("running background fetch now")
-            createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city : city, text: genereatePush(hour: hourOfPush) ?? "", back : true)
-//
-//            createnoticreateNotificationAtTime(hour: getCurrentHours() + 1, minute: 15, city : city, text: genereatePush(hour : getCurrentHours()) ?? "", back : true)
-            
-         completionHandler(.newData)
-        })
+       
+            if vc.latitude != "" && vc.longitude != ""{
+        let geo = vc.latitude  + "%20" + vc.longitude
+            getWeather(currentGEO: geo, completion: {
+                data in
+                processData(data: data)
+                print(data.current_condition[0].temp_C)
+                configureNotifications()
+                os_log("running background fetch now")
+                createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city : city, text: genereatePush(hour: hourOfPush) ?? "", back : true)
+            })} else{
+                loadData(currentCity: currentCity, completion: {
+                    data in
+                    processData(data: data)
+                    print(data.current_condition[0].temp_C)
+                    configureNotifications()
+                    os_log("running background fetch now")
+                    createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city : city, text: genereatePush(hour: hourOfPush) ?? "", back : true)
+                    
+                    
+                    completionHandler(.newData)
+                })
+            }
         
         }
     }

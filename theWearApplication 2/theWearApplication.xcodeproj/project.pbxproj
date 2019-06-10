@@ -14,6 +14,7 @@
 		A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783D0D9226C5670006948F8 /* Requests&Model.swift */; };
 		A787FDA4228C5557004BC4D7 /* SwiftyDropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A787FDA3228C5557004BC4D7 /* SwiftyDropbox.framework */; };
 		A78A6839228593AB00657152 /* Data&Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A6838228593AB00657152 /* Data&Methods.swift */; };
+		A7DE609B22AE629300FA2055 /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DE609A22AE629300FA2055 /* LocationButton.swift */; };
 		ABCED885E446D2480CEFB367 /* Pods_theWearApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7F24AC087394C114B598EC /* Pods_theWearApplication.framework */; };
 		BA2329E52271072600883DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2329E42271072600883DA3 /* SettingsView.swift */; };
 		BA4BBE79229954930095735F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA4BBE78229954930095735F /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		A787FDA3228C5557004BC4D7 /* SwiftyDropbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyDropbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A78A6838228593AB00657152 /* Data&Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data&Methods.swift"; sourceTree = "<group>"; };
 		A7D560EE228B60A500650894 /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7DE609A22AE629300FA2055 /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 		A7E872E2228B59FC00C3B3C9 /* FilestackSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FilestackSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2329E42271072600883DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BA4BBE78229954930095735F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = theWearApplication/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -146,6 +148,7 @@
 			children = (
 				BABDAB21228231C200542482 /* NavigationBar.swift */,
 				BABDAB1F2282307B00542482 /* SettingsButton.swift */,
+				A7DE609A22AE629300FA2055 /* LocationButton.swift */,
 				BABDAB232282342B00542482 /* CityTextField.swift */,
 				BABDAB262282358000542482 /* PartsCollectionView.swift */,
 				BABDAB1D2282262D00542482 /* DetailsView.swift */,
@@ -402,6 +405,7 @@
 				A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */,
 				BABDAB242282342B00542482 /* CityTextField.swift in Sources */,
 				BABDAB2922823A0600542482 /* PartCell.swift in Sources */,
+				A7DE609B22AE629300FA2055 /* LocationButton.swift in Sources */,
 				BA6C7EDA2284F186005654A3 /* DetailCell.swift in Sources */,
 				BA2329E52271072600883DA3 /* SettingsView.swift in Sources */,
 			);

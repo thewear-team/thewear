@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     let citiesButton = CitiesButton(frame: .zero)
     let detailsView = DetailsView(frame: .zero)
     let settingsView = SettingsView()
+    let locationButton = LocationButton(frame: .zero)
     
     // PartsOfPerson
     let head = createHead()
@@ -46,7 +47,7 @@ class ViewController: UIViewController {
     
     func configureMain() {
         
-        [partsCollectionView, navigationBar, cityTextField, settingsButton, citiesButton].forEach {view.addSubview($0)}
+        [partsCollectionView, navigationBar, cityTextField, settingsButton, citiesButton, locationButton].forEach {view.addSubview($0)}
         [leftLeg, rightLeg, body, head, hairCut].forEach {view.layer.addSublayer($0)}
         [createLeftSneaker(), createRightSneaker(), createRightTrouserLeg(), createLeftTrouserLeg(), createHoodie()].forEach {view.layer.addSublayer($0)}
         
@@ -58,6 +59,7 @@ class ViewController: UIViewController {
         citiesTableView.dataSource = self
         citiesTableView.register(CityCell.self, forCellReuseIdentifier: "cityCell")
         citiesButton.addTarget(self, action: #selector(handleCitiesButton), for: .touchUpInside)
+        locationButton.addTarget(self, action: #selector(handleCurrentLocation), for: .touchUpInside)
     }
     
     override func viewDidLoad() {

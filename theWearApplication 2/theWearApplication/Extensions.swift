@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 
 extension UIColor {
+    static let color_sunrise = UIColor(red: 255/255, green: 244/255, blue: 188/255, alpha: 1)
     static let color_113 = UIColor(red: 36/255, green: 158/255, blue: 217/255, alpha: 1)
     static let dark113 = UIColor(red: 10/255, green: 80/255, blue: 116/255, alpha: 1)
     static let color_119 = UIColor(red: 145/255, green: 207/255, blue: 236/255, alpha: 1)
@@ -95,6 +96,39 @@ extension ViewController {
                 }
             })
             self.isOpened = !self.isOpened
+        }
+    }
+    
+    @objc func handleCurrentLocation() {
+        print("current location mode selected")
+        
+        if latitude != "" && longitude != ""{
+            let geo = latitude  + "%20" + longitude
+            getWeather(currentGEO: geo, completion: {
+                data in
+                processData(data: data)
+                print(data.current_condition[0].temp_C)
+                DispatchQueue.main.async {
+                    self.fillUIelementsWithData()
+                    self.partsCollectionView.reloadData()
+                }
+            })
+            
+            autocomplete(latitude: latitude, longitude: longitude, completion: {
+                [weak self] data in
+                if data != nil{
+                    let currentGeoPositionName = data![0].areaName[0].value + ", " + data![0].region[0].value + ", " + data![0].country[0].value
+                    currentCity = currentGeoPositionName
+                    DispatchQueue.main.async {
+                        self!.cityTextField.text = currentGeoPositionName
+                        
+                    }
+                }
+                else{
+                    self!.createGeoAlert()
+                }
+            })
+
         }
     }
 }
@@ -260,7 +294,10 @@ extension DetailsView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
             if demoTemp.count > 0 && codesHours.count > 0{
                 cell.hour.text = demoHours[indexPath.row]
                 cell.temperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(demoTemp[indexPath.row])!) + tempUnit
-                cell.icon.image = UIImage(named: codesHours[indexPath.row])
+                if ((indexPath.row % 24) > 21 && codesHours[indexPath.row] == "113") || ( (indexPath.row % 24) < 5 && codesHours[indexPath.row] == "113") {
+                    cell.icon.image = UIImage(named:"000")
+                } else{
+                    cell.icon.image = UIImage(named: codesHours[indexPath.row])}
             } else{
             cell.hour.text = "10:00"
             cell.icon.image = UIImage(named: "sun")
