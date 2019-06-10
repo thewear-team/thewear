@@ -58,11 +58,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             print(selectedCity)
             loadData(currentCity: selectedCity, completion: {
                 [weak self] data in
+                if data != nil && Reachability.isInternetAvailable(){
                 print(data.current_condition[0].temp_C)
                 processData(data: data)
                 DispatchQueue.main.async {
                     self!.handleCitiesButton()
                     self!.fillUIelementsWithData()
+                }
+                }else{
+                    self!.createInternetAlert()
                 }
             })}
 //        self.handleCitiesButton()
@@ -101,19 +105,24 @@ extension ViewController {
     
     @objc func handleCurrentLocation() {
         print("current location mode selected")
-        
+        selectedDay = 0
+        handleDayChange(_sender: self)
         if latitude != "" && longitude != ""{
             let geo = latitude  + "%20" + longitude
+            if Reachability.isInternetAvailable(){
             getWeather(currentGEO: geo, completion: {
                 data in
+                if data != nil{
                 processData(data: data)
                 print(data.current_condition[0].temp_C)
                 DispatchQueue.main.async {
                     self.fillUIelementsWithData()
                     self.partsCollectionView.reloadData()
                 }
+                }else{
+                    self.createInternetAlert()
+                }
             })
-            
             autocomplete(latitude: latitude, longitude: longitude, completion: {
                 [weak self] data in
                 if data != nil{
@@ -121,14 +130,17 @@ extension ViewController {
                     currentCity = currentGeoPositionName
                     DispatchQueue.main.async {
                         self!.cityTextField.text = currentGeoPositionName
-                        
                     }
                 }
                 else{
-                    self!.createGeoAlert()
+                    self!.createGeoAlert(locationImprossible: false)
                 }
-            })
-
+            }) }
+            else {
+                createInternetAlert()
+            }
+        }else{
+            createGeoAlert(locationImprossible: true)
         }
     }
 }
@@ -632,8 +644,11 @@ extension ViewController{
             }}))
         self.present(alert, animated: true, completion: nil)
     }
-    func createGeoAlert(){
-        let alert = UIAlertController(title: "Something went wrong...", message: "Sorry, impossible to get your location. Please, use city search instead.", preferredStyle: .alert)
+    func createGeoAlert(locationImprossible : Bool){
+        let alert = UIAlertController(title: "Something went wrong...", message: "Sorry, impossible to get your location. Please, euse city search instead.", preferredStyle: .alert)
+        if locationImprossible {
+            alert.message = "Sorry, impossible to get your location. Please, enable location services in your settings."
+        }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
             case .default:
@@ -644,8 +659,6 @@ extension ViewController{
                 
             case .destructive:
                 print("destructive")
-                
-                
             }}))
         self.present(alert, animated: true, completion: nil)
     }
@@ -661,7 +674,6 @@ extension ViewController{
                 
             case .destructive:
                 print("destructive")
-                
                 
             }}))
         self.present(alert, animated: true, completion: nil)

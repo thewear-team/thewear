@@ -129,7 +129,7 @@ class ViewController: UIViewController {
                     }
                 }
                 else{
-                    self!.createGeoAlert()
+                    self!.createGeoAlert(locationImprossible: false)
                 }
             })
         } else{

@@ -115,13 +115,13 @@ func getNameOfDay(dateString : String)->String?{
         minuteOfPush = 00
 }
 func retrieveSettings(){
-    tempUnit = UserDefaults.standard.value(forKey: "temperature") as! String
-    pressureUnit = UserDefaults.standard.value(forKey: "pressure") as! String
-    windUnit = UserDefaults.standard.value(forKey: "wind") as! String
-    gender = UserDefaults.standard.value(forKey: "gender") as! String
-    notificationEnabled = UserDefaults.standard.value(forKey: "notifications") as! Bool
-    hourOfPush = UserDefaults.standard.value(forKey: "hour") as! Int
-    minuteOfPush = UserDefaults.standard.value(forKey: "minute") as! Int
+    tempUnit = (UserDefaults.standard.value(forKey: "temperature") as? String) ?? "ºC"
+    pressureUnit = (UserDefaults.standard.value(forKey: "pressure") as? String) ?? "hPa"
+    windUnit = ( UserDefaults.standard.value(forKey: "wind") as? String) ?? "km/h"
+    gender = (UserDefaults.standard.value(forKey: "gender") as? String) ?? "man"
+    notificationEnabled = (UserDefaults.standard.value(forKey: "notifications") as? Bool) ?? false
+    hourOfPush = (UserDefaults.standard.value(forKey: "hour") as? Int) ?? 22
+    minuteOfPush = (UserDefaults.standard.value(forKey: "minute") as? Int) ?? 00
     
 }
 
