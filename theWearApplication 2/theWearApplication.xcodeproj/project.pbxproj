@@ -33,6 +33,7 @@
 		BABDAB242282342B00542482 /* CityTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDAB232282342B00542482 /* CityTextField.swift */; };
 		BABDAB272282358000542482 /* PartsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDAB262282358000542482 /* PartsCollectionView.swift */; };
 		BABDAB2922823A0600542482 /* PartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDAB2822823A0600542482 /* PartCell.swift */; };
+		BAC4B8F722B060DB00E30E56 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC4B8F622B060DB00E30E56 /* PersonView.swift */; };
 		BAFF268B2268BF6400D6C7FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */; };
 		BAFF268D2268BF6400D6C7FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF268C2268BF6400D6C7FA /* ViewController.swift */; };
 		BAFF26952268BF6600D6C7FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAFF26932268BF6600D6C7FA /* LaunchScreen.storyboard */; };
@@ -84,6 +85,7 @@
 		BABDAB232282342B00542482 /* CityTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTextField.swift; sourceTree = "<group>"; };
 		BABDAB262282358000542482 /* PartsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartsCollectionView.swift; sourceTree = "<group>"; };
 		BABDAB2822823A0600542482 /* PartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartCell.swift; sourceTree = "<group>"; };
+		BAC4B8F622B060DB00E30E56 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		BAFF26872268BF6400D6C7FA /* theWearApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theWearApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAFF268C2268BF6400D6C7FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,14 +149,15 @@
 			isa = PBXGroup;
 			children = (
 				BABDAB21228231C200542482 /* NavigationBar.swift */,
-				BABDAB1F2282307B00542482 /* SettingsButton.swift */,
 				A7DE609A22AE629300FA2055 /* LocationButton.swift */,
 				BABDAB232282342B00542482 /* CityTextField.swift */,
+				BABDAB1F2282307B00542482 /* SettingsButton.swift */,
 				BABDAB262282358000542482 /* PartsCollectionView.swift */,
 				BABDAB1D2282262D00542482 /* DetailsView.swift */,
 				BA2329E42271072600883DA3 /* SettingsView.swift */,
 				BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */,
 				BA5D91C2228F1004007E47BA /* CitiesButton.swift */,
+				BAC4B8F622B060DB00E30E56 /* PersonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -200,17 +203,17 @@
 				BA4BBE7A22997C880095735F /* CreatingPerson.swift */,
 				BABDAB252282345B00542482 /* Views */,
 				BABDAB2A22823A9E00542482 /* Cells */,
+				BAFF26A02268C01700D6C7FA /* Extensions.swift */,
+				BABDAB152280E2B500542482 /* configurePaddingsAndFrame.swift */,
 				BA4BBE78229954930095735F /* Assets.xcassets */,
 				BAFF26932268BF6600D6C7FA /* LaunchScreen.storyboard */,
 				BAFF26962268BF6600D6C7FA /* Info.plist */,
 				A783D0D9226C5670006948F8 /* Requests&Model.swift */,
 				A72613EE226DA99E00D0074A /* WeatherCodes&Statuses.swift */,
-				BAFF26A02268C01700D6C7FA /* Extensions.swift */,
 				A72F45C622933921000177F0 /* LocalNotifications.swift */,
 				A701CC5E228F3D18005F4E21 /* Helpers.swift */,
 				A78A6838228593AB00657152 /* Data&Methods.swift */,
 				BAFF26A62268C05C00D6C7FA /* InternetCheck.swift */,
-				BABDAB152280E2B500542482 /* configurePaddingsAndFrame.swift */,
 			);
 			path = theWearApplication;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				A78A6839228593AB00657152 /* Data&Methods.swift in Sources */,
 				BA4BBE7B22997C880095735F /* CreatingPerson.swift in Sources */,
 				BAFF26A72268C05C00D6C7FA /* InternetCheck.swift in Sources */,
+				BAC4B8F722B060DB00E30E56 /* PersonView.swift in Sources */,
 				A701CC5F228F3D18005F4E21 /* Helpers.swift in Sources */,
 				BABDAB22228231C200542482 /* NavigationBar.swift in Sources */,
 				A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */,
@@ -595,14 +599,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWearApplication/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication----";
+				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication-m";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -615,14 +619,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWearApplication/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication----";
+				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication-m";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

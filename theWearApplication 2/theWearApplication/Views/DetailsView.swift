@@ -152,15 +152,15 @@ class DetailsView: UIView {
                 self.frame = CGRect(x: (detailsViewY / detailsViewX) * ((fullHeight * 0.1) / 8), y: detailsViewY, width: detailsWidth, height: detailsHeight)
                 self.layer.cornerRadius = -(detailsViewY / detailsViewX) * ((fullHeight * 0.1) / 8)
                 
-                temperatureImageView.frame.origin.y = fullHeight * 0.05 + fullHeight * (0.05 + (detailsViewY / detailsViewX) * (1 / 160))
-                nowTemperature.frame.origin.y = fullHeight * 0.05 + fullHeight * (0.05 + (detailsViewY / detailsViewX) * (1 / 160))
-                nowFeelsLike.frame.origin.y = fullHeight * 0.1 + fullHeight * (0.05 + (detailsViewY / detailsViewX) * (1 / 160))
-                nowCondition.frame.origin.y = fullHeight * 0.125 + fullHeight * (0.05 + (detailsViewY / detailsViewX) * (1 / 160))
+                temperatureImageView.frame.origin.y = fullHeight * (0.1 + (detailsViewY / detailsViewX) * 0.00625)
+                nowTemperature.frame.origin.y = fullHeight * (0.1 + (detailsViewY / detailsViewX) * 0.00625)
+                nowFeelsLike.frame.origin.y = fullHeight * (0.15 + (detailsViewY / detailsViewX) * 0.00625)
+                nowCondition.frame.origin.y = fullHeight * (0.175 + (detailsViewY / detailsViewX) * 0.00625)
                 
-                temperatureImageView.frame.origin.x = buttonSize + fullHeight * (-detailsViewY / detailsViewX) * (1 / 80)
-                nowTemperature.frame.origin.x = buttonSize + 0.1 * fullHeight + fullHeight * (-detailsViewY / detailsViewX) * (1 / 80)
-                nowFeelsLike.frame.origin.x = buttonSize + 0.1 * fullHeight + fullHeight * (-detailsViewY / detailsViewX) * (1 / 80)
-                nowCondition.frame.origin.x = buttonSize + 0.1 * fullHeight + fullHeight * (-detailsViewY / detailsViewX) * (1 / 80)
+                temperatureImageView.frame.origin.x = buttonSize + fullHeight * (-detailsViewY / detailsViewX) * 0.0125
+                nowTemperature.frame.origin.x = buttonSize + fullHeight * (0.1 + (-detailsViewY / detailsViewX) * 0.0125)
+                nowFeelsLike.frame.origin.x = buttonSize + fullHeight * (0.1 + (-detailsViewY / detailsViewX) * 0.0125)
+                nowCondition.frame.origin.x = buttonSize + fullHeight * (0.1 + (-detailsViewY / detailsViewX) * 0.0125)
             }
             recognizer.setTranslation(.zero, in: self)
         } else if recognizer.state == .ended {

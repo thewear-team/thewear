@@ -13,7 +13,7 @@ class SettingsButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setImage(UIImage(named: "settings"), for: .normal)
-        self.frame = CGRect(x: width - 2 * buttonSize, y: buttonY, width: buttonSize, height: buttonSize)
+        self.frame = CGRect(x: width - 2 * buttonSize, y: height * 0.03, width: buttonSize, height: buttonSize)
         self.addTarget(self, action: #selector(handleSettingsButton), for: .touchUpInside)
     }
     

@@ -15,7 +15,6 @@ var height: CGFloat = 0.0
 var fullHeight: CGFloat = 0.0
 var keyWindow: UIWindow!
 var buttonSize: CGFloat = 0.0
-var buttonY: CGFloat = 0.0
 var cornerRadius: CGFloat = 0.0
 
 var fontForNowTemperature: CGFloat = 0.0
@@ -31,6 +30,7 @@ func configurePaddingsAndFrame() {
         height = (window?.frame.height)! - top - bottom
         fullHeight = (window?.frame.height)!
         keyWindow = window!
+        buttonSize = height * 0.04
     }
     
     cornerRadius = (-(fullHeight * 0.8 / -fullHeight * 0.1) * ((fullHeight * 0.1) / 8)) * 100

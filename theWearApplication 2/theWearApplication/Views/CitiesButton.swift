@@ -12,7 +12,7 @@ class CitiesButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.frame = CGRect(x: buttonSize, y: top, width: width * 0.6, height: height * 0.1)
+        self.frame = CGRect(x: buttonSize * 2, y: height * 0.03, width: width - buttonSize * 4.5, height: buttonSize)
     }
     
     required init?(coder aDecoder: NSCoder) {

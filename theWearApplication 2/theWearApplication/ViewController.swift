@@ -14,9 +14,6 @@
 import UIKit
 import CoreLocation
 
-
-
-
 class ViewController: UIViewController {
     var locationManager: CLLocationManager?
     
@@ -33,39 +30,66 @@ class ViewController: UIViewController {
     let detailsView = DetailsView(frame: .zero)
     let settingsView = SettingsView()
     let locationButton = LocationButton(frame: .zero)
+    let personView = PersonView(frame: .zero)
     
-    // PartsOfPerson
     let head = createHead()
     let body = createBody()
-    var leftLeg = createLeftLeg()
-    var rightLeg = createRightLeg()
-    let hairCut = createHairCut()
+    let rightLeg = createRightLeg()
+    let leftLeg = createLeftLeg()
     
-    let toLeftLeg = moveToLeftLeg()
-    let toRightLeg = moveToRightLeg()
-    
+    let leftLeg_moved = createMovedLeftLeg()
+    let rightLeg_moved = createMovedRightLeg()
+    let body_moved = createMovedBody()
     
     func configureMain() {
+        [partsCollectionView, navigationBar].forEach {view.addSubview($0)}
+        [cityTextField, settingsButton, citiesButton, locationButton].forEach {navigationBar.addSubview($0)}
+        [personView, detailsView, citiesTableView].forEach {view.addSubview($0)}
+        [head, body, leftLeg, rightLeg].forEach {personView.layer.addSublayer($0)}
+        head.position = CGPoint(x: 80, y: 0)
+        body.position = CGPoint(x: 0, y: 35)
+        rightLeg.position = CGPoint(x: 67, y: 250)
+        leftLeg.position = CGPoint(x: 92, y: 250)
         
-        [partsCollectionView, navigationBar, cityTextField, settingsButton, citiesButton, locationButton].forEach {view.addSubview($0)}
-        [leftLeg, rightLeg, body, head, hairCut].forEach {view.layer.addSublayer($0)}
-        [createLeftSneaker(), createRightSneaker(), createRightTrouserLeg(), createLeftTrouserLeg(), createHoodie()].forEach {view.layer.addSublayer($0)}
         
-        [detailsView, citiesTableView].forEach {view.addSubview($0)}
+        let leftLegAnimation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
+        leftLegAnimation.fromValue = leftLeg.path
+        leftLegAnimation.toValue = leftLeg_moved.path
+        leftLegAnimation.duration = 2
+        leftLegAnimation.repeatCount = 100
+        leftLegAnimation.autoreverses = true
+        leftLeg.add(leftLegAnimation, forKey: nil)
+        
+        let rightLegAnimation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
+        rightLegAnimation.fromValue = rightLeg.path
+        rightLegAnimation.toValue = rightLeg.path
+        rightLegAnimation.duration = 2
+        rightLegAnimation.repeatCount = 100
+        rightLegAnimation.autoreverses = true
+        rightLeg.add(rightLegAnimation, forKey: nil)
+        
+        let bodyAnimation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
+        bodyAnimation.fromValue = body.path
+        bodyAnimation.toValue = body_moved.path
+        bodyAnimation.duration = 2
+        bodyAnimation.repeatCount = 100
+        bodyAnimation.autoreverses = true
+        body.add(bodyAnimation, forKey: nil)
+        
         partsCollectionView.delegate = self
         partsCollectionView.dataSource = self
         partsCollectionView.register(PartCell.self, forCellWithReuseIdentifier: "partCell")
+        
         citiesTableView.delegate = self
         citiesTableView.dataSource = self
         citiesTableView.register(CityCell.self, forCellReuseIdentifier: "cityCell")
+        
         citiesButton.addTarget(self, action: #selector(handleCitiesButton), for: .touchUpInside)
         locationButton.addTarget(self, action: #selector(handleCurrentLocation), for: .touchUpInside)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //determining part of the day
         determinePartOfDay()
         setObserverOnDaySelection()
         view.backgroundColor = .white

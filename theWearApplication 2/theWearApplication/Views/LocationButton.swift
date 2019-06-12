@@ -16,14 +16,10 @@ class LocationButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setImage(UIImage(named: "location"), for: .normal)
-        self.frame = CGRect(x:  buttonSize/2, y: buttonY, width: buttonSize, height: buttonSize)
+        self.frame = CGRect(x: buttonSize, y: height * 0.04, width: buttonSize / 2, height: buttonSize / 2)
     }
     
     let settingsView = SettingsView()
-    
-    @objc func handleCurrentLocation() {
-      
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
