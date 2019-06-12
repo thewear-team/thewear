@@ -33,9 +33,15 @@ class ViewController: UIViewController {
     let personView = PersonView(frame: .zero)
     
     let head = createHead()
+    let rightArm = createRightArm()
+    let leftArm = createLeftArm()
     let body = createBody()
     let rightLeg = createRightLeg()
     let leftLeg = createLeftLeg()
+    let hairCut = createHairCut()
+    
+    let rightSneaker = createSneaker()
+    let leftSneaker = createSneaker()
     
     let leftLeg_moved = createMovedLeftLeg()
     let rightLeg_moved = createMovedRightLeg()
@@ -45,26 +51,48 @@ class ViewController: UIViewController {
         [partsCollectionView, navigationBar].forEach {view.addSubview($0)}
         [cityTextField, settingsButton, citiesButton, locationButton].forEach {navigationBar.addSubview($0)}
         [personView, detailsView, citiesTableView].forEach {view.addSubview($0)}
-        [head, body, leftLeg, rightLeg].forEach {personView.layer.addSublayer($0)}
+        [head, rightArm, leftArm, body, leftLeg, rightLeg, hairCut, rightSneaker, leftSneaker].forEach {personView.layer.addSublayer($0)}
+        
         head.position = CGPoint(x: 80, y: 0)
-        body.position = CGPoint(x: 0, y: 35)
+        body.position = CGPoint(x: 45, y: 35)
         rightLeg.position = CGPoint(x: 67, y: 250)
         leftLeg.position = CGPoint(x: 92, y: 250)
+        leftArm.position = CGPoint(x: 5, y: 115)
+        rightArm.position = CGPoint(x: 158, y: 110)
+        rightArm.transform = CATransform3DMakeRotation(0.38 * .pi, 0, 0, 1)
+        hairCut.position = CGPoint(x: 76, y: -5)
+        rightSneaker.position = CGPoint(x: 65, y: 445)
+        leftSneaker.position = CGPoint(x: 141, y: 445)
         
+        let rightArmAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rightArmAnimation.fromValue = 0.38 * .pi
+        rightArmAnimation.toValue = 0.4 * .pi
+        rightArmAnimation.duration = 3
+        rightArmAnimation.repeatCount = .infinity
+        rightArmAnimation.autoreverses = true
+        rightArm.add(rightArmAnimation, forKey: "transform.rotation")
+        
+        let leftArmAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        leftArmAnimation.fromValue = 0
+        leftArmAnimation.toValue = 0.01 * .pi
+        leftArmAnimation.duration = 3
+        leftArmAnimation.repeatCount = .infinity
+        leftArmAnimation.autoreverses = true
+        leftArm.add(leftArmAnimation, forKey: "transform.rotation")
         
         let leftLegAnimation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
         leftLegAnimation.fromValue = leftLeg.path
         leftLegAnimation.toValue = leftLeg_moved.path
         leftLegAnimation.duration = 2
-        leftLegAnimation.repeatCount = 100
+        leftLegAnimation.repeatCount = .infinity
         leftLegAnimation.autoreverses = true
         leftLeg.add(leftLegAnimation, forKey: nil)
         
         let rightLegAnimation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
         rightLegAnimation.fromValue = rightLeg.path
-        rightLegAnimation.toValue = rightLeg.path
+        rightLegAnimation.toValue = rightLeg_moved.path
         rightLegAnimation.duration = 2
-        rightLegAnimation.repeatCount = 100
+        rightLegAnimation.repeatCount = .infinity
         rightLegAnimation.autoreverses = true
         rightLeg.add(rightLegAnimation, forKey: nil)
         
@@ -72,7 +100,7 @@ class ViewController: UIViewController {
         bodyAnimation.fromValue = body.path
         bodyAnimation.toValue = body_moved.path
         bodyAnimation.duration = 2
-        bodyAnimation.repeatCount = 100
+        bodyAnimation.repeatCount = .infinity
         bodyAnimation.autoreverses = true
         body.add(bodyAnimation, forKey: nil)
         

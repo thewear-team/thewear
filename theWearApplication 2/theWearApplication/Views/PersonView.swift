@@ -12,7 +12,6 @@ class PersonView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .red
         self.frame = CGRect(x: (width - 200) / 2, y: (fullHeight - 490) / 2 - 25, width: 200, height: 490)
     }
 
