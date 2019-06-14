@@ -57,17 +57,20 @@ var statuses : [String : (String, Int, Int, Int)] = ["395" : ("Snow with thunder
                                     "266" : ("Light drizzle",204,214,225),
                                     "263" : ("Patchy light drizzle",177,202,230),
                                     "260" : ("Freezing fog",208,210,216),
-                                    "248" : ("Fog",209,208,216),
+//                                    "248" : ("Fog",208,208,225),
+                                    "248" : ("Fog", 177, 202, 230), //like light rain
                                     "230" : ("Blizzard",181,205,214),
                                     "227" : ("Blowing snow", 195,215,226),
                                     "200" : ("Thundery outbreaks", 122,127,156),
-                                    "185" : ("Freezing drizzle",179,179,230),
+                                    "185" : ("Patchy freezing drizzle",179,179,230),
                                     "182" : ("Patchy sleet nearby",179,197,230),
                                     "179" : ("Patchy snow nearby",195,228,242),
                                     "176" : ("Patchy rain nearby", 125, 182, 217),
-                                    "143" : ("Mist", 227, 226, 233),
+//                                    "143" : ("Mist", 208, 208, 225),
+                                    "143" : ("Mist", 177, 202, 230), //like light rain
                                     "122" : ("Overcast", 180, 203, 230),
-                                    "119" : ("Cloudy", 195, 228, 243),
+                                    "119" : ("Cloudy", 179, 204, 230),
                                     "116" : ("Partly Cloudy", 145, 207, 236),
                                     "113" : ("Sunny", 36, 158, 217),
-                                    "000" : ("Night", 46, 68, 130)]
+                                    "000" : ("Night", 46, 68, 130)
+]

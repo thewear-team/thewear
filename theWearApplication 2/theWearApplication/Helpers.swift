@@ -2,11 +2,7 @@
 import Foundation
 import UIKit
 //MARK : GLOBAL VARIABLES HERE
-var tempUnit = "ºC"{
-    didSet{
-        
-    }
-}
+var tempUnit = "ºC"
 var windUnit = "km/h"
 var pressureUnit = "hPa"
 var gender = "man"

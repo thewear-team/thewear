@@ -154,9 +154,9 @@ func getClothesComment(temp : Int)->String{
         clothesComment = "Put on a coat."
     case 10 ... 15:
         clothesComment = "Put on a windbreaker."
-    case 15 ... 20:
+    case 15 ... 22:
         clothesComment = "Put on a longsleeve."
-    case 20 ... 30:
+    case 22 ... 30:
         clothesComment = "Put on a T-shirt."
     case 30 ... 600:
         clothesComment = "Put on your lightest clothes."

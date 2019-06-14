@@ -105,6 +105,7 @@ extension ViewController {
     
     @objc func handleCurrentLocation() {
         print("current location mode selected")
+      
         selectedDay = 0
         handleDayChange(_sender: self)
         if latitude != "" && longitude != ""{
@@ -112,16 +113,13 @@ extension ViewController {
             if Reachability.isInternetAvailable(){
             getWeather(currentGEO: geo, completion: {
                 data in
-                if data != nil{
                 processData(data: data)
                 print(data.current_condition[0].temp_C)
                 DispatchQueue.main.async {
                     self.fillUIelementsWithData()
                     self.partsCollectionView.reloadData()
                 }
-                }else{
-                    self.createInternetAlert()
-                }
+                
             })
             autocomplete(latitude: latitude, longitude: longitude, completion: {
                 [weak self] data in
@@ -150,11 +148,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
        
         if allDays.count > 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partCell", for: indexPath) as! PartCell
             if indexPath.row == partOfDayNow && selectedDay == 0{
                 //if now
+                let colorComp = statuses[currentCondition.2]
+                 cell.backgroundColor = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
                 if (getCurrentHours() > 22 || getCurrentHours() < 4) &&  statuses[currentCondition.2]?.0 == "Sunny"{
                     detailsView.nowCondition.text = "Clear"
                 }else{
@@ -197,14 +199,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 detailsView.nowFeelsLike.text = "no info"
                 detailsView.temperatureImageView.image = UIImage(named: "000")
             }
-             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partCell", for: indexPath) as! PartCell
             let colorComp = statuses["000"]
             cell.backgroundColor = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
             partsCollectionView.backgroundColor = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
         
         default :
             detailsView.nowCondition.text = "now condition"
-            }
+                }
             }
         }
     }
@@ -215,13 +216,25 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             var code = ""
             switch(indexPath.row){
             case 0 :
-                code = allDays[selectedDay].morningcode
+                if partOfDayNow == 0{
+                    code = currentCondition.2
+                }else{
+                    code = allDays[selectedDay].morningcode}
             case 1 :
-                code = allDays[selectedDay].daycode
+                if partOfDayNow == 1{
+                    code = currentCondition.2
+                }else{
+                    code = allDays[selectedDay].daycode}
             case 2 :
-                code = allDays[selectedDay].eveningcode
+                if partOfDayNow == 2{
+                    code = currentCondition.2
+                }else{
+                    code = allDays[selectedDay].eveningcode}
             case 3 :
-                code = "000"
+                if partOfDayNow == 3{
+                    code = currentCondition.2
+                }else{
+                    code = "000"}
             default :
                 code = "113"
             }
@@ -466,10 +479,10 @@ extension ViewController : UITextFieldDelegate{
         if city != nil {
             autocomplete(cityTyped: city!, completion: {
                 [weak self] results in
-                allCities = []
                 if results != nil{
+                    allCities = []
                     for result in results!{
-                    allCities.append(result.areaName[0].value  + ", " + result.country[0].value)
+                    allCities.append(result.areaName[0].value + ", " + result.region[0].value  + ", " + result.country[0].value)
                     }
                 }else{
                     self!.createCityInputAlert()

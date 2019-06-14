@@ -14,7 +14,8 @@ class CityCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
+        
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         return label
     }()
     

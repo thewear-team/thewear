@@ -203,7 +203,11 @@ class ViewController: UIViewController {
     }
     //
     func fillUIelementsWithData(){
-        
+        if selectedDay != 0 {
+            detailsView.daysCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+        }else{
+             detailsView.daysCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .left, animated: true)
+        }
         detailsView.hoursCollectionView.scrollToItem(at: IndexPath(row: getCurrentHours(), section: 0), at: .centeredHorizontally, animated: false)
         partsCollectionView.scrollToItem(at: IndexPath(row: partOfDayNow, section: 0), at: .left, animated: true)
         DispatchQueue.main.async {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PartsCollectionView: UICollectionView {
+class PartsCollectionView: UICollectionView{
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         let layout = UICollectionViewFlowLayout()
