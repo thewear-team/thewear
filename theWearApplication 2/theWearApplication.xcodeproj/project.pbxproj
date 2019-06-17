@@ -21,7 +21,6 @@
 		BA4BBE7B22997C880095735F /* CreatingPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BBE7A22997C880095735F /* CreatingPerson.swift */; };
 		BA5D91BF228EE66B007E47BA /* CitiesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */; };
 		BA5D91C1228EE712007E47BA /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91C0228EE712007E47BA /* CityCell.swift */; };
-		BA5D91C3228F1004007E47BA /* CitiesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91C2228F1004007E47BA /* CitiesButton.swift */; };
 		BA5D91C5229028C3007E47BA /* SegmentedControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91C4229028C3007E47BA /* SegmentedControlCell.swift */; };
 		BA6C7ED82284DE2D005654A3 /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6C7ED72284DE2D005654A3 /* HourCell.swift */; };
 		BA6C7EDA2284F186005654A3 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6C7ED92284F185005654A3 /* DetailCell.swift */; };
@@ -30,7 +29,7 @@
 		BABDAB1E2282262D00542482 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDAB1D2282262D00542482 /* DetailsView.swift */; };
 		BABDAB202282307B00542482 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDAB1F2282307B00542482 /* SettingsButton.swift */; };
 		BABDAB22228231C200542482 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDAB21228231C200542482 /* NavigationBar.swift */; };
-		BABDAB242282342B00542482 /* CityTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDAB232282342B00542482 /* CityTextField.swift */; };
+		BABDAB242282342B00542482 /* CityLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDAB232282342B00542482 /* CityLabel.swift */; };
 		BABDAB272282358000542482 /* PartsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDAB262282358000542482 /* PartsCollectionView.swift */; };
 		BABDAB2922823A0600542482 /* PartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDAB2822823A0600542482 /* PartCell.swift */; };
 		BAC4B8F722B060DB00E30E56 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC4B8F622B060DB00E30E56 /* PersonView.swift */; };
@@ -73,7 +72,6 @@
 		BA4BBE7A22997C880095735F /* CreatingPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingPerson.swift; sourceTree = "<group>"; };
 		BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesTableView.swift; sourceTree = "<group>"; };
 		BA5D91C0228EE712007E47BA /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
-		BA5D91C2228F1004007E47BA /* CitiesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesButton.swift; sourceTree = "<group>"; };
 		BA5D91C4229028C3007E47BA /* SegmentedControlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlCell.swift; sourceTree = "<group>"; };
 		BA6C7ED72284DE2D005654A3 /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		BA6C7ED92284F185005654A3 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
@@ -82,7 +80,7 @@
 		BABDAB1D2282262D00542482 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		BABDAB1F2282307B00542482 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		BABDAB21228231C200542482 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		BABDAB232282342B00542482 /* CityTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTextField.swift; sourceTree = "<group>"; };
+		BABDAB232282342B00542482 /* CityLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityLabel.swift; sourceTree = "<group>"; };
 		BABDAB262282358000542482 /* PartsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartsCollectionView.swift; sourceTree = "<group>"; };
 		BABDAB2822823A0600542482 /* PartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartCell.swift; sourceTree = "<group>"; };
 		BAC4B8F622B060DB00E30E56 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
@@ -150,13 +148,12 @@
 			children = (
 				BABDAB21228231C200542482 /* NavigationBar.swift */,
 				A7DE609A22AE629300FA2055 /* LocationButton.swift */,
-				BABDAB232282342B00542482 /* CityTextField.swift */,
+				BABDAB232282342B00542482 /* CityLabel.swift */,
 				BABDAB1F2282307B00542482 /* SettingsButton.swift */,
 				BABDAB262282358000542482 /* PartsCollectionView.swift */,
 				BABDAB1D2282262D00542482 /* DetailsView.swift */,
 				BA2329E42271072600883DA3 /* SettingsView.swift */,
 				BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */,
-				BA5D91C2228F1004007E47BA /* CitiesButton.swift */,
 				BAC4B8F622B060DB00E30E56 /* PersonView.swift */,
 			);
 			path = Views;
@@ -386,7 +383,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A72F45C722933921000177F0 /* LocalNotifications.swift in Sources */,
-				BA5D91C3228F1004007E47BA /* CitiesButton.swift in Sources */,
 				BA6C7ED82284DE2D005654A3 /* HourCell.swift in Sources */,
 				BABDAB162280E2B500542482 /* configurePaddingsAndFrame.swift in Sources */,
 				BA5D91C5229028C3007E47BA /* SegmentedControlCell.swift in Sources */,
@@ -407,7 +403,7 @@
 				A701CC5F228F3D18005F4E21 /* Helpers.swift in Sources */,
 				BABDAB22228231C200542482 /* NavigationBar.swift in Sources */,
 				A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */,
-				BABDAB242282342B00542482 /* CityTextField.swift in Sources */,
+				BABDAB242282342B00542482 /* CityLabel.swift in Sources */,
 				BABDAB2922823A0600542482 /* PartCell.swift in Sources */,
 				A7DE609B22AE629300FA2055 /* LocationButton.swift in Sources */,
 				BA6C7EDA2284F186005654A3 /* DetailCell.swift in Sources */,
@@ -599,14 +595,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWearApplication/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication-m----";
+				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication-theWear";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -619,14 +615,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWearApplication/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication-m----";
+				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication-theWear";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -62,7 +62,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 print(data.current_condition[0].temp_C)
                 processData(data: data)
                 DispatchQueue.main.async {
-                    self!.handleCitiesButton()
                     self!.fillUIelementsWithData()
                 }
                 }else{
@@ -71,7 +70,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             })}
 //        self.handleCitiesButton()
         UIView.animate(withDuration: 0.2) {
-            self.cityTextField.text = allCities[indexPath.row]
+            self.cityLabel.text = allCities[indexPath.row]
         }
     }
     
@@ -81,27 +80,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ViewController {
-    @objc func handleCitiesButton() {
-       
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            if self.isOpened {
-                self.citiesTableView.alpha = 0
-            } else {
-                self.cityTextField.becomeFirstResponder()
-                self.detailsView.frame = CGRect(x: self.detailsView.frame.origin.x, y: fullHeight, width: self.detailsView.frame.width, height: self.detailsView.frame.height)
-            }
-        }) { _ in
-            UIView.animate(withDuration: 0.5, animations: {
-                if self.isOpened {
-                    self.cityTextField.resignFirstResponder()
-                    self.detailsView.frame = CGRect(x: -fullHeight * 0.1, y: fullHeight * 0.8, width: width, height: fullHeight)
-                } else {
-                    self.citiesTableView.alpha = 1
-                }
-            })
-            self.isOpened = !self.isOpened
-        }
-    }
     
     @objc func handleCurrentLocation() {
         print("current location mode selected")
@@ -127,7 +105,7 @@ extension ViewController {
                     let currentGeoPositionName = data![0].areaName[0].value + ", " + data![0].region[0].value + ", " + data![0].country[0].value
                     currentCity = currentGeoPositionName
                     DispatchQueue.main.async {
-                        self!.cityTextField.text = currentGeoPositionName
+                        self!.cityLabel.text = currentGeoPositionName
                     }
                 }
                 else{
@@ -456,25 +434,19 @@ extension ViewController : CLLocationManagerDelegate{
             longitude = locations.first!.coordinate.longitude.description
             UserDefaults.standard.set(latitude, forKey: "latitude")
             UserDefaults.standard.set(longitude, forKey: "longitude")
-//            getDataAndUpdate()
-//            locationManager?.stopUpdatingLocation()
         }
         
     }
 }
-extension ViewController : UITextFieldDelegate{
+extension ViewController : UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        //textField code
-        
         textField.resignFirstResponder()  //if desired
         handleSearchOfCity(city : textField.text)
         return true
     }
     
     func handleSearchOfCity(city : String?) {
-        print("ended")    
-        print(city)
         if Reachability.isInternetAvailable(){
         if city != nil {
             autocomplete(cityTyped: city!, completion: {
