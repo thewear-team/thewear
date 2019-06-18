@@ -228,3 +228,37 @@ func createMovedBody() -> CAShapeLayer {
     body.fillColor = UIColor.body.cgColor
     return body
 }
+
+func createRightTrouserLeg() -> CAShapeLayer {
+    let right2 = UIBezierPath()
+    right2.move(to: CGPoint(x: 0.84, y: 0.08))
+    right2.addLine(to: CGPoint(x: 52, y: 0))
+    right2.addCurve(to: CGPoint(x: 28.81, y: 141.08), controlPoint1: CGPoint(x: 39.77, y: 78.09), controlPoint2: CGPoint(x: 32.03, y: 125.12))
+    right2.addCurve(to: CGPoint(x: 17.91, y: 195.63), controlPoint1: CGPoint(x: 24.15, y: 164.15), controlPoint2: CGPoint(x: 18.67, y: 192.76))
+    right2.addCurve(to: CGPoint(x: 0, y: 195.63), controlPoint1: CGPoint(x: 17.14, y: 198.5), controlPoint2: CGPoint(x: 0, y: 199.07))
+    right2.addCurve(to: CGPoint(x: 4.02, y: 72.14), controlPoint1: CGPoint(x: 0, y: 192.18), controlPoint2: CGPoint(x: 6.74, y: 133.59))
+    right2.addCurve(to: CGPoint(x: 0.84, y: 0.08), controlPoint1: CGPoint(x: 2.2, y: 31.18), controlPoint2: CGPoint(x: 1.14, y: 7.16))
+    right2.close()
+    
+    let right = CAShapeLayer()
+    right.path = right2.cgPath
+    right.fillColor = UIColor.trouserLegBlueColor.cgColor
+    return right
+}
+
+func createLeftTrouserLeg() -> CAShapeLayer {
+    let left2 = UIBezierPath()
+    left2.move(to: CGPoint.zero)
+    left2.addLine(to: CGPoint(x: 50.11, y: 0))
+    left2.addCurve(to: CGPoint(x: 64.27, y: 194.72), controlPoint1: CGPoint(x: 59.55, y: 127.57), controlPoint2: CGPoint(x: 64.27, y: 192.47))
+    left2.addCurve(to: CGPoint(x: 46.19, y: 195.69), controlPoint1: CGPoint(x: 64.27, y: 198.08), controlPoint2: CGPoint(x: 47.12, y: 199.61))
+    left2.addCurve(to: CGPoint(x: 32.37, y: 125.79), controlPoint1: CGPoint(x: 45.26, y: 191.77), controlPoint2: CGPoint(x: 38.79, y: 151.92))
+    left2.addCurve(to: CGPoint(x: 17.24, y: 67.34), controlPoint1: CGPoint(x: 28.1, y: 108.37), controlPoint2: CGPoint(x: 23.05, y: 88.88))
+    left2.addLine(to: CGPoint.zero)
+    left2.close()
+    
+    let left = CAShapeLayer()
+    left.path = left2.cgPath
+    left.fillColor = UIColor.trouserLegShadowBlueColor.cgColor
+    return left
+}

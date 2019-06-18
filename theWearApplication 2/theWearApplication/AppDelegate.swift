@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         configurePaddingsAndFrame()
-        window?.rootViewController =  ViewController()
+        window?.rootViewController =  ContainerViewController()
         return true
     }
   

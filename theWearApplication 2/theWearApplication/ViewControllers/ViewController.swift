@@ -15,6 +15,8 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController {
+    
+    var delegate: ContainerViewController!
     var locationManager: CLLocationManager?
     
     var latitude :  String = ""
@@ -22,18 +24,15 @@ class ViewController: UIViewController {
     var isOpened = false
     
     let navigationBar = NavigationBar(frame: .zero)
-    let cityLabel = CityLabel(frame: .zero)
-    let settingsButton = SettingsButton(frame: .zero)
-    let partsCollectionView = PartsCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    let citiesTableView = CitiesTableView(frame: .zero)
-    let detailsView = DetailsView(frame: .zero)
-    let settingsView = SettingsView()
     let locationButton = LocationButton(frame: .zero)
+    let cityButton = CityButton(frame: .zero)
+    let settingsButton = SettingsButton(frame: .zero)
+    
+    let partsCollectionView = PartsCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let detailsView = DetailsView(frame: .zero)
+    
+    // skeleton
     let personView = PersonView(frame: .zero)
-    
-    let helpView1 = UIView()
-    let helpView2 = UIView()
-    
     let head = createHead()
     let rightArm = createRightArm()
     let leftArm = createLeftArm()
@@ -42,38 +41,22 @@ class ViewController: UIViewController {
     let leftLeg = createLeftLeg()
     let hairCut = createHairCut()
     
+    // clothes
     let rightSneaker = createSneaker()
     let leftSneaker = createSneaker()
+    let rightTrouserLeg = createRightTrouserLeg()
+    let leftTrouserLeg = createLeftTrouserLeg()
+    //let rightTrouserLeg_moved = createMovedRightTrouserLeg()
     
     let leftLeg_moved = createMovedLeftLeg()
     let rightLeg_moved = createMovedRightLeg()
     let body_moved = createMovedBody()
     
-    var citiesLabelScrollingBack = false
-    
-    func moveCitiesLabel(_ estimatedWidth: CGFloat?) {
-        UIView.animate(withDuration: 10, delay: 1, options: .curveLinear, animations: {
-            if self.citiesLabelScrollingBack {
-               self.cityLabel.frame = CGRect(x: buttonSize * 2, y: height * 0.03, width: width - buttonSize * 4.5, height: buttonSize)
-            } else {
-               self.cityLabel.frame = CGRect(x: -(estimatedWidth! - (width - 2.5 * buttonSize)), y: height * 0.03, width: estimatedWidth!, height: buttonSize)
-            }
-        }, completion: { _ in
-            self.citiesLabelScrollingBack = !self.citiesLabelScrollingBack
-            self.moveCitiesLabel(estimatedWidth)
-        })
-    }
-    
     func configureMain() {
         [partsCollectionView, navigationBar].forEach {view.addSubview($0)}
-        [cityLabel, helpView1, helpView2, settingsButton, locationButton].forEach {navigationBar.addSubview($0)}
-        [personView, detailsView, citiesTableView].forEach {view.addSubview($0)}
-        [head, rightArm, leftArm, body, leftLeg, rightLeg, hairCut, rightSneaker, leftSneaker].forEach {personView.layer.addSublayer($0)}
-
-        helpView1.frame = CGRect(x: 0, y: 0, width: 2 * buttonSize, height: height * 0.1)
-        helpView2.frame = CGRect(x: width - 2.5 * buttonSize, y: 0, width: 2.5 * buttonSize, height: height * 0.1)
-        helpView1.backgroundColor = UIColor.color_113
-        helpView2.backgroundColor = UIColor.color_113
+        [cityButton, settingsButton, locationButton].forEach {navigationBar.addSubview($0)}
+        [personView, detailsView].forEach {view.addSubview($0)}
+        [head, rightArm, leftArm, body, leftLeg, rightLeg, hairCut, rightSneaker, leftSneaker, leftTrouserLeg, rightTrouserLeg].forEach {personView.layer.addSublayer($0)}
         
         head.position = CGPoint(x: 80, y: 0)
         body.position = CGPoint(x: 45, y: 35)
@@ -85,6 +68,8 @@ class ViewController: UIViewController {
         hairCut.position = CGPoint(x: 76, y: -5)
         rightSneaker.position = CGPoint(x: 65, y: 445)
         leftSneaker.position = CGPoint(x: 141, y: 445)
+        rightTrouserLeg.position = CGPoint(x: 68, y: 243)
+        leftTrouserLeg.position = CGPoint(x: 97, y: 243)
         
         let rightArmAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rightArmAnimation.fromValue = 0.38 * .pi
@@ -108,7 +93,7 @@ class ViewController: UIViewController {
         leftLegAnimation.duration = 2
         leftLegAnimation.repeatCount = .infinity
         leftLegAnimation.autoreverses = true
-        leftLeg.add(leftLegAnimation, forKey: nil)
+        //leftLeg.add(leftLegAnimation, forKey: nil)
         
         let rightLegAnimation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
         rightLegAnimation.fromValue = rightLeg.path
@@ -117,6 +102,14 @@ class ViewController: UIViewController {
         rightLegAnimation.repeatCount = .infinity
         rightLegAnimation.autoreverses = true
         rightLeg.add(rightLegAnimation, forKey: nil)
+        
+//        let rightTrouserLegAnimation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
+//        rightTrouserLegAnimation.fromValue = rightTrouserLeg.path
+//        rightTrouserLegAnimation.toValue = rightTrouserLeg_moved.path
+//        rightTrouserLegAnimation.duration = 2
+//        rightTrouserLegAnimation.repeatCount = .infinity
+//        rightTrouserLegAnimation.autoreverses = true
+//        rightLeg.add(rightTrouserLegAnimation, forKey: nil)
         
         let bodyAnimation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
         bodyAnimation.fromValue = body.path
@@ -129,12 +122,18 @@ class ViewController: UIViewController {
         partsCollectionView.delegate = self
         partsCollectionView.dataSource = self
         partsCollectionView.register(PartCell.self, forCellWithReuseIdentifier: "partCell")
-        
-        citiesTableView.delegate = self
-        citiesTableView.dataSource = self
-        citiesTableView.register(CityCell.self, forCellReuseIdentifier: "cityCell")
-        
+    
         locationButton.addTarget(self, action: #selector(handleCurrentLocation), for: .touchUpInside)
+        cityButton.addTarget(self, action: #selector(handleShowCityList), for: .touchUpInside)
+        settingsButton.addTarget(self, action: #selector(handleSettingsButton), for: .touchUpInside)
+    }
+    
+    @objc func handleSettingsButton() {
+        delegate.animateSettingsViewController()
+    }
+    
+    @objc func handleShowCityList() {
+        delegate.animateSearchCitiesViewController()
     }
     
     override func viewDidLoad() {
@@ -192,26 +191,14 @@ class ViewController: UIViewController {
                 if data != nil{
                     let currentGeoPositionName = data![0].areaName[0].value + ", " + data![0].region[0].value + ", " + data![0].country[0].value
                 currentCity = currentGeoPositionName
-                DispatchQueue.main.async {
-                    
-                    let size = CGSize(width: 10000, height: buttonSize)
-                    let estimatedFrame = NSString(string: currentGeoPositionName).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 28, weight: .medium)], context: nil)
-                    
-                    self!.cityLabel.frame = CGRect(x: buttonSize * 2, y: height * 0.03, width: estimatedFrame.width, height: buttonSize)
-                     self!.cityLabel.text = currentGeoPositionName
-                    
-                    UIView.animate(withDuration: 10, delay: 1, options: .curveLinear, animations: {
-                        self?.cityLabel.frame = CGRect(x: -(estimatedFrame.width - (width - 2.5 * buttonSize)), y: height * 0.03, width: estimatedFrame.width, height: buttonSize)
-                    }, completion: { _ in
-                        self!.moveCitiesLabel(estimatedFrame.width)
-                    })
+                    DispatchQueue.main.async {
+                        self!.cityButton.setTitle(currentGeoPositionName, for: .normal)
                     }
-                }
-                else{
+                } else {
                     self!.createGeoAlert(locationImprossible: false)
                 }
             })
-        } else{
+        } else {
         loadData(currentCity: currentCity, completion: {
             [weak self] data in
             processData(data : data)

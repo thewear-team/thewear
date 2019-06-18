@@ -16,7 +16,9 @@
 		A78A6839228593AB00657152 /* Data&Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A6838228593AB00657152 /* Data&Methods.swift */; };
 		A7DE609B22AE629300FA2055 /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DE609A22AE629300FA2055 /* LocationButton.swift */; };
 		ABCED885E446D2480CEFB367 /* Pods_theWearApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7F24AC087394C114B598EC /* Pods_theWearApplication.framework */; };
-		BA2329E52271072600883DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2329E42271072600883DA3 /* SettingsView.swift */; };
+		BA3D8BA622B8CB2D008F791F /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3D8BA522B8CB2D008F791F /* ContainerViewController.swift */; };
+		BA3D8BA822B8CB44008F791F /* SearchCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3D8BA722B8CB44008F791F /* SearchCitiesViewController.swift */; };
+		BA3D8BAA22B8CB5D008F791F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3D8BA922B8CB5D008F791F /* SettingsViewController.swift */; };
 		BA4BBE79229954930095735F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA4BBE78229954930095735F /* Assets.xcassets */; };
 		BA4BBE7B22997C880095735F /* CreatingPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BBE7A22997C880095735F /* CreatingPerson.swift */; };
 		BA5D91BF228EE66B007E47BA /* CitiesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */; };
@@ -67,7 +69,9 @@
 		A7D560EE228B60A500650894 /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7DE609A22AE629300FA2055 /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 		A7E872E2228B59FC00C3B3C9 /* FilestackSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FilestackSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA2329E42271072600883DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BA3D8BA522B8CB2D008F791F /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		BA3D8BA722B8CB44008F791F /* SearchCitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCitiesViewController.swift; sourceTree = "<group>"; };
+		BA3D8BA922B8CB5D008F791F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BA4BBE78229954930095735F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = theWearApplication/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		BA4BBE7A22997C880095735F /* CreatingPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingPerson.swift; sourceTree = "<group>"; };
 		BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesTableView.swift; sourceTree = "<group>"; };
@@ -143,6 +147,27 @@
 			path = theWearApplicationTests;
 			sourceTree = "<group>";
 		};
+		BA3D8BAB22B8CBB5008F791F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BA3D8BA522B8CB2D008F791F /* ContainerViewController.swift */,
+				BAFF268C2268BF6400D6C7FA /* ViewController.swift */,
+				BA3D8BA722B8CB44008F791F /* SearchCitiesViewController.swift */,
+				BA3D8BA922B8CB5D008F791F /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BA3D8BAC22B8D1DF008F791F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BA4BBE7A22997C880095735F /* CreatingPerson.swift */,
+				BAFF26A02268C01700D6C7FA /* Extensions.swift */,
+				BABDAB152280E2B500542482 /* configurePaddingsAndFrame.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		BABDAB252282345B00542482 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +177,6 @@
 				BABDAB1F2282307B00542482 /* SettingsButton.swift */,
 				BABDAB262282358000542482 /* PartsCollectionView.swift */,
 				BABDAB1D2282262D00542482 /* DetailsView.swift */,
-				BA2329E42271072600883DA3 /* SettingsView.swift */,
 				BA5D91BE228EE66B007E47BA /* CitiesTableView.swift */,
 				BAC4B8F622B060DB00E30E56 /* PersonView.swift */,
 			);
@@ -195,13 +219,11 @@
 		BAFF26892268BF6400D6C7FA /* theWearApplication */ = {
 			isa = PBXGroup;
 			children = (
-				BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */,
-				BAFF268C2268BF6400D6C7FA /* ViewController.swift */,
-				BA4BBE7A22997C880095735F /* CreatingPerson.swift */,
+				BA3D8BAB22B8CBB5008F791F /* ViewControllers */,
 				BABDAB252282345B00542482 /* Views */,
+				BA3D8BAC22B8D1DF008F791F /* Utilities */,
 				BABDAB2A22823A9E00542482 /* Cells */,
-				BAFF26A02268C01700D6C7FA /* Extensions.swift */,
-				BABDAB152280E2B500542482 /* configurePaddingsAndFrame.swift */,
+				BAFF268A2268BF6400D6C7FA /* AppDelegate.swift */,
 				BA4BBE78229954930095735F /* Assets.xcassets */,
 				BAFF26932268BF6600D6C7FA /* LaunchScreen.storyboard */,
 				BAFF26962268BF6600D6C7FA /* Info.plist */,
@@ -390,11 +412,13 @@
 				A72613EF226DA99E00D0074A /* WeatherCodes&Statuses.swift in Sources */,
 				BAFF26A12268C01700D6C7FA /* Extensions.swift in Sources */,
 				BAFF268D2268BF6400D6C7FA /* ViewController.swift in Sources */,
+				BA3D8BA622B8CB2D008F791F /* ContainerViewController.swift in Sources */,
 				BABDAB272282358000542482 /* PartsCollectionView.swift in Sources */,
 				BA5D91BF228EE66B007E47BA /* CitiesTableView.swift in Sources */,
 				BABDAB202282307B00542482 /* SettingsButton.swift in Sources */,
 				BABDAB1E2282262D00542482 /* DetailsView.swift in Sources */,
 				BA6C7EDC2284F1B9005654A3 /* DayCell.swift in Sources */,
+				BA3D8BA822B8CB44008F791F /* SearchCitiesViewController.swift in Sources */,
 				BAFF268B2268BF6400D6C7FA /* AppDelegate.swift in Sources */,
 				A78A6839228593AB00657152 /* Data&Methods.swift in Sources */,
 				BA4BBE7B22997C880095735F /* CreatingPerson.swift in Sources */,
@@ -403,11 +427,11 @@
 				A701CC5F228F3D18005F4E21 /* Helpers.swift in Sources */,
 				BABDAB22228231C200542482 /* NavigationBar.swift in Sources */,
 				A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */,
+				BA3D8BAA22B8CB5D008F791F /* SettingsViewController.swift in Sources */,
 				BABDAB242282342B00542482 /* CityLabel.swift in Sources */,
 				BABDAB2922823A0600542482 /* PartCell.swift in Sources */,
 				A7DE609B22AE629300FA2055 /* LocationButton.swift in Sources */,
 				BA6C7EDA2284F186005654A3 /* DetailCell.swift in Sources */,
-				BA2329E52271072600883DA3 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

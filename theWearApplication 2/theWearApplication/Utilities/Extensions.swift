@@ -70,7 +70,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             })}
 //        self.handleCitiesButton()
         UIView.animate(withDuration: 0.2) {
-            self.cityLabel.text = allCities[indexPath.row]
+            self.cityButton.setTitle(allCities[indexPath.row], for: .normal)
         }
     }
     
@@ -105,7 +105,7 @@ extension ViewController {
                     let currentGeoPositionName = data![0].areaName[0].value + ", " + data![0].region[0].value + ", " + data![0].country[0].value
                     currentCity = currentGeoPositionName
                     DispatchQueue.main.async {
-                        self!.cityLabel.text = currentGeoPositionName
+                        self?.cityButton.setTitle(currentGeoPositionName, for: .normal)
                     }
                 }
                 else{
@@ -460,7 +460,7 @@ extension ViewController : UITextFieldDelegate {
                     self!.createCityInputAlert()
                 }
                 DispatchQueue.main.async{
-                    self?.citiesTableView.reloadData()
+//                    self?.citiesTableView.reloadData()
                 }
             })
         }
@@ -470,116 +470,6 @@ extension ViewController : UITextFieldDelegate {
     }
 }
 
-extension SettingsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SegmentedControlCell
-        cell.backgroundColor = .white
-        if collectionView == tempsSegmentedControl {
-            cell.label.text = temps[indexPath.item]
-        } else if collectionView == pressureSegmentedControl {
-            cell.label.text = pressures[indexPath.item]
-        } else if collectionView == windSpeedSegmentedControl {
-            cell.label.text = windSpeeds[indexPath.item]
-        } else if collectionView == genderSegmentedControl {
-            cell.label.text = genders[indexPath.row]
-        } else {
-            cell.label.text = notifications[indexPath.row]
-        }
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == tempsSegmentedControl {
-            if indexPath.item == 0 {
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.tempsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.1 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
-                }, completion: nil)
-                tempUnit = "ºC"
-                UserDefaults.standard.set("ºC", forKey: "temperature")
-            } else {
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.tempsChooseView.frame = CGRect(x: width / 2 + buttonSize + self.tempsSegmentedControl.frame.width / 2, y: fullHeight * 0.1 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
-                }, completion: nil)
-                tempUnit = "ºF"
-                UserDefaults.standard.set("ºF", forKey: "temperature")
-            }
-        } else if collectionView == pressureSegmentedControl {
-            if indexPath.item == 0 {
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.pressureChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.2 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
-                }, completion: nil)
-                pressureUnit = "hPa"
-                UserDefaults.standard.set("hPa", forKey: "pressure")
-            } else {
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.pressureChooseView.frame = CGRect(x: width / 2 + buttonSize + self.tempsSegmentedControl.frame.width / 2, y: fullHeight * 0.2 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
-                }, completion: nil)
-                pressureUnit = "mmHg"
-                UserDefaults.standard.set("mmHg", forKey: "pressure")
-            }
-        } else if collectionView == windSpeedSegmentedControl {
-            if indexPath.item == 0 {
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.windSpeedChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.3 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
-                }, completion: nil)
-                windUnit = "km/h"
-                UserDefaults.standard.set("km/h", forKey: "wind")
-            } else {
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.windSpeedChooseView.frame = CGRect(x: width / 2 + buttonSize + self.tempsSegmentedControl.frame.width / 2, y: fullHeight * 0.3 + buttonSize, width: self.tempsSegmentedControl.frame.width / 2, height: 5)
-                }, completion: nil)
-                windUnit = "m/s"
-                UserDefaults.standard.set("m/s", forKey: "wind")
-            }
-        } else if collectionView == genderSegmentedControl {
-            if indexPath.item == 0 {
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.genderChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.45 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
-                }, completion: nil)
-                gender = "man"
-                UserDefaults.standard.set("man", forKey: "gender")
-            } else {
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.genderChooseView.frame = CGRect(x: width / 2 + buttonSize + self.genderSegmentedControl.frame.width / 2, y: fullHeight * 0.45 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
-                }, completion: nil)
-                 gender = "woman"
-                UserDefaults.standard.set("woman", forKey: "gender")
-            }
-        } else {
-            if indexPath.item == 0 {
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.notificationsChooseView.frame = CGRect(x: width / 2 + buttonSize, y: fullHeight * 0.6 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
-                }, completion: nil)
-                self.datePicker.isEnabled = true
-                UserDefaults.standard.set(true , forKey: "notifications")
-                
-            } else {
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.notificationsChooseView.frame = CGRect(x: width / 2 + buttonSize + self.genderSegmentedControl.frame.width / 2, y: fullHeight * 0.6 + buttonSize, width: self.genderSegmentedControl.frame.width / 2, height: 5)
-                }, completion: nil)
-                self.datePicker.isEnabled = false
-                    UserDefaults.standard.set(false , forKey: "notifications")
-                notificationCenter?.removeAllPendingNotificationRequests()
-                notificationCenter?.removeAllDeliveredNotifications()
-            }
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (width - width / 2 - buttonSize * 2) / 2, height: buttonSize)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-}
 extension ViewController{
     func setObserverOnDaySelection(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleDayChange(_sender:)), name: dayChangedName, object: nil)
