@@ -223,7 +223,11 @@ class ViewController: UIViewController {
              detailsView.daysCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .left, animated: true)
         }
         detailsView.hoursCollectionView.scrollToItem(at: IndexPath(row: getCurrentHours(), section: 0), at: .centeredHorizontally, animated: false)
-        partsCollectionView.scrollToItem(at: IndexPath(row: partOfDayNow, section: 0), at: .left, animated: true)
+        if partOfDayNow != 3{
+            partsCollectionView.scrollToItem(at: IndexPath(row: partOfDayNow, section: 0), at: .left, animated: true)}
+        else{
+            partsCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
+        }
         DispatchQueue.main.async {
             self.partsCollectionView.reloadData()
             self.detailsView.daysCollectionView.reloadData()

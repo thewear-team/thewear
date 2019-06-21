@@ -124,68 +124,21 @@ extension ViewController {
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if partOfDayNow == 3  && selectedDay == 0{
+            return 5
+        }
         return 4
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-       
-        if allDays.count > 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partCell", for: indexPath) as! PartCell
-            if indexPath.row == partOfDayNow && selectedDay == 0{
-                //if now
-                let colorComp = statuses[currentCondition.2]
-                 cell.backgroundColor = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
-                if (getCurrentHours() > 22 || getCurrentHours() < 4) &&  statuses[currentCondition.2]?.0 == "Sunny"{
-                    detailsView.nowCondition.text = "Clear"
-                }else{
-                    detailsView.nowCondition.text = statuses[currentCondition.2]?.0}
-                detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(currentCondition.0)!) + "\(tempUnit) now"
-                detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(currentCondition.1)!)  + tempUnit
-                detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
-            }else{
-        switch(indexPath.row){
-        case 0 :
-            detailsView.nowCondition.text = statuses[allDays[selectedDay].morningcode]?.0
-            detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].morningtemp)!) + tempUnit
-            detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].morningfeelslike)!) + tempUnit
-            detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].morningcode)
-        case 1 :
-            detailsView.nowCondition.text = statuses[allDays[selectedDay].daycode]?.0
-            detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].daytemp)!) + tempUnit
-            detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].dayfeelslike)!) + tempUnit
-            detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].daycode)
-      
-        case 2 :
-            detailsView.nowCondition.text = statuses[allDays[selectedDay].eveningcode]?.0
-            detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].eveningtemp)!) + tempUnit
-            detailsView.nowFeelsLike.text = "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].eveningfeelslike)!) + tempUnit
-            detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].eveningcode)
-      
-        case 3 :
-            if allDays[selectedDay].nightcode != nil {
-                if statuses[allDays[selectedDay].nightcode!]?.0 == "Sunny"{
-                     detailsView.nowCondition.text = "Clear"
-                } else{
-                    detailsView.nowCondition.text = statuses[allDays[selectedDay].nightcode!]?.0}
-                detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].nighttemp!)!) + tempUnit
-                detailsView.nowFeelsLike.text = "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].nightfeelslike!)!) + tempUnit
-                detailsView.temperatureImageView.image = UIImage(named: "000")
-            }
-            else{
-                detailsView.nowCondition.text = "no info"
-                detailsView.nowTemperature.text = "no info"
-                detailsView.nowFeelsLike.text = "no info"
-                detailsView.temperatureImageView.image = UIImage(named: "000")
-            }
-            let colorComp = statuses["000"]
-            cell.backgroundColor = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
-            partsCollectionView.backgroundColor = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
-        
-        default :
-            detailsView.nowCondition.text = "now condition"
-                }
-            }
+        if partOfDayNow == 3 && selectedDay == 0 {
+            print("its night")
+            fullFillForNight(indexPath: indexPath, collectionView : collectionView)
         }
+          else{
+             fullFillFutureCells(indexPath: indexPath, collectionView : collectionView)
+        }
+      
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -194,25 +147,45 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             var code = ""
             switch(indexPath.row){
             case 0 :
-                if partOfDayNow == 0{
+                
+                if partOfDayNow == 0  && selectedDay == 0{
                     code = currentCondition.2
+                }
+                else if partOfDayNow == 3 && selectedDay == 0{
+                    code = "000"
                 }else{
                     code = allDays[selectedDay].morningcode}
             case 1 :
-                if partOfDayNow == 1{
+                if partOfDayNow == 1 && selectedDay == 0{
                     code = currentCondition.2
-                }else{
+                }
+                else if partOfDayNow == 3 && selectedDay == 0{
+                    code = allDays[selectedDay].morningcode
+                }
+                else{
                     code = allDays[selectedDay].daycode}
             case 2 :
-                if partOfDayNow == 2{
+                if partOfDayNow == 2  && selectedDay == 0{
                     code = currentCondition.2
-                }else{
+                    if getCurrentHours() > 21{
+                        code = "000"
+                    }
+                }
+                else if partOfDayNow == 3 && selectedDay == 0{
+                    code = allDays[selectedDay].daycode
+                }
+                else{
                     code = allDays[selectedDay].eveningcode}
             case 3 :
-                if partOfDayNow == 3{
-                    code = currentCondition.2
-                }else{
+                if partOfDayNow == 3  && selectedDay == 0{
+                    code = allDays[selectedDay].eveningcode
+                }
+                else{
                     code = "000"}
+            case 4:
+                if partOfDayNow == 3 && selectedDay == 0{
+                    code = "000"
+                }
             default :
                 code = "113"
             }
@@ -222,7 +195,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 let color = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
                 cell.backgroundColor = color
                 partsCollectionView.backgroundColor = color
-                
             }
             
         }else {
@@ -553,6 +525,107 @@ extension ViewController{
             }}))
         self.present(alert, animated: true, completion: nil)
     }
+    func fullFillFutureCells(indexPath : IndexPath, collectionView : UICollectionView){
+        if allDays.count > 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partCell", for: indexPath) as! PartCell
+            if indexPath.row == partOfDayNow && selectedDay == 0{
+                //if now
+                let colorComp = statuses[currentCondition.2]
+                cell.backgroundColor = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
+                if (getCurrentHours() > 21 || getCurrentHours() < 4) &&  statuses[currentCondition.2]?.0 == "Sunny"{
+                    detailsView.nowCondition.text = "Clear"
+                    detailsView.temperatureImageView.image = UIImage(named: "000")
+                }else{
+                    detailsView.nowCondition.text = statuses[currentCondition.2]?.0}
+                detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(currentCondition.0)!) + "\(tempUnit) now"
+                detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(currentCondition.1)!)  + tempUnit
+                detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
+            }else{
+                switch( indexPath.row){
+                case 0 :
+                    detailsView.nowCondition.text = statuses[allDays[selectedDay].morningcode]?.0
+                    detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].morningtemp)!) + tempUnit
+                    detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].morningfeelslike)!) + tempUnit
+                    detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].morningcode)
+                case 1 :
+                    detailsView.nowCondition.text = statuses[allDays[selectedDay].daycode]?.0
+                    detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].daytemp)!) + tempUnit
+                    detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].dayfeelslike)!) + tempUnit
+                    detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].daycode)
+                    
+                case 2 :
+                    detailsView.nowCondition.text = statuses[allDays[selectedDay].eveningcode]?.0
+                    detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].eveningtemp)!) + tempUnit
+                    detailsView.nowFeelsLike.text = "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].eveningfeelslike)!) + tempUnit
+                    detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].eveningcode)
+                    
+                case 3 :
+                    if allDays[selectedDay].nightcode != nil {
+                        if statuses[allDays[selectedDay].nightcode!]?.0 == "Sunny"{
+                            detailsView.nowCondition.text = "Clear"
+                        } else{
+                            detailsView.nowCondition.text = statuses[allDays[selectedDay].nightcode!]?.0}
+                        detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].nighttemp!)!) + tempUnit
+                        detailsView.nowFeelsLike.text = "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].nightfeelslike!)!) + tempUnit
+                        detailsView.temperatureImageView.image = UIImage(named: "000")
+                    }
+                    else{
+                        detailsView.nowCondition.text = "no info"
+                        detailsView.nowTemperature.text = "no info"
+                        detailsView.nowFeelsLike.text = "no info"
+                        detailsView.temperatureImageView.image = UIImage(named: "000")
+                    }
+                    let colorComp = statuses["000"]
+                    cell.backgroundColor = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
+                    partsCollectionView.backgroundColor = UIColor(red: CGFloat((colorComp?.1)!) / 255, green: CGFloat((colorComp?.2)!) / 255, blue: CGFloat((colorComp?.3)!) / 255, alpha: 1.0)
+                    
+                default :
+                    detailsView.nowCondition.text = "now condition"
+                }
+            }
+        }
+    }
+    
+    func fullFillForNight(indexPath: IndexPath, collectionView : UICollectionView){
+        //when its night now and need new cell
+        if allDays.count > 0 {
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partCell", for: indexPath) as! PartCell
+        switch(indexPath.row){
+        case 0 :
+        detailsView.nowCondition.text = statuses[currentCondition.2]?.0
+        detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(currentCondition.0)!) + "\(tempUnit) now"
+        detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(currentCondition.1)!)  + tempUnit
+        detailsView.temperatureImageView.image = UIImage(named: currentCondition.2)
+        case 1 :
+            detailsView.nowCondition.text = statuses[allDays[selectedDay].morningcode]?.0
+            detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].morningtemp)!) + tempUnit
+            detailsView.nowFeelsLike.text =  "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].morningfeelslike)!) + tempUnit
+            detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].morningcode)
+            
+        case 2 :
+            detailsView.nowCondition.text = statuses[allDays[selectedDay].daycode]?.0
+            detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].daytemp)!) + tempUnit
+            detailsView.nowFeelsLike.text = "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].dayfeelslike)!) + tempUnit
+            detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].daycode)
+            
+        case 3 :
+            detailsView.nowCondition.text = statuses[allDays[selectedDay].eveningcode]?.0
+            detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].eveningtemp)!) + tempUnit
+            detailsView.nowFeelsLike.text = "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].eveningfeelslike)!) + tempUnit
+            detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].eveningcode)
+        case 4 :
+            detailsView.nowCondition.text = statuses[allDays[selectedDay].nightcode!]?.0
+            detailsView.nowTemperature.text = celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].nighttemp!)!) + tempUnit
+            detailsView.nowFeelsLike.text = "Feels like " + celciumToFIfNeeded(measure: tempUnit, tempC: Int(allDays[selectedDay].nightfeelslike!)!) + tempUnit
+            detailsView.temperatureImageView.image = UIImage(named: allDays[selectedDay].nightcode!)
+        default :
+            detailsView.nowCondition.text = "now condition"
+        }
+      }
+    }
+    
+    
+
 
 }
 
