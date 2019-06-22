@@ -12,7 +12,6 @@
 		A726140122705AA700D0074A /* theWearApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726140022705AA700D0074A /* theWearApplicationTests.swift */; };
 		A72F45C722933921000177F0 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72F45C622933921000177F0 /* LocalNotifications.swift */; };
 		A783D0DA226C5670006948F8 /* Requests&Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783D0D9226C5670006948F8 /* Requests&Model.swift */; };
-		A787FDA4228C5557004BC4D7 /* SwiftyDropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A787FDA3228C5557004BC4D7 /* SwiftyDropbox.framework */; };
 		A78A6839228593AB00657152 /* Data&Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A6838228593AB00657152 /* Data&Methods.swift */; };
 		A7DE609B22AE629300FA2055 /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DE609A22AE629300FA2055 /* LocationButton.swift */; };
 		ABCED885E446D2480CEFB367 /* Pods_theWearApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7F24AC087394C114B598EC /* Pods_theWearApplication.framework */; };
@@ -64,7 +63,6 @@
 		A726140222705AA700D0074A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A72F45C622933921000177F0 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
 		A783D0D9226C5670006948F8 /* Requests&Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Requests&Model.swift"; sourceTree = "<group>"; };
-		A787FDA3228C5557004BC4D7 /* SwiftyDropbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyDropbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A78A6838228593AB00657152 /* Data&Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data&Methods.swift"; sourceTree = "<group>"; };
 		A7D560EE228B60A500650894 /* Filestack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Filestack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7DE609A22AE629300FA2055 /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A787FDA4228C5557004BC4D7 /* SwiftyDropbox.framework in Frameworks */,
 				ABCED885E446D2480CEFB367 /* Pods_theWearApplication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,7 +126,6 @@
 		72A5E752730880B102677599 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A787FDA3228C5557004BC4D7 /* SwiftyDropbox.framework */,
 				A7D560EE228B60A500650894 /* Filestack.framework */,
 				A7E872E2228B59FC00C3B3C9 /* FilestackSDK.framework */,
 				1C7F24AC087394C114B598EC /* Pods_theWearApplication.framework */,
@@ -266,7 +262,6 @@
 				BAFF26832268BF6400D6C7FA /* Sources */,
 				BAFF26842268BF6400D6C7FA /* Frameworks */,
 				BAFF26852268BF6400D6C7FA /* Resources */,
-				FE43694FF196DCFF25BFC019 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -363,30 +358,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FE43694FF196DCFF25BFC019 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-theWearApplication/Pods-theWearApplication-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyDropbox/SwiftyDropbox.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyDropbox.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-theWearApplication/Pods-theWearApplication-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -626,7 +597,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication-theWear----";
+				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication-theWe--";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -646,7 +617,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication-theWear----";
+				PRODUCT_BUNDLE_IDENTIFIER = "Reshetov.studio.theWearApplication-theWe--";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

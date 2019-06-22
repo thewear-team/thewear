@@ -2159,8 +2159,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
             endingLineNumber = "145"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
+            landmarkName = "ViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2255,7 +2255,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
             endingLineNumber = "148"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkName = "collectionView(_:willDisplay:forItemAt:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2456,7 +2456,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "528"
             endingLineNumber = "528"
-            landmarkName = "fullFillFutureCells(indexPath:collectionView:)"
+            landmarkName = "createInternetAlert()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2504,7 +2504,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "536"
             endingLineNumber = "536"
-            landmarkName = "fullFillFutureCells(indexPath:collectionView:)"
+            landmarkName = "createInternetAlert()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2520,7 +2520,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "535"
             endingLineNumber = "535"
-            landmarkName = "fullFillFutureCells(indexPath:collectionView:)"
+            landmarkName = "createInternetAlert()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2536,7 +2536,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
             endingLineNumber = "134"
-            landmarkName = "collectionView(_:willDisplay:forItemAt:)"
+            landmarkName = "handleCurrentLocation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2568,7 +2568,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
             endingLineNumber = "149"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkName = "collectionView(_:willDisplay:forItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2600,7 +2600,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
             endingLineNumber = "147"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkName = "collectionView(_:willDisplay:forItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

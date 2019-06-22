@@ -133,7 +133,7 @@ class ViewController: UIViewController {
     }
     
     @objc func handleShowCityList() {
-        delegate.animateSearchCitiesViewController()
+        delegate.animateSearchCitiesViewController(cityButton.titleLabel!.text!)
     }
     
     override func viewDidLoad() {

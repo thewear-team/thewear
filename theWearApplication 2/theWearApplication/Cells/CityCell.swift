@@ -12,9 +12,10 @@ class CityCell: UITableViewCell {
     
     let cityLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .black
         label.textAlignment = .left
-        
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         return label
     }()
@@ -22,7 +23,10 @@ class CityCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(cityLabel)
-        cityLabel.frame = CGRect(x: buttonSize, y: 0, width: frame.width - buttonSize, height: fullHeight * 0.07)
+        cityLabel.topAnchor.constraint(equalTo: topAnchor, constant: buttonSize).isActive = true
+        cityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: buttonSize).isActive = true
+        cityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -buttonSize).isActive = true
+        cityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -buttonSize).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
