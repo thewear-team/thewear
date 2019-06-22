@@ -130,5 +130,15 @@ func celciumToFIfNeeded(measure : String, tempC : Int)->String{
         return String(tempC)
     }
 }
+func getProperAreaName(item : SearchResult)->String{
+    var newCityName = item.areaName[0].value
+    if item.region[0].value != ""{
+        newCityName = newCityName + ", " +  item.region[0].value
+    }
+    if item.country[0].value != ""{
+        newCityName = newCityName + ", " + item.country[0].value
+    }
+    return newCityName
+}
 
 
