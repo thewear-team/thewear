@@ -79,6 +79,7 @@ class SearchCitiesViewController: UIViewController, UITableViewDelegate, UITable
         var text = allCities[indexPath.row]
         text = text.replacingOccurrences(of: " ", with: "%20")
         selectedCity = text
+         selectedDay = 0
         currentCity = text
         if selectedCity != ""{
             print(selectedCity)
@@ -87,6 +88,7 @@ class SearchCitiesViewController: UIViewController, UITableViewDelegate, UITable
                 if Reachability.isInternetAvailable(){
                     print(data.current_condition[0].temp_C)
                     processData(data: data)
+//
                     DispatchQueue.main.async {
                         self?.delegate.viewController.fillUIelementsWithData()
                         self?.handleBack()

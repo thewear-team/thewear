@@ -81,7 +81,9 @@ class DetailsView: UIView {
         hoursCollectionView.delegate = self
         hoursCollectionView.dataSource = self
         hoursCollectionView.register(HourCell.self, forCellWithReuseIdentifier: "hourCell")
+
         hoursCollectionView.frame = CGRect(x: 0, y: 0.25 * fullHeight, width: width, height: 0.15 * fullHeight)
+        
         
         detailsTableView.delegate = self
         detailsTableView.dataSource = self
@@ -115,8 +117,21 @@ class DetailsView: UIView {
     @objc func handleDetailsViewTap(_ recognizer: UITapGestureRecognizer) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             if !self.detailsViewIsOpened {
+             
                 self.frame = CGRect(x: 0, y: 0, width: width, height: fullHeight)
                 self.layer.cornerRadius = 0
+                
+                if selectedDay != 0{
+                    self.hoursCollectionView.isHidden = true
+                    self.detailsTableView.frame = CGRect(x: buttonSize, y: 0.25 * fullHeight, width: width - buttonSize * 2, height: 0.25 * fullHeight)
+                    self.daysCollectionView.frame = CGRect(x: 0, y: 0.55 * fullHeight, width: width , height: 0.2 * fullHeight)
+                }
+                else{
+                    self.hoursCollectionView.isHidden = false
+                    self.hoursCollectionView.frame = CGRect(x: 0, y: 0.25 * fullHeight, width: width, height: 0.15 * fullHeight)
+                    self.detailsTableView.frame = CGRect(x: buttonSize, y: 0.45 * fullHeight, width: width - buttonSize * 2, height: 0.25 * fullHeight)
+                    self.daysCollectionView.frame = CGRect(x: 0, y: 0.75 * fullHeight, width: width, height: 0.2 * fullHeight)
+                }
                 
                 self.temperatureImageView.frame.origin.y = 0.1 * fullHeight
                 self.nowTemperature.frame.origin.y = 0.1 * fullHeight
@@ -129,6 +144,7 @@ class DetailsView: UIView {
                 self.nowCondition.frame.origin.x = buttonSize + 0.1 * fullHeight
                 
                 self.detailsViewIsOpened = true
+                
             }
         }, completion: nil)
         
@@ -152,6 +168,17 @@ class DetailsView: UIView {
                 self.frame = CGRect(x: (detailsViewY / detailsViewX) * ((fullHeight * 0.1) / 8), y: detailsViewY, width: detailsWidth, height: detailsHeight)
                 self.layer.cornerRadius = -(detailsViewY / detailsViewX) * ((fullHeight * 0.1) / 8)
                 
+                if selectedDay != 0{
+                    self.hoursCollectionView.isHidden = true
+                    self.detailsTableView.frame = CGRect(x: buttonSize, y: 0.25 * fullHeight, width: width - buttonSize * 2, height: 0.25 * fullHeight)
+                    self.daysCollectionView.frame = CGRect(x: 0, y: 0.55 * fullHeight, width: width, height: 0.2 * fullHeight)
+                }else{
+                    self.hoursCollectionView.isHidden = false
+                    self.hoursCollectionView.frame = CGRect(x: 0, y: 0.25 * fullHeight, width: width, height: 0.15 * fullHeight)
+                    self.detailsTableView.frame = CGRect(x: buttonSize, y: 0.45 * fullHeight, width: width - buttonSize * 2, height: 0.25 * fullHeight)
+                    self.daysCollectionView.frame = CGRect(x: 0, y: 0.75 * fullHeight, width: width, height: 0.2 * fullHeight)
+                }
+                
                 temperatureImageView.frame.origin.y = fullHeight * (0.1 + (detailsViewY / detailsViewX) * 0.00625)
                 nowTemperature.frame.origin.y = fullHeight * (0.1 + (detailsViewY / detailsViewX) * 0.00625)
                 nowFeelsLike.frame.origin.y = fullHeight * (0.15 + (detailsViewY / detailsViewX) * 0.00625)
@@ -161,6 +188,7 @@ class DetailsView: UIView {
                 nowTemperature.frame.origin.x = buttonSize + fullHeight * (0.1 + (-detailsViewY / detailsViewX) * 0.0125)
                 nowFeelsLike.frame.origin.x = buttonSize + fullHeight * (0.1 + (-detailsViewY / detailsViewX) * 0.0125)
                 nowCondition.frame.origin.x = buttonSize + fullHeight * (0.1 + (-detailsViewY / detailsViewX) * 0.0125)
+                
             }
             recognizer.setTranslation(.zero, in: self)
         } else if recognizer.state == .ended {
