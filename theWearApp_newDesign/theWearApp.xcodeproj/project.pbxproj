@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7F19C9B22D517E3006CE60B /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19C9A22D517E3006CE60B /* WeatherDataModel.swift */; };
+		A7F19C9D22D5198A006CE60B /* AutocompleteDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19C9C22D5198A006CE60B /* AutocompleteDataModel.swift */; };
+		A7F19C9F22D519B6006CE60B /* OutputDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19C9E22D519B6006CE60B /* OutputDataModel.swift */; };
+		A7F19CA122D51AD4006CE60B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CA022D51AD4006CE60B /* NetworkService.swift */; };
+		A7F19CA422D51DAB006CE60B /* Code&Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CA322D51DAB006CE60B /* Code&Colors.swift */; };
+		A7F19CA622D523E2006CE60B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CA522D523E2006CE60B /* NotificationService.swift */; };
+		A7F19CA822D52432006CE60B /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CA722D52432006CE60B /* Functions.swift */; };
+		A7F19CAA22D52CF5006CE60B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CA922D52CF5006CE60B /* LocationService.swift */; };
+		A7F19CAC22D52D2A006CE60B /* ReachabilityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CAB22D52D2A006CE60B /* ReachabilityChecker.swift */; };
+		A7F19CAE22D52FB9006CE60B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CAD22D52FB9006CE60B /* Extensions.swift */; };
+		A7F19CB022D53585006CE60B /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CAF22D53585006CE60B /* SettingsModel.swift */; };
+		A7F19CB222D53D68006CE60B /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CB122D53D68006CE60B /* Alerts.swift */; };
 		DB19A88122C9400C00F4EC41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19A88022C9400C00F4EC41 /* AppDelegate.swift */; };
 		DB19A88322C9400C00F4EC41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19A88222C9400C00F4EC41 /* ViewController.swift */; };
 		DB19A88822C9400C00F4EC41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB19A88722C9400C00F4EC41 /* Assets.xcassets */; };
@@ -19,6 +31,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A7F19C9A22D517E3006CE60B /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
+		A7F19C9C22D5198A006CE60B /* AutocompleteDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteDataModel.swift; sourceTree = "<group>"; };
+		A7F19C9E22D519B6006CE60B /* OutputDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputDataModel.swift; sourceTree = "<group>"; };
+		A7F19CA022D51AD4006CE60B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		A7F19CA322D51DAB006CE60B /* Code&Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Code&Colors.swift"; sourceTree = "<group>"; };
+		A7F19CA522D523E2006CE60B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		A7F19CA722D52432006CE60B /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		A7F19CA922D52CF5006CE60B /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		A7F19CAB22D52D2A006CE60B /* ReachabilityChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityChecker.swift; sourceTree = "<group>"; };
+		A7F19CAD22D52FB9006CE60B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A7F19CAF22D53585006CE60B /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		A7F19CB122D53D68006CE60B /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		DB19A87D22C9400C00F4EC41 /* theWearApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theWearApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB19A88022C9400C00F4EC41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB19A88222C9400C00F4EC41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +67,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7F19CA222D51D7A006CE60B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A7F19CA022D51AD4006CE60B /* NetworkService.swift */,
+				A7F19CA322D51DAB006CE60B /* Code&Colors.swift */,
+				A7F19CA522D523E2006CE60B /* NotificationService.swift */,
+				A7F19CA922D52CF5006CE60B /* LocationService.swift */,
+				A7F19CAB22D52D2A006CE60B /* ReachabilityChecker.swift */,
+				A7F19CB122D53D68006CE60B /* Alerts.swift */,
+				A7F19CA722D52432006CE60B /* Functions.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		DB19A87422C9400C00F4EC41 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				DB19A88022C9400C00F4EC41 /* AppDelegate.swift */,
+				A7F19CA222D51D7A006CE60B /* Services */,
 				DBCDD0A822D3F47100C617FE /* Model */,
 				DBCDD0A722D3F46800C617FE /* View */,
 				DBCDD0A922D3F47F00C617FE /* Controller */,
@@ -87,7 +126,11 @@
 			isa = PBXGroup;
 			children = (
 				DB19A89222C9451700F4EC41 /* AdditionalFunctions.swift */,
+				A7F19C9A22D517E3006CE60B /* WeatherDataModel.swift */,
+				A7F19C9E22D519B6006CE60B /* OutputDataModel.swift */,
+				A7F19C9C22D5198A006CE60B /* AutocompleteDataModel.swift */,
 				DB596E1D22CE067B00030AAB /* GlobalVariables.swift */,
+				A7F19CAF22D53585006CE60B /* SettingsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,6 +138,7 @@
 		DBCDD0A922D3F47F00C617FE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A7F19CAD22D52FB9006CE60B /* Extensions.swift */,
 				DB19A88222C9400C00F4EC41 /* ViewController.swift */,
 			);
 			path = Controller;
@@ -132,6 +176,11 @@
 				TargetAttributes = {
 					DB19A87C22C9400C00F4EC41 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -170,12 +219,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F19CB022D53585006CE60B /* SettingsModel.swift in Sources */,
+				A7F19CB222D53D68006CE60B /* Alerts.swift in Sources */,
+				A7F19CA122D51AD4006CE60B /* NetworkService.swift in Sources */,
 				DB19A89322C9451700F4EC41 /* AdditionalFunctions.swift in Sources */,
 				DBCDD0A422D3F3C600C617FE /* DetailsView.swift in Sources */,
+				A7F19CA822D52432006CE60B /* Functions.swift in Sources */,
+				A7F19CA422D51DAB006CE60B /* Code&Colors.swift in Sources */,
 				DB19A88322C9400C00F4EC41 /* ViewController.swift in Sources */,
 				DB596E1E22CE067B00030AAB /* GlobalVariables.swift in Sources */,
+				A7F19CAA22D52CF5006CE60B /* LocationService.swift in Sources */,
+				A7F19CA622D523E2006CE60B /* NotificationService.swift in Sources */,
+				A7F19C9B22D517E3006CE60B /* WeatherDataModel.swift in Sources */,
 				DBCDD0A022D2165E00C617FE /* NaviagationBar.swift in Sources */,
+				A7F19C9D22D5198A006CE60B /* AutocompleteDataModel.swift in Sources */,
 				DB19A88122C9400C00F4EC41 /* AppDelegate.swift in Sources */,
+				A7F19C9F22D519B6006CE60B /* OutputDataModel.swift in Sources */,
+				A7F19CAE22D52FB9006CE60B /* Extensions.swift in Sources */,
+				A7F19CAC22D52D2A006CE60B /* ReachabilityChecker.swift in Sources */,
 				DBCDD0A222D29A4900C617FE /* PartInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,7 +376,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 78FSRJL5ZR;
+				DEVELOPMENT_TEAM = 99F33CAX5W;
 				INFOPLIST_FILE = theWearApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -333,7 +394,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 78FSRJL5ZR;
+				DEVELOPMENT_TEAM = 99F33CAX5W;
 				INFOPLIST_FILE = theWearApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

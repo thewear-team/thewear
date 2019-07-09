@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController, ChangeCityDelegate {
     
-    // MARK: Properties
+    // MARK: Properties for UI
     
     let naviagtionBar = NaviagationBar(frame: .zero)
     
@@ -31,6 +32,14 @@ class ViewController: UIViewController, ChangeCityDelegate {
     let panView = UIView()
     var helpBezier = UIBezierPath()
     
+    //MARK : otther properties
+    
+    var latitude :  String = ""
+    var longitude : String = ""
+    
+    var locationManager: CLLocationManager?
+    
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {return .lightContent}
     
     // MARK: Init
@@ -42,6 +51,30 @@ class ViewController: UIViewController, ChangeCityDelegate {
         configureNext()
         configurePanView()
         configureNavBar()
+        
+        determinePartOfDay()
+        getCurrentHours()
+        
+        self.configureLocationManager()
+        
+        
+        UserDefaults.standard.set(nil, forKey: "daysParts")
+        if (UserDefaults.standard.value(forKey: "isOpened") != nil){
+            retrieveDataAndUpdate()
+            
+            SettingsModel.shared.retrieveSettings()
+        }else{
+            SettingsModel.shared.saveUnitForDetails()
+        }
+        if ReachabilityChecker.isInternetAvailable(){
+            //load new data
+        }
+        else{
+            // retrieve old data
+        }
+        
+        UserDefaults.standard.set(1, forKey: "isOpened")
+        
     }
     
     // MARK: Handlers
@@ -205,7 +238,7 @@ class ViewController: UIViewController, ChangeCityDelegate {
             self.updateCurrent()
             self.updateNext()
             if page != 0 {
-               self.view.backgroundColor = colors[page - 1]
+                self.view.backgroundColor = colors[page - 1]
                 self.updatePrevious()
             }
             self.nextLayer.fillColor = colors[page + 1].cgColor
@@ -242,4 +275,76 @@ class ViewController: UIViewController, ChangeCityDelegate {
         animation.toValue = openPosition
         [currentLayer, currentLayerMask].forEach {$0.add(animation, forKey: nil)}
     }
+    
+    // data loading funcs
+    func getDataAndUpdate(){
+//        if UserDefaults.standard.value(forKey: "latitude") != nil && UserDefaults.standard.value(forKey: "longitude") != nil{
+//            latitude = UserDefaults.standard.value(forKey: "latitude") as! String
+//            longitude = UserDefaults.standard.value(forKey: "longitude") as! String
+//            let str = String(latitude) + "%20" + String(longitude)
+//            print("Geo request is \(str)")
+//            NetworkService.shared.getWeather(currentGEO: str, completion: {
+//                [weak self] data in
+//                processData(data : data)
+//                //save
+//                DispatchQueue.main.async {
+//                    self!.fillUIelementsWithData()
+//                    configureNotifications()
+//                    notificationCenter?.removeAllDeliveredNotifications()
+//                    notificationCenter?.removeAllPendingNotificationRequests()
+//                    createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city: currentCity, text: genereatePush(hour: hourOfPush) ?? "", back: false)
+//                }
+//            })
+//            NetworkService.shared.autocomplete(latitude: latitude, longitude: longitude, completion: {
+//                [weak self] data in
+//                if data != nil{
+//                    let currentGeoPositionName = data![0].areaName[0].value + ", " + data![0].region[0].value + ", " + data![0].country[0].value
+//                    currentCity = currentGeoPositionName
+//                    DispatchQueue.main.async {
+//                        self!.cityButton.setTitle(currentGeoPositionName, for: .normal)
+//                    }
+//                } else {
+//                    self!.createGeoAlert(locationImprossible: false)
+//                }
+//            })
+//        } else {
+//            NetworkService.shared.loadData(currentCity: currentCity, completion: {
+//                [weak self] data in
+//                processData(data : data)
+//                //save
+//                DispatchQueue.main.async {
+//                    self!.fillUIelementsWithData()
+//                    configureNotifications()
+//                    notificationCenter?.removeAllDeliveredNotifications()
+//                    notificationCenter?.removeAllPendingNotificationRequests()                createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city: currentCity, text: genereatePush(hour: hourOfPush) ?? "", back: false)
+//
+//                }
+//            })
+//        }
+//
+    }
+    func fillUIelementsWithData(){
+        //        if selectedDay != 0 {
+        //            detailsView.daysCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+        //        }else{
+        //            detailsView.daysCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .left, animated: true)
+        //        }
+        //        detailsView.hoursCollectionView.scrollToItem(at: IndexPath(row: getCurrentHours(), section: 0), at: .centeredHorizontally, animated: false)
+        //        if partOfDayNow != 3{
+        //            partsCollectionView.scrollToItem(at: IndexPath(row: partOfDayNow, section: 0), at: .left, animated: true)}
+        //        else{
+        //            partsCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
+        //        }
+        //        DispatchQueue.main.async {
+        //            self.partsCollectionView.reloadData()
+        //            self.detailsView.daysCollectionView.reloadData()
+        //            self.detailsView.hoursCollectionView.reloadData()
+        //            self.detailsView.nowCondition.text = statuses[currentCondition.2]?.0
+        //            if allDays.count != 0{
+        //                self.detailsView.detailsTableView.reloadData()
+        //
+        //            }
+        //        }
+    }
+    
 }
