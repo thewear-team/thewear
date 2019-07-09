@@ -8,6 +8,11 @@
 
 import UIKit
 
+let iconNames = ["113", "116", "000"]
+let temperature = ["23°", "20°", "17°"]
+let feelsLike = ["Feels like 24°", "Feels like 20°", "Feels like 15°"]
+let condition = ["Sunny", "Partly cloudy", "Clear"]
+
 let persons = ["man1", "man2", "man3"]
 let weatherIcons = ["113", "116", "000"]
 let weather = ["23°", "20°", "17°"]

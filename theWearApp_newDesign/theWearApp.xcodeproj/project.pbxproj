@@ -15,6 +15,7 @@
 		DB596E1E22CE067B00030AAB /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB596E1D22CE067B00030AAB /* GlobalVariables.swift */; };
 		DBCDD0A022D2165E00C617FE /* NaviagationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCDD09F22D2165E00C617FE /* NaviagationBar.swift */; };
 		DBCDD0A222D29A4900C617FE /* PartInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCDD0A122D29A4900C617FE /* PartInfoView.swift */; };
+		DBCDD0A422D3F3C600C617FE /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCDD0A322D3F3C600C617FE /* DetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DB596E1D22CE067B00030AAB /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		DBCDD09F22D2165E00C617FE /* NaviagationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviagationBar.swift; sourceTree = "<group>"; };
 		DBCDD0A122D29A4900C617FE /* PartInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartInfoView.swift; sourceTree = "<group>"; };
+		DBCDD0A322D3F3C600C617FE /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,16 +63,41 @@
 			isa = PBXGroup;
 			children = (
 				DB19A88022C9400C00F4EC41 /* AppDelegate.swift */,
-				DB19A88222C9400C00F4EC41 /* ViewController.swift */,
-				DBCDD09F22D2165E00C617FE /* NaviagationBar.swift */,
-				DBCDD0A122D29A4900C617FE /* PartInfoView.swift */,
-				DB19A89222C9451700F4EC41 /* AdditionalFunctions.swift */,
-				DB596E1D22CE067B00030AAB /* GlobalVariables.swift */,
+				DBCDD0A822D3F47100C617FE /* Model */,
+				DBCDD0A722D3F46800C617FE /* View */,
+				DBCDD0A922D3F47F00C617FE /* Controller */,
 				DB19A88722C9400C00F4EC41 /* Assets.xcassets */,
 				DB19A88922C9400C00F4EC41 /* LaunchScreen.storyboard */,
 				DB19A88C22C9400C00F4EC41 /* Info.plist */,
 			);
 			path = theWearApp;
+			sourceTree = "<group>";
+		};
+		DBCDD0A722D3F46800C617FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DBCDD09F22D2165E00C617FE /* NaviagationBar.swift */,
+				DBCDD0A122D29A4900C617FE /* PartInfoView.swift */,
+				DBCDD0A322D3F3C600C617FE /* DetailsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DBCDD0A822D3F47100C617FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DB19A89222C9451700F4EC41 /* AdditionalFunctions.swift */,
+				DB596E1D22CE067B00030AAB /* GlobalVariables.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DBCDD0A922D3F47F00C617FE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DB19A88222C9400C00F4EC41 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB19A89322C9451700F4EC41 /* AdditionalFunctions.swift in Sources */,
+				DBCDD0A422D3F3C600C617FE /* DetailsView.swift in Sources */,
 				DB19A88322C9400C00F4EC41 /* ViewController.swift in Sources */,
 				DB596E1E22CE067B00030AAB /* GlobalVariables.swift in Sources */,
 				DBCDD0A022D2165E00C617FE /* NaviagationBar.swift in Sources */,
@@ -287,14 +315,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWearApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "libit.theWearApp---";
+				PRODUCT_BUNDLE_IDENTIFIER = libit.theWearApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -306,14 +333,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWearApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "libit.theWearApp---";
+				PRODUCT_BUNDLE_IDENTIFIER = libit.theWearApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
