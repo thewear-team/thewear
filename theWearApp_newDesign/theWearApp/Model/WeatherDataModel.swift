@@ -29,16 +29,58 @@ struct Data : Decodable{
     var current_condition : [CurrentCondition]
     let weather : [Weather] // all days
     
-    static func processData(data : Data){
+//    static convertTempsToFarengheit(){
+//    
+//    }
+//    
+//    static convertTempsToCelыius(){
+//    
+//    }
+    
+    static func prepareArraysToDisplay(data : Data){
+        
+        temperature = []
+        feelsLike = []
+        condition = []
+        iconNames = []
+        
+        data.weather[0].hourly!.map{ //for today's hours
+            hoursTemps.append($0.tempC)
+            hoursIcons.append($0.weatherCode)
+        }
+        data.weather[1].hourly!.map{ //for tomorrow's hours
+            hoursTemps.append($0.tempC)
+            hoursIcons.append($0.weatherCode)
+        }
+        
+        iconNames = [data.weather[0].hourly![9].weatherCode,
+                     data.weather[0].hourly![15].weatherCode,
+                     data.weather[0].hourly![21].weatherCode,
+                     data.weather[1].hourly![3].weatherCode]
+        
+        temperature = ["\(data.weather[0].hourly![9].tempC)°C",
+                      "\(data.weather[0].hourly![15].tempC)°C",
+                       "\(data.weather[0].hourly![21].tempC)°C",
+                       "\(data.weather[1].hourly![3].tempC)°C"]
+        
+        feelsLike = ["Feels like \(data.weather[0].hourly![9].FeelsLikeC)°C",
+                     "Feels like \(data.weather[0].hourly![15].FeelsLikeC)°C",
+                     "Feels like \(data.weather[0].hourly![21].FeelsLikeC)°C",
+                     "Feels like \(data.weather[1].hourly![3].FeelsLikeC)°C"]
+        
+        condition = [(Status.allStatuses[data.weather[0].hourly![9].weatherCode]!.0) ,
+                     (Status.allStatuses[data.weather[0].hourly![15].weatherCode]!.0) ,
+                     (Status.allStatuses[data.weather[0].hourly![21].weatherCode]!.0) ,
+                     (Status.allStatuses[data.weather[1].hourly![3].weatherCode]!.0) ]
+    }
+    
+    static func processDataAndSave(data : Data){
+        
         var hoursString = ""
         let currentConditionString = data.current_condition[0].temp_C + "," + data.current_condition[0].FeelsLikeC  + "," + data.current_condition[0].weatherCode //for saving
         currentCondition = (data.current_condition[0].temp_C ,  data.current_condition[0].FeelsLikeC,data.current_condition[0].weatherCode ) //for displaying now
-        data.weather[0].hourly!.map{
-            hoursString = hoursString + $0.tempC + " " + $0.weatherCode + ";"
-        }
-        data.weather[1].hourly!.map{
-            hoursString = hoursString + $0.tempC + " " + $0.weatherCode + ";"
-        }
+        
+     
         var parts : [String] = []
         var details : [String] = []
         var bound = 0
@@ -71,10 +113,12 @@ struct Data : Decodable{
             parts.append(finalLine)
             bound += 1
         }
-        //            print("HERE ARE NEW FETCHED DAYS \(allDays)")
-        print(parts)
-        UserDefaults.standard.set(currentConditionString, forKey: "currentCondition")//here is string
-        UserDefaults.standard.set(parts, forKey: "daysParts")//here is an array == allDays in vc
+        
+        //        print(parts)
+        
+        UserDefaultsService.saveCurrentCondition(string: currentConditionString)
+        
+        UserDefaultsService.saveDayParts(strings: parts)
         demoTemp = []
         //fill current values
         let hours  = (hoursString.split(separator: ";"))
@@ -83,10 +127,10 @@ struct Data : Decodable{
             var parts = hour.split(separator: " ")
             demoTemp.append(String(parts[0]))
             codesHours.append(String(parts[1]))
+            
         }
-        print(codesHours)
-        print(demoTemp)
-        UserDefaults.standard.set(hoursString, forKey: "todayHours")
+        
+        UserDefaultsService.saveTodaysHours(string : hoursString)
     }
 }
 

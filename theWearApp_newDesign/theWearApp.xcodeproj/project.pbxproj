@@ -14,11 +14,11 @@
 		A7F19CA422D51DAB006CE60B /* Code&Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CA322D51DAB006CE60B /* Code&Colors.swift */; };
 		A7F19CA622D523E2006CE60B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CA522D523E2006CE60B /* NotificationService.swift */; };
 		A7F19CA822D52432006CE60B /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CA722D52432006CE60B /* Functions.swift */; };
-		A7F19CAA22D52CF5006CE60B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CA922D52CF5006CE60B /* LocationService.swift */; };
 		A7F19CAC22D52D2A006CE60B /* ReachabilityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CAB22D52D2A006CE60B /* ReachabilityChecker.swift */; };
-		A7F19CAE22D52FB9006CE60B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CAD22D52FB9006CE60B /* Extensions.swift */; };
+		A7F19CAE22D52FB9006CE60B /* Extensions(Location).swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CAD22D52FB9006CE60B /* Extensions(Location).swift */; };
 		A7F19CB022D53585006CE60B /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CAF22D53585006CE60B /* SettingsModel.swift */; };
 		A7F19CB222D53D68006CE60B /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CB122D53D68006CE60B /* Alerts.swift */; };
+		A7F19CB522D6363A006CE60B /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F19CB422D6363A006CE60B /* UserDefaultsService.swift */; };
 		DB19A88122C9400C00F4EC41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19A88022C9400C00F4EC41 /* AppDelegate.swift */; };
 		DB19A88322C9400C00F4EC41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19A88222C9400C00F4EC41 /* ViewController.swift */; };
 		DB19A88822C9400C00F4EC41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB19A88722C9400C00F4EC41 /* Assets.xcassets */; };
@@ -38,17 +38,17 @@
 		A7F19CA322D51DAB006CE60B /* Code&Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Code&Colors.swift"; sourceTree = "<group>"; };
 		A7F19CA522D523E2006CE60B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		A7F19CA722D52432006CE60B /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
-		A7F19CA922D52CF5006CE60B /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		A7F19CAB22D52D2A006CE60B /* ReachabilityChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityChecker.swift; sourceTree = "<group>"; };
-		A7F19CAD22D52FB9006CE60B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A7F19CAD22D52FB9006CE60B /* Extensions(Location).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions(Location).swift"; sourceTree = "<group>"; };
 		A7F19CAF22D53585006CE60B /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		A7F19CB122D53D68006CE60B /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		A7F19CB322D63014006CE60B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../../../../../Desktop/theWearApplication 2/theWearApplication/Info.plist"; sourceTree = "<group>"; };
+		A7F19CB422D6363A006CE60B /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		DB19A87D22C9400C00F4EC41 /* theWearApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theWearApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB19A88022C9400C00F4EC41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB19A88222C9400C00F4EC41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DB19A88722C9400C00F4EC41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB19A88A22C9400C00F4EC41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DB19A88C22C9400C00F4EC41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB19A89222C9451700F4EC41 /* AdditionalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalFunctions.swift; sourceTree = "<group>"; };
 		DB596E1D22CE067B00030AAB /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		DBCDD09F22D2165E00C617FE /* NaviagationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviagationBar.swift; sourceTree = "<group>"; };
@@ -70,10 +70,10 @@
 		A7F19CA222D51D7A006CE60B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A7F19CB422D6363A006CE60B /* UserDefaultsService.swift */,
 				A7F19CA022D51AD4006CE60B /* NetworkService.swift */,
 				A7F19CA322D51DAB006CE60B /* Code&Colors.swift */,
 				A7F19CA522D523E2006CE60B /* NotificationService.swift */,
-				A7F19CA922D52CF5006CE60B /* LocationService.swift */,
 				A7F19CAB22D52D2A006CE60B /* ReachabilityChecker.swift */,
 				A7F19CB122D53D68006CE60B /* Alerts.swift */,
 				A7F19CA722D52432006CE60B /* Functions.swift */,
@@ -107,7 +107,7 @@
 				DBCDD0A922D3F47F00C617FE /* Controller */,
 				DB19A88722C9400C00F4EC41 /* Assets.xcassets */,
 				DB19A88922C9400C00F4EC41 /* LaunchScreen.storyboard */,
-				DB19A88C22C9400C00F4EC41 /* Info.plist */,
+				A7F19CB322D63014006CE60B /* Info.plist */,
 			);
 			path = theWearApp;
 			sourceTree = "<group>";
@@ -138,7 +138,7 @@
 		DBCDD0A922D3F47F00C617FE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A7F19CAD22D52FB9006CE60B /* Extensions.swift */,
+				A7F19CAD22D52FB9006CE60B /* Extensions(Location).swift */,
 				DB19A88222C9400C00F4EC41 /* ViewController.swift */,
 			);
 			path = Controller;
@@ -228,14 +228,14 @@
 				A7F19CA422D51DAB006CE60B /* Code&Colors.swift in Sources */,
 				DB19A88322C9400C00F4EC41 /* ViewController.swift in Sources */,
 				DB596E1E22CE067B00030AAB /* GlobalVariables.swift in Sources */,
-				A7F19CAA22D52CF5006CE60B /* LocationService.swift in Sources */,
 				A7F19CA622D523E2006CE60B /* NotificationService.swift in Sources */,
 				A7F19C9B22D517E3006CE60B /* WeatherDataModel.swift in Sources */,
+				A7F19CB522D6363A006CE60B /* UserDefaultsService.swift in Sources */,
 				DBCDD0A022D2165E00C617FE /* NaviagationBar.swift in Sources */,
 				A7F19C9D22D5198A006CE60B /* AutocompleteDataModel.swift in Sources */,
 				DB19A88122C9400C00F4EC41 /* AppDelegate.swift in Sources */,
 				A7F19C9F22D519B6006CE60B /* OutputDataModel.swift in Sources */,
-				A7F19CAE22D52FB9006CE60B /* Extensions.swift in Sources */,
+				A7F19CAE22D52FB9006CE60B /* Extensions(Location).swift in Sources */,
 				A7F19CAC22D52D2A006CE60B /* ReachabilityChecker.swift in Sources */,
 				DBCDD0A222D29A4900C617FE /* PartInfoView.swift in Sources */,
 			);

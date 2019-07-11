@@ -71,7 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let geo = vc.latitude  + "%20" + vc.longitude
                                 NetworkService.shared.getWeather(currentGEO: geo, completion: {
                                     data in
-                                    Data.processData(data: data)
+                                    Data.processDataAndSave(data: data)
+                                    Data.prepareArraysToDisplay(data: data)
                                     print(data.current_condition[0].temp_C)
                                     NotificationService.shared.configureNotifications()
                                     os_log("running background fetch now")
@@ -79,7 +80,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 })} else{
                                  NetworkService.shared.loadData(currentCity: currentCity, completion: {
                                     data in
-                                    Data.processData(data: data)
+                                    Data.processDataAndSave(data: data)
+                                    Data.prepareArraysToDisplay(data: data)
                                     print(data.current_condition[0].temp_C)
                                      NotificationService.shared.configureNotifications()
                                     os_log("running background fetch now")

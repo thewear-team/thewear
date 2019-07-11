@@ -147,6 +147,13 @@ class NotificationService {
         }
         return nil
     }
+    
+    func performAllNotificationTasks(){
+        NotificationService.shared.configureNotifications()
+        NotificationService.shared.notificationCenter?.removeAllDeliveredNotifications()
+        NotificationService.shared.notificationCenter?.removeAllPendingNotificationRequests()
+        NotificationService.shared.createnoticreateNotificationAtTime(hour: NotificationService.shared.hourOfPush, minute: NotificationService.shared.minuteOfPush, city: currentCity, text: NotificationService.shared.genereatePush(hour: NotificationService.shared.minuteOfPush) ?? "")
+    }
 }
 
 

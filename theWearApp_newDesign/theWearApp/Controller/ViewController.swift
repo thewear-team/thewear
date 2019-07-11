@@ -25,6 +25,7 @@ class ViewController: UIViewController, ChangeCityDelegate {
     var currentPartInfo = PartInfoView(frame: .zero, iconName: iconNames[page], temperature: temperature[page], feelsLike: feelsLike[page], condition: condition[page])
     var nextPartInfo = PartInfoView(frame: .zero, iconName: iconNames[page + 1], temperature: temperature[page + 1], feelsLike: feelsLike[page + 1], condition: condition[page + 1])
     
+    
     let previousPerson = UIImageView()
     let currentPerson = UIImageView()
     let nextPerson = UIImageView()
@@ -60,17 +61,20 @@ class ViewController: UIViewController, ChangeCityDelegate {
         
         UserDefaults.standard.set(nil, forKey: "daysParts")
         if (UserDefaults.standard.value(forKey: "isOpened") != nil){
-            retrieveDataAndUpdate()
+            retrieveData()
+            //fill ui
+            //retrieve settings
             
             SettingsModel.shared.retrieveSettings()
         }else{
             SettingsModel.shared.saveUnitForDetails()
         }
         if ReachabilityChecker.isInternetAvailable(){
-            //load new data
+            //loading new data
+            getDataAndUpdate()
         }
         else{
-            // retrieve old data
+           UserDefaultsService.getPreviousData()
         }
         
         UserDefaults.standard.set(1, forKey: "isOpened")
@@ -278,73 +282,58 @@ class ViewController: UIViewController, ChangeCityDelegate {
     
     // data loading funcs
     func getDataAndUpdate(){
-//        if UserDefaults.standard.value(forKey: "latitude") != nil && UserDefaults.standard.value(forKey: "longitude") != nil{
-//            latitude = UserDefaults.standard.value(forKey: "latitude") as! String
-//            longitude = UserDefaults.standard.value(forKey: "longitude") as! String
-//            let str = String(latitude) + "%20" + String(longitude)
-//            print("Geo request is \(str)")
-//            NetworkService.shared.getWeather(currentGEO: str, completion: {
-//                [weak self] data in
-//                processData(data : data)
-//                //save
-//                DispatchQueue.main.async {
-//                    self!.fillUIelementsWithData()
-//                    configureNotifications()
-//                    notificationCenter?.removeAllDeliveredNotifications()
-//                    notificationCenter?.removeAllPendingNotificationRequests()
-//                    createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city: currentCity, text: genereatePush(hour: hourOfPush) ?? "", back: false)
-//                }
-//            })
-//            NetworkService.shared.autocomplete(latitude: latitude, longitude: longitude, completion: {
-//                [weak self] data in
-//                if data != nil{
-//                    let currentGeoPositionName = data![0].areaName[0].value + ", " + data![0].region[0].value + ", " + data![0].country[0].value
-//                    currentCity = currentGeoPositionName
-//                    DispatchQueue.main.async {
-//                        self!.cityButton.setTitle(currentGeoPositionName, for: .normal)
-//                    }
-//                } else {
+        
+        if UserDefaultsService.checkLatLong(){
+            UserDefaultsService.getLatLong()
+            let str = String(latitude) + "%20" + String(longitude)
+            print("Geo request is \(str)")
+            NetworkService.shared.getWeather(currentGEO: str, completion: {
+                [weak self] data in
+                Data.processDataAndSave(data : data)
+                Data.prepareArraysToDisplay(data: data)
+                //save
+                DispatchQueue.main.async {
+                    self!.fillUIelementsWithData()
+                    NotificationService.shared.performAllNotificationTasks()
+                    self!.updateNext()
+                    self!.updateCurrent()
+                    
+                }
+            })
+            NetworkService.shared.autocomplete(latitude: latitude, longitude: longitude, completion: {
+                [weak self] data in
+                if data != nil{
+                    let currentGeoPositionName = data![0].areaName[0].value + ", " + data![0].region[0].value + ", " + data![0].country[0].value
+                    currentCity = currentGeoPositionName
+                    DispatchQueue.main.async {
+                       //
+                    }
+                } else {
 //                    self!.createGeoAlert(locationImprossible: false)
-//                }
-//            })
-//        } else {
-//            NetworkService.shared.loadData(currentCity: currentCity, completion: {
-//                [weak self] data in
-//                processData(data : data)
-//                //save
-//                DispatchQueue.main.async {
-//                    self!.fillUIelementsWithData()
-//                    configureNotifications()
-//                    notificationCenter?.removeAllDeliveredNotifications()
-//                    notificationCenter?.removeAllPendingNotificationRequests()                createnoticreateNotificationAtTime(hour: hourOfPush, minute: minuteOfPush, city: currentCity, text: genereatePush(hour: hourOfPush) ?? "", back: false)
-//
-//                }
-//            })
-//        }
-//
+                }
+            })
+
+        }
+        else{
+            NetworkService.shared.loadData(currentCity: currentCity, completion: {
+                                [weak self] data in
+                                Data.processDataAndSave(data : data)
+                                Data.prepareArraysToDisplay(data: data)
+                                //save
+                                DispatchQueue.main.async {
+//                                    self!.fillUIelementsWithData()
+                                    self!.updateNext()
+                                    self!.updateCurrent()
+                                   
+                                NotificationService.shared.performAllNotificationTasks()
+                                }
+                            })
+            
+        }
     }
+    
     func fillUIelementsWithData(){
-        //        if selectedDay != 0 {
-        //            detailsView.daysCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
-        //        }else{
-        //            detailsView.daysCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .left, animated: true)
-        //        }
-        //        detailsView.hoursCollectionView.scrollToItem(at: IndexPath(row: getCurrentHours(), section: 0), at: .centeredHorizontally, animated: false)
-        //        if partOfDayNow != 3{
-        //            partsCollectionView.scrollToItem(at: IndexPath(row: partOfDayNow, section: 0), at: .left, animated: true)}
-        //        else{
-        //            partsCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
-        //        }
-        //        DispatchQueue.main.async {
-        //            self.partsCollectionView.reloadData()
-        //            self.detailsView.daysCollectionView.reloadData()
-        //            self.detailsView.hoursCollectionView.reloadData()
-        //            self.detailsView.nowCondition.text = statuses[currentCondition.2]?.0
-        //            if allDays.count != 0{
-        //                self.detailsView.detailsTableView.reloadData()
-        //
-        //            }
-        //        }
+        
     }
     
 }
