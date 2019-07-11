@@ -9,6 +9,16 @@
 import Foundation
 import CoreLocation
 
+extension Int {
+    mutating func convertToFarenheit()->Int{
+        return Int(self * (9/5) + 32)
+    }
+    mutating func convertToCelsius()->Int{
+        return Int((self + 32) *  (5/9))
+    }
+    
+}
+
 extension ViewController : CLLocationManagerDelegate{
     
     func configureLocationManager(){

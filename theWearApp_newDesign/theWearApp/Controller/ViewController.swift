@@ -13,7 +13,7 @@ class ViewController: UIViewController, ChangeCityDelegate {
     
     // MARK: Properties for UI
     
-    let naviagtionBar = NaviagationBar(frame: .zero)
+    let naviagtionBar = NavigationBar(frame: .zero)
     
     let currentLayer = CAShapeLayer()
     let currentLayerMask = CAShapeLayer()
@@ -40,9 +40,11 @@ class ViewController: UIViewController, ChangeCityDelegate {
     
     var locationManager: CLLocationManager?
     
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {return .lightContent}
     
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {return .slide}
+    override var prefersStatusBarHidden: Bool {return detailsIsOpened}
+    var detailsIsOpened = false
     // MARK: Init
     
     override func viewDidLoad() {
@@ -123,8 +125,13 @@ class ViewController: UIViewController, ChangeCityDelegate {
     @objc func handleTapOnWeather(_ recognizer: UITapGestureRecognizer) {
         let location = recognizer.location(in: panView)
         if location.x >= 30 && location.x <= width - 60 && location.y >= (0.89 * height - bottom - 30) && location.y <= (height - bottom - 30) {
-            let detailsView = DetailsView()
-            detailsView.configureDetails()
+            let detailsView = DetailsView(frame: .zero)
+            view.addSubview(detailsView)
+            detailsView.show()
+            detailsIsOpened = true
+            UIView.animate(withDuration: 0.5) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
         }
     }
     

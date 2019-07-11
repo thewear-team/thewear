@@ -13,14 +13,14 @@ var hourNow = 0
 var partOfDayNow = 0
 var hoursTemps = [String]()//
 var hoursIcons = [String]()//
-var iconNames = ["113", "116", "000"]//
+var iconNames = ["113", "116", "000", "333"]//
 var temperature = ["-°", "-°", "-°"]//
 var feelsLike = ["Feels like -°", "Feels like -°", "Feels like -°"]//
-var condition = ["--", "--", "--"]
+var condition = ["--", "--", "--", "--"]
 
-var persons = ["man1", "man2", "man3"]
+var persons = ["man1", "man2", "man3", "man4"]
 
-let colors = [UIColor(red: 37/255, green: 158/255, blue: 217/255, alpha: 1), UIColor(red: 19/255, green: 88/255, blue: 177/255, alpha: 1), UIColor(red: 45/255, green: 67/255, blue: 130/255, alpha: 1)]
+let colors = [UIColor(red: 37/255, green: 158/255, blue: 217/255, alpha: 1), UIColor(red: 19/255, green: 88/255, blue: 177/255, alpha: 1), UIColor(red: 45/255, green: 67/255, blue: 130/255, alpha: 1), UIColor(red: 37/255, green: 158/255, blue: 217/255, alpha: 1)]
 var page = 0
 
 //FOR SETTINGS

@@ -142,3 +142,15 @@ func createClosedCurrent() -> UIBezierPath {
     return currentPart
 }
 
+func createOpenedCurrentForDetails() -> UIBezierPath {
+    
+    let currentPart = UIBezierPath()
+    currentPart.move(to: .zero)
+    currentPart.addLine(to: CGPoint(x: width, y: 0))
+    currentPart.addLine(to: CGPoint(x: width, y: 0))
+    currentPart.addLine(to: .zero)
+    currentPart.close()
+    
+    return currentPart
+}
+

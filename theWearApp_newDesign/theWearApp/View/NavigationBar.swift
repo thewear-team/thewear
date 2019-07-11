@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NaviagationBar: UIView {
+class NavigationBar: UIView {
     
     // MARK: Properties
     

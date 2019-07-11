@@ -17,7 +17,7 @@ class PartInfoView: UIView {
     let temperature: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont(name: "Avenir-Heavy", size: 62)
+        label.font = UIFont(name: "Avenir-Heavy", size: 60)
         return label
     }()
     let feelsLikeTemperature: UILabel = {
