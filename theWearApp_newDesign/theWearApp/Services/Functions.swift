@@ -32,12 +32,12 @@ func determinePartOfDay(){
     print (partOfDayNow)
 }
 
-func retrieveData(){
-    UserDefaultsService.getLatLong()
-    UserDefaultsService.getPreviousDaysParts()
-    UserDefaultsService.getPreviousTodayHours()
-    UserDefaultsService.getPreviousCurrentCondition()
-}
+//func retrieveData(){
+//    UserDefaultsService.getLatLong()
+//    UserDefaultsService.getPreviousDaysParts()
+//    UserDefaultsService.getPreviousTodayHours()
+//    UserDefaultsService.getPreviousCurrentCondition()
+//}
 
 
 func getCurrentHours()->Int{

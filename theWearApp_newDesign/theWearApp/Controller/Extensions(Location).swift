@@ -16,6 +16,7 @@ extension Int {
     mutating func convertToCelsius()->Int{
         return Int((self + 32) *  (5/9))
     }
+//    mutating func convertTo
     
 }
 

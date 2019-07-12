@@ -62,6 +62,14 @@ class NavigationBar: UIView {
         self.addSubview(changeCityButton)
     }
     
+    func changeCity(for city : String){
+        cityLabel.text = city
+    }
+    
+    func changeDate(for date : String){
+        dateLabel.text = date
+    }
+    
     @objc func handleChangeCity() {
         delegate.changeCity()
     }

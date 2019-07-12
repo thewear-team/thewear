@@ -20,7 +20,6 @@ class UserDefaultsService {
         self.getPreviousTodayHours()
         self.getPreviousCurrentCondition()
         self.getPreviousDaysParts()
-   
     }
 
     static func getPreviousTodayHours (){

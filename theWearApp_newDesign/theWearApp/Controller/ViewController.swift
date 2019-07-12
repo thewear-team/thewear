@@ -49,11 +49,6 @@ class ViewController: UIViewController, ChangeCityDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePrevious()
-        configureCurrent()
-        configureNext()
-        configurePanView()
-        configureNavBar()
         
         determinePartOfDay()
         getCurrentHours()
@@ -63,24 +58,27 @@ class ViewController: UIViewController, ChangeCityDelegate {
         
         UserDefaults.standard.set(nil, forKey: "daysParts")
         if (UserDefaults.standard.value(forKey: "isOpened") != nil){
-            retrieveData()
+            UserDefaultsService.getPreviousData()
+            SettingsModel().retrieveSettings()
             //fill ui
-            //retrieve settings
             
-            SettingsModel.shared.retrieveSettings()
+            
         }else{
             SettingsModel.shared.saveUnitForDetails()
         }
+        
         if ReachabilityChecker.isInternetAvailable(){
-            //loading new data
+            //loading new data and updating ui
             getDataAndUpdate()
-        }
-        else{
-           UserDefaultsService.getPreviousData()
         }
         
         UserDefaults.standard.set(1, forKey: "isOpened")
         
+        configurePrevious()
+        configureCurrent()
+        configureNext()
+        configurePanView()
+        configureNavBar()
     }
     
     // MARK: Handlers
@@ -176,6 +174,7 @@ class ViewController: UIViewController, ChangeCityDelegate {
         previousPartInfo.feelsLikeTemperature.text = feelsLike[page - 1]
         previousPartInfo.condition.text = condition[page - 1]
         previousPerson.image = UIImage(named: persons[page - 1])
+//        = colors[page - 1]
     }
     
     func updateCurrent() {
@@ -184,6 +183,8 @@ class ViewController: UIViewController, ChangeCityDelegate {
         currentPartInfo.feelsLikeTemperature.text = feelsLike[page]
         currentPartInfo.condition.text = condition[page]
         currentPerson.image = UIImage(named: persons[page])
+//        self.view.backgroundColor = colors[page]
+        currentLayer.fillColor = colors[page].cgColor
     }
     
     func updateNext() {
@@ -192,6 +193,8 @@ class ViewController: UIViewController, ChangeCityDelegate {
         nextPartInfo.feelsLikeTemperature.text = feelsLike[page + 1]
         nextPartInfo.condition.text = condition[page + 1]
         nextPerson.image = UIImage(named: persons[page + 1])
+//        self.view.backgroundColor = colors[page + 1]
+        nextLayer.fillColor = colors[page + 1].cgColor
     }
     
     func handleOpenNextLayer() {
@@ -300,11 +303,10 @@ class ViewController: UIViewController, ChangeCityDelegate {
                 Data.prepareArraysToDisplay(data: data)
                 //save
                 DispatchQueue.main.async {
-                    self!.fillUIelementsWithData()
                     NotificationService.shared.performAllNotificationTasks()
-                    self!.updateNext()
                     self!.updateCurrent()
-                    
+                    self!.updateNext()
+                   
                 }
             })
             NetworkService.shared.autocomplete(latitude: latitude, longitude: longitude, completion: {
@@ -313,7 +315,7 @@ class ViewController: UIViewController, ChangeCityDelegate {
                     let currentGeoPositionName = data![0].areaName[0].value + ", " + data![0].region[0].value + ", " + data![0].country[0].value
                     currentCity = currentGeoPositionName
                     DispatchQueue.main.async {
-                       //
+                        self!.naviagtionBar.changeCity(for: currentGeoPositionName)
                     }
                 } else {
 //                    self!.createGeoAlert(locationImprossible: false)
@@ -328,19 +330,17 @@ class ViewController: UIViewController, ChangeCityDelegate {
                                 Data.prepareArraysToDisplay(data: data)
                                 //save
                                 DispatchQueue.main.async {
-//                                    self!.fillUIelementsWithData()
-                                    self!.updateNext()
+                                    NotificationService.shared.performAllNotificationTasks()
                                     self!.updateCurrent()
-                                   
-                                NotificationService.shared.performAllNotificationTasks()
+                                    self!.updateNext()
+                                    
+                                   self!.naviagtionBar.changeCity(for: currentCity)
                                 }
                             })
             
         }
     }
     
-    func fillUIelementsWithData(){
-        
-    }
+    
     
 }
