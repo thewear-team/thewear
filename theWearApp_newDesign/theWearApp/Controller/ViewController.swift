@@ -9,31 +9,18 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, ChangeCityDelegate {
+class ViewController: UIViewController, ChangeCityDelegate, DetailsViewDelegate {
     
     // MARK: Properties for UI
     
-    let naviagtionBar = NavigationBar(frame: .zero)
+    //let preloaderView = PreloaderView()
+    let navigationBar = NavigationBar(frame: .zero)
+    let previousLayer = PreviousLayer(layer: CAShapeLayer())
+    let currentLayer = CurrentLayer(layer: CAShapeLayer())
+    let nextLayer = NextLayer(layer: CAShapeLayer())    
+    let panView = PanView(frame: .zero)
     
-    let currentLayer = CAShapeLayer()
-    let currentLayerMask = CAShapeLayer()
-    
-    let nextLayer = CAShapeLayer()
-    let nextLayerMask = CAShapeLayer()
-    
-    var previousPartInfo = PartInfoView(frame: .zero, iconName: iconNames[page], temperature: temperature[page], feelsLike: feelsLike[page], condition: condition[page])
-    var currentPartInfo = PartInfoView(frame: .zero, iconName: iconNames[page], temperature: temperature[page], feelsLike: feelsLike[page], condition: condition[page])
-    var nextPartInfo = PartInfoView(frame: .zero, iconName: iconNames[page + 1], temperature: temperature[page + 1], feelsLike: feelsLike[page + 1], condition: condition[page + 1])
-    
-    
-    let previousPerson = UIImageView()
-    let currentPerson = UIImageView()
-    let nextPerson = UIImageView()
-    
-    let panView = UIView()
-    var helpBezier = UIBezierPath()
-    
-    //MARK : otther properties
+    //MARK : other properties
     
     var latitude :  String = ""
     var longitude : String = ""
@@ -42,9 +29,6 @@ class ViewController: UIViewController, ChangeCityDelegate {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {return .lightContent}
     
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {return .slide}
-    override var prefersStatusBarHidden: Bool {return detailsIsOpened}
-    var detailsIsOpened = false
     // MARK: Init
     
     override func viewDidLoad() {
@@ -55,13 +39,11 @@ class ViewController: UIViewController, ChangeCityDelegate {
         
         self.configureLocationManager()
         
-        
         UserDefaults.standard.set(nil, forKey: "daysParts")
         if (UserDefaults.standard.value(forKey: "isOpened") != nil){
             UserDefaultsService.getPreviousData()
             SettingsModel().retrieveSettings()
             //fill ui
-            
             
         }else{
             SettingsModel.shared.saveUnitForDetails()
@@ -74,224 +56,42 @@ class ViewController: UIViewController, ChangeCityDelegate {
         
         UserDefaults.standard.set(1, forKey: "isOpened")
         
-        configurePrevious()
-        configureCurrent()
-        configureNext()
-        configurePanView()
-        configureNavBar()
+        // New code
+        [previousLayer, currentLayer, nextLayer].forEach {view.layer.addSublayer($0)}
+        nextLayer.previousDelegate = previousLayer
+        nextLayer.currentDelegate = currentLayer
+        currentLayer.previousDelegate = previousLayer
+        currentLayer.nextDelegate = nextLayer
+        panView.currentDelegate = currentLayer
+        panView.nextDelegate = nextLayer
+        panView.delegate = self
+        [navigationBar, panView].forEach {view.addSubview($0)}
+        navigationBar.delegate = self
     }
     
     // MARK: Handlers
     
-    func configurePrevious() {
-        view.addSubview(previousPartInfo)
-        view.addSubview(previousPerson)
-        previousPerson.frame = CGRect(x: (width - 250) / 2, y: (height - 550) / 2, width: 250, height: 500)
-    }
-    
-    func configureCurrent() {
-        helpBezier = createCurrent()
-        [currentLayer, currentLayerMask].forEach {$0.path = helpBezier.cgPath}
-        currentLayer.mask = currentLayerMask
-        currentLayer.fillColor = colors[page].cgColor
-        view.layer.addSublayer(currentLayer)
-        currentLayer.addSublayer(currentPartInfo.layer)
-        currentLayer.addSublayer(currentPerson.layer)
-        currentPerson.frame = CGRect(x: (width - 250) / 2, y: (height - 550) / 2, width: 250, height: 500)
-        currentPerson.image = UIImage(named: persons[page])
-    }
-    
-    func configureNext() {
-        helpBezier = createNext()
-        [nextLayer, nextLayerMask].forEach {$0.path = helpBezier.cgPath}
-        nextLayer.mask = nextLayerMask
-        nextLayer.fillColor = colors[page + 1].cgColor
-        view.layer.addSublayer(nextLayer)
-        nextLayer.addSublayer(nextPartInfo.layer)
-        nextLayer.addSublayer(nextPerson.layer)
-        nextPerson.frame = CGRect(x: (width - 250) / 2, y: (height - 550) / 2, width: 250, height: 500)
-        nextPerson.image = UIImage(named: persons[page + 1])
-    }
-    
-    func configurePanView() {
-        panView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        view.addSubview(panView)
-        panView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanView(_:))))
-        panView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapOnWeather(_:))))
-    }
-    
-    @objc func handleTapOnWeather(_ recognizer: UITapGestureRecognizer) {
-        let location = recognizer.location(in: panView)
-        if location.x >= 30 && location.x <= width - 60 && location.y >= (0.89 * height - bottom - 30) && location.y <= (height - bottom - 30) {
-            let detailsView = DetailsView(frame: .zero)
-            view.addSubview(detailsView)
-            detailsView.show()
-            detailsIsOpened = true
-            UIView.animate(withDuration: 0.5) {
-                self.setNeedsStatusBarAppearanceUpdate()
-            }
-        }
-    }
-    
-    @objc func handlePanView(_ recognizer: UIPanGestureRecognizer) {
-        if recognizer.state == .changed {
-            let translation = recognizer.translation(in: panView)
-            let newX = panView.frame.origin.x + translation.x
-            if newX <= 0 {
-                if page < colors.count - 1 {
-                    panView.frame.origin.x = newX
-                    helpBezier = createNextWhenPan(newX + width, translation.x)
-                    [nextLayer, nextLayerMask].forEach {$0.path = helpBezier.cgPath}
-                }
-            } else {
-                if page != 0 {
-                    panView.frame.origin.x = newX
-                    helpBezier = createCurrentWhenPan(newX, translation.x)
-                    [currentLayer, currentLayerMask].forEach {$0.path = helpBezier.cgPath}
-                }
-            }
-            view.layoutIfNeeded()
-            recognizer.setTranslation(.zero, in: panView)
-        } else if recognizer.state == .ended {
-            if panView.frame.origin.x < -width / 2 {
-                page += 1
-                handleOpenNextLayer()
-            } else if panView.frame.origin.x >= -width / 2 && panView.frame.origin.x <= 0 {
-                handleCloseNextLayer()
-            } else if panView.frame.origin.x > 0 && panView.frame.origin.x <= width / 2 {
-                handleOpenCurrentLayer()
-            } else {
-                page -= 1
-                handleCloseCurrentLayer()
-            }
-            panView.frame.origin.x = 0
-        }
-    }
-    
-    func updatePrevious() {
-        previousPartInfo.icon.image = UIImage(named: iconNames[page - 1])
-        previousPartInfo.temperature.text = temperature[page - 1]
-        previousPartInfo.feelsLikeTemperature.text = feelsLike[page - 1]
-        previousPartInfo.condition.text = condition[page - 1]
-        previousPerson.image = UIImage(named: persons[page - 1])
-//        = colors[page - 1]
-    }
-    
-    func updateCurrent() {
-        currentPartInfo.icon.image = UIImage(named: iconNames[page])
-        currentPartInfo.temperature.text = temperature[page]
-        currentPartInfo.feelsLikeTemperature.text = feelsLike[page]
-        currentPartInfo.condition.text = condition[page]
-        currentPerson.image = UIImage(named: persons[page])
-//        self.view.backgroundColor = colors[page]
-        currentLayer.fillColor = colors[page].cgColor
-    }
-    
-    func updateNext() {
-        nextPartInfo.icon.image = UIImage(named: iconNames[page + 1])
-        nextPartInfo.temperature.text = temperature[page + 1]
-        nextPartInfo.feelsLikeTemperature.text = feelsLike[page + 1]
-        nextPartInfo.condition.text = condition[page + 1]
-        nextPerson.image = UIImage(named: persons[page + 1])
-//        self.view.backgroundColor = colors[page + 1]
-        nextLayer.fillColor = colors[page + 1].cgColor
-    }
-    
-    func handleOpenNextLayer() {
-        CATransaction.begin()
-        CATransaction.setCompletionBlock {
-            CATransaction.setValue(true, forKey: kCATransactionDisableActions)
-            self.view.backgroundColor = colors[page - 1]
-            self.currentLayer.fillColor = colors[page].cgColor
-            self.helpBezier = createNext()
-            [self.nextLayer, self.nextLayerMask].forEach {$0.path = self.helpBezier.cgPath}
-            
-            self.updatePrevious()
-            self.updateCurrent()
-            
-            if page < colors.count - 1 {
-                self.nextLayer.fillColor = colors[page + 1].cgColor
-                self.updateNext()
-            }
-            self.view.layoutIfNeeded()
-        }
-        let animation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
-        animation.duration = 0.3
-        animation.fromValue = nextLayer.path
-        helpBezier = createOpenedNext()
-        [nextLayer, nextLayerMask].forEach {$0.path = helpBezier.cgPath}
-        [nextLayer, nextLayerMask].forEach {$0.add(animation, forKey: nil)}
-        animation.toValue = helpBezier.cgPath
-        CATransaction.commit()
-    }
-    
-    func handleCloseNextLayer() {
-        let animation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
-        animation.duration = 0.3
-        animation.fromValue = nextLayer.path
-        helpBezier = createNext()
-        [nextLayer, nextLayerMask].forEach {$0.path = helpBezier.cgPath}
-        animation.toValue = helpBezier.cgPath
-        [nextLayer, nextLayerMask].forEach {$0.add(animation, forKey: nil)}
-    }
-    
-    func handleOpenCurrentLayer() {
-        let animation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
-        animation.duration = 0.3
-        animation.fromValue = currentLayer.path
-        helpBezier = createCurrent()
-        animation.toValue = helpBezier.cgPath
-        [currentLayer, currentLayerMask].forEach {$0.path = helpBezier.cgPath}
-        [currentLayer, currentLayerMask].forEach {$0.add(animation, forKey: nil)}
-    }
-    
-    func handleCloseCurrentLayer() {
-        CATransaction.begin()
-        CATransaction.setCompletionBlock {
-            CATransaction.setValue(true, forKey: kCATransactionDisableActions)
-            self.updateCurrent()
-            self.updateNext()
-            if page != 0 {
-                self.view.backgroundColor = colors[page - 1]
-                self.updatePrevious()
-            }
-            self.nextLayer.fillColor = colors[page + 1].cgColor
-            self.currentLayer.fillColor = colors[page].cgColor
-            self.helpBezier = createCurrent()
-            [self.currentLayer, self.currentLayerMask].forEach {$0.path = self.helpBezier.cgPath}
-            self.view.layoutIfNeeded()
-        }
-        let animation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.path))
-        animation.duration = 0.3
-        animation.fromValue = currentLayer.path
-        helpBezier = createClosedCurrent()
-        animation.toValue = helpBezier.cgPath
-        [currentLayer, currentLayerMask].forEach {$0.path = helpBezier.cgPath}
-        [currentLayer, currentLayerMask].forEach {$0.add(animation, forKey: nil)}
-        CATransaction.commit()
-    }
-    
-    func configureNavBar() {
-        view.addSubview(naviagtionBar)
-        naviagtionBar.delegate = self
+    func configureDetailsView() {
+        let detailsView = DetailsView(frame: .zero)
+        view.addSubview(detailsView)
+        detailsView.show()
     }
     
     func changeCity() {
         UIView.animate(withDuration: 0.1) {
-            self.naviagtionBar.dateLabel.alpha = 0
+            self.navigationBar.dateLabel.alpha = 0
         }
         let animation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.position))
         animation.duration = 0.6
         animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
         animation.fromValue = currentLayer.position
         let openPosition = CGPoint(x: 0, y: height / 2)
-        [currentLayer, currentLayerMask].forEach {$0.position = openPosition}
+        [currentLayer, currentLayer.currentLayerMask].forEach {$0.position = openPosition}
         animation.toValue = openPosition
-        [currentLayer, currentLayerMask].forEach {$0.add(animation, forKey: nil)}
+        [currentLayer, currentLayer.currentLayerMask].forEach {$0.add(animation, forKey: nil)}
     }
     
-    // data loading funcs
-    func getDataAndUpdate(){
+    func getDataAndUpdate() {
         
         if UserDefaultsService.checkLatLong(){
             UserDefaultsService.getLatLong()
@@ -304,8 +104,8 @@ class ViewController: UIViewController, ChangeCityDelegate {
                 //save
                 DispatchQueue.main.async {
                     NotificationService.shared.performAllNotificationTasks()
-                    self!.updateCurrent()
-                    self!.updateNext()
+                    self!.currentLayer.updateCurrent()
+                    self!.nextLayer.updateNext()
                    
                 }
             })
@@ -315,15 +115,14 @@ class ViewController: UIViewController, ChangeCityDelegate {
                     let currentGeoPositionName = data![0].areaName[0].value + ", " + data![0].region[0].value + ", " + data![0].country[0].value
                     currentCity = currentGeoPositionName
                     DispatchQueue.main.async {
-                        self!.naviagtionBar.changeCity(for: currentGeoPositionName)
+                        self!.navigationBar.changeCity(for: currentGeoPositionName)
                     }
                 } else {
 //                    self!.createGeoAlert(locationImprossible: false)
                 }
             })
 
-        }
-        else{
+        } else {
             NetworkService.shared.loadData(currentCity: currentCity, completion: {
                                 [weak self] data in
                                 Data.processDataAndSave(data : data)
@@ -331,16 +130,13 @@ class ViewController: UIViewController, ChangeCityDelegate {
                                 //save
                                 DispatchQueue.main.async {
                                     NotificationService.shared.performAllNotificationTasks()
-                                    self!.updateCurrent()
-                                    self!.updateNext()
+                                    self!.currentLayer.updateCurrent()
+                                    self!.nextLayer.updateNext()
                                     
-                                   self!.naviagtionBar.changeCity(for: currentCity)
+                                   self!.navigationBar.changeCity(for: currentCity)
                                 }
                             })
             
         }
     }
-    
-    
-    
 }

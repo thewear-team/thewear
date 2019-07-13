@@ -31,6 +31,16 @@ func configureSizes() {
     }
 }
 
+func createPrevious() -> UIBezierPath {
+    let previousPart = UIBezierPath()
+    previousPart.move(to: .zero)
+    previousPart.addLine(to: CGPoint(x: width, y: 0))
+    previousPart.addLine(to: CGPoint(x: width, y: height))
+    previousPart.addLine(to: CGPoint(x: 0, y: height))
+    previousPart.close()
+    return previousPart
+}
+
 func createNext() -> UIBezierPath {
     
     topForStart = height - 320

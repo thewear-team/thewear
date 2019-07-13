@@ -28,6 +28,11 @@
 		DBCDD0A022D2165E00C617FE /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCDD09F22D2165E00C617FE /* NavigationBar.swift */; };
 		DBCDD0A222D29A4900C617FE /* PartInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCDD0A122D29A4900C617FE /* PartInfoView.swift */; };
 		DBCDD0A422D3F3C600C617FE /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCDD0A322D3F3C600C617FE /* DetailsView.swift */; };
+		DBDE177922D93CE3005A7457 /* CurrentLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDE177822D93CE3005A7457 /* CurrentLayer.swift */; };
+		DBDE177B22D940FE005A7457 /* NextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDE177A22D940FE005A7457 /* NextLayer.swift */; };
+		DBDE178122D953DC005A7457 /* PreviousLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDE178022D953DC005A7457 /* PreviousLayer.swift */; };
+		DBDE178322D95828005A7457 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDE178222D95828005A7457 /* Protocols.swift */; };
+		DBDE178522D95BF0005A7457 /* PanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDE178422D95BF0005A7457 /* PanView.swift */; };
 		DBF6F19C22D7E869000A7183 /* DetailsViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF6F19B22D7E869000A7183 /* DetailsViewExtension.swift */; };
 		DBF6F19E22D7E97C000A7183 /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF6F19D22D7E97C000A7183 /* HourCell.swift */; };
 		DBF6F1A122D7FADE000A7183 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF6F1A022D7FADE000A7183 /* DayCell.swift */; };
@@ -57,6 +62,11 @@
 		DBCDD09F22D2165E00C617FE /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		DBCDD0A122D29A4900C617FE /* PartInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartInfoView.swift; sourceTree = "<group>"; };
 		DBCDD0A322D3F3C600C617FE /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		DBDE177822D93CE3005A7457 /* CurrentLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLayer.swift; sourceTree = "<group>"; };
+		DBDE177A22D940FE005A7457 /* NextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLayer.swift; sourceTree = "<group>"; };
+		DBDE178022D953DC005A7457 /* PreviousLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousLayer.swift; sourceTree = "<group>"; };
+		DBDE178222D95828005A7457 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		DBDE178422D95BF0005A7457 /* PanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanView.swift; sourceTree = "<group>"; };
 		DBF6F19B22D7E869000A7183 /* DetailsViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewExtension.swift; sourceTree = "<group>"; };
 		DBF6F19D22D7E97C000A7183 /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		DBF6F1A022D7FADE000A7183 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
@@ -83,6 +93,7 @@
 				A7F19CAB22D52D2A006CE60B /* ReachabilityChecker.swift */,
 				A7F19CB122D53D68006CE60B /* Alerts.swift */,
 				A7F19CA722D52432006CE60B /* Functions.swift */,
+				DBDE178222D95828005A7457 /* Protocols.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -109,6 +120,7 @@
 				DB19A88022C9400C00F4EC41 /* AppDelegate.swift */,
 				A7F19CA222D51D7A006CE60B /* Services */,
 				DBCDD0A822D3F47100C617FE /* Model */,
+				DBF6F19F22D7E983000A7183 /* Cells */,
 				DBCDD0A722D3F46800C617FE /* View */,
 				DBCDD0A922D3F47F00C617FE /* Controller */,
 				DB19A88722C9400C00F4EC41 /* Assets.xcassets */,
@@ -125,7 +137,10 @@
 				DBCDD0A122D29A4900C617FE /* PartInfoView.swift */,
 				DBCDD0A322D3F3C600C617FE /* DetailsView.swift */,
 				DBF6F19B22D7E869000A7183 /* DetailsViewExtension.swift */,
-				DBF6F19F22D7E983000A7183 /* Cells */,
+				DBDE178022D953DC005A7457 /* PreviousLayer.swift */,
+				DBDE177822D93CE3005A7457 /* CurrentLayer.swift */,
+				DBDE177A22D940FE005A7457 /* NextLayer.swift */,
+				DBDE178422D95BF0005A7457 /* PanView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,12 +253,16 @@
 			files = (
 				A7F19CB022D53585006CE60B /* SettingsModel.swift in Sources */,
 				A7F19CB222D53D68006CE60B /* Alerts.swift in Sources */,
+				DBDE177922D93CE3005A7457 /* CurrentLayer.swift in Sources */,
 				A7F19CA122D51AD4006CE60B /* NetworkService.swift in Sources */,
 				DB19A89322C9451700F4EC41 /* AdditionalFunctions.swift in Sources */,
+				DBDE178522D95BF0005A7457 /* PanView.swift in Sources */,
 				DBCDD0A422D3F3C600C617FE /* DetailsView.swift in Sources */,
 				A7F19CA822D52432006CE60B /* Functions.swift in Sources */,
 				A7F19CA422D51DAB006CE60B /* Code&Colors.swift in Sources */,
 				DB19A88322C9400C00F4EC41 /* ViewController.swift in Sources */,
+				DBDE178322D95828005A7457 /* Protocols.swift in Sources */,
+				DBDE178122D953DC005A7457 /* PreviousLayer.swift in Sources */,
 				DB596E1E22CE067B00030AAB /* GlobalVariables.swift in Sources */,
 				DBF6F1A122D7FADE000A7183 /* DayCell.swift in Sources */,
 				A7F19CA622D523E2006CE60B /* NotificationService.swift in Sources */,
@@ -257,6 +276,7 @@
 				A7D8671D22D8BB1F00A16EED /* WeatherDataModel.swift in Sources */,
 				A7F19CAC22D52D2A006CE60B /* ReachabilityChecker.swift in Sources */,
 				DBCDD0A222D29A4900C617FE /* PartInfoView.swift in Sources */,
+				DBDE177B22D940FE005A7457 /* NextLayer.swift in Sources */,
 				DBF6F19C22D7E869000A7183 /* DetailsViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,13 +416,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWearApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "libit.theWearApp--";
+				PRODUCT_BUNDLE_IDENTIFIER = "libit.theWearApp--g";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -414,13 +434,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99F33CAX5W;
+				DEVELOPMENT_TEAM = 78FSRJL5ZR;
 				INFOPLIST_FILE = theWearApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "libit.theWearApp--";
+				PRODUCT_BUNDLE_IDENTIFIER = "libit.theWearApp--g";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
