@@ -159,9 +159,9 @@ extension SearchView: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 1.0) {
+//        UIView.animate(withDuration: 1.0) {
             self.citiesTableView.frame.size.height = 0.925 * Frames.shared.height - Frames.shared.top - Frames.shared.keyboard - 0.075 * Frames.shared.height + Frames.shared.bottom
-        }
+//        }
         textField.becomeFirstResponder()
     }
     
