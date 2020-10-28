@@ -1,0 +1,122 @@
+/* 
+  Localizable.strings
+  theWearApp
+
+  Created by Валентина on 04.08.2019.
+  Copyright © 2019 Max Reshetov. All rights reserved.
+*/
+/////
+"Weather forecast" = "Prévisions météo";
+"Weather in" = "Prévisions météo pour";
+"Today" = "Aujourd'hui";
+"Now" = "Maintenant";
+"Day" = "Jour";
+"Morning" = "Matin";
+"Evening" = "Soir";
+"Night" = "Nuit";
+"Settings" = "Configuration";
+"Gender"  = "Genre";
+"Use current location"  = "Utiliser la géolocalisation";
+"Temperature"  = "Température";
+"Wind Speed" = "Vents";
+"Pressure" = "Pression atmosphérique";
+"man" = "masculin";
+"woman" = "féminin";
+"Man" = "Homme";
+"Woman" = "Femme";
+"Skin color" = "Couleur de la peau";
+"Notifications" = "Notifications";
+"Notifications time" = "Heure de notification";
+"Change person" = "Changer l'apparence";
+"Person" = "Apparence";
+"Hairstyle,beard and mustache" = "Coiffeur, moustache et barbe";
+"Hairstyle" = "Coiffeur";
+"Hair color" = "Couleur des cheveux";
+"Skin color" = "Teint";
+"Done" = "Fini";
+"Write to developers" = "Écrire aux développeurs";
+
+"kmPh" = "kmPh";
+"mPs" = "mPs";
+"hPa" = "hPa";
+"mmHg" = "mmHg";
+"ºC" = "ºС";
+"F" = "ºF";
+"possible, "  = "";
+"possible "  = "";
+"Feels like" = "RealFeel";
+"high UV." = "faites attention aux UV.";
+"mind strong wind." = "le vent est fort.";
+"the day temperature is" = "température diurne -";
+"Done" = "Fini";
+//MARK : clothes comments
+"Stay warm!" = "Il fait très froid! Rester au chaud!";
+"Very cold. Put on a scarf, gloves and a warm coat." = "Il fait très froid, mettez une écharpe, des gants et un manteau chaud.";
+"Put on a scarf, gloves and a warm coat." = "Mettez une écharpe, des gants et un manteau chaud.";
+"Feels cold. Put on a coat and a scarf with gloves." = "Il fait froid, mettez des gants et un manteau chaud.";
+"Put on a coat." = "Il fait frais, mettez un manteau.";
+"Put on a coat and a scarf with gloves." = "Mettez un manteau et des gants.";
+"Put on a windbreaker." = "Mettez un coupe-vent.";
+"Put on a T-shirt." = "Chaud, mettez un t-shirt.";
+"It's very hot. Put on your lightest clothes." = "Il fait très chaud, mettez vos vêtements les plus légers.";
+"Put on a longsleeve." = "Il fait assez chaud, mettez un t-shirt.";
+"Tomorrow" = "Demain";
+
+
+// MARK : code statuses
+"Sunny" = "Ensoleillé";
+"Clear" = "Ciel clair";
+"Partly Cloudy" = "Partiellement nuageux";
+"Cloudy" = "Nuageux";
+"Overcast" = "Couvert";
+"Mist" = "Brume";
+"Patchy rain nearby" = "Pluie éparse à proximité";
+"Patchy snow nearby" = "Neige éparse à proximité";
+"Patchy freezing drizzle" = "Bruine verglaçante éparse à proximité";
+"Patchy sleet" = "Grésil épars à proximité";
+"Thundery outbreaks" = "Foyers orageux à proximité";
+"Blowing snow" = "Rafales de neige";
+"Fog" = "Brouillard";
+"Blizzard" = "Blizzard";
+"Freezing fog" = "Brouillard givrant";
+"Patchy light drizzle" = "Bruine légère éparse";
+"Light drizzle" = "Bruine légère";
+"Freezing drizzle" = "Bruine verglaçante";
+"Heavy freezing drizzle" = "Forte bruine verglaçante";
+"Patchy light rain" = "Pluie légère éparse"; //
+"Light rain" = "Pluie légère";//
+"Moderate rain at times" = "Pluie modérée par moments";//
+"Moderate rain" = "Pluie modérée";//
+"Heavy rain at times" = "Pluie forte par moments";//
+"Heavy rain" = "Pluie forte";//
+"Light freezing rain" = "Pluie verglaçante légère";//
+"Freezing rain" = "Pluie verglaçante";
+"Light sleet" = "Grésil légère";
+"Sleet" = "La neige fondue";
+"Patchy light snow" = "Neige légère éparse";
+"Light snow" = "Neige légère";
+"Patchy moderate snow" = "Neige modérée éparse";
+"Moderate snow" = "Neige modérée";
+"Patchy heavy snow" = "Neige abondante éparse";
+"Heavy snow" = "Neige abondante";
+"Ice pellets" = "Grêle";
+"Light rain shower" = "Averses de pluie légères";
+"Rain shower" = "Pluie torrentielle";
+"Torrential rain shower" = "Pluie forte";
+"Light sleet showers" = "Pluie avec neige légère";
+"Sleet showers" = "Pluie avec neige";
+"Light snow showers" = "Averses de neige légères";
+"Snow showers" = "Averses de neige";
+"Light showers of ice pellets" = "Averses de granules de glace légères";
+"Showers of ice pellets" = "Averses de granules de glace";
+"Light rain with thunder" = "Pluie de tonnerre légère";
+"Rain with thunder" = "Pluie de tonnerre";
+"Light snow with thunder" = "Neige légère avec tonnerre";
+"Snow with thunder" = "Neige avec tonnerre";
+"No results" = "---";
+
+
+"Sorry, no matching cities found. Avoid using diacritics, please." = "Désolé, pas de villes correspondantes trouvées. Évitez d'utiliser des signes diacritiques, s'il vous plaît.";
+"Sorry, impossible to get your location. Please, use city search instead." = "Désolé, impossible d'obtenir votre position. Veuillez réutiliser la recherche de ville à la place.";
+"Sorry, impossible to get your location. Please, enable location services in your settings." = "Désolé, impossible d'obtenir votre position. Veuillez activer les services de localisation dans vos paramètres.";
+"Sorry, impossible to get current forecast. Please, check your internet connection." = "Désolé, impossible d'obtenir les prévisions. S'il vous plait, vérifiez votre connexion internet.";

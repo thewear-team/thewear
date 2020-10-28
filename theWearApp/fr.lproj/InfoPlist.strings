@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  theWearApp
+
+  Created by Valentina Selezneva on 29.03.2020.
+  Copyright © 2020 Max Reshetov. All rights reserved.
+*/
+"We need to know your location to show the most accurate weather forecast." = "Nous devons connaître votre emplacement pour afficher les prévisions météorologiques les plus précises.";
+"theWear needs to know your location to show the most accurate weather forecast." = "Nous devons connaître votre emplacement pour afficher les prévisions météorologiques les plus précises.";

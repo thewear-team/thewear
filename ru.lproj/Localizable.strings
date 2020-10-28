@@ -1,0 +1,122 @@
+/* 
+  Localizable.strings
+  theWearApp
+
+  Created by Валентина on 04.08.2019.
+  Copyright © 2019 Max Reshetov. All rights reserved.
+*/
+"Weather forecast" = "Прогноз погоды";
+"Weather in" = "Прогноз погоды для";
+"Today" = "Cегодня";
+"Today " = "Cегодня";
+"Today," = "Cегодня,";
+"Now" = "Сейчас";
+"Day" = "День";
+"Morning" = "Утро";
+"Evening" = "Вечер";
+"Night" = "Ночь";
+"Settings" = "Настройки";
+"Gender"  = "Пол";
+"Use current location"  = "Использовать геолокацию";
+"Temperature"  = "Температура";
+"Wind Speed" = "Ветер";
+"Pressure" = "Атмосферное давление";
+"man" = "муж";
+"woman" = "жен";
+"Man" = "Муж";
+"Woman" = "Жен";
+"Skin color" = "Цвет кожи";
+"Notifications" = "Уведомления";
+"Notifications time" = "Время уведомлений";
+"Change person" = "Изменить внешность";
+"Person" = "Внешность";
+"Hairstyle, beard and mustache" = "Прическа, усы и борода";
+"Hairstyle" = "Прическа";
+"Hair color" = "Цвет волос";
+"Done" = "Готово";
+"Write to developers" = "Написать разработчикам";
+"Done" = "Готово";
+
+"kmPh" = "км/ч";
+"mPs" = "м/с";
+"hPa" = "мбар";
+"mmHg" = "мм.рт.ст.";
+"ºC" = "ºС";
+"F" = "ºF";
+"possible, "  = "";
+"possible "  = "";
+"Feels like" = "Ощущается как";
+"high UV." = "обратите внимание на уровень UV.";
+"mind strong wind." = "сильный ветер.";
+"the day temperature is" = "дневная температура -";
+//MARK : clothes comments
+"Stay warm!" = "Очень холодно! Одевайтесь теплее!";
+"Very cold. Put on a scarf, gloves and a warm coat." = "Очень холодно! Наденьте шапку, шарф и перчатки.";
+"Put on a scarf, gloves and a warm coat." = "Наденьте шапку, шарф и перчатки.";
+"Feels cold. Put on a coat and a scarf with gloves." = "Холодно. Наденьте куртку, перчатки и шарф.";
+"Put on a coat." = "Прохладно, наденьте куртку.";
+"Put on a coat and a scarf with gloves." = "Наденьте шапку, шарф и перчатки";
+"Put on a windbreaker." = "Наденьте ветровку или легкую куртку.";
+"Put on a T-shirt." = "Тепло, наденьте футболку.";
+"It's very hot. Put on your lightest clothes." = "Очень жарко! Одевайтесь в самую легкую одежду.";
+"Put on a longsleeve." = "Прохладно, наденьте лонгслив.";
+"Tomorrow" = "Завтра";
+
+
+// MARK : code statuses
+"Sunny" = "Солнечно";
+"Clear" = "Ясно";
+"Partly Cloudy" = "Временами облачно";
+"Cloudy" = "Облачно";
+"Overcast" = "Облачность";
+"Mist" = "Туман";
+"Patchy rain nearby" = "Небольшой дождь";
+"Patchy snow nearby" = "Небольшой снег";
+"Patchy freezing drizzle" = "Заморозки, небольшой дождь";
+"Patchy sleet" = "Небольшой дождь со снегом";
+"Thundery outbreaks" = "Грозы";
+"Blowing snow" = "Метель";
+"Fog" = "Туман";
+"Blizzard" = "Пурга";
+"Freezing fog" = "Заморозки, туман";
+"Patchy light drizzle" = "Небольшой дождь, заморозки";
+"Light drizzle" = "Моросящий дождь";
+"Freezing drizzle" = "Заморозки, моросящий дождь";
+"Heavy freezing drizzle" = "Заморозки, дождь";
+"Patchy light rain" = "Местами небольшой дождь"; //
+"Light rain" = "Небольшой дождь";//
+"Moderate rain at times" = "Умеренный дождь";//
+"Moderate rain" = "Умеренный дождь";//
+"Heavy rain at times" = "Местами сильный дождь";//
+"Heavy rain" = "Сильный дождь";//
+"Light freezing rain" = "Небольшой дождь, заморозки";//
+"Freezing rain" = "Дождь, заморозки";
+"Light sleet" = "Небольшой дождь со снегом";
+"Sleet" = "Дождь со снегом";
+"Patchy light snow" = "Небольшой дождь со снегом";
+"Light snow" = "Небольшой снег";
+"Patchy moderate snow" = "Местами снег";
+"Moderate snow" = "Снег";
+"Patchy heavy snow" = "Местами сильный снегопад";
+"Heavy snow" = "Сильный снегопад";
+"Ice pellets" = "Град";
+"Light rain shower" = "Небольшой моросящий дождь";
+"Rain shower" = "Моросящий дождь";
+"Torrential rain shower" = "Моросящий дождь";
+"Light sleet showers" = "Небольшой дождь со снегом";
+"Sleet showers" = "Дождьь со снегом";
+"Light snow showers" = "Небольшой снегопад";
+"Snow showers" = "Снегопад";
+"Light showers of ice pellets" = "Град";
+"Showers of ice pellets" = "Град";
+"Light rain with thunder" = "Дождь с грозой";
+"Rain with thunder" = "Дождь с грозой";
+"Light snow with thunder" = "Небольшой снег с грозой";
+"Snow with thunder" = "Снег с грозой";
+"No results" = "---";
+
+
+"Sorry, no matching cities found. Avoid using diacritics, please." = "Извините, но город не найден. Используйте латиницу.";
+"Sorry, impossible to get your location. Please, use city search instead." = "К сожалению, не можем определить вашу локацию. Воспользуйтесь поиском по городу.";
+"Sorry, impossible to get your location. Please, enable location services in your settings." = "К сожалению, не можем определить вашу локацию. Проверьте, что геосервисы включены в настройках девайса.";
+"Sorry, impossible to get current forecast. Please, check your internet connection." = "Похоже, прогноз недоступен. Проверьте ваше интернет-соединение.";
