@@ -10,6 +10,8 @@
 		A712532823100FF200283206 /* EmailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712532723100FF200283206 /* EmailSender.swift */; };
 		A74B9A33243138DE00B56587 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A74B9A35243138DE00B56587 /* InfoPlist.strings */; };
 		A7709C2722EF8FD200A7AEBC /* ClothesPersonLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7709C2622EF8FD200A7AEBC /* ClothesPersonLogic.swift */; };
+		A78A98B7254ABF8A004A2ED6 /* NewNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A98B6254ABF8A004A2ED6 /* NewNetworkService.swift */; };
+		A78A98BA254AC368004A2ED6 /* NewWeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A98B9254AC368004A2ED6 /* NewWeatherDataModel.swift */; };
 		A7941F4C242A99A700CE53FD /* NotificationServiceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7941F4B242A99A700CE53FD /* NotificationServiceExtension.swift */; };
 		A7C71DB122F8A44C00E39C59 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7C71DAF22F8A44C00E39C59 /* Localizable.strings */; };
 		A7D8671D22D8BB1F00A16EED /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D8671C22D8BB1F00A16EED /* WeatherDataModel.swift */; };
@@ -70,6 +72,8 @@
 		A74B9A34243138DE00B56587 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A74B9A36243138E300B56587 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A7709C2622EF8FD200A7AEBC /* ClothesPersonLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesPersonLogic.swift; sourceTree = "<group>"; };
+		A78A98B6254ABF8A004A2ED6 /* NewNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNetworkService.swift; sourceTree = "<group>"; };
+		A78A98B9254AC368004A2ED6 /* NewWeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWeatherDataModel.swift; sourceTree = "<group>"; };
 		A7941F4B242A99A700CE53FD /* NotificationServiceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServiceExtension.swift; sourceTree = "<group>"; };
 		A7B40E97238089E4006AD006 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ../ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A7C71DB022F8A44C00E39C59 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -141,6 +145,7 @@
 			children = (
 				A7F19CB422D6363A006CE60B /* UserDefaultsService.swift */,
 				A7F19CA022D51AD4006CE60B /* NetworkService.swift */,
+				A78A98B6254ABF8A004A2ED6 /* NewNetworkService.swift */,
 				A7F19CA322D51DAB006CE60B /* Code&Colors.swift */,
 				A7F19CA522D523E2006CE60B /* NotificationService.swift */,
 				A7941F4B242A99A700CE53FD /* NotificationServiceExtension.swift */,
@@ -255,6 +260,7 @@
 			children = (
 				A7F19C9E22D519B6006CE60B /* OutputDataModel.swift */,
 				A7D8671C22D8BB1F00A16EED /* WeatherDataModel.swift */,
+				A78A98B9254AC368004A2ED6 /* NewWeatherDataModel.swift */,
 				A7F19C9C22D5198A006CE60B /* AutocompleteDataModel.swift */,
 				DB596E1D22CE067B00030AAB /* GlobalVariables.swift */,
 				A7F19CAF22D53585006CE60B /* SettingsModel.swift */,
@@ -402,6 +408,7 @@
 				DB19A88122C9400C00F4EC41 /* AppDelegate.swift in Sources */,
 				DBF6F19E22D7E97C000A7183 /* HourCell.swift in Sources */,
 				A7F19C9F22D519B6006CE60B /* OutputDataModel.swift in Sources */,
+				A78A98BA254AC368004A2ED6 /* NewWeatherDataModel.swift in Sources */,
 				A7F19CAE22D52FB9006CE60B /* Extensions(Location).swift in Sources */,
 				DB48140822FCC860005D47B3 /* WomanWhenRain.swift in Sources */,
 				A7D8671D22D8BB1F00A16EED /* WeatherDataModel.swift in Sources */,
@@ -414,6 +421,7 @@
 				DB92746422FB0CAA00B48FDA /* ManWhenRain.swift in Sources */,
 				DB0AAF9222E5EF8C005095F1 /* SettingsView.swift in Sources */,
 				DB549CE922F8E9070058A55E /* SearchViewExtensions.swift in Sources */,
+				A78A98B7254ABF8A004A2ED6 /* NewNetworkService.swift in Sources */,
 				DBF6F19C22D7E869000A7183 /* DetailsViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
