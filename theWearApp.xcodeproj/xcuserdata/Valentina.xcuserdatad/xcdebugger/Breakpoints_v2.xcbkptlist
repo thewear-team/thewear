@@ -7493,40 +7493,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
             endingLineNumber = "20"
-            landmarkName = "loadData(currentCity:)"
+            landmarkName = "loadCurrentData(query:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F9B4EF0A-293B-45D2-ACB4-C6ECBE71E902 - 3c22d79e2bad723a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "globalinit_33_B67BA55E558837680F4E2029BC9475D0_func1"
-                  moduleName = "theWearApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Valentina/Desktop/thewear/theWearApp/Services/NewNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "F9B4EF0A-293B-45D2-ACB4-C6ECBE71E902 - 6b0b542e0293a91f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "theWearApp.NewNetworkService.searchCurrentWeather.unsafeMutableAddressor : Swift.String"
-                  moduleName = "theWearApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Valentina/Desktop/thewear/theWearApp/Services/NewNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -7541,40 +7509,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "19"
             endingLineNumber = "19"
-            landmarkName = "loadData(currentCity:)"
+            landmarkName = "loadCurrentData(query:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3C6904D3-CF1C-42A7-8EA1-7FF35492BA7F - 3c22d79e2bbd75d8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "globalinit_33_B67BA55E558837680F4E2029BC9475D0_func0"
-                  moduleName = "theWearApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Valentina/Desktop/thewear/theWearApp/Services/NewNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "3C6904D3-CF1C-42A7-8EA1-7FF35492BA7F - 9f54267bfc1578e6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "theWearApp.NewNetworkService.newService.unsafeMutableAddressor : Swift.String"
-                  moduleName = "theWearApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Valentina/Desktop/thewear/theWearApp/Services/NewNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -7589,7 +7525,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
             endingLineNumber = "29"
-            landmarkName = "loadData(currentCity:)"
+            landmarkName = "loadCurrentData(query:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -7605,7 +7541,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "loadData(currentCity:)"
+            landmarkName = "loadCurrentData(query:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -7621,7 +7557,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
             endingLineNumber = "34"
-            landmarkName = "loadData(currentCity:)"
+            landmarkName = "loadCurrentData(query:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -7637,7 +7573,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
             endingLineNumber = "36"
-            landmarkName = "loadData(currentCity:)"
+            landmarkName = "loadCurrentData(query:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -7653,7 +7589,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
             endingLineNumber = "35"
-            landmarkName = "loadData(currentCity:)"
+            landmarkName = "loadCurrentData(query:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

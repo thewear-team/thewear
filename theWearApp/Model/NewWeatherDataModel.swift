@@ -46,3 +46,25 @@ struct Condition : Codable{
     let text : String
     let code : Int
 }
+
+struct Forecast : Codable{
+    let forecastday : [Forecastday]
+}
+struct Forecastday : Codable{
+    let date : String
+    let day : Day
+    let astro : Astro
+    let hour : [Hour]
+}
+
+struct Day: Codable{
+
+}
+
+struct Astro : Codable{
+    
+}
+
+struct Hour : Codable{
+    
+}
