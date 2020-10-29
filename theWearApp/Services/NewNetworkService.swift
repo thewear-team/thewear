@@ -12,8 +12,9 @@ class NewNetworkService{
     
     static let newService = "https://api.weatherapi.com/v1/"
     static let searchCurrentWeather = "current.json?"
+    static let searchFutureWeather = "forecast.json?"
     static let key = "key=96f9054226504d2f982182658200510&"
-    
+    static let days = "days=7"
     static let shared  = NewNetworkService()
     
     func loadCurrentData(query : String){
@@ -45,29 +46,21 @@ class NewNetworkService{
     }
     
     func loadFutureData (query : String){
-        let urlString = "\(NetworkService.weatherString)\(NetworkService.key)&q=\(query)\(NetworkService.weatherParameters)"
-        
-        print("geo ret \(urlString)")
-        let url = URL(string: urlString)
+        var jsonUrlString = "\(NewNetworkService.newService)\(NewNetworkService.searchFutureWeather)\(NewNetworkService.key)q=\(currentCity)&\(NewNetworkService.days)"
+        jsonUrlString = jsonUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        var noDiacritics = jsonUrlString.folding(options: .diacriticInsensitive, locale: .current)
+        noDiacritics = noDiacritics.replacingOccurrences(of: " ", with: "%20")
+        let url = URL(string: noDiacritics)
         print(url)
         let task = URLSession.shared.dataTask(with: url!){ (data,
             response, err) in
             do {
                 if data != nil{
-                    let alldata = try
-                        JSONDecoder().decode(Main.self, from: data!)
-                    let result = alldata.data
-                } else {
-                    DispatchQueue.main.async {
-                        if alert == nil {
-                            alert = Alert(frame: .zero, alert: NSLocalizedString("Sorry, impossible to get current forecast. Please, check your internet connection.", comment: ""))
-                        }
-                    }
-                    
+                    let futureData = try
+                        JSONDecoder().decode(ForecastData.self, from: data!)
+                    print(futureData.forecast.forecastday.count)
                 }
-            } catch { print("Error deserializing JSON: \(error.localizedDescription)")
-
-            }
+            } catch { print(error)}
         }
         task.resume()
     }

@@ -73,7 +73,11 @@ class ViewController: UIViewController {
     @objc  func startWorking(_ sender : Any){
         determinePartOfDay()
         getCurrentHours()
+        //testing new service
         NewNetworkService.shared.loadCurrentData(query: "Moscow")
+        NewNetworkService.shared.loadFutureData(query: "Paris")
+        NewNetworkService.shared.loadFutureData(query: "55.78926347611057,37.53836397636919")
+        //
         SettingsModel.retrieveSettings()
         
         self.configureLocationManager()

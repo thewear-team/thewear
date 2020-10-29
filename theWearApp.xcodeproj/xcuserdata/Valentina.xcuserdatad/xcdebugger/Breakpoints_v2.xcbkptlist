@@ -4220,8 +4220,8 @@
             timestampString = "595628277.903052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "startWorking(_:)"
             landmarkType = "7">
             <Locations>
@@ -4271,8 +4271,8 @@
             timestampString = "595628277.903101"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "startWorking(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5512,8 +5512,8 @@
             timestampString = "595628277.905385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "updateCityAndDate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5529,8 +5529,8 @@
             timestampString = "595628277.9054379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "updateCityAndDate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5546,8 +5546,8 @@
             timestampString = "595628277.905486"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "updateCityAndDate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5563,8 +5563,8 @@
             timestampString = "595628277.905527"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "updateCityAndDate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -7089,8 +7089,8 @@
             timestampString = "595628277.906819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "updateCityAndDate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -7106,8 +7106,8 @@
             timestampString = "595628277.906868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "updateCityAndDate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -7123,8 +7123,8 @@
             timestampString = "595628277.9069099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "updateCityAndDate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -7315,8 +7315,8 @@
             filePath = "theWearApp/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "updateUI(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -7459,8 +7459,8 @@
             filePath = "theWearApp/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "startWorking(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -7475,8 +7475,8 @@
             filePath = "theWearApp/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "startWorking(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -7485,7 +7485,23 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F9B4EF0A-293B-45D2-ACB4-C6ECBE71E902"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApp/Services/NewNetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "loadCurrentData(query:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C6904D3-CF1C-42A7-8EA1-7FF35492BA7F"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApp/Services/NewNetworkService.swift"
@@ -7500,22 +7516,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3C6904D3-CF1C-42A7-8EA1-7FF35492BA7F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "theWearApp/Services/NewNetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "loadCurrentData(query:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "B0797FC9-0DEF-4160-975E-B1832DBC9698"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -7523,8 +7523,8 @@
             filePath = "theWearApp/Services/NewNetworkService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "loadCurrentData(query:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -7539,8 +7539,8 @@
             filePath = "theWearApp/Services/NewNetworkService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "loadCurrentData(query:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -7555,8 +7555,8 @@
             filePath = "theWearApp/Services/NewNetworkService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "loadCurrentData(query:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -7565,7 +7565,23 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B5014E05-FAF8-4835-9AFA-DFF8B8B1F18C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApp/Services/NewNetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "loadCurrentData(query:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "54044159-9264-4015-B8A3-56C6683967E1"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApp/Services/NewNetworkService.swift"
@@ -7580,17 +7596,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "54044159-9264-4015-B8A3-56C6683967E1"
+            uuid = "51001E96-5DD1-4E39-A369-95C7ABABD7C0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theWearApp/Services/NewNetworkService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "loadCurrentData(query:)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "loadFutureData(query:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "526A2C2C-D5A1-41C5-A5A8-3B36D5408120"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "theWearApp/Services/NewNetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "loadFutureData(query:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "526A2C2C-D5A1-41C5-A5A8-3B36D5408120 - fd45bd86d0d67ac3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in theWearApp.NewNetworkService.loadFutureData(query: Swift.String) -&gt; ()"
+                  moduleName = "theWearApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Valentina/Desktop/thewear/theWearApp/Services/NewNetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "5539">
+               </Location>
+               <Location
+                  uuid = "526A2C2C-D5A1-41C5-A5A8-3B36D5408120 - fd45bd86d0d67ac3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in theWearApp.NewNetworkService.loadFutureData(query: Swift.String) -&gt; ()"
+                  moduleName = "theWearApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Valentina/Desktop/thewear/theWearApp/Services/NewNetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "5629">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
