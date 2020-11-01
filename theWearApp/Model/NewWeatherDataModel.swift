@@ -105,8 +105,15 @@ struct Hour : Codable{
     let cloud : Int
     let feelslike_c : Decimal
     let feelslike_f : Decimal
-//    let uv : Decimal
     let will_it_rain: Int
     let will_it_snow: Int
-   
+}
+struct AutocompleteSearch : Codable{
+    let name : String
+    let region : String
+    let country : String
+    let lat : Decimal
+    let lon : Decimal
+    let url : String
+    
 }

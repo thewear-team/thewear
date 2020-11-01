@@ -13,6 +13,7 @@ class NewNetworkService{
     static let newService = "https://api.weatherapi.com/v1/"
     static let searchCurrentWeather = "current.json?"
     static let searchFutureWeather = "forecast.json?"
+    static let autocompleteSearch = "search.json?"
     static let key = "key=96f9054226504d2f982182658200510&"
     static let days = "days=7"
     static let shared  = NewNetworkService()
@@ -46,7 +47,7 @@ class NewNetworkService{
     }
     
     func loadFutureData (query : String){
-        var jsonUrlString = "\(NewNetworkService.newService)\(NewNetworkService.searchFutureWeather)\(NewNetworkService.key)q=\(currentCity)&\(NewNetworkService.days)"
+        var jsonUrlString = "\(NewNetworkService.newService)\(NewNetworkService.searchFutureWeather)\(NewNetworkService.key)q=\(query)&\(NewNetworkService.days)"
         jsonUrlString = jsonUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         var noDiacritics = jsonUrlString.folding(options: .diacriticInsensitive, locale: .current)
         noDiacritics = noDiacritics.replacingOccurrences(of: " ", with: "%20")
@@ -59,6 +60,27 @@ class NewNetworkService{
                     let futureData = try
                         JSONDecoder().decode(ForecastData.self, from: data!)
                     print(futureData.forecast.forecastday.count)
+                }
+            } catch { print(error)}
+        }
+        task.resume()
+    }
+    
+    //https://api.weatherapi.com/v1/search.json?key=96f9054226504d2f982182658200510&q=Lon
+    func loadAutocompleteSearchData(query : String){
+        var jsonUrlString = "\(NewNetworkService.newService)\(NewNetworkService.autocompleteSearch)\(NewNetworkService.key)q=\(query)"
+        jsonUrlString = jsonUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        var noDiacritics = jsonUrlString.folding(options: .diacriticInsensitive, locale: .current)
+        noDiacritics = noDiacritics.replacingOccurrences(of: " ", with: "%20")
+        let url = URL(string: noDiacritics)
+        print(url)
+        let task = URLSession.shared.dataTask(with: url!){ (data,
+            response, err) in
+            do {
+                if data != nil{
+                    let autocompleteSearchData = try
+                        JSONDecoder().decode([AutocompleteSearch].self, from: data!)
+                    print(autocompleteSearchData)
                 }
             } catch { print(error)}
         }
